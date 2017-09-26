@@ -68,8 +68,10 @@
                     <td class="auto-style5"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style3">&nbsp;</td>
-                    <td class="auto-style4">&nbsp;</td>
+                    <td class="auto-style3">customerID :</td>
+                    <td class="auto-style4">
+                        <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+                    </td>
                     <td class="auto-style5">&nbsp;</td>
                     <td class="auto-style5">&nbsp;</td>
                 </tr>
@@ -100,13 +102,15 @@
                 <tr>
                     <td class="auto-style2">Customer Date Of Birth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
                     <td class="auto-style1">
-                        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
-                            <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                            <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                            <OtherMonthDayStyle ForeColor="#999999" />
-                            <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                            <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                            <TodayDayStyle BackColor="#CCCCCC" />
+                        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#999999" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px" CellPadding="4" DayNameFormat="Shortest">
+                            <DayHeaderStyle Font-Bold="True" Font-Size="7pt" BackColor="#CCCCCC" />
+                            <NextPrevStyle VerticalAlign="Bottom" />
+                            <OtherMonthDayStyle ForeColor="#808080" />
+                            <SelectedDayStyle BackColor="#666666" ForeColor="White" Font-Bold="True" />
+                            <SelectorStyle BackColor="#CCCCCC" />
+                            <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
+                            <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
+                            <WeekendDayStyle BackColor="#FFFFCC" />
                         </asp:Calendar>
                     </td>
                     <td>&nbsp;</td>
@@ -123,7 +127,7 @@
                 <tr>
                     <td class="auto-style6">Customer Contact Method&nbsp; :</td>
                     <td class="auto-style7">
-                        <asp:CheckBox ID="CheckBox1" runat="server" />
+                        <asp:CheckBox ID="CheckBox1" runat="server" Text="whatsapp" />
                     </td>
                     <td class="auto-style8"></td>
                     <td class="auto-style8"></td>

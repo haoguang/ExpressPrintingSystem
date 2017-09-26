@@ -87,7 +87,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassHashing.cs" />
+    <Compile Include="Model\ClassHashing.cs" />
     <Compile Include="Customer\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
