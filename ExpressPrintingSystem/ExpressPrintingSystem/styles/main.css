@@ -1,0 +1,225 @@
+﻿/*-------------------------------------------FONTS---------------------------------------------*/
+@font-face {
+	font-family: 'Multicolore';
+	src: url("fonts/Multicolore.otf"); 
+    src: url("fonts/Multicolore.otf") format("opentype");
+    font-style: normal;
+}
+
+
+body {
+    margin: 0;
+	padding: 0;
+	position: relative;
+	width: auto;
+    background-color:#80e5ff;
+}
+
+body #page{
+    margin: 0;
+	overflow: hidden;
+	padding: 0;
+	width: auto;
+	z-index: 3;
+    overflow:auto;
+}
+
+a {
+	text-decoration: none;
+	outline: none;
+}
+
+a:active {
+	background: none;
+}
+
+img {
+	border: none;
+}
+/*-------------------------------------------HEADER---------------------------------------------*/
+#header {
+    background-color:rgba(255, 255, 255,0.7);
+	margin: 0;
+	min-height: 60px;
+	padding: 0;
+	width: 100%;
+    position:fixed;
+    top:0;
+}
+
+#header div{
+    margin: 0 auto;
+    max-width : 940px;
+    padding: 0 10px;
+}
+
+.logo{
+    display:block;
+    float:left;
+    min-height: 60px;
+    text-decoration: none;
+    padding:0;
+
+}
+
+#header div a.logo img{
+    display:block;
+    height:60px;
+    width:auto;
+    
+}
+
+#header div ul{
+    list-style-type :none;
+    margin: 0;
+    padding:0;
+    width:auto;
+}
+
+#header div ul li{
+    display: inline-block;
+    float:left;
+}
+
+#header div ul li a {
+    display:block;
+    color : black; 
+    min-height: 60px;
+    text-align: center;
+    font-family:Multicolore,sans-serif;
+    font-style:oblique;
+    font-size:14px;
+    padding: 0px 30px;
+    text-decoration: none;
+    width: auto;
+    margin:0;
+    text-transform: uppercase;
+    line-height: 59px;
+}
+
+#header div ul li.selected a {
+    background-color: #006699;
+    color: #F3EFE0;
+}
+
+#header div ul li a:hover{
+    background-color: #a6a6a6;
+    color:white;
+}
+
+#header div ul li ul{
+    display: none;
+	list-style:none ;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0,0.5);
+    background-color:rgba(255, 255, 255,0.7);
+	min-width: 100px;
+    width: 200px;
+	z-index: 50;
+}
+
+#header div ul li ul li{
+    position: relative;
+    width:100%;
+}
+
+#header div ul li ul li a{
+    text-align: left;
+}
+
+#header div ul li:hover ul{
+    display: block
+}
+
+
+
+/*-------------------------------------------FOOTER---------------------------------------------*/
+
+#footer{
+   position:absolute ;
+   width:100%;
+   z-index: 10;
+}
+.footcontent{
+    height:70px;
+    width:100%;
+    background-color:#FF9933;
+    margin:0;
+    vertical-align: central;
+}
+
+.footcontent div{
+    max-width:960px;
+    margin: 0 auto;
+    padding:0;
+    overflow:hidden;
+
+}
+.footcontent div a.logo img{
+    display:block;
+    height:60px;
+    width:auto;
+    margin-top:10px;
+}
+
+.footcontent div ul{
+    list-style-type :none;
+    margin: 0;
+    padding:0;
+    width:auto;
+}
+
+.footcontent div ul li{
+    display: inline-block;
+    float:left;
+}
+
+.footcontent div ul li a{
+    color : black; 
+    text-align: center;
+    font-family:Multicolore,sans-serif;
+    font-style:oblique;
+    font-size:14px;
+    padding: 0px 80px;
+    text-decoration: none;
+    margin:0;
+    text-transform: uppercase;
+    line-height: 69px;
+}
+
+.footcontent div ul li a:hover{
+    color: #CCFFFF;
+    font-size:15px;
+}
+
+.footnote {
+    width: 100%;
+    background-color:#006699;
+    color:white;
+    margin:0;
+    min-height : 30px;
+    overflow:hidden;
+}
+
+.footnote div {
+    max-width:960px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.footnote div p {
+    font: italic 12px Multicolore,sans-serif;
+    text-align:center;
+}
+
+/*-------------------------------------------CONTENT---------------------------------------------*/
+#content{
+    padding-top:60px;
+}
+
+#content div{
+    max-width:960px;
+    margin: 0 auto;
+}

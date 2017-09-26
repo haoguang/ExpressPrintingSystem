@@ -68,8 +68,16 @@
   <ItemGroup>
     <Content Include="Customer\Login.aspx" />
     <Content Include="Customer\SignUp.aspx" />
+    <Content Include="Images\login-48.png" />
+    <Content Include="Images\menu-48.png" />
     <Content Include="image\printinglogo.PNG" />
+    <Content Include="Images\logo\big_logo.png" />
+    <Content Include="Images\logo\company_name.png" />
+    <Content Include="Images\logo\logo.png" />
+    <Content Include="Images\logo\long_logo.png" />
     <Content Include="packages.config" />
+    <Content Include="Main.Master" />
+    <Content Include="styles\fonts\Multicolore.otf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -80,10 +88,12 @@
   <ItemGroup>
     <Content Include="Customer\index.html" />
     <Content Include="Images\index.html" />
+    <Content Include="masterPageTest.aspx" />
     <Content Include="Model\index.html" />
     <Content Include="scripts\index.html" />
     <Content Include="Staff\index.html" />
     <Content Include="styles\fonts\index.html" />
+    <Content Include="styles\main.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +111,20 @@
     </Compile>
     <Compile Include="Customer\SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Main.Master.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Main.Master.designer.cs">
+      <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="masterPageTest.aspx.cs">
+      <DependentUpon>masterPageTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="masterPageTest.aspx.designer.cs">
+      <DependentUpon>masterPageTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,0 +1,96 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="ExpressPrintingSystem.Main" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>ExpressPrintingSystem</title>
+    <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
+        <link rel="stylesheet" href="styles/main.css" type="text/css" />
+    </asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <div id="page">
+        <div id="header">
+            <div>
+            <a href="#" class="logo"><img src="Images/logo/long_logo.png" alt=""/></a>
+            <ul id="navigation">
+					<li class="selected">
+						<a href="#">Home</a>
+					</li>
+                    <li>
+						<a href="#">Services</a>
+					</li>
+					<li>
+						<a href="#">About</a>
+					</li>
+					<li class="menu">
+						<a href="#">Contact</a>
+						<ul class="primary">
+							<li>
+								<a href="#">proj 1</a>
+							</li>
+                            <li>
+								<a href="#">project 2017</a>
+							</li>
+                            <li>
+								<a href="#">prodfdfd</a>
+							</li>
+						</ul>
+					</li>
+                    <li style="float:right;">
+                        <a href="#">Sign In</a>
+                         <%--<asp:ContentPlaceHolder ID="UserPlaceholder" runat="server">
+
+                        </asp:ContentPlaceHolder>--%>
+                    </li>
+				</ul>
+            </div>
+        </div>
+
+        <div id="content">
+            <div>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+        
+        </div>
+        <footer id="footer">
+            <div class="footcontent">
+                <div>
+                    <a href="#" class="logo"><img src="Images/logo/long_logo.png" alt=""/></a>
+                    <ul>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footnote">
+				<div>
+					<p>&copy; 2017 BY Express Printing System | ALL RIGHTS RESERVED</p>
+				</div>
+			</div>
+        </footer>
+        </div>
+</body>
+</html>
