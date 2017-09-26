@@ -16,9 +16,12 @@
     <div id="page">
         <div id="header">
             <div>
-            <a href="index.html" class="logo"><img src="Images/logo/long_logo.png" alt=""></a>
+            <a href="#" class="logo"><img src="Images/logo/long_logo.png" alt=""/></a>
             <ul id="navigation">
 					<li class="selected">
+						<a href="#">Home</a>
+					</li>
+                    <li>
 						<a href="#">Services</a>
 					</li>
 					<li>
@@ -47,15 +50,47 @@
 				</ul>
             </div>
         </div>
-        <%-- 
-        <div id="content">
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
-        </div>
-        <div id="footer"></div>
 
- --%>
+        <div id="content">
+            <div>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <p>This is a sample paragraph....</p>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+        
+        </div>
+        <footer id="footer">
+            <div class="footcontent">
+                <div>
+                    <a href="#" class="logo"><img src="Images/logo/long_logo.png" alt=""/></a>
+                    <ul>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footnote">
+				<div>
+					<p>&copy; 2017 BY Express Printing System | ALL RIGHTS RESERVED</p>
+				</div>
+			</div>
+        </footer>
         </div>
 </body>
 </html>

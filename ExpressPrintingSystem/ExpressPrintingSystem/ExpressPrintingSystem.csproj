@@ -68,6 +68,8 @@
   <ItemGroup>
     <Content Include="Customer\Login.aspx" />
     <Content Include="Customer\SignUp.aspx" />
+    <Content Include="Images\login-48.png" />
+    <Content Include="Images\menu-48.png" />
     <Content Include="image\printinglogo.PNG" />
     <Content Include="Images\logo\big_logo.png" />
     <Content Include="Images\logo\company_name.png" />
@@ -75,6 +77,7 @@
     <Content Include="Images\logo\long_logo.png" />
     <Content Include="packages.config" />
     <Content Include="Main.Master" />
+    <Content Include="styles\fonts\Multicolore.otf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
