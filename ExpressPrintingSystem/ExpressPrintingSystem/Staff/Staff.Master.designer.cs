@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExpressPrintingSystem {
+namespace ExpressPrintingSystem.Staff {
     
     
-    public partial class Main {
+    public partial class Staff {
         
         /// <summary>
         /// head control.
@@ -22,12 +22,30 @@ namespace ExpressPrintingSystem {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// SiteMapDataSourceForStaff control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.SiteMapDataSource SiteMapDataSourceForStaff;
+        
+        /// <summary>
+        /// menu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater menu;
+        
+        /// <summary>
+        /// cphStaffContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder cphStaffContent;
     }
 }

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<siteMap>
+    <siteMapNode url="" title="staff"  description="">
+      <siteMapNode url="" title="Printing Request"  description="">
+        <siteMapNode url="" title="Pending"  description="" />
+        <siteMapNode url="" title="Completed"  description="" />
+      </siteMapNode>
+      <siteMapNode url="" title="About"  description="" />
+      <siteMapNode url="" title="Contact Us"  description="" />
+    </siteMapNode>
+</siteMap>
+

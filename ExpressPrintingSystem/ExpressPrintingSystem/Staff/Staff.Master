@@ -1,51 +1,51 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="ExpressPrintingSystem.Main" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Staff.master.cs" Inherits="ExpressPrintingSystem.Staff.Staff" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>ExpressPrintingSystem</title>
-    <link rel="stylesheet" href="styles/main.css" type="text/css" />
+    <title>Staff Portal</title>
+    <link rel="stylesheet" href="../styles/main.css" type="text/css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-
+    
     <div id="page">
         <div id="header">
+            <asp:SiteMapDataSource ID="SiteMapDataSourceForStaff" SiteMapProvider="StaffSiteMap" runat="server" ShowStartingNode="false" />
             <div>
-            <a href="#" class="logo"><img src="Images/logo/long_logo.png" alt=""/></a>
+            <a href="#" class="logo"><img src="../Images/logo/long_logo.png" alt=""/></a>
             <ul id="navigation">
 					<li class="selected">
 						<a href="#">Home</a>
 					</li>
-                    <li>
-						<a href="#">Services</a>
-					</li>
-					<li>
-						<a href="#">About</a>
-					</li>
-					<li class="menu">
-						<a href="#">Contact</a>
-						<ul class="primary">
-							<li>
-								<a href="#">proj 1</a>
-							</li>
+                    <asp:Repeater runat="server" ID="menu" DataSourceID="SiteMapDataSourceForStaff">
+                        <ItemTemplate>
                             <li>
-								<a href="#">project 2017</a>
-							</li>
-                            <li>
-								<a href="#">prodfdfd</a>
-							</li>
-						</ul>
-					</li>
+                                <asp:HyperLink runat="server" NavigateUrl='<%# Eval("Url") %>'><%# Eval("Title") %></asp:HyperLink>
+
+                                <asp:Repeater runat="server" DataSource='<%# ((SiteMapNode) Container.DataItem).ChildNodes %>'>
+                                    <HeaderTemplate>
+                                        <ul>
+                                    </HeaderTemplate>
+                
+                                    <ItemTemplate>
+                                        <li>
+                                            <asp:HyperLink runat="server" NavigateUrl='<%# Eval("Url") %>'><%# Eval("Title") %></asp:HyperLink>
+                                        </li>
+                                    </ItemTemplate>
+                
+                                    <FooterTemplate>
+                                        </ul>
+                                    </FooterTemplate>
+                                </asp:Repeater>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
                     <li style="float:right;">
                         <a href="#">Sign In</a>
-                         <%--<asp:ContentPlaceHolder ID="UserPlaceholder" runat="server">
-
-                        </asp:ContentPlaceHolder>--%>
-                    </li>
-				</ul>
+                    </li>				</ul>
             </div>
         </div>
 
@@ -66,7 +66,7 @@
                 <p>This is a sample paragraph....</p>
                 <p>This is a sample paragraph....</p>
                 <p>This is a sample paragraph....</p>
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <asp:ContentPlaceHolder ID="cphStaffContent" runat="server">
         
                 </asp:ContentPlaceHolder>
             </div>
@@ -75,7 +75,7 @@
         <footer id="footer">
             <div class="footcontent">
                 <div>
-                    <a href="#" class="logo"><img src="Images/logo/long_logo.png" alt=""/></a>
+                    <a href="#" class="logo"><img src="../Images/logo/long_logo.png" alt=""/></a>
                     <ul>
                         <li><a href="#">Services</a></li>
                         <li><a href="#">About</a></li>
