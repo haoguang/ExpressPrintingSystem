@@ -78,6 +78,7 @@
     <Content Include="Images\logo\long_logo.png" />
     <Content Include="packages.config" />
     <Content Include="Main.Master" />
+    <Content Include="Staff\Item\AddItem.aspx" />
     <Content Include="styles\fonts\Multicolore.otf" />
     <Content Include="Staff\Staff.Master" />
     <Content Include="Staff\Staff.sitemap" />
@@ -146,6 +147,13 @@
       <DependentUpon>masterPageTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Staff\Item\AddItem.aspx.cs">
+      <DependentUpon>AddItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Item\AddItem.aspx.designer.cs">
+      <DependentUpon>AddItem.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Staff\Staff.Master.cs">
       <DependentUpon>Staff.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

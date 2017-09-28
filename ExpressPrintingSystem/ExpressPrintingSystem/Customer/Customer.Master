@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>My Account</title>
-    <link rel="stylesheet" href="../styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="~/styles/main.css"" type="text/css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -15,7 +15,7 @@
         <div id="header">
             <asp:SiteMapDataSource ID="SiteMapDataSourceForCustomer" SiteMapProvider="CustomerSiteMap" runat="server" ShowStartingNode="false" />
             <div>
-            <a href="#" class="logo"><img src="../Images/logo/long_logo.png" alt=""/></a>
+            <a href="#" class="logo"><img src="<%=Page.ResolveUrl("~/Images/logo/long_logo.png")%>" alt=""/></a>
             <ul id="navigation">
 					<li class="selected">
                         <!--***Change here for your own home page***-->
@@ -54,25 +54,6 @@
 
         <div id="content">
             <div>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>This is a sample paragraph....</p>
-                <p>Z</p>
                 <asp:ContentPlaceHolder ID="cphCustomerContent" runat="server">
         
                 </asp:ContentPlaceHolder>
@@ -82,7 +63,7 @@
          <footer id="footer">
             <div class="footcontent">
                 <div>
-                    <a href="#" class="logo"><img src="../Images/logo/long_logo.png" alt=""/></a>
+                    <a href="#" class="logo"><img src="<%=Page.ResolveUrl("~/Images/logo/long_logo.png")%>" alt=""/></a>
                     <ul>
                         <li><a href="#">Services</a></li>
                         <li><a href="#">About</a></li>
