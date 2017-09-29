@@ -80,7 +80,7 @@ input[type=submit]:hover {
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnSubmit" runat="server" Text="Button" Height="28px" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Button" Height="28px" OnClick="btnSubmit_Click" />
                
 
         </div>
