@@ -40,14 +40,16 @@ namespace ExpressPrintingSystem.Customer
             conTaxi = new SqlConnection(connStr);
             conTaxi.Open();
 
+           // string tableID = generated
+
             string strInsert;
             SqlCommand cmdInsert;
 
-            strInsert = "Insert Into Customer (CustomerID, CustomerName, CustomerEmail, CustomerPassword, CustomerDOB, CustomerPhoneNo, CustomerContactMethod, CustomerSalt) Values (@CustomerID, @CustomerName, @CustomerEmail, @CustomerPassword, @CustomerDOB, @CustomerPhoneNo, @CustomerContactMethod, @CustomerSalt)";
+            strInsert = "Insert Into Customer (CustomerName, CustomerEmail, CustomerPassword, CustomerDOB, CustomerPhoneNo, CustomerContactMethod, CustomerSalt) Values (@CustomerName, @CustomerEmail, @CustomerPassword, @CustomerDOB, @CustomerPhoneNo, @CustomerContactMethod, @CustomerSalt)";
 
             
             cmdInsert = new SqlCommand(strInsert, conTaxi);
-            cmdInsert.Parameters.AddWithValue("@CustomerID", TextBox6.Text);
+           // cmdInsert.Parameters.AddWithValue("@newID", TextBox6.Text);
             cmdInsert.Parameters.AddWithValue("@CustomerName", TextBox1.Text);
             cmdInsert.Parameters.AddWithValue("@CustomerEmail", TextBox2.Text);
             cmdInsert.Parameters.AddWithValue("@CustomerPassword", hashPassword);
@@ -62,7 +64,7 @@ namespace ExpressPrintingSystem.Customer
             {
 
                 Response.Write("<script LANGUAGE='JavaScript' >alert('Login Successful')</script>");
-                Response.Redirect("Home.aspx");
+                Response.Redirect("Login.aspx");
             }
             else
             {

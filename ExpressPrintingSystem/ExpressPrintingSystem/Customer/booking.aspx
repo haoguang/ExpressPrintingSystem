@@ -323,7 +323,7 @@ body {
 		<input type="text" name="facebook" placeholder="Facebook" />
 
 		<input type="text" name="gplus" placeholder="Google Plus" />
-
+       
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 
 		<input type="button" name="next" class="next action-button" value="Next" />
