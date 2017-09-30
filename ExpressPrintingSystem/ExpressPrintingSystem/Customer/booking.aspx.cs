@@ -40,6 +40,7 @@ namespace ExpressPrintingSystem.Customer
                 string filename = Path.GetFileName(FileUpload1.PostedFile.FileName);
                 string contentType = FileUpload1.PostedFile.ContentType;
                 int size = FileUpload1.PostedFile.ContentLength;
+
                 cmdInsert.Parameters.AddWithValue("@DocumentName", filename);
                 cmdInsert.Parameters.AddWithValue("@DocumentType", contentType);
                 //cmdInsert.Parameters.AddWithValue("@DocumentURL", price.Text);
@@ -59,7 +60,7 @@ namespace ExpressPrintingSystem.Customer
             /*Close database connection*/
 
             conTaxi.Close();
-
+            Response.Redirect("Payment.aspx");
         }
     }
 }

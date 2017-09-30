@@ -69,6 +69,9 @@
     <Content Include="Customer\booking.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="SignUp.aspx" />
+  
+    <Content Include="Customer\Payment.aspx" />
+   
     <Content Include="Global.asax" />
     <Content Include="Images\login-48.png" />
     <Content Include="Images\menu-48.png" />
@@ -118,6 +121,13 @@
     </Compile>
     <Compile Include="Customer\Customer.Master.designer.cs">
       <DependentUpon>Customer.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Payment.aspx.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Payment.aspx.designer.cs">
+      <DependentUpon>Payment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
