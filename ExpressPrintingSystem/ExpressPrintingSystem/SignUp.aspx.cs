@@ -25,7 +25,7 @@ namespace ExpressPrintingSystem.Customer
             byte[] generatedSalt = ClassHashing.generateSalt();
             byte[] hashPassword = ClassHashing.generateSaltedHash(TextBox3.Text, generatedSalt);
 
-           
+
 
 
             //string abc = "Salt:" + Convert.ToBase64String(generatedSalt) + "\n";
@@ -33,23 +33,21 @@ namespace ExpressPrintingSystem.Customer
             //abc = abc + "hashedPassword 2：" + Convert.ToBase64String(ClassHashing.generateSaltedHash(TextBox3.Text, generatedSalt));
             //Button1.Text = abc;
 
+            try { 
 
-
-            SqlConnection conTaxi;
+            SqlConnection conPrint;
             string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
-            conTaxi = new SqlConnection(connStr);
-            conTaxi.Open();
-
-           // string tableID = generated
-
+            conPrint = new SqlConnection(connStr);
+            conPrint.Open();
+            
             string strInsert;
             SqlCommand cmdInsert;
 
-            strInsert = "Insert Into Customer (CustomerName, CustomerEmail, CustomerPassword, CustomerDOB, CustomerPhoneNo, CustomerContactMethod, CustomerSalt) Values (@CustomerName, @CustomerEmail, @CustomerPassword, @CustomerDOB, @CustomerPhoneNo, @CustomerContactMethod, @CustomerSalt)";
+            strInsert = "Insert Into Customer (CustomerName, CustomerEmail, CustomerPassword, CustomerDOB, CustomerPhoneNo, CustomerContactMethod, CustomerSalt) Values ( @CustomerName, @CustomerEmail, @CustomerPassword, @CustomerDOB, @CustomerPhoneNo, @CustomerContactMethod, @CustomerSalt)";
 
             
-            cmdInsert = new SqlCommand(strInsert, conTaxi);
-           // cmdInsert.Parameters.AddWithValue("@newID", TextBox6.Text);
+            cmdInsert = new SqlCommand(strInsert, conPrint);
+            //cmdInsert.Parameters.AddWithValue("@CustomerID", TextBox6.Text); (not neccessary as database will handle with trigger)
             cmdInsert.Parameters.AddWithValue("@CustomerName", TextBox1.Text);
             cmdInsert.Parameters.AddWithValue("@CustomerEmail", TextBox2.Text);
             cmdInsert.Parameters.AddWithValue("@CustomerPassword", hashPassword);
@@ -72,7 +70,11 @@ namespace ExpressPrintingSystem.Customer
             }
 
 
-            conTaxi.Close();
+            conPrint.Close();
+            }
+            catch (SqlException ex) {
+                Response.Write("<script LANGUAGE='JavaScript' >alert('Something gone wrong with the database.')</script>");
+            }
 
 
 
