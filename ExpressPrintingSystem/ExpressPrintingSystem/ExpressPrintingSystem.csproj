@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=16.1.1.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -69,9 +73,7 @@
     <Content Include="Customer\booking.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="SignUp.aspx" />
-  
     <Content Include="Customer\Payment.aspx" />
-   
     <Content Include="Global.asax" />
     <Content Include="Images\login-48.png" />
     <Content Include="Images\menu-48.png" />
@@ -83,6 +85,7 @@
     <Content Include="packages.config" />
     <Content Include="Main.Master" />
     <Content Include="Staff\Item\AddItem.aspx" />
+    <Content Include="styles\bootstrap.min.css" />
     <Content Include="styles\fonts\Multicolore.otf" />
     <Content Include="Staff\Staff.Master" />
     <Content Include="Staff\Staff.sitemap" />

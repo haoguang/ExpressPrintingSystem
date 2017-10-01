@@ -1,8 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="ExpressPrintingSystem.Customer.Login" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <!DOCTYPE html>
 
 <html>
+    <head runat="server">
 <style>
 input[type=text], select {
     width: 100%;
@@ -13,9 +16,8 @@ input[type=text], select {
     border-radius: 4px;
     box-sizing: border-box;
 }
-
-input[type=submit] {
-    width: 100%;
+    #btnSubmit {
+        width: 100%;
     background-color: #4CAF50;
     color: white;
    
@@ -23,11 +25,8 @@ input[type=submit] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
+    }
 
-input[type=submit]:hover {
-    background-color: #45a049;
-}
 
     div[class=login]{
     
@@ -39,7 +38,7 @@ input[type=submit]:hover {
 
     div[class=heard] {
         padding-top : 20px;
-        padding-bottom:100px;
+        padding-bottom:150px;
     }
     div[class=bottom] {
         
@@ -48,12 +47,25 @@ input[type=submit]:hover {
    padding: 20px;
     }
    
-    .auto-style1 {
-        margin-top: 8px;
+    
+    div[class="btn-group"] {
+         margin: 8px 0;
+   
+    text-align:center;
+    display: flex;
+  align-items: center;
+  justify-content: center;
     }
+    #btnCustomer, #btnCompany{
+        border-radius : 20px;
+    }
+   
    
 </style>
 
+        <title></title>
+        <link href="styles/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    </head>
 <body>
     <div class ="heard" style="height:30px; line-height:30px; text-align:center;">
         <asp:Image ID="Image1" runat="server" Height="88px" ImageUrl="~/image/printinglogo.PNG" />
@@ -61,18 +73,24 @@ input[type=submit]:hover {
         <asp:Label ID="lblTitle" runat="server" Text="Login to Express printing" Font-Bold="True" Font-Italic="False" Font-Overline="False" Font-Size="Larger"></asp:Label>
     </div>
     <form id="form1" runat="server">
-        <div class="login" style="width:300px; margin:0 auto;">
-            
+        <div class="login" style="width:350px; margin:0 auto;">
+           
+             <div class="btn-group" role="group" aria-label="Basic example">
+                 <asp:Button ID="btnCustomer" runat="server" CssClass="btn btn-success" Text="Customer" OnClick="btnCustomer_Click" />
+                 <asp:Button ID="btnCompany" runat="server" CssClass="btn btn-default" Text="Company" OnClick="btnCompany_Click" />
+  
+             </div>
             <br />
+            
             <asp:Label ID="lblName" runat="server" Text="Name"></asp:Label>
             <br />
-            <asp:TextBox ID="txtname" runat="server" Height="28px" Width="288px"></asp:TextBox>
+            <asp:TextBox ID="txtname" runat="server" Height="28px" ></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:HyperLink ID="HyperLink1" runat="server">Forgot password ?</asp:HyperLink>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:HyperLink ID="HyperLink1" runat="server">Forgot password ?</asp:HyperLink>
             <br />
-&nbsp;<asp:TextBox ID="txtPassword" runat="server" Height="28px" Width="288px" CssClass="auto-style1"></asp:TextBox>
+&nbsp;<asp:TextBox ID="txtPassword" runat="server" Height="28px"></asp:TextBox>
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -85,7 +103,7 @@ input[type=submit]:hover {
 
         </div>
         <br/>
-        <div class="bottom" style="width:300px; margin:0 auto; text-align:center;">
+        <div class="bottom" style="width:350px; margin:0 auto; text-align:center;">
             <asp:Label ID="Label" runat="server" Text="New User?"></asp:Label>
 
             &nbsp;<asp:HyperLink ID="HyperLink2" runat="server">Sign Up</asp:HyperLink>

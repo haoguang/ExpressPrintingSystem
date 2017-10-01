@@ -57,5 +57,17 @@ namespace ExpressPrintingSystem.Customer
                 txtname.Text = "Login Failed";//temporary, for testing purpose only
             }
         }
+
+        protected void btnCustomer_Click(object sender, EventArgs e)
+        {
+            btnCustomer.CssClass = "btn btn-success";
+            btnCompany.CssClass = "btn btn-default";
+        }
+
+        protected void btnCompany_Click(object sender, EventArgs e)
+        {
+            btnCustomer.CssClass = "btn btn-default";
+            btnCompany.CssClass = "btn btn-danger";
+        }
     }
 }

@@ -6,45 +6,36 @@
 <head runat="server">
     <title></title>
     <style type="text/css">
+
+
+        /*input.underlined
+{
+   border:0;
+   border-bottom:solid 1px #000;
+
+   /*outline:none;  /*prevents textbox highlight in chrome*/
+/*}*/
+         ::-webkit-input-placeholder {
+   
+   font-weight : bold;
+
+}
+         input[type=text], select {
+   
+   
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+ height : 20px;
+    width:250px;
+    
+}
+
         .auto-style1 {
-            width: 159px;
+            height: 20px;
         }
-        .auto-style2 {
-            width: 183px;
-        }
-        .auto-style3 {
-            width: 183px;
-            height: 23px;
-        }
-        .auto-style4 {
-            width: 159px;
-            height: 23px;
-        }
-        .auto-style5 {
-            height: 23px;
-        }
-        .auto-style6 {
-            width: 183px;
-            height: 25px;
-        }
-        .auto-style7 {
-            width: 159px;
-            height: 25px;
-        }
-        .auto-style8 {
-            height: 25px;
-        }
-        .auto-style9 {
-            width: 183px;
-            height: 26px;
-        }
-        .auto-style10 {
-            width: 159px;
-            height: 26px;
-        }
-        .auto-style11 {
-            height: 26px;
-        }
+
     </style>
 </head>
 <body>
@@ -60,28 +51,20 @@
                     <td class="auto-style5"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style3">
+                    <td class="auto-style1">
                         <hr />
                     </td>
-                    <td class="auto-style4"></td>
-                    <td class="auto-style5"></td>
-                    <td class="auto-style5"></td>
+                    <td class="auto-style1"></td>
+                    <td class="auto-style1"></td>
+                    <td class="auto-style1"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style3">customerID :</td>
-                    <td class="auto-style4">
-                        <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+                    <td class="auto-style9">Customer Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
+                    <td class="auto-style11">
+                        <asp:TextBox ID="TextBox1" runat="server" BorderColor="#CCCCCC" placeholder="Name"></asp:TextBox>
                     </td>
-                    <td class="auto-style5">&nbsp;</td>
-                    <td class="auto-style5">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">Customer Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
-                    <td class="auto-style1">
-                        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style11"></td>
+                    <td class="auto-style11"></td>
                 </tr>
                 <tr>
                     <td class="auto-style9">Customrt Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</td>
