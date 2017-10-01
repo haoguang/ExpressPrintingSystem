@@ -11,13 +11,19 @@ namespace ExpressPrintingSystem.Model
 {
     public class UserVerification
     {
-        public static bool verifyUser(string username, string password)
+        public static bool verifyUser(string username, string password, string loginType)
         {
             DataTable result = null;
             try {
                 using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
                 {
-                    string strSelect = "select CustomerPassword, CustomerSalt from Customer where CustomerEmail = @uname";
+                    string strSelect = null;
+                    if (loginType.Equals(ROLE_STAFF))
+                        strSelect = "select StaffPassword As Password, StaffSalt As Salt from Staff where StaffEmail = @uname";      
+                    else
+                        strSelect = "select CustomerPassword As Password, CustomerSalt As Salt from Customer where CustomerEmail = @uname";
+
+
                     using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
                     {
                         cmdSelect.Parameters.AddWithValue("@uname", username);
@@ -29,8 +35,8 @@ namespace ExpressPrintingSystem.Model
                         }
 
                         //retrieve password info
-                        byte[] storedPassword = (byte[])result.Rows[0]["CustomerPassword"];
-                        byte[] storedSalt = (byte[])result.Rows[0]["CustomerSalt"];
+                        byte[] storedPassword = (byte[])result.Rows[0]["Password"];
+                        byte[] storedSalt = (byte[])result.Rows[0]["Salt"];
 
                         //hash password from textbox
                         byte[] hashedPassword = ClassHashing.generateSaltedHash(password, storedSalt);
@@ -49,14 +55,19 @@ namespace ExpressPrintingSystem.Model
         }
 
         //Get the Roles for this particular user
-        public static string GetUserRoles(string username)
+        public static string GetUserRoles(string username, string signInType)
         {
             DataTable result = null;
             try
             {
                 using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
                 {
-                    string strSelect = "select TOP 1 * from Customer where CustomerEmail = @uname";
+                    string strSelect;
+                    if(signInType.Equals(ROLE_STAFF))
+                        strSelect = "select TOP 1 StaffRole from Staff where StaffEmail = @uname";
+                    else
+                        strSelect = "select TOP 1 * from Customer where CustomerEmail = @uname";
+
                     using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
                     {
                         cmdSelect.Parameters.AddWithValue("@uname", username);
@@ -66,10 +77,13 @@ namespace ExpressPrintingSystem.Model
                             result = new DataTable();
                             da.Fill(result);
                         }
-
+                        
                         if (result.Rows.Count == 1)
                         {
-                            return ROLE_CUSTOMER;
+                            if(signInType.Equals(ROLE_STAFF))
+                                return (string)result.Rows[0]["StaffRole"];
+                            else
+                                return ROLE_CUSTOMER;
                         }
 
 
@@ -83,11 +97,12 @@ namespace ExpressPrintingSystem.Model
             }
 
             //user id not found, lets treat him as a guest        
-            return "guest";
+            return ROLE_GUEST;
         }
 
-        const string ROLE_ADMIN = "Owner";
-        const string ROLE_STAFF = "Staff";
-        const string ROLE_CUSTOMER = "Customer";
+        public const string ROLE_ADMIN = "Owner";
+        public const string ROLE_STAFF = "Staff";
+        public const string ROLE_CUSTOMER = "Customer";
+        public const string ROLE_GUEST = "Guest";
     }
 }

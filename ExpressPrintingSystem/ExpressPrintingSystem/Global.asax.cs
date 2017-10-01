@@ -20,9 +20,10 @@ namespace ExpressPrintingSystem
                     {
                         //let us take out the username now                
                         string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+                        string signInType = (string)Session["SignInType"];
 
                         //let us extract the roles from our own custom cookie
-                        string roles = UserVerification.GetUserRoles(username);
+                        string roles = UserVerification.GetUserRoles(username, signInType);
 
                         //Let us set the Pricipal with our user specific details
                         e.User = new System.Security.Principal.GenericPrincipal(
