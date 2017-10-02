@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="ExpressPrintingSystem.Customer.Login" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <!DOCTYPE html>
 
@@ -82,7 +81,7 @@ input[type=text], select {
              </div>
             <br />
             
-            <asp:Label ID="lblName" runat="server" Text="Name"></asp:Label>
+            <asp:Label ID="lblName" runat="server" Text="Email"></asp:Label>
             <br />
             <asp:TextBox ID="txtname" runat="server" Height="28px" ></asp:TextBox>
             <br />
@@ -90,7 +89,7 @@ input[type=text], select {
             <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:HyperLink ID="HyperLink1" runat="server">Forgot password ?</asp:HyperLink>
             <br />
-&nbsp;<asp:TextBox ID="txtPassword" runat="server" Height="28px"></asp:TextBox>
+&nbsp;<asp:TextBox ID="txtPassword" TextMode="Password" runat="server" Height="28px"></asp:TextBox>
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

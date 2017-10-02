@@ -164,7 +164,6 @@
     <Compile Include="masterPageTest.aspx.designer.cs">
       <DependentUpon>masterPageTest.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Model\CustomRoleProvider.cs" />
     <Compile Include="Model\UserVerification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Staff\Item\AddItem.aspx.cs">
