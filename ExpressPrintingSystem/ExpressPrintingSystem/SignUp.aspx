@@ -4,8 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <style type="text/css">
+   
+    <style>
 
 
         /*input.underlined
@@ -15,6 +15,39 @@
 
    /*outline:none;  /*prevents textbox highlight in chrome*/
 /*}*/
+        /*#form1 {
+
+    width: 1000px;
+
+	margin: 50px auto;
+
+	position: relative;
+        }
+        #form1 fieldset {
+
+	background: white;
+
+	border: 0 none;
+
+	border-radius: 3px;
+
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+
+	padding: 20px 30px;
+
+	box-sizing: border-box;
+
+	width: 80%;
+
+	margin: 0 10%;
+
+	/*stacking fieldsets above each other*/
+
+	/*position: absolute;
+
+}*/
+      
+
          ::-webkit-input-placeholder {
    
    font-weight : bold;
@@ -91,15 +124,24 @@
             height: 68px;
         }
 
-       
-
      
         .auto-style23 {
             height: 68px;
         }
 
-          
-    div[class="btn-group"] {
+             
+        .auto-style24 {
+            height: 26px;
+        }
+        .auto-style25 {
+            height: 26px;
+            width: 281px;
+        }
+        .auto-style26 {
+            width: 281px;
+        }
+
+         div[class="btn-group"] {
          margin: 8px 0;
    
     text-align:center;
@@ -111,24 +153,20 @@
         border-radius : 20px;
     }
 
-       
-
      
     </style>
 
-
-    <link href="styles/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+     <title></title>
+    <link href="styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+       
     <form id="form1" runat="server">
- 
-        <div class="btn-group" role="group" aria-label="Basic example">
-                 <asp:Button ID="btnCustomer" runat="server" CssClass="btn btn-success" Text="Customer" OnClick="btnCustomer_Click" />
-                 <asp:Button ID="btnCompany" runat="server" CssClass="btn btn-default" Text="Company" OnClick="btnCompany_Click" />
+    <div class="btn-group" role="group" aria-label="Basic example">
+                 <asp:Button ID="btnCustomer" runat="server" CssClass="btn btn-success" Text="Customer" OnClick="btnCustomer_Click" CausesValidation="False"  />
+                 <asp:Button ID="btnCompany" runat="server" CssClass="btn btn-default" Text="Company" OnClick="btnCompany_Click" CausesValidation="False"  />
   
-             </div>
-
-
+     </div>
         <div>
             <table style="width:100%;">
                 <tr>
@@ -248,9 +286,11 @@
                     </td>
                 </tr>
                 </table>
-
-
+            
         </div>
+            
+ 
     </form>
+    
 </body>
 </html>
