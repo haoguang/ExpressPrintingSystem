@@ -40,6 +40,24 @@ namespace ExpressPrintingSystem.Staff {
         protected global::System.Web.UI.WebControls.Repeater menu;
         
         /// <summary>
+        /// userInfoControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink userInfoControl;
+        
+        /// <summary>
+        /// userMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl userMenu;
+        
+        /// <summary>
         /// cphStaffContent control.
         /// </summary>
         /// <remarks>

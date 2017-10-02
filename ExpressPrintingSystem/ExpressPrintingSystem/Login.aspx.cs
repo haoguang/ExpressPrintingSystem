@@ -1,4 +1,5 @@
 ﻿using ExpressPrintingSystem.Model;
+using ExpressPrintingSystem.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -77,9 +78,9 @@ namespace ExpressPrintingSystem.Customer
             if (UserVerification.verifyUser(username, password, toggleOption))
             {
                 //These session values are just for demo purpose to show the user details on master page
-                roles = UserVerification.GetUserRoles(username,null);
-                //Session["User"] = username;
-                //Session["Roles"] = roles;
+                roles = UserVerification.GetUserRoles(username, toggleOption);
+
+                Session["UserInfo"] = UserVerification.getUserBasicInfo(username,toggleOption);
 
                 //Let us now set the authentication cookie so that we can use that later.
                 FormsAuthentication.SetAuthCookie(username, false);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpressPrintingSystem.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -11,6 +12,42 @@ namespace ExpressPrintingSystem.Model
 {
     public class UserVerification
     {
+        public static User getUserBasicInfo(string username, string loginType)
+        {
+            DataTable result = null;
+            try
+            {
+                using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
+                {
+                    string strSelect = null;
+                    if (loginType.Equals(ROLE_STAFF))
+                        strSelect = "select StaffID AS ID, StaffName AS Name, StaffEmail AS Email from Staff where StaffEmail = @uname";
+                    else
+                        strSelect = "select CustomerID AS ID, CustomerName As Name, CustomerEmail As Email from Customer where CustomerEmail = @uname";
+
+
+                    using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
+                    {
+                        cmdSelect.Parameters.AddWithValue("@uname", username);
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmdSelect))
+                        {
+                            result = new DataTable();
+                            da.Fill(result);
+                        }
+
+                        return new User((string)result.Rows[0]["ID"], (string)result.Rows[0]["Name"], GetUserRoles(username, loginType), (string)result.Rows[0]["Email"]);
+
+                        
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
         public static bool verifyUser(string username, string password, string loginType)
         {
             DataTable result = null;
@@ -57,6 +94,7 @@ namespace ExpressPrintingSystem.Model
         //Get the Roles for this particular user
         public static string GetUserRoles(string username, string signInType)
         {
+
             DataTable result = null;
             try
             {
