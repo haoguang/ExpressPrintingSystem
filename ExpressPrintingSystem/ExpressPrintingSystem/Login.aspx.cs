@@ -76,7 +76,7 @@ namespace ExpressPrintingSystem.Customer
             if (UserVerification.verifyUser(username, password, "Customer"))
             {
                 //These session values are just for demo purpose to show the user details on master page
-                roles = UserVerification.GetUserRoles(username);
+               // roles = UserVerification.GetUserRoles(username);
                 //Session["User"] = username;
                 //Session["Roles"] = roles;
 
