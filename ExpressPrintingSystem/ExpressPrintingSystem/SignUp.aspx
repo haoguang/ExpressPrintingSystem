@@ -4,11 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <style type="text/css">
-        div[class="head"] {
-            padding-bottom:50px;
-        }
+   
+    <style>
+
 
         /*input.underlined
 {
@@ -17,6 +15,39 @@
 
    /*outline:none;  /*prevents textbox highlight in chrome*/
 /*}*/
+        /*#form1 {
+
+    width: 1000px;
+
+	margin: 50px auto;
+
+	position: relative;
+        }
+        #form1 fieldset {
+
+	background: white;
+
+	border: 0 none;
+
+	border-radius: 3px;
+
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+
+	padding: 20px 30px;
+
+	box-sizing: border-box;
+
+	width: 80%;
+
+	margin: 0 10%;
+
+	/*stacking fieldsets above each other*/
+
+	/*position: absolute;
+
+}*/
+      
+
          ::-webkit-input-placeholder {
    
    font-weight : bold;
@@ -33,82 +64,134 @@
     width:250px;
     
 }
+        #txtPassword {
+          margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+ height : 20px;
+    width:250px;
+        }
+        html {
+            background-color :azure;
+        }
+       
 
-      html, body {
-    height: 100%;
-    background-color :gainsboro;
-  }
-  #tableContainer-1 {
-    height: 100%;
-    width: 100%;
-    display: table;
-  }
-  #tableContainer-2 {
-    vertical-align: middle;
-    display: table-cell;
-    height: 100%;
-  }
-  #myTable {
-    margin: 0 auto;
-  }
-
+     
         .auto-style1 {
-            width: 315px;
-        }
-        .auto-style2 {
-            width: 401px;
-            height: 1px;
-        }
-        .auto-style3 {
-            width: 434px;
-            height: -13px;
-          
-            
+            width: 650px;
         }
         .auto-style4 {
-            height: 20px;
+            width: 647px;
         }
         .auto-style5 {
-            width: 315px;
-            height: 20px;
+            width: 646px;
         }
         .auto-style9 {
-            font-size :25px;
+            width: 635px;
+        }
+        .auto-style11 {
+            width: 630px;
+        }
+        .auto-style12 {
+            width: 1400px;
+        }
+        .auto-style13 {
+            margin-top: 8px;
+        }
+         .auto-style15 {
+            font-size : 25px;
         }
 
-        
+       
+
+     
+        .auto-style17 {
+            width: 1820px;
+        }
+        .auto-style18 {
+            width: 321px;
+        }
+        .auto-style19 {
+            width: 319px;
+        }
+        .auto-style20 {
+            width: 1400px;
+            height: 68px;
+        }
+        .auto-style21 {
+            width: 321px;
+            height: 68px;
+        }
+
+     
+        .auto-style23 {
+            height: 68px;
+        }
+
+             
+        .auto-style24 {
+            height: 26px;
+        }
+        .auto-style25 {
+            height: 26px;
+            width: 281px;
+        }
+        .auto-style26 {
+            width: 281px;
+        }
+
+         div[class="btn-group"] {
+         margin: 8px 0;
+   
+    text-align:center;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+    }
+    #btnCustomer, #btnCompany{
+        border-radius : 20px;
+    }
+
+     
     </style>
+
+     <title></title>
+    <link href="styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+       
     <form id="form1" runat="server">
-        <div class="head">
-        </div>
-
-        
-  <div id="tableContainer-1">
-  <div id="tableContainer-2">
-         <table id="myTable">
+    <div class="btn-group" role="group" aria-label="Basic example">
+                 <asp:Button ID="btnCustomer" runat="server" CssClass="btn btn-success" Text="Customer" OnClick="btnCustomer_Click" CausesValidation="False"  />
+                 <asp:Button ID="btnCompany" runat="server" CssClass="btn btn-default" Text="Company" OnClick="btnCompany_Click" CausesValidation="False"  />
+  
+     </div>
+        <div>
+            <table style="width:100%;">
                 <tr>
-                    <td class="auto-style9">Sign Up Page</td>
+                    <td class="auto-style15" colspan="5">Sign Up Page</td>
                     <td class="auto-style4"></td>
                     <td class="auto-style5"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style4">
-                        <hr class="auto-style3" />
+                    <td class="auto-style1" colspan="5">
+                        <hr/>
                     </td>
                     <td class="auto-style5"></td>
                     <td class="auto-style5"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style3">
-                        <asp:Label ID="Label1" runat="server" Text="Name"></asp:Label>
-                        <br/>
-                        <asp:TextBox ID="TextBox1" runat="server" BorderColor="#CCCCCC" placeholder="Name"></asp:TextBox>
-                    </td>
-                    <td class="auto-style11" rowspan="4">
-                        <asp:Label ID="Label4" runat="server" Text="Date Of Birth"></asp:Label>
+                    <td class="auto-style18">Name<br />
+                        <asp:TextBox ID="txtName" runat="server" BorderColor="#CCCCCC" placeholder="Name"></asp:TextBox>
                         <br />
+                    </td>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Name is required!" ControlToValidate ="txtName" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    </td>
+                    <td class="auto-style17" colspan="2">
+                        &nbsp;</td>
+                    <td class="auto-style9" rowspan="4">Date Of Birth<br />
                         <br />
                         <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#999999" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px" CellPadding="4" DayNameFormat="Shortest">
                             <DayHeaderStyle Font-Bold="True" Font-Size="7pt" BackColor="#CCCCCC" />
@@ -120,97 +203,92 @@
                             <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
                             <WeekendDayStyle BackColor="#FFFFCC" />
                         </asp:Calendar>
+                        <br />
+                        <br />
+                        <br />
                     </td>
-                    <td class="auto-style11" rowspan="4">
+                    <td class="auto-style11" rowspan="8">
                         <br />
+                    </td>
+                    <td class="auto-style11" rowspan="8"></td>
+                    <td class="auto-style11" rowspan="8"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style18">Email<br />
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="auto-style13" placeholder="xxx@xxx.com"></asp:TextBox>
+                    </td>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Email is required!" ControlToValidate="txtEmail" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    </td>
+                    <td class="auto-style12" colspan="2">
                         <br />
+                        <asp:RegularExpressionValidator
+            ID="RegularExpressionValidator2" runat="server" 
+            ErrorMessage="Invalid email format. Suggestion: someone@example.com"
+            ControlToValidate="txtEmail" ValidationExpression="^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3">
-                        <asp:Label ID="Label2" runat="server" Text="Email Address"></asp:Label>
-                        <br />
-                        <asp:TextBox ID="TextBox2" runat="server" placeholder="xxx@mail.com"></asp:TextBox>
+                    <td class="auto-style18">Password<br />
+                        <asp:TextBox ID="txtPassword" runat="server" placeholder="123456" MaxLength="8" TextMode="Password"></asp:TextBox>
+                    </td>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required!" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    </td>
+                    <td class="auto-style12" colspan="2">
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style21">Phone Number<br />
+                        &nbsp;<asp:TextBox ID="txtPhoneNumber" runat="server" placeholder="xxx-xxxxx" MaxLength="11"></asp:TextBox>
+                    </td>
+                    <td class="auto-style23">
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Phone Number is required!" ControlToValidate="txtPhoneNumber" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    </td>
+                    <td class="auto-style20" colspan="2">
+                        <asp:RegularExpressionValidator
+            ID="RegularExpressionValidator1" runat="server" 
+            ErrorMessage="Must be at leat 10-digit Contact Number" 
+            ControlToValidate="txtPhoneNumber" ValidationExpression="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style3">
-                        <asp:Label ID="Label3" runat="server" Text="Password"></asp:Label>
+                    <td class="auto-style19" colspan="3">Contact Method<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Contact Method is required!" ControlToValidate="rblMethod" ForeColor="Red">*</asp:RequiredFieldValidator>
                         <br />
-                        <asp:TextBox ID="TextBox3" runat="server" placeholder="1233456"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style3">
-                        <asp:Label ID="Label5" runat="server" Text="Phone Number"></asp:Label>
-                        <br />
-                        <asp:TextBox ID="TextBox5" runat="server" placeholder="xxx-xxxx"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="auto-style3">
-                        <asp:Label ID="Label6" runat="server" Text="Contact Method"></asp:Label>
-                        <br />
-                        <asp:CheckBoxList ID="CheckBoxList1" runat="server" Height="16px" Width="95px">
-                            <asp:ListItem>Whatsapp</asp:ListItem>
-                            <asp:ListItem>Email</asp:ListItem>
+                        <asp:RadioButtonList ID="rblMethod" runat="server">
+                            <asp:ListItem>whatsapp</asp:ListItem>
+                            <asp:ListItem>wechat</asp:ListItem>
+                            <asp:ListItem>E-mail</asp:ListItem>
                             <asp:ListItem>SMS</asp:ListItem>
-                            <asp:ListItem>WeChat</asp:ListItem>
-                        </asp:CheckBoxList>
-                        <br/>
+                        </asp:RadioButtonList>
                     </td>
-                    <td class="auto-style10">
-                        &nbsp;</td>
-                    <td class="auto-style11"></td>
+                    <td class="auto-style9" colspan="2">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style7">
-                        <asp:CheckBox ID="CheckBox1" runat="server" Text="whatsapp" />
-                        <br/>
+                    <td class="auto-style9" colspan="5">
+                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
                     </td>
-                    <td class="auto-style1">
-                        &nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style7">
-                        <br/>
-                        <br/>
+                    <td class="auto-style12" colspan="4">
+                        <br />
+                        &nbsp;<asp:Button ID="btnCancel" runat="server" Height="30px" Text="Cancel" Width="100px" />
                     </td>
-                    <td class="auto-style1">
-                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Submit" />
-                        </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style9">
+                        <asp:Button ID="btnSubmit" runat="server" OnClick="Button1_Click" Text="Submit" Height="30px" Width="100px" />
+                    </td>
                 </tr>
                 <tr>
-                    <td class="auto-style7">
-                        <br/>
+                    <td class="auto-style9" colspan="5">
+                        <br />
                     </td>
-                    <td class="auto-style1">
-                        &nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
-                <tr>
-                    <td class="auto-style7">
-                        <br/>
-                    </td>
-                    <td class="auto-style2">
-                        &nbsp;</td>
-                    <td class="auto-style2"></td>
-                </tr>
-                <tr>
-                    <td class="auto-style7">
-                        &nbsp;</td>
-                    <td class="auto-style1">
-                        &nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-            </table>
-
-       </div>
-       </div>
-
-           
+                </table>
+            
+        </div>
+            
+ 
     </form>
+    
 </body>
 </html>

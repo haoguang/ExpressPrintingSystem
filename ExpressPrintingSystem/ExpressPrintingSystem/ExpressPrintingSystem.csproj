@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Customer\booking.aspx" />
+    <Content Include="Customer\CompanySignUp.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="Customer\Payment.aspx" />
@@ -118,6 +119,13 @@
     <Compile Include="Customer\booking.aspx.designer.cs">
       <DependentUpon>booking.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\CompanySignUp.aspx.cs">
+      <DependentUpon>CompanySignUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CompanySignUp.aspx.designer.cs">
+      <DependentUpon>CompanySignUp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\Customer.Master.cs">
       <DependentUpon>Customer.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -164,7 +172,6 @@
     <Compile Include="masterPageTest.aspx.designer.cs">
       <DependentUpon>masterPageTest.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Model\CustomRoleProvider.cs" />
     <Compile Include="Model\UserVerification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Staff\Item\AddItem.aspx.cs">

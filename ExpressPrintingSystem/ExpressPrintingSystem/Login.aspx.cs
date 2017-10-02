@@ -71,12 +71,13 @@ namespace ExpressPrintingSystem.Customer
             string roles;
             string username = txtname.Text.Trim();
             string password = txtPassword.Text.Trim();
-            Session["SignInType"] = "Customer";
+            string toggleOption = toggleBtn_optionSelected();
+            Session["SignInType"] = toggleOption;
 
-            if (UserVerification.verifyUser(username, password, "Customer"))
+            if (UserVerification.verifyUser(username, password, toggleOption))
             {
                 //These session values are just for demo purpose to show the user details on master page
-               // roles = UserVerification.GetUserRoles(username);
+                roles = UserVerification.GetUserRoles(username,null);
                 //Session["User"] = username;
                 //Session["Roles"] = roles;
 
@@ -112,6 +113,14 @@ namespace ExpressPrintingSystem.Customer
         {
             btnCustomer.CssClass = "btn btn-default";
             btnCompany.CssClass = "btn btn-danger";
+        }
+
+        private string toggleBtn_optionSelected()
+        {
+            if (btnCustomer.CssClass.Equals("btn btn-default"))
+                return UserVerification.ROLE_STAFF;
+            else
+                return UserVerification.ROLE_CUSTOMER;
         }
     }
 }
