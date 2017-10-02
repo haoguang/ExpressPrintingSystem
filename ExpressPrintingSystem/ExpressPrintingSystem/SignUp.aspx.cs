@@ -22,8 +22,11 @@ namespace ExpressPrintingSystem.Customer
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+
+
+
             byte[] generatedSalt = ClassHashing.generateSalt();
-            byte[] hashPassword = ClassHashing.generateSaltedHash(TextBox3.Text, generatedSalt);
+            byte[] hashPassword = ClassHashing.generateSaltedHash(txtPassword.Text, generatedSalt);
 
 
 
@@ -48,12 +51,12 @@ namespace ExpressPrintingSystem.Customer
             
             cmdInsert = new SqlCommand(strInsert, conPrint);
             //cmdInsert.Parameters.AddWithValue("@CustomerID", TextBox6.Text); (not neccessary as database will handle with trigger)
-            cmdInsert.Parameters.AddWithValue("@CustomerName", TextBox1.Text);
-            cmdInsert.Parameters.AddWithValue("@CustomerEmail", TextBox2.Text);
+            cmdInsert.Parameters.AddWithValue("@CustomerName", txtName.Text);
+            cmdInsert.Parameters.AddWithValue("@CustomerEmail", txtEmail.Text);
             cmdInsert.Parameters.AddWithValue("@CustomerPassword", hashPassword);
             cmdInsert.Parameters.AddWithValue("@CustomerDOB", Calendar1.SelectedDate.ToShortDateString());
-            cmdInsert.Parameters.AddWithValue("@CustomerPhoneNo", TextBox5.Text);
-            cmdInsert.Parameters.AddWithValue("@CustomerContactMethod", CheckBox1.Text);
+            cmdInsert.Parameters.AddWithValue("@CustomerPhoneNo", txtPhoneNumber.Text);
+            cmdInsert.Parameters.AddWithValue("@CustomerContactMethod", rblMethod.SelectedValue);
             cmdInsert.Parameters.AddWithValue("@CustomerSalt", generatedSalt);
 
             int n = cmdInsert.ExecuteNonQuery();
@@ -81,8 +84,17 @@ namespace ExpressPrintingSystem.Customer
 
         }
 
+        protected void btnCustomer_Click(object sender, EventArgs e)
+        {
+            btnCustomer.CssClass = "btn btn-success";
+            btnCompany.CssClass = "btn btn-default";
+        }
 
-       
+        protected void btnCompany_Click(object sender, EventArgs e)
+        {
+            btnCustomer.CssClass = "btn btn-default";
+            btnCompany.CssClass = "btn btn-danger";
+        }
     }
 
 }
