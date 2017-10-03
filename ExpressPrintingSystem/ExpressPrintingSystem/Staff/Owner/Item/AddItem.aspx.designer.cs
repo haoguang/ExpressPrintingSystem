@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExpressPrintingSystem.Staff.Item {
+namespace ExpressPrintingSystem.Staff.Owner.Item {
     
     
     public partial class AddItem {

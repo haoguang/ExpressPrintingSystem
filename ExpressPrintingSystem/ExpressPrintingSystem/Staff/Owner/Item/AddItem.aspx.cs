@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace ExpressPrintingSystem.Staff.Item
+namespace ExpressPrintingSystem.Staff.Owner.Item
 {
     public partial class AddItem : System.Web.UI.Page
     {
