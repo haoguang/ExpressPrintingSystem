@@ -17,7 +17,8 @@ namespace ExpressPrintingSystem.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            btnCustomer.CssClass = "btn btn-success";
+            btnCompany.CssClass = "btn btn-default";
         }
 
         protected void Button1_Click(object sender, EventArgs e)

@@ -58,6 +58,16 @@ input[type=text], select {
     #btnCustomer, #btnCompany{
         border-radius : 20px;
     }
+    #txtPassword {
+    width: 100%;
+   
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+
    
    
 </style>
@@ -105,7 +115,7 @@ input[type=text], select {
         <div class="bottom" style="width:350px; margin:0 auto; text-align:center;">
             <asp:Label ID="Label" runat="server" Text="New User?"></asp:Label>
 
-            &nbsp;<asp:HyperLink ID="HyperLink2" runat="server">Sign Up</asp:HyperLink>
+            &nbsp;<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/SignUp.aspx">Sign Up</asp:HyperLink>
 
             </div>
     </form>

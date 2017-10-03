@@ -15,7 +15,7 @@
 
    /*outline:none;  /*prevents textbox highlight in chrome*/
 /*}*/
-        /*#form1 {
+        #form1 {
 
     width: 1000px;
 
@@ -41,11 +41,11 @@
 
 	margin: 0 10%;
 
-	/*stacking fieldsets above each other*/
+	stacking fieldsets above each other
 
-	/*position: absolute;
+	position: absolute;
 
-}*/
+}
       
 
          ::-webkit-input-placeholder {
@@ -130,17 +130,6 @@
         }
 
              
-        .auto-style24 {
-            height: 26px;
-        }
-        .auto-style25 {
-            height: 26px;
-            width: 281px;
-        }
-        .auto-style26 {
-            width: 281px;
-        }
-
          div[class="btn-group"] {
          margin: 8px 0;
    
@@ -162,13 +151,25 @@
 <body>
        
     <form id="form1" runat="server">
-    <div class="btn-group" role="group" aria-label="Basic example">
+    
+        
+       <div>
+            <fieldset>
+            <table style="width:100%;">
+                
+                              
+                <tr>
+                    <td class="auto-style15" colspan="5">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  <asp:Button ID="btnCustomer" runat="server" CssClass="btn btn-success" Text="Customer" OnClick="btnCustomer_Click" CausesValidation="False"  />
                  <asp:Button ID="btnCompany" runat="server" CssClass="btn btn-default" Text="Company" OnClick="btnCompany_Click" CausesValidation="False"  />
   
-     </div>
-        <div>
-            <table style="width:100%;">
+                 </div>
+                    </td>
+                    <td class="auto-style4">&nbsp;</td>
+                    <td class="auto-style5">&nbsp;</td>
+                </tr>
                 <tr>
                     <td class="auto-style15" colspan="5">Sign Up Page</td>
                     <td class="auto-style4"></td>
@@ -239,8 +240,7 @@
                         &nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style21">Phone Number<br />
-                        &nbsp;<asp:TextBox ID="txtPhoneNumber" runat="server" placeholder="xxx-xxxxx" MaxLength="11"></asp:TextBox>
+                    <td class="auto-style21">Phone Number&nbsp;<asp:TextBox ID="txtPhoneNumber" runat="server" placeholder="xxx-xxxxx" MaxLength="11"></asp:TextBox>
                     </td>
                     <td class="auto-style23">
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Phone Number is required!" ControlToValidate="txtPhoneNumber" ForeColor="Red">*</asp:RequiredFieldValidator>
@@ -275,6 +275,7 @@
                         &nbsp;<asp:Button ID="btnCancel" runat="server" Height="30px" Text="Cancel" Width="100px" />
                     </td>
                     <td class="auto-style9">
+                        <br />
                         <asp:Button ID="btnSubmit" runat="server" OnClick="Button1_Click" Text="Submit" Height="30px" Width="100px" />
                     </td>
                 </tr>
@@ -284,7 +285,7 @@
                     </td>
                 </tr>
                 </table>
-            
+            </fieldset>
         </div>
             
  
