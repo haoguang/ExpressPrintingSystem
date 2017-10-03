@@ -41,9 +41,9 @@
 
 	margin: 0 10%;
 
-	/*stacking fieldsets above each other*/
+	stacking fieldsets above each other
 
-	/*position: absolute;
+	position: absolute;
 
 }*/
       
@@ -162,11 +162,13 @@
 <body>
        
     <form id="form1" runat="server">
+        
     <div class="btn-group" role="group" aria-label="Basic example">
                  <asp:Button ID="btnCustomer" runat="server" CssClass="btn btn-success" Text="Customer" OnClick="btnCustomer_Click" CausesValidation="False"  />
                  <asp:Button ID="btnCompany" runat="server" CssClass="btn btn-default" Text="Company" OnClick="btnCompany_Click" CausesValidation="False"  />
   
      </div>
+            
         <div>
             <table style="width:100%;">
                 <tr>

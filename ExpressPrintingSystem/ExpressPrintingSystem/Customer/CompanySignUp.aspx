@@ -54,12 +54,29 @@
     width:250px;
     
 }
+        .auto-style1 {
+            height: 23px;
+        }
+
+           div[class="btn-group"] {
+         margin: 8px 0;
+   
+    text-align:center;
+    display: flex;
+  align-items: center;
+  justify-content: center;
+    }
+    #btnCustomer, #btnCompany{
+        border-radius : 20px;
+    }
+
         </style>
 
 
 
 
     <title></title>
+    <link href="../styles/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -68,12 +85,23 @@
         <div>
 <table style="width: 100%;">
             <tr>
-                <td class="auto-style25">Sign Up Page</td>
+                <td class="auto-style1" colspan="4">
+                     <div class="btn-group" role="group" aria-label="Basic example">
+                 <asp:Button ID="btnCustomer" runat="server" CssClass="btn btn-success" Text="Customer" OnClick="btnCustomer_Click" CausesValidation="False"  />
+                 <asp:Button ID="btnCompany" runat="server" CssClass="btn btn-default" Text="Company" OnClick="btnCompany_Click" CausesValidation="False"  />
+  
+     </div>
+                </td>
+                <td class="auto-style1"></td>
+                <td class="auto-style1"></td>
+            </tr>
+            <tr>
+                <td class="auto-style25" colspan="4">Sign Up Page</td>
                 <td class="auto-style24"></td>
                 <td class="auto-style24"></td>
             </tr>
             <tr>
-                <td class="auto-style26">
+                <td class="auto-style26" colspan="4">
                         <hr/>
                     </td>
                 <td>&nbsp;</td>
@@ -81,34 +109,38 @@
             </tr>
             <tr>
                 <td class="auto-style26">Name<br />
-                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                 </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style26">Company Address<br />
-                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-                </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style26">Company Contact Number<br />
-                    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
-                </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style26">Company Email<br />
-                    <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
-                </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
+                <td class="auto-style26" colspan="2">
+                    &nbsp;</td>
                 <td class="auto-style26">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style26" colspan="2">Company Address<br />
+                    <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
+                </td>
+                <td class="auto-style26" colspan="2">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style26" colspan="4">Company Contact Number<br />
+                    <asp:TextBox ID="txtContNo" runat="server"></asp:TextBox>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style26" colspan="4">Company Email<br />
+                    <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style26" colspan="4">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
@@ -116,9 +148,11 @@
                 <td class="auto-style26">
                     <asp:Button ID="btnCompanyCancel" runat="server" Text="Cancel" />
                 </td>
-                <td>
-                    <asp:Button ID="btnCompanySubmit" runat="server" Text="Submit" />
+                <td class="auto-style26" colspan="3">
+                    <asp:Button ID="btnCompanySubmit" runat="server" Text="Submit" OnClick="btnCompanySubmit_Click" />
                 </td>
+                <td>
+                    &nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
         </table>
