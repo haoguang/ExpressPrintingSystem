@@ -89,17 +89,17 @@ namespace ExpressPrintingSystem.Customer
         protected void btnCustomer_Click(object sender, EventArgs e)
         {
            
-            btnCustomer.CssClass = "btn btn-success";
-            btnCompany.CssClass = "btn btn-default";
-            //Response.Redirect("SignUp.aspx");
+            //btnCustomer.CssClass = "btn btn-success";
+            //btnCompany.CssClass = "btn btn-default";
+            Response.Redirect("SignUp.aspx");
         }
 
         protected void btnCompany_Click(object sender, EventArgs e)
         {
             
-            btnCustomer.CssClass = "btn btn-default";
-            btnCompany.CssClass = "btn btn-danger";
-            //Response.Redirect("CompanySignUp.aspx");
+            //btnCustomer.CssClass = "btn btn-default";
+            //btnCompany.CssClass = "btn btn-danger";
+            Response.Redirect("Customer/CompanySignUp.aspx");
         }
     }
 
