@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff/Staff.Master" AutoEventWireup="true" CodeBehind="AddItem.aspx.cs" Inherits="ExpressPrintingSystem.Staff.Item.AddItem" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff/Staff.Master" AutoEventWireup="true" CodeBehind="AddItem.aspx.cs" Inherits="ExpressPrintingSystem.Staff.Owner.Item.AddItem" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphStaffContent" runat="server">

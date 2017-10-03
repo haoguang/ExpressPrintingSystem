@@ -41,7 +41,7 @@
 
 	margin: 0 10%;
 
-	/*stacking fieldsets above each other*/
+	stacking fieldsets above each other
 
 	position: absolute;
 

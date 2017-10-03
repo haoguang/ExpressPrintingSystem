@@ -85,7 +85,7 @@
     <Content Include="Images\logo\long_logo.png" />
     <Content Include="packages.config" />
     <Content Include="Main.Master" />
-    <Content Include="Staff\Item\AddItem.aspx" />
+    <Content Include="Staff\Owner\Item\AddItem.aspx" />
     <Content Include="styles\bootstrap.min.css" />
     <Content Include="styles\fonts\Multicolore.otf" />
     <Content Include="Staff\Staff.Master" />
@@ -151,6 +151,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Entities\User.cs" />
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -174,11 +175,11 @@
     </Compile>
     <Compile Include="Model\UserVerification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Staff\Item\AddItem.aspx.cs">
+    <Compile Include="Staff\Owner\Item\AddItem.aspx.cs">
       <DependentUpon>AddItem.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Staff\Item\AddItem.aspx.designer.cs">
+    <Compile Include="Staff\Owner\Item\AddItem.aspx.designer.cs">
       <DependentUpon>AddItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\Staff.Master.cs">
@@ -189,9 +190,7 @@
       <DependentUpon>Staff.Master</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Staff\Owner\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
