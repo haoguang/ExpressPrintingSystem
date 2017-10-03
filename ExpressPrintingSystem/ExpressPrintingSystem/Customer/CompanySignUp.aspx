@@ -36,6 +36,9 @@
 	position: absolute;
 
 }
+        html{
+             background-color :azure;
+        }
       
 
          ::-webkit-input-placeholder {
@@ -117,10 +120,10 @@
             </tr>
             <tr>
                 <td class="auto-style26">Company Address<br />
-                    <asp:TextBox ID="txtCompanyAddress" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
                 </td>
                 <td class="auto-style26">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Company Address is required!" ControlToValidate="txtCompanyAddress" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Company Address is required!" ControlToValidate="txtAddress" ForeColor="Red">*</asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style26">
                     &nbsp;</td>
@@ -129,16 +132,16 @@
             </tr>
             <tr>
                 <td class="auto-style26">Company Contact Number<br />
-                    <asp:TextBox ID="txtCompanyContactNo" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtContNo" runat="server" MaxLength="11"></asp:TextBox>
                 </td>
                 <td class="auto-style26">
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Company Contact Number is required!" ControlToValidate="txtCompanyContactNo" ForeColor="Red">*</asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Company Contact Number is required!" ControlToValidate="txtContNo" ForeColor="Red">*</asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style26">
                 <asp:RegularExpressionValidator
             ID="RegularExpressionValidator2" runat="server" 
             ErrorMessage="Must be at leat 10-digit Contact Number" 
-            ControlToValidate="txtCompanyContactNo" ValidationExpression="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"></asp:RegularExpressionValidator>
+            ControlToValidate="txtContNo" ValidationExpression="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"></asp:RegularExpressionValidator>
                     
                 </td>
                 <td>&nbsp;</td>
@@ -173,7 +176,7 @@
                     <asp:Button ID="btnCompanyCancel" runat="server" Text="Cancel" />
                 </td>
                 <td class="auto-style26" colspan="2">
-                    <asp:Button ID="btnCompanySubmit" runat="server" Text="Submit" />
+                    <asp:Button ID="btnCompanySubmit" runat="server" Text="Submit" OnClick="btnCompanySubmit_Click1" />
                 </td>
                 <td>
                     &nbsp;</td>

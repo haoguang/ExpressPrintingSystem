@@ -6,6 +6,9 @@
 <html>
     <head runat="server">
 <style>
+
+  
+
 input[type=text], select {
     width: 100%;
    
@@ -36,7 +39,7 @@ input[type=text], select {
     
 
     div[class=heard] {
-        padding-top : 20px;
+        padding-top : 50px;
         padding-bottom:150px;
     }
     div[class=bottom] {
@@ -77,13 +80,14 @@ input[type=text], select {
     </head>
 <body>
     <div class ="heard" style="height:30px; line-height:30px; text-align:center;">
-        <asp:Image ID="Image1" runat="server" Height="88px" ImageUrl="~/image/printinglogo.PNG" />
-        <br />
+        
+        <asp:Image ID="Image1" runat="server" Height="88px" ImageUrl="~/Images/logo/big_logo.png" />
+        <br />       
         <asp:Label ID="lblTitle" runat="server" Text="Login to Express printing" Font-Bold="True" Font-Italic="False" Font-Overline="False" Font-Size="Larger"></asp:Label>
     </div>
     <form id="form1" runat="server">
         <div class="login" style="width:350px; margin:0 auto;">
-           
+            
              <div class="btn-group" role="group" aria-label="Basic example">
                  <asp:Button ID="btnCustomer" runat="server" CssClass="btn btn-success" Text="Customer" OnClick="btnCustomer_Click" />
                  <asp:Button ID="btnCompany" runat="server" CssClass="btn btn-default" Text="Company" OnClick="btnCompany_Click" />

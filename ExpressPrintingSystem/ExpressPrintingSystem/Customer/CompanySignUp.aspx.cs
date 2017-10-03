@@ -37,14 +37,9 @@ namespace ExpressPrintingSystem.Customer
 
         }
 
-        protected void btnCompanySubmit_Click(object sender, EventArgs e)
-        {
-          
-            //string abc = "Salt:" + Convert.ToBase64String(generatedSalt) + "\n";
-            //abc = abc + "hashedPassword 1：" + Convert.ToBase64String(hashPassword) + "\n";
-            //abc = abc + "hashedPassword 2：" + Convert.ToBase64String(ClassHashing.generateSaltedHash(TextBox3.Text, generatedSalt));
-            //Button1.Text = abc;
 
+        protected void btnCompanySubmit_Click1(object sender, EventArgs e)
+        {
             try
             {
 
@@ -65,7 +60,7 @@ namespace ExpressPrintingSystem.Customer
                 cmdInsert.Parameters.AddWithValue("@CompanyAddress", txtAddress.Text);
                 cmdInsert.Parameters.AddWithValue("@CompanyContactNo", txtContNo.Text);
                 cmdInsert.Parameters.AddWithValue("@CompanyEmail", txtEmail.Text);
-              
+
 
                 int n = cmdInsert.ExecuteNonQuery();
 
@@ -87,29 +82,6 @@ namespace ExpressPrintingSystem.Customer
             {
                 Response.Write("<script LANGUAGE='JavaScript' >alert('Something gone wrong with the database.')</script>");
             }
-
-
-        }
-
-        protected void btnCustomer_Click(object sender, EventArgs e)
-        {
-           
-              
-                    Response.Redirect("SignUp.aspx");
-         
-
-            //btnCustomer.CssClass = "btn btn-success";
-           // btnCompany.CssClass = "btn btn-default";
-        }
-
-        protected void btnCompany_Click(object sender, EventArgs e)
-        {
-            //btnCustomer.CssClass = "btn btn-default";
-           // btnCompany.CssClass = "btn btn-danger";
-           
-                Response.Redirect("CompanySignUp.aspx");
-            
-           
 
         }
     }

@@ -58,13 +58,13 @@ namespace ExpressPrintingSystem.Customer {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// txtCompanyAddress control.
+        /// txtAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCompanyAddress;
+        protected global::System.Web.UI.WebControls.TextBox txtAddress;
         
         /// <summary>
         /// RequiredFieldValidator2 control.
@@ -76,13 +76,13 @@ namespace ExpressPrintingSystem.Customer {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// txtCompanyContactNo control.
+        /// txtContNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCompanyContactNo;
+        protected global::System.Web.UI.WebControls.TextBox txtContNo;
         
         /// <summary>
         /// RequiredFieldValidator3 control.
