@@ -44,7 +44,11 @@
                         </ItemTemplate>
                     </asp:Repeater>
                     <li style="float:right;">
-                        <a href="#">Sign In</a>
+                        <asp:HyperLink ID="userInfoControl" runat="server"/>
+                        <form runat="server">
+                        <ul id="userMenu" runat="server">
+
+                        </ul></form>
                     </li>				</ul>
             </div>
         </div>

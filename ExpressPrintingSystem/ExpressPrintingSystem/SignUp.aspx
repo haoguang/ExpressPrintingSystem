@@ -53,9 +53,9 @@
    font-weight : bold;
 
 }
+      
          input[type=text], select {
-   
-   
+ 
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -173,15 +173,13 @@
                     <td class="auto-style15" colspan="5">Sign Up Page</td>
                     <td class="auto-style4"></td>
                     <td class="auto-style5"></td>
-                    <td class="auto-style5"></td>
                 </tr>
                 <tr>
                     <td class="auto-style1" colspan="5">
                         <hr/>
                     </td>
-                    <td class="auto-style1"></td>
-                    <td class="auto-style1"></td>
-                    <td class="auto-style1"></td>
+                    <td class="auto-style5"></td>
+                    <td class="auto-style5"></td>
                 </tr>
                 <tr>
                     <td class="auto-style18">Name<br />
