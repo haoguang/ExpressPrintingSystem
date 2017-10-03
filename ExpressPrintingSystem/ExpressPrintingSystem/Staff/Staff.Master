@@ -12,6 +12,7 @@
 <body>
     
     <div id="page">
+        <form runat="server">
         <div id="header">
             <asp:SiteMapDataSource ID="SiteMapDataSourceForStaff" SiteMapProvider="StaffSiteMap" runat="server" ShowStartingNode="false" />
             <div>
@@ -45,10 +46,10 @@
                     </asp:Repeater>
                     <li style="float:right;">
                         <asp:HyperLink ID="userInfoControl" runat="server"/>
-                        <form runat="server">
+                        
                         <ul id="userMenu" runat="server">
 
-                        </ul></form>
+                        </ul>
                     </li>				</ul>
             </div>
         </div>
@@ -61,6 +62,7 @@
             </div>
         
         </div>
+    </form>
         <footer id="footer">
             <div class="footcontent">
                 <div>

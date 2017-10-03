@@ -13,7 +13,13 @@ namespace ExpressPrintingSystem.Staff.Owner.Item
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+        }
 
+        protected override void OnPreRender(EventArgs e)
+        {
+            //set default button
+            this.Form.DefaultButton = this.btnSubmit.UniqueID;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

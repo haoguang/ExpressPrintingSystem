@@ -86,6 +86,8 @@
     <Content Include="packages.config" />
     <Content Include="Main.Master" />
     <Content Include="Staff\Owner\Item\AddItem.aspx" />
+    <Content Include="Staff\Owner\Item\EditItem.aspx" />
+    <Content Include="Staff\Owner\Item\ViewItem.aspx" />
     <Content Include="styles\bootstrap.min.css" />
     <Content Include="styles\fonts\Multicolore.otf" />
     <Content Include="Staff\Staff.Master" />
@@ -181,6 +183,20 @@
     </Compile>
     <Compile Include="Staff\Owner\Item\AddItem.aspx.designer.cs">
       <DependentUpon>AddItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\Owner\Item\EditItem.aspx.cs">
+      <DependentUpon>EditItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Owner\Item\EditItem.aspx.designer.cs">
+      <DependentUpon>EditItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\Owner\Item\ViewItem.aspx.cs">
+      <DependentUpon>ViewItem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Owner\Item\ViewItem.aspx.designer.cs">
+      <DependentUpon>ViewItem.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\Staff.Master.cs">
       <DependentUpon>Staff.Master</DependentUpon>

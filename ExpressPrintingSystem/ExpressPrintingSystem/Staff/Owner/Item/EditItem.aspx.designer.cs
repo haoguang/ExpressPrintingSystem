@@ -10,7 +10,7 @@
 namespace ExpressPrintingSystem.Staff.Owner.Item {
     
     
-    public partial class AddItem {
+    public partial class EditItem {
         
         /// <summary>
         /// lblError control.
@@ -20,6 +20,24 @@ namespace ExpressPrintingSystem.Staff.Owner.Item {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblError;
+        
+        /// <summary>
+        /// lblID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblID;
+        
+        /// <summary>
+        /// lblItemID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblItemID;
         
         /// <summary>
         /// lblName control.

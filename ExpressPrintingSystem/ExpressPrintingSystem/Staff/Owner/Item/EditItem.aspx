@@ -1,11 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff/Staff.Master" AutoEventWireup="true" CodeBehind="AddItem.aspx.cs" Inherits="ExpressPrintingSystem.Staff.Owner.Item.AddItem" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff/Staff.Master" AutoEventWireup="true" CodeBehind="EditItem.aspx.cs" Inherits="ExpressPrintingSystem.Staff.Owner.Item.EditItem" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphStaffContent" runat="server">
-    <h1>Add Item</h1>
+    <h1>Edit Item</h1>
     <asp:Label ID="lblError" runat="server" ForeColor="Red" Text=""></asp:Label>
-    
-        <table>
+    <table>
+            <tr>
+                <td><asp:Label ID="lblID" runat="server" Text="ID:"/></td><td><asp:Label ID="lblItemID" runat="server" Text="Name:"/></td>
+            </tr>
             <tr>
                 <td><asp:Label ID="lblName" runat="server" Text="Name:"></asp:Label></td>
                 <td><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
@@ -32,7 +34,5 @@
                 <td><asp:RequiredFieldValidator ID="rfvSupplier" runat="server" ControlToValidate="txtSupplier" ForeColor="Red" Display="Dynamic" ErrorMessage="Supplier field cannot be empty."></asp:RequiredFieldValidator></td>
             </tr>
         </table>
-            <asp:Button ID="btnSubmit" runat="server" Text="Add Item" OnClick="btnSubmit_Click" />
-        
-   
+            <asp:Button ID="btnSubmit" runat="server" Text="Edit Item" OnClick="btnSubmit_Click" />
 </asp:Content>
