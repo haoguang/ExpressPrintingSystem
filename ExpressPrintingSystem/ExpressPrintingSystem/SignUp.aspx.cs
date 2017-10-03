@@ -28,7 +28,7 @@ namespace ExpressPrintingSystem.Customer
             byte[] generatedSalt = ClassHashing.generateSalt();
             byte[] hashPassword = ClassHashing.generateSaltedHash(txtPassword.Text, generatedSalt);
 
-
+            
 
 
             //string abc = "Salt:" + Convert.ToBase64String(generatedSalt) + "\n";
@@ -58,7 +58,7 @@ namespace ExpressPrintingSystem.Customer
             cmdInsert.Parameters.AddWithValue("@CustomerPhoneNo", txtPhoneNumber.Text);
             cmdInsert.Parameters.AddWithValue("@CustomerContactMethod", rblMethod.SelectedValue);
             cmdInsert.Parameters.AddWithValue("@CustomerSalt", generatedSalt);
-
+                
             int n = cmdInsert.ExecuteNonQuery();
 
             if (n > 0)
