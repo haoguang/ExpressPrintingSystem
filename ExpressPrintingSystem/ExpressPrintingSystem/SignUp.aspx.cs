@@ -102,6 +102,11 @@ namespace ExpressPrintingSystem
             //btnCompany.CssClass = "btn btn-danger";
             Response.Redirect("CompanySignUp.aspx");
         }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Login.aspx");
+        }
     }
 
 }

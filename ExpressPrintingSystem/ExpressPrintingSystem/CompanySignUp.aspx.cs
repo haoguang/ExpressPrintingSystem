@@ -127,5 +127,10 @@ namespace ExpressPrintingSystem
 
     
         }
+
+        protected void btnCompanyCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Login.aspx");
+        }
     }
 }
