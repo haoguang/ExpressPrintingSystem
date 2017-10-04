@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 
 
-namespace ExpressPrintingSystem.Customer
+namespace ExpressPrintingSystem
 {
     public partial class SignUp : System.Web.UI.Page
     {
@@ -100,7 +100,7 @@ namespace ExpressPrintingSystem.Customer
             
             //btnCustomer.CssClass = "btn btn-default";
             //btnCompany.CssClass = "btn btn-danger";
-            Response.Redirect("Customer/CompanySignUp.aspx");
+            Response.Redirect("CompanySignUp.aspx");
         }
     }
 

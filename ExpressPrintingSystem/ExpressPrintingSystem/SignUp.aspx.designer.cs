@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExpressPrintingSystem.Customer {
+namespace ExpressPrintingSystem {
     
     
     public partial class SignUp {
