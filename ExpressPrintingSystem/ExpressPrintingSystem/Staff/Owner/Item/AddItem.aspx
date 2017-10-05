@@ -12,7 +12,7 @@
                 <td><asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName" ForeColor="Red" ErrorMessage="Please fill up the the Name field."></asp:RequiredFieldValidator></td>
             </tr>
             <tr>
-                <td><asp:Label ID="lblPrice" runat="server" Text="Price:"></asp:Label></td>
+                <td><asp:Label ID="lblPrice" runat="server" Text="Price (RM):"></asp:Label></td>
                 <td><asp:TextBox ID="txtPrice"  runat="server"></asp:TextBox></td>
                 <td><asp:CompareValidator ID="cvValidValuePrice" runat="server" Operator="GreaterThan" ForeColor="Red" Display="Dynamic" ControlToValidate="txtPrice" ValueToCompare="0" ErrorMessage="Price cannot be less than 0."/>
                     <asp:CompareValidator ID="cvTypePrice" runat="server" Operator="DataTypeCheck" ForeColor="Red" Display="Dynamic" ControlToValidate="txtPrice" Type="Currency" ErrorMessage="Please key in a valid number."/>

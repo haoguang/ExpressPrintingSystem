@@ -11,6 +11,11 @@ namespace ExpressPrintingSystem.Staff.Owner.Item
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Request.QueryString["Message"] != null)
+            {
+                if("Success".Equals(Request.QueryString["Message"]))
+                    lblMessage.Text = "Successfully Edited Item.";
+            }
             txtSearch.Focus();
         }
         protected void gvItemList_RowCommand(Object sender, GridViewCommandEventArgs e)

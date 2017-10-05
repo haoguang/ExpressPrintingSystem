@@ -88,6 +88,8 @@ namespace ExpressPrintingSystem.Staff.Owner.Item
 
                 int n = cmdInsert.ExecuteNonQuery();
 
+                Response.Redirect("ViewItem.aspx?Message=Success");
+
             }
             catch (Exception ex)
             {
