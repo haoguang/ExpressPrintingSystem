@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SignUp.aspx.cs" Inherits="ExpressPrintingSystem.Customer.SignUp" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SignUp.aspx.cs" Inherits="ExpressPrintingSystem.SignUp" %>
 
 <!DOCTYPE html>
 
@@ -41,7 +41,7 @@
 
 	margin: 0 10%;
 
-	/*stacking fieldsets above each other*/
+
 
 	position: absolute;
 
@@ -272,7 +272,7 @@
                 <tr>
                     <td class="auto-style12" colspan="4">
                         <br />
-                        &nbsp;<asp:Button ID="btnCancel" runat="server" Height="30px" Text="Cancel" Width="100px" />
+                        &nbsp;<asp:Button ID="btnCancel" runat="server" Height="30px" Text="Cancel" Width="100px" OnClick="btnCancel_Click" />
                     </td>
                     <td class="auto-style9">
                         <br />
