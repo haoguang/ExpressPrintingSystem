@@ -69,9 +69,15 @@ namespace ExpressPrintingSystem.Customer
             String uploadUrl = "https://pod-000-1091-10.backblaze.com/b2api/v1/b2_upload_file/9892df591858d8b156ec0c15/c001_v0001091_t0022";
             String uploadAuthorizationToken = "3_20171010044654_c29d6f95ec2a61e8c17ad6ac_a4360d7db18de54c8f02118ba7ff9e4395890bb1_001_upld"; //Provided by b2_get_upload_url
             String contentType = FileUpload1.PostedFile.ContentType; //Type of file i.e. image/jpeg, audio/mpeg...
-            String filePath = "C:\\Users\\lawre\\Desktop\\Resume1.docx"; //FileUpload1.PostedFile.FileName;//File path of desired upload
-           // FileUpload1.SaveAs(filePath + Path.GetFileName(FileUpload1.FileName));
+
+            String getPath = Path.GetFileName(FileUpload1.FileName);
+            FileUpload1.SaveAs(Server.MapPath("~/File/") + getPath);
+
+            // String filePath = Server.MapPath("~/File/") + getPath ;
+            //"C:\\Users\\lawre\\Desktop\\Resume1.docx"; //FileUpload1.PostedFile.FileName;//File path of desired upload
+            //FileUpload1.SaveAs(filePath + Path.GetFileName(FileUpload1.FileName));
             String fileName = FileUpload1.FileName; //Desired name for the file
+            String filePath = "C:\\Users\\lawrence\\Desktop\\ExpressPrintingSystem\\ExpressPrintingSystem\\ExpressPrintingSystem\\File\\" + FileUpload1.FileName;
             String sha1Str = "SHA_1"; //Sha1 verification for the file
 
             // Read the file into memory and take a sha1 of the data.
