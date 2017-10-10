@@ -177,7 +177,7 @@
                 <asp:RegularExpressionValidator
             ID="RegularExpressionValidator2" runat="server" 
             ErrorMessage="Must be at leat 10-digit Contact Number" 
-            ControlToValidate="txtContNo" ValidationExpression="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"></asp:RegularExpressionValidator>
+            ControlToValidate="txtContNo" ValidationExpression="^\(?([0-9]{3}|[0-9]{2})\)?[-. ]?([0-9]{3}|[0-9]{4})[-. ]?([0-9]{4})$"></asp:RegularExpressionValidator>
                     
                 </td>
                 <td>&nbsp;</td>
@@ -273,7 +273,7 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtStaffNRIC" ErrorMessage="Staff NRIC is required!" ForeColor="Red">*</asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style26">
-                     <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ControlToValidate="txtStaffNRIC" ErrorMessage="Invalid Input" ValidationExpression="^[1-9]\d$"></asp:RegularExpressionValidator>
+                     <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ControlToValidate="txtStaffNRIC" ErrorMessage="Invalid Input" ValidationExpression="\d{12}$"></asp:RegularExpressionValidator>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -304,10 +304,7 @@
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="txtStaffPhoneNumber" ErrorMessage="Staff Phone Number is required!" ForeColor="Red">*</asp:RequiredFieldValidator>
                 </td>
                 <td class="auto-style26">
-                    <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="txtStaffPhoneNumber" ErrorMessage="Phone Number at least 10 number" MaximumValue="12" MinimumValue="10"></asp:RangeValidator>
-                    <br />
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ControlToValidate="txtStaffPhoneNumber" ErrorMessage="Invalid Input" ValidationExpression="^[1-9]\d$"></asp:RegularExpressionValidator>
-                    
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ControlToValidate="txtStaffPhoneNumber" ErrorMessage="Invalid Input" ValidationExpression="^\(?([0-9]{3}|[0-9]{2})\)?[-. ]?([0-9]{3}|[0-9]{4})[-. ]?([0-9]{4})$"></asp:RegularExpressionValidator>                    
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

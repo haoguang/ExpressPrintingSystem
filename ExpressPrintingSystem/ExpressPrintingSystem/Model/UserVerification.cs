@@ -21,7 +21,7 @@ namespace ExpressPrintingSystem.Model
                 {
                     string strSelect = null;
                     if (loginType.Equals(ROLE_STAFF))
-                        strSelect = "select StaffID AS ID, StaffName AS Name, StaffEmail AS Email from Staff where StaffEmail = @uname";
+                        strSelect = "select StaffID AS ID, StaffName AS Name, StaffEmail AS Email from CompanyStaff where StaffEmail = @uname";
                     else
                         strSelect = "select CustomerID AS ID, CustomerName As Name, CustomerEmail As Email from Customer where CustomerEmail = @uname";
 
@@ -56,7 +56,7 @@ namespace ExpressPrintingSystem.Model
                 {
                     string strSelect = null;
                     if (loginType.Equals(ROLE_STAFF))
-                        strSelect = "select StaffPassword As Password, StaffSalt As Salt from Staff where StaffEmail = @uname";      
+                        strSelect = "select StaffPassword As Password, StaffSalt As Salt from CompanyStaff where StaffEmail = @uname";      
                     else
                         strSelect = "select CustomerPassword As Password, CustomerSalt As Salt from Customer where CustomerEmail = @uname";
 
@@ -102,7 +102,7 @@ namespace ExpressPrintingSystem.Model
                 {
                     string strSelect;
                     if(signInType.Equals(ROLE_STAFF))
-                        strSelect = "select TOP 1 StaffRole from Staff where StaffEmail = @uname";
+                        strSelect = "select TOP 1 StaffRole from CompanyStaff where StaffEmail = @uname";
                     else
                         strSelect = "select TOP 1 * from Customer where CustomerEmail = @uname";
 

@@ -61,7 +61,7 @@ namespace ExpressPrintingSystem
             cmdInsert.Parameters.AddWithValue("@CustomerSalt", generatedSalt);
                 
             int n = cmdInsert.ExecuteNonQuery();
-
+            conPrint.Close();
             if (n > 0)
             {
 
@@ -74,7 +74,7 @@ namespace ExpressPrintingSystem
             }
 
 
-            conPrint.Close();
+            
             }
             catch (SqlException ex) {
                 Response.Write("<script LANGUAGE='JavaScript' >alert('Something gone wrong with the database.')</script>");

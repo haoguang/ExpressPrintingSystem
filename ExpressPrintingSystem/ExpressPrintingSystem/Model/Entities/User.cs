@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
 namespace ExpressPrintingSystem.Model.Entities
 {
     public class User
@@ -11,6 +12,8 @@ namespace ExpressPrintingSystem.Model.Entities
         private string name;
         private string role;
         private string email;
+        private const char SEPERATOR = ';';
+        
 
         public User(string id, string name, string role, string email)
         {
@@ -45,6 +48,17 @@ namespace ExpressPrintingSystem.Model.Entities
         }
 
 
+        public static string toCompactString(User user)
+        {
+            return user.ID + SEPERATOR + user.Name + SEPERATOR + user.Role + SEPERATOR + user.Email;
+        }
+
+        public static User toUserObject(string user)
+        {
+            string[] temp = user.Split(SEPERATOR);
+
+            return new User(temp[0], temp[1], temp[2], temp[3]);
+        }
 
 
     }

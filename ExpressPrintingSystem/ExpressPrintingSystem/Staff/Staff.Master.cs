@@ -19,16 +19,38 @@ namespace ExpressPrintingSystem.Staff
 
         private void verifyUser()
         {
-            if(Session["UserInfo"] != null)
+            if (Request.Cookies["UserCookie"] != null)
             {
-                User user = (User)Session["UserInfo"];
-                initUserMenu();
-                userInfoControl.Text = "Welcome, " + user.Name;
-                userInfoControl.NavigateUrl = "";
+                var cookie = Request.Cookies["UserCookie"];
+                
 
+                if (cookie.Values["UserInfo"] != null)
+                {
+                    string userString = ClassHashing.basicDecryption(cookie.Values["UserInfo"].ToString());
+                    User user = ExpressPrintingSystem.Model.Entities.User.toUserObject(userString);
+                    initUserMenu();
+                    userInfoControl.Text = "Welcome, " + user.Name;
+                    userInfoControl.NavigateUrl = "";
+
+                }
+                else
+                {
+                    if (Request.Cookies["UserCookie"] != null)
+                    {
+                        Response.Cookies["UserCookie"].Expires = DateTime.Now.AddDays(-1);
+                    }
+                    FormsAuthentication.SignOut();
+                    userInfoControl.Text = "Sign In";
+                    userInfoControl.NavigateUrl = "";
+                }
+                
             }
             else
             {
+                if (Request.Cookies["UserCookie"] != null)
+                {
+                    Response.Cookies["UserCookie"].Expires = DateTime.Now.AddDays(-1);
+                }
                 FormsAuthentication.SignOut();
                 userInfoControl.Text = "Sign In";
                 userInfoControl.NavigateUrl = "";
@@ -63,6 +85,7 @@ namespace ExpressPrintingSystem.Staff
 
         protected void LogOut_Click(object sender, EventArgs e)
         {
+            Response.Cookies["UserCookie"].Expires = DateTime.Now.AddDays(-1);
             FormsAuthentication.SignOut();
             FormsAuthentication.RedirectToLoginPage();
         }
