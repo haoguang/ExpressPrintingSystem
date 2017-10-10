@@ -13,6 +13,7 @@ namespace ExpressPrintingSystem.Model.Entities
         private decimal packagePrice;
         private string packageSupport;
         private string packageType;
+        private decimal printingPrice; //Printing Price Per Paper
         private ArrayList packageItems; // store PackageItems objects
 
         public Package(string packageID, string packageName, decimal packagePrice, string packageSupport, string packageType, ArrayList packageItems)
@@ -22,6 +23,7 @@ namespace ExpressPrintingSystem.Model.Entities
             this.packagePrice = packagePrice;
             this.packageSupport = packageSupport;
             this.packageType = packageType;
+            this.printingPrice = 0;
             this.packageItems = packageItems;
         }
 
@@ -32,6 +34,29 @@ namespace ExpressPrintingSystem.Model.Entities
             this.packagePrice = packagePrice;
             this.packageSupport = packageSupport;
             this.packageType = packageType;
+            this.printingPrice = 0;
+            this.packageItems = new ArrayList();
+        }
+
+        public Package(string packageID, string packageName, decimal packagePrice, string packageSupport, string packageType, decimal printingPrice,ArrayList packageItems)
+        {
+            this.packageID = packageID;
+            this.packageName = packageName;
+            this.packagePrice = packagePrice;
+            this.packageSupport = packageSupport;
+            this.packageType = packageType;
+            this.printingPrice = printingPrice;
+            this.packageItems = packageItems;
+        }
+
+        public Package(string packageID, string packageName, decimal packagePrice, string packageSupport, string packageType, decimal printingPrice)
+        {
+            this.packageID = packageID;
+            this.packageName = packageName;
+            this.packagePrice = packagePrice;
+            this.packageSupport = packageSupport;
+            this.packageType = packageType;
+            this.printingPrice = printingPrice;
             this.packageItems = new ArrayList();
         }
 
@@ -63,6 +88,12 @@ namespace ExpressPrintingSystem.Model.Entities
         {
             get { return packageType; }
             set { packageType = value; }
+        }
+
+        public decimal PrintingPrice
+        {
+            get { return printingPrice; }
+            set { printingPrice = value; }
         }
 
         public ArrayList PackageItems
