@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using FormsAuthenticationExtensions;
 
 namespace ExpressPrintingSystem
 {
@@ -21,10 +22,13 @@ namespace ExpressPrintingSystem
                         //let us take out the username now                
                         string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
                         string signInType = "";
-                        var session = HttpContext.Current.Session;
-                        if(session != null) {
-                            signInType = (string)Session["SignInType"];
+                        
+                        if(Request.Cookies["UserCookie"] != null)
+                        {
+                            var cookie = Request.Cookies["UserCookie"];
+                            signInType = ClassHashing.basicDecryption(cookie.Values["SignInType"].ToString());
                         }
+                        
 
                         //let us extract the roles from our own custom cookie
                         string roles = UserVerification.GetUserRoles(username,signInType);
@@ -35,7 +39,7 @@ namespace ExpressPrintingSystem
                     }
                     catch (Exception ex)
                     {
-                        throw new Exception(ex.ToString());
+                        //throw new Exception(ex.ToString());
                     }
                 }
             }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Security;
 
 namespace ExpressPrintingSystem
 {
@@ -90,6 +91,16 @@ namespace ExpressPrintingSystem
 
             return true;
         }
+
+        public static string basicEncryption(string normalText)
+        {
+            return Convert.ToBase64String(MachineKey.Protect(Encoding.UTF8.GetBytes(normalText)));
+        }
+
+        public static string basicDecryption(string encryptedText)
+        {
+            return Encoding.UTF8.GetString(MachineKey.Unprotect(Convert.FromBase64String(encryptedText)));
+        }
       
     }
     
@@ -97,21 +108,4 @@ namespace ExpressPrintingSystem
 
 }
 
-        
-
-//        public string EncodePassword(string pass, string salt)
-//        {
-//            byte[] bytes = Encoding.Unicode.GetBytes(pass);
-//            byte[] src = Encoding.Unicode.GetBytes(salt);
-//            byte[] dst = new byte[src.Length + bytes.Length];
-//            Buffer.BlockCopy(src, 0, dst, 0, src.Length);
-//            Buffer.BlockCopy(bytes, 0, dst, src.Length, bytes.Length);
-//            HashAlgorithm algorithm = HashAlgorithm.Create("SHA1");
-//            byte[] inArray = algorithm.ComputeHash(dst);
-//            return Convert.ToBase64String(inArray);
-//        }
-
-//    }
-
-    
-//}
+  

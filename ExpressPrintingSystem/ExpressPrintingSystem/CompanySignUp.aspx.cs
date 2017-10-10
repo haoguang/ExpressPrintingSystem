@@ -67,7 +67,6 @@ namespace ExpressPrintingSystem
 
 
                 cmdInsert = new SqlCommand(strInsert, conPrint);
-                //cmdInsert.Parameters.AddWithValue("@CustomerID", TextBox6.Text); (not neccessary as database will handle with trigger)
                 cmdInsert.Parameters.AddWithValue("@CompanyName", txtName.Text);
                 cmdInsert.Parameters.AddWithValue("@CompanyAddress", txtAddress.Text);
                 cmdInsert.Parameters.AddWithValue("@CompanyContactNo", txtContNo.Text);

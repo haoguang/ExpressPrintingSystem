@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using FormsAuthenticationExtensions;
 
 namespace ExpressPrintingSystem.Customer
 {
@@ -73,21 +74,24 @@ namespace ExpressPrintingSystem.Customer
             string username = txtname.Text.Trim();
             string password = txtPassword.Text.Trim();
             string toggleOption = toggleBtn_optionSelected();
-            Session["SignInType"] = toggleOption;
+
+            var myCookie = new HttpCookie("UserCookie");//instantiate an new cookie and give it a name
+            myCookie.Values.Add("SignInType", ClassHashing.basicEncryption(toggleOption));//populate it with key, value pairs
+            
 
             if (UserVerification.verifyUser(username, password, toggleOption))
             {
                 //These session values are just for demo purpose to show the user details on master page
                 roles = UserVerification.GetUserRoles(username, toggleOption);
 
-                Session["UserInfo"] = UserVerification.getUserBasicInfo(username,toggleOption);
-
+                User user = UserVerification.getUserBasicInfo(username, toggleOption);
+                myCookie.Values.Add("UserInfo", ClassHashing.basicEncryption(ExpressPrintingSystem.Model.Entities.User.toCompactString(user)));
+                Response.Cookies.Add(myCookie);
                 //Let us now set the authentication cookie so that we can use that later.
                 FormsAuthentication.SetAuthCookie(username, false);
-
                 //Login successful lets put him to requested page
                 string returnUrl = Request.QueryString["ReturnUrl"] as string;
-
+                
                 if (returnUrl != null)
                 {
                     Response.Redirect(returnUrl);
@@ -102,6 +106,8 @@ namespace ExpressPrintingSystem.Customer
             {
                 txtname.Text = "Login Failed";//temporary, for testing purpose only
             }
+
+            Response.Cookies.Add(myCookie);
         }
 
         protected void btnCustomer_Click(object sender, EventArgs e)
