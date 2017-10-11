@@ -14,9 +14,9 @@ namespace ExpressPrintingSystem.Model.Entities
         private string packageSupport;
         private string packageType;
         private decimal printingPrice; //Printing Price Per Paper
-        private ArrayList packageItems; // store PackageItems objects
+        private List<PackageItems> packageItems; // store PackageItems objects
 
-        public Package(string packageID, string packageName, decimal packagePrice, string packageSupport, string packageType, ArrayList packageItems)
+        public Package(string packageID, string packageName, decimal packagePrice, string packageSupport, string packageType, List<PackageItems> packageItems)
         {
             this.packageID = packageID;
             this.packageName = packageName;
@@ -35,10 +35,10 @@ namespace ExpressPrintingSystem.Model.Entities
             this.packageSupport = packageSupport;
             this.packageType = packageType;
             this.printingPrice = 0;
-            this.packageItems = new ArrayList();
+            this.packageItems = new List<PackageItems>();
         }
 
-        public Package(string packageID, string packageName, decimal packagePrice, string packageSupport, string packageType, decimal printingPrice,ArrayList packageItems)
+        public Package(string packageID, string packageName, decimal packagePrice, string packageSupport, string packageType, decimal printingPrice, List<PackageItems> packageItems)
         {
             this.packageID = packageID;
             this.packageName = packageName;
@@ -57,7 +57,7 @@ namespace ExpressPrintingSystem.Model.Entities
             this.packageSupport = packageSupport;
             this.packageType = packageType;
             this.printingPrice = printingPrice;
-            this.packageItems = new ArrayList();
+            this.packageItems = new List<PackageItems>();
         }
 
         public string PackageID
@@ -96,7 +96,7 @@ namespace ExpressPrintingSystem.Model.Entities
             set { printingPrice = value; }
         }
 
-        public ArrayList PackageItems
+        public List<PackageItems> PackageItems
         {
             get { return packageItems; }
             set { packageItems = value; }

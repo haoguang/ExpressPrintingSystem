@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphStaffContent" runat="server">
     <h1>View Item</h1>
-    <p><asp:Label ID="lblMessage" runat="server" Text=""></asp:Label></p>
+    <p><asp:Label ID="lblMessage" runat="server" ForeColor="Red"  Text=""></asp:Label></p>
     <p><asp:Label ID="lblSearch" runat="server" Text="Search :"></asp:Label><asp:TextBox ID="txtSearch" TextMode="Search" AutoPostBack="true" ToolTip="Press Enter after finish typing keywords" runat="server" Width="144px"></asp:TextBox></p>
     <asp:GridView ID="gvItemList" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ItemID" DataSourceID="sdsItem" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" ForeColor="#333333" OnRowCommand="gvItemList_RowCommand">
         <AlternatingRowStyle BackColor="White" />

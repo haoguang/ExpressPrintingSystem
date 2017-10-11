@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff/Staff.Master" AutoEventWireup="true" CodeBehind="AddPackage.aspx.cs" Inherits="ExpressPrintingSystem.Staff.Owner.Package.AddPackage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
         $.noConflict();
         jQuery(document).ready(function ($) {
