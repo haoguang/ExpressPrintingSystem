@@ -363,7 +363,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                     printingPaperPrice = 0;
                 }
 
-                cmdInsert.Parameters.AddWithValue("@packageType", txtName.Text);
+                cmdInsert.Parameters.AddWithValue("@packageType", ddlType.SelectedValue);
 
                 cmdInsert.Parameters.AddWithValue("@packageSupport", packageSupport);
                 cmdInsert.Parameters.AddWithValue("@printingPricePerPaper", printingPaperPrice);
