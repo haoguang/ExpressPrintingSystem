@@ -92,7 +92,7 @@ body {
 
 /*inputs*/
 
-#msform input, #msform textarea {
+#msform input, #msform textarea,#msform rbtDocumentColor,#msform rbtDocumentSide,#msform ddlPaperType  {
 
 	padding: 15px;
 
@@ -314,15 +314,36 @@ body {
 
 	<fieldset>
 
-		<h2 class="fs-title">Social Profiles</h2>
+		<h2 class="fs-title">Request Detail</h2>
 
-		<h3 class="fs-subtitle">Your presence on the social network</h3>
+		<h3 class="fs-subtitle"></h3>
+        <asp:Label ID="Label2" runat="server" Text="Document Color"></asp:Label>
+        <asp:RadioButtonList ID="rbtDocumentColor" runat="server" RepeatDirection="Horizontal">
+            <asp:ListItem>Color</asp:ListItem>
+            <asp:ListItem>Non-color</asp:ListItem>
+        </asp:RadioButtonList>
 
-		<input type="text" name="twitter" placeholder="Twitter" />
+        <asp:Label ID="Label3" runat="server" Text="Both Side"></asp:Label>
+        <asp:RadioButtonList ID="rbtDocumentSide" runat="server" RepeatDirection="Horizontal">
+            <asp:ListItem>Single Side</asp:ListItem>
+            <asp:ListItem>Double Side</asp:ListItem>
+        </asp:RadioButtonList>
 
-		<input type="text" name="facebook" placeholder="Facebook" />
+        <asp:Label ID="Label4" runat="server" Text="Paper Type"></asp:Label>
+        <asp:DropDownList ID="ddlPaperType" runat="server">
+            <asp:ListItem>70gsm</asp:ListItem>
+            <asp:ListItem>80gsm</asp:ListItem>
+            <asp:ListItem>90gsm</asp:ListItem>
+            <asp:ListItem>100gsm</asp:ListItem>
+        </asp:DropDownList>
 
-		<input type="text" name="gplus" placeholder="Google Plus" />
+        <asp:Label ID="Label5" runat="server" Text="Document Quantity"></asp:Label>
+        <asp:TextBox ID="txtDocumentQuantity" runat="server"></asp:TextBox>
+
+        <asp:Label ID="Label6" runat="server" Text="Document Description"></asp:Label>
+        <asp:TextBox ID="txtDocumentDescription" runat="server"></asp:TextBox>
+
+
        
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 

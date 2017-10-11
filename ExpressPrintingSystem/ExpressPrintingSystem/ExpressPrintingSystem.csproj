@@ -74,7 +74,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Customer\booking.aspx" />
+    <Content Include="booking.aspx" />
     <Content Include="CompanySignUp.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="SignUp.aspx" />
@@ -118,11 +118,11 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer\booking.aspx.cs">
+    <Compile Include="booking.aspx.cs">
       <DependentUpon>booking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Customer\booking.aspx.designer.cs">
+    <Compile Include="booking.aspx.designer.cs">
       <DependentUpon>booking.aspx</DependentUpon>
     </Compile>
     <Compile Include="CompanySignUp.aspx.cs">
