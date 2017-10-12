@@ -63,8 +63,8 @@ namespace ExpressPrintingSystem.Model
 
         }
 
-
-        public string UploadFile(string contentType, string filePath, string fileName) {
+        
+        public static string UploadFile(string contentType, string filePath, string fileName) {
 
             String uploadUrlInfo = getUploadUrl();//get any information to upload file.
             var uploadUrlObject = (JObject)JsonConvert.DeserializeObject(uploadUrlInfo);
