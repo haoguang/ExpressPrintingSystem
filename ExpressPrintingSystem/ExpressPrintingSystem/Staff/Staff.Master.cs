@@ -1,4 +1,5 @@
-﻿using ExpressPrintingSystem.Model.Entities;
+﻿using ExpressPrintingSystem.Model;
+using ExpressPrintingSystem.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,9 +86,7 @@ namespace ExpressPrintingSystem.Staff
 
         protected void LogOut_Click(object sender, EventArgs e)
         {
-            Response.Cookies["UserCookie"].Expires = DateTime.Now.AddDays(-1);
-            FormsAuthentication.SignOut();
-            FormsAuthentication.RedirectToLoginPage();
+            UserVerification.signOutUser(Response);
         }
     }
 }

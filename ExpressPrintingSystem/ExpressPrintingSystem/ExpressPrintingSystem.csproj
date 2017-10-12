@@ -51,6 +51,12 @@
       <HintPath>..\packages\FormsAuthenticationExtensions.1.3.0.15\lib\net40\FormsAuthenticationExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="GleamTech.Core">
+      <HintPath>..\..\..\DocumentUltimate\Bin\GleamTech.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GleamTech.DocumentUltimate">
+      <HintPath>..\..\..\DocumentUltimate\Bin\GleamTech.DocumentUltimate.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -124,6 +130,7 @@
     <Content Include="Staff\index.html" />
     <Content Include="styles\fonts\index.html" />
     <Content Include="styles\main.css" />
+    <Content Include="testDocumentViewer.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +242,13 @@
     </Compile>
     <Compile Include="Staff\Staff.Master.designer.cs">
       <DependentUpon>Staff.Master</DependentUpon>
+    </Compile>
+    <Compile Include="testDocumentViewer.aspx.cs">
+      <DependentUpon>testDocumentViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testDocumentViewer.aspx.designer.cs">
+      <DependentUpon>testDocumentViewer.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>My Account</title>
+    <title>Express Printing</title>
     <link rel="stylesheet" href="~/styles/main.css"" type="text/css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -12,6 +12,7 @@
 <body>
     
     <div id="page">
+        <form runat="server">
         <div id="header">
             <asp:SiteMapDataSource ID="SiteMapDataSourceForCustomer" SiteMapProvider="CustomerSiteMap" runat="server" ShowStartingNode="false" />
             <div>
@@ -45,7 +46,11 @@
                         </ItemTemplate>
                     </asp:Repeater>
                     <li style="float:right;">
-                        <a href="#">Sign In</a>
+                        <asp:HyperLink ID="userInfoControl" runat="server"/>
+                        
+                        <ul id="userMenu" runat="server">
+
+                        </ul>
                     </li>				
 
             </ul>
@@ -60,6 +65,7 @@
             </div>
         
         </div>
+     </form>
          <footer id="footer">
             <div class="footcontent">
                 <div>
