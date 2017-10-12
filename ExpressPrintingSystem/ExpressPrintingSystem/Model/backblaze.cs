@@ -63,7 +63,7 @@ namespace ExpressPrintingSystem.Model
 
         }
 
-        
+
         public static string UploadFile(string contentType, string filePath, string fileName) {
 
             String uploadUrlInfo = getUploadUrl();//get any information to upload file.
@@ -104,6 +104,9 @@ namespace ExpressPrintingSystem.Model
 
             return responseString;
         }
+
+
+        
 
     }
 }

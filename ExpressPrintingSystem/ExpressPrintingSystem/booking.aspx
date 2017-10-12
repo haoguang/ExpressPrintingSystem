@@ -92,7 +92,7 @@ body {
 
 /*inputs*/
 
-#msform input, #msform textarea,#msform rbtDocumentColor,#msform rbtDocumentSide,#msform ddlPaperType  {
+#msform input, #msform textarea, #rbtDocumentColor, #rbtDocumentSide, #ddlPaperType{
 
 	padding: 15px;
 
@@ -110,9 +110,10 @@ body {
 
 	color: #2C3E50;
 
-	font-size: 13px;
+	font-size: 15px;
 
 }
+
 
 /*buttons*/
 
@@ -267,6 +268,24 @@ body {
 	color: white;
 
 }
+
+        #rbtDocumentColor{
+          padding-left: 70px;
+          
+        }
+
+        #txtcustomerID{
+            padding: 15px;
+
+	margin-bottom: 10px;
+    max-width:200px;
+	font-family: montserrat;
+
+	color: #2C3E50;
+
+	font-size: 15px;
+        }
+
     </style>
     <title></title>
 </head>
@@ -277,11 +296,11 @@ body {
 
 	<ul id="progressbar">
 
-		<li class="active">Request process</li>
+		<li class="active">Upload Your File</li>
+
+		<li>Request Detail</li>
 
 		<li>COMFIRMATION</li>
-
-		<li>PAYMENT</li>
 
   </ul>
 
@@ -289,24 +308,18 @@ body {
 
 	<fieldset>
 
-		<h2 class="fs-title">Create your account</h2>
+		<h2 class="fs-title">Upload Your File</h2>
 
-		<h3 class="fs-subtitle">This is step 1</h3>
-        <asp:TextBox ID="txtcustomerID" runat="server"></asp:TextBox>
-
+		<h3 class="fs-subtitle"></h3>
+        <asp:TextBox ID="txtcustomerID" runat="server" Text="jdsdf" Enabled="False">jdsdf</asp:TextBox>
+        <br/>
         <asp:Label ID="lblUploadDocument" runat="server" Text="Upload Document"></asp:Label>
         <asp:FileUpload ID="FileUpload1" runat="server" />
 
-        <asp:Label ID="lblPage" runat="server" Text=""></asp:Label>
-
+        <asp:Label ID="lblPage" runat="server" Text=""></asp:Label><asp:Button ID="Button2" runat="server" Text="Button" />
 
         <asp:Label ID="Label1" runat="server" Text="Document Type"></asp:Label>
-		<input type="text" name="documentname" placeholder="Document Name" id="txtDocumentName" />
-
-        <asp:Label ID="lblDocumentType" runat="server" Text="Document Type"></asp:Label>
-		<input type="password" name="pass" placeholder="Password" />
-
-		<input type="password" name="cpass" placeholder="Confirm Password" />
+		
 
 		<input type="button" name="next" class="next action-button" value="Next" />
 
@@ -317,26 +330,29 @@ body {
 		<h2 class="fs-title">Request Detail</h2>
 
 		<h3 class="fs-subtitle"></h3>
-        <asp:Label ID="Label2" runat="server" Text="Document Color"></asp:Label>
+        <br />
+        <asp:Label ID="Label2" runat="server" Text="Document Color" Font-Underline="True"></asp:Label>
         <asp:RadioButtonList ID="rbtDocumentColor" runat="server" RepeatDirection="Horizontal">
-            <asp:ListItem>Color</asp:ListItem>
-            <asp:ListItem>Non-color</asp:ListItem>
+             <asp:ListItem>Color</asp:ListItem>
+             <asp:ListItem>Non-Color</asp:ListItem>
         </asp:RadioButtonList>
-
-        <asp:Label ID="Label3" runat="server" Text="Both Side"></asp:Label>
+      
+        <br />
+        <asp:Label ID="Label3" runat="server" Text="Both Side" Font-Underline="True"></asp:Label>
         <asp:RadioButtonList ID="rbtDocumentSide" runat="server" RepeatDirection="Horizontal">
             <asp:ListItem>Single Side</asp:ListItem>
             <asp:ListItem>Double Side</asp:ListItem>
         </asp:RadioButtonList>
-
-        <asp:Label ID="Label4" runat="server" Text="Paper Type"></asp:Label>
+        <br />
+        <asp:Label ID="Label4" runat="server" Text="Paper Type" Font-Underline="True"></asp:Label>
         <asp:DropDownList ID="ddlPaperType" runat="server">
             <asp:ListItem>70gsm</asp:ListItem>
             <asp:ListItem>80gsm</asp:ListItem>
             <asp:ListItem>90gsm</asp:ListItem>
             <asp:ListItem>100gsm</asp:ListItem>
         </asp:DropDownList>
-
+        <br />
+        <br />
         <asp:Label ID="Label5" runat="server" Text="Document Quantity"></asp:Label>
         <asp:TextBox ID="txtDocumentQuantity" runat="server"></asp:TextBox>
 
