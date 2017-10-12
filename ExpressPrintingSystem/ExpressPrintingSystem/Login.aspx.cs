@@ -19,6 +19,12 @@ namespace ExpressPrintingSystem.Customer
         protected void Page_Load(object sender, EventArgs e)
         {
             DisplayAppropriateAuthorizationMessage();
+
+            if(Request.Cookies["me"] != null)
+            {
+                txtname.Text = ClassHashing.basicDecryption((string)Request.Cookies["me"].Value);
+                CheckBox1.Checked = true;
+            }
         }
 
         private void DisplayAppropriateAuthorizationMessage()
@@ -65,7 +71,24 @@ namespace ExpressPrintingSystem.Customer
 
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
+            
+        }
 
+        private void rememberMe()
+        {
+            if (CheckBox1.Checked)
+            {
+                var rememberUser = new HttpCookie("me");
+                rememberUser.Value = ClassHashing.basicEncryption(txtname.Text.Trim());
+                Response.Cookies.Add(rememberUser);
+            }
+            else
+            {
+                if(Request.Cookies["me"] != null)
+                {
+                    Request.Cookies["me"].Expires = DateTime.Now.AddDays(-1);
+                }
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -77,7 +100,7 @@ namespace ExpressPrintingSystem.Customer
 
             var myCookie = new HttpCookie("UserCookie");//instantiate an new cookie and give it a name
             myCookie.Values.Add("SignInType", ClassHashing.basicEncryption(toggleOption));//populate it with key, value pairs
-            
+            myCookie.Expires = DateTime.Now.AddMinutes(481);
 
             if (UserVerification.verifyUser(username, password, toggleOption))
             {
@@ -91,7 +114,9 @@ namespace ExpressPrintingSystem.Customer
                 FormsAuthentication.SetAuthCookie(username, false);
                 //Login successful lets put him to requested page
                 string returnUrl = Request.QueryString["ReturnUrl"] as string;
-                
+
+                rememberMe();
+
                 if (returnUrl != null)
                 {
                     Response.Redirect(returnUrl);

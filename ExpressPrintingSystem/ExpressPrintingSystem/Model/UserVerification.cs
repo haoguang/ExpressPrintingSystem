@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Security;
 
 namespace ExpressPrintingSystem.Model
 {
@@ -136,6 +137,13 @@ namespace ExpressPrintingSystem.Model
 
             //user id not found, lets treat him as a guest        
             return ROLE_GUEST;
+        }
+
+        public static void signOutUser(HttpResponse Response)
+        {
+            Response.Cookies["UserCookie"].Expires = DateTime.Now.AddDays(-1);
+            FormsAuthentication.SignOut();
+            FormsAuthentication.RedirectToLoginPage();
         }
 
         public const string ROLE_ADMIN = "Owner";
