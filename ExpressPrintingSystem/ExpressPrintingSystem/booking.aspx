@@ -315,8 +315,11 @@ body {
         <br/>
         <asp:Label ID="lblUploadDocument" runat="server" Text="Upload Document"></asp:Label>
         <asp:FileUpload ID="FileUpload1" runat="server" />
+      
 
-        <asp:Label ID="lblPage" runat="server" Text=""></asp:Label><asp:Button ID="Button2" runat="server" Text="Button" />
+        <asp:Label ID="lblPage" runat="server" Text="page Number">
+
+        </asp:Label><asp:Button ID="Button2" runat="server" Text="Button" />
 
         <asp:Label ID="Label1" runat="server" Text="Document Type"></asp:Label>
 		
