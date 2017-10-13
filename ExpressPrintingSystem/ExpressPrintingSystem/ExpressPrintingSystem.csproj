@@ -51,11 +51,11 @@
       <HintPath>..\packages\FormsAuthenticationExtensions.1.3.0.15\lib\net40\FormsAuthenticationExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GleamTech.Core">
-      <HintPath>..\..\..\DocumentUltimate\Bin\GleamTech.Core.dll</HintPath>
+    <Reference Include="GleamTech.Core, Version=1.5.0.0, Culture=neutral, PublicKeyToken=a05198837413a6d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\GleamTech.Core.1.9.9\lib\net40\GleamTech.Core.dll</HintPath>
     </Reference>
-    <Reference Include="GleamTech.DocumentUltimate">
-      <HintPath>..\..\..\DocumentUltimate\Bin\GleamTech.DocumentUltimate.dll</HintPath>
+    <Reference Include="GleamTech.DocumentUltimate, Version=3.1.0.0, Culture=neutral, PublicKeyToken=a05198837413a6d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentUltimate.3.6.0\lib\net40\GleamTech.DocumentUltimate.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>

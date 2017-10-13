@@ -92,7 +92,7 @@ body {
 
 /*inputs*/
 
-#msform input, #msform textarea, #rbtDocumentColor, #rbtDocumentSide, #ddlPaperType{
+#msform input, #msform textarea, #rbtDocumentColor, #rbtDocumentSide, #ddlPaperType, #rbtRequestType{
 
 	padding: 15px;
 
@@ -269,22 +269,18 @@ body {
 
 }
 
-        #rbtDocumentColor{
-          padding-left: 70px;
-          
-        }
-
         #txtcustomerID{
             padding: 15px;
 
 	margin-bottom: 10px;
     max-width:200px;
 	font-family: montserrat;
-
+     text-align:center;
 	color: #2C3E50;
 
 	font-size: 15px;
         }
+      
 
     </style>
     <title></title>
@@ -309,21 +305,17 @@ body {
 	<fieldset>
 
 		<h2 class="fs-title">Upload Your File</h2>
-
-		<h3 class="fs-subtitle"></h3>
-        <asp:TextBox ID="txtcustomerID" runat="server" Text="jdsdf" Enabled="False">jdsdf</asp:TextBox>
+         <hr/>
+		<h2 class="fs-subtitle">Customer ID</h2>
+        <asp:TextBox ID="txtcustomerID" runat="server" Text="jdsdf" Enabled="False">CU10001</asp:TextBox>
+        <br/>
         <br/>
         <asp:Label ID="lblUploadDocument" runat="server" Text="Upload Document"></asp:Label>
-        <asp:FileUpload ID="FileUpload1" runat="server" />
-      
-
-        <asp:Label ID="lblPage" runat="server" Text="page Number">
-
-        </asp:Label><asp:Button ID="Button2" runat="server" Text="Button" />
-
-        <asp:Label ID="Label1" runat="server" Text="Document Type"></asp:Label>
+        <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="True" />
+        <asp:Label ID="Label7" runat="server" Text="*Please Rename The File name, if the file name contain space!!!" ForeColor="Red"></asp:Label>
+        <asp:Label ID="lblPage" runat="server" Text="page Number" Visible="False"></asp:Label>
+        <br/>
 		
-
 		<input type="button" name="next" class="next action-button" value="Next" />
 
 	</fieldset>
@@ -331,22 +323,28 @@ body {
 	<fieldset>
 
 		<h2 class="fs-title">Request Detail</h2>
-
+        <hr/>
 		<h3 class="fs-subtitle"></h3>
         <br />
         <asp:Label ID="Label2" runat="server" Text="Document Color" Font-Underline="True"></asp:Label>
         <asp:RadioButtonList ID="rbtDocumentColor" runat="server" RepeatDirection="Horizontal">
-             <asp:ListItem>Color</asp:ListItem>
-             <asp:ListItem>Non-Color</asp:ListItem>
+             <asp:ListItem>Color page</asp:ListItem>
+             <asp:ListItem>Non- Color</asp:ListItem>
         </asp:RadioButtonList>
-      
         <br />
         <asp:Label ID="Label3" runat="server" Text="Both Side" Font-Underline="True"></asp:Label>
         <asp:RadioButtonList ID="rbtDocumentSide" runat="server" RepeatDirection="Horizontal">
             <asp:ListItem>Single Side</asp:ListItem>
             <asp:ListItem>Double Side</asp:ListItem>
         </asp:RadioButtonList>
+        <br/>
+        <asp:Label ID="Label1" runat="server" Text="Request Type" Font-Underline="True"></asp:Label>
+        <asp:RadioButtonList ID="rbtRequestType" runat="server" RepeatDirection="Horizontal">
+            <asp:ListItem>Urgent</asp:ListItem>
+            <asp:ListItem>Normal</asp:ListItem>
+        </asp:RadioButtonList>
         <br />
+
         <asp:Label ID="Label4" runat="server" Text="Paper Type" Font-Underline="True"></asp:Label>
         <asp:DropDownList ID="ddlPaperType" runat="server">
             <asp:ListItem>70gsm</asp:ListItem>
@@ -358,11 +356,10 @@ body {
         <br />
         <asp:Label ID="Label5" runat="server" Text="Document Quantity"></asp:Label>
         <asp:TextBox ID="txtDocumentQuantity" runat="server"></asp:TextBox>
-
+        <br/>
         <asp:Label ID="Label6" runat="server" Text="Document Description"></asp:Label>
         <asp:TextBox ID="txtDocumentDescription" runat="server"></asp:TextBox>
-
-
+       
        
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 
@@ -372,10 +369,11 @@ body {
 
 	<fieldset>
 
-		<h2 class="fs-title">Personal Details</h2>
-
-		<h3 class="fs-subtitle">We will never sell it</h3>
-
+		<h2 class="fs-title">Comformation</h2>
+        <hr/>
+		<h3 class="fs-subtitle"></h3>
+        
+        
 		<input type="text" name="fname" placeholder="First Name" />
 
 		<input type="text" name="lname" placeholder="Last Name" />

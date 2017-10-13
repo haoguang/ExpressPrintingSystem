@@ -4,19 +4,18 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <style>
+   
   
  
 
- #form1 {
+   <style>
+  #msform fieldset:not(:first-of-type) {
 
-    width: 1000px;
+	display: none;
 
-	margin: 50px auto;
+}
 
-	position: relative;
-        }
-    #form1 fieldset {
+ #form1 fieldset {
 
 	background: white;
 
@@ -39,41 +38,44 @@
 	position: absolute;
 
 }
-  #msform fieldset:not(:first-of-type) {
+ #form1 {
 
-	display: none;
+    width: 1000px;
 
-}
-        #head {
-        
+	margin: 50px auto;
 
+	position: relative;
         }
+ div[class=head]{
 
-        </style>
-    
+     padding-bottom:20px;
+ }
+
+ 
+ </style>   
     
     <title></title>
-    <link href="../styles/bootstrap.min.css" rel="stylesheet" />
-
 </head>
 <body>
     <form id="form1" runat="server" class="auto-style1" method="POST">
-     <fieldset class="main-fieldset">
-    <div class="head">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-         <h1>Please choose you payment method</h1>
+   <div class="head">
+       <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" Font-Size="X-Large">
 
-                       <input type="radio" name="user-type" value="cash" id="rdoCash" onclick ="cCash()"/>Cash
-                       <input type="radio" name="user-type" value="payment" id="rdoPhone" onclick ="cPayment"/>Payment
-     </div>
-     </fieldset>
-<div>
+           <asp:ListItem Value="company">cash</asp:ListItem>
+           <asp:ListItem value="individual">payment</asp:ListItem>
+       </asp:RadioButtonList>
 
-    <fieldset class="firstpage-fieldset">
+      
+    <%--<input type="radio" name="user-type" value="company" checked>Company<br>
+    <input type="radio" name="user-type" value="individual">Individual<br>--%>
+  </div>
 
-        <table style="width: 100%;">
+  <fieldset class="company-fieldset">
+    <table style="width: 100%;">
             <tr>
-                <td>cash</td>
+                <td><h1>Cash</h1></td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
@@ -115,13 +117,12 @@
                 <td>&nbsp;</td>
             </tr>
         </table>
-    </fieldset>
+  </fieldset>
 
-        <fieldset class="secondpage-fieldset">
-
-        <table style="width: 100%;">
+  <fieldset class="individual-fieldset">
+     <table style="width: 100%;">
             <tr>
-                <td>Payment</td>
+                <td><h1>Payment</h1></td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
@@ -163,31 +164,25 @@
                 <td>&nbsp;</td>
             </tr>
         </table>
-    </fieldset>
-    
- 
- </div>
-    </form>
+  </fieldset>
 
+  
+ </form>
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<!-- jQuery easing plugin --> 
-<script src="js/jquery.easing.min.js" type="text/javascript"></script> 
+<script>
+    $(function () {
+        $("input[type=radio]").change(function () {
+            if ($(this).is(":checked")) {
+                $("fieldset:not(.main-fieldset)").hide();//hide everything
+                $(this).parent().show();//show this ones container
+                $("fieldset[class^='" + $(this).val() + "']").show(); //show the matching fieldset
+                $("fieldset[class^='" + $(this).val() + "']>input:checked").change();//show children as required.
+            }
+        });
+        $("input[value=company]").change();
+    });
 
-    <script>
-
-   $(function(){
-  $("input[type=radio]").change(function(){
-    if($(this).is(":checked")){
-      $("fieldset:not(.main-fieldset)").hide();//hide everything
-      $(this).parent().show();//show this ones container
-      $("fieldset[class^='" + $(this).val() + "']").show(); //show the matching fieldset
-      $("fieldset[class^='" + $(this).val() + "']>input:checked").change();//show children as required.
-    }
-  });
-  $("input[value=company]").change();
-   });
-        </script>
+    </script>
     
 </body>
 </html>
