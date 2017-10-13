@@ -105,7 +105,56 @@ namespace ExpressPrintingSystem.Model
             return responseString;
         }
 
+        public static byte[] downloadFileIntoBytes(string fileId)
+        {
+            string authorizationString = getAuthorization(); // get any information for authorization;
+            var authorizationObject = (JObject)JsonConvert.DeserializeObject(authorizationString);
 
+            string downloadUrl = authorizationObject["downloadUrl"].Value<string>(); // Provided by b2_authorize_account
+
+            HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(downloadUrl + "/b2api/v1/b2_download_file_by_id");
+            string body = "{\"fileId\":\"" + fileId + "\"}";
+            var data = Encoding.UTF8.GetBytes(body);
+            webRequest.Method = "POST";
+            webRequest.Headers.Add("Authorization", authorizationObject["authorizationToken"].Value<string>());
+            webRequest.ContentType = "application/json; charset=utf-8";
+            webRequest.ContentLength = data.Length;
+            using (var stream = webRequest.GetRequestStream())
+            {
+                stream.Write(data, 0, data.Length);
+                stream.Close();
+            }
+            WebResponse response = (HttpWebResponse)webRequest.GetResponse();
+            Stream responseStream = response.GetResponseStream();
+            byte[] fileBytes;
+            using (BinaryReader br = new BinaryReader(responseStream))
+            {
+                fileBytes = br.ReadBytes(500000);
+                br.Close();
+            }
+            responseStream.Close();
+            response.Close();
+
+            return fileBytes;
+            
+        }
+
+        public static void downloadFileToFile(string fileDir, string fileId)
+        {
+            String downloadsFolder = @"FILE DIRECTORY HERE";
+            Byte[] fileBytes = downloadFileIntoBytes(fileId);
+            FileStream saveFile = new FileStream(downloadsFolder, FileMode.Create);
+            BinaryWriter writeFile = new BinaryWriter(saveFile);
+            try
+            {
+                writeFile.Write(fileBytes);
+            }
+            finally
+            {
+                saveFile.Close();
+                writeFile.Close();
+            }
+        }
         
 
     }

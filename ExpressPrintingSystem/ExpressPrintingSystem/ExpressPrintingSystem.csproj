@@ -107,6 +107,7 @@
     <Content Include="Staff\Owner\Item\ViewItem.aspx" />
     <Content Include="Staff\Owner\Package\AddPackage.aspx" />
     <Content Include="Staff\Owner\Package\ViewPackage.aspx" />
+    <Content Include="Staff\Printing\viewPrintingRequest.aspx" />
     <Content Include="styles\bootstrap.min.css" />
     <Content Include="styles\fonts\Multicolore.otf" />
     <Content Include="Staff\Staff.Master" />
@@ -115,6 +116,7 @@
     <Content Include="Customer\Customer.sitemap" />
     <Content Include="Staff\Web.config" />
     <Content Include="Customer\Web.config" />
+    <Content Include="Staff\Owner\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -174,9 +176,14 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Entities\Document.cs" />
+    <Compile Include="Model\Entities\Documentlist.cs" />
     <Compile Include="Model\Entities\Item.cs" />
     <Compile Include="Model\Entities\Package.cs" />
     <Compile Include="Model\Entities\PackageItems.cs" />
+    <Compile Include="Model\Entities\Payment.cs" />
+    <Compile Include="Model\Entities\Request.cs" />
+    <Compile Include="Model\Entities\Requestlist.cs" />
     <Compile Include="Model\Entities\User.cs" />
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
@@ -235,6 +242,13 @@
     </Compile>
     <Compile Include="Staff\Owner\Package\ViewPackage.aspx.designer.cs">
       <DependentUpon>ViewPackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\Printing\viewPrintingRequest.aspx.cs">
+      <DependentUpon>viewPrintingRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Printing\viewPrintingRequest.aspx.designer.cs">
+      <DependentUpon>viewPrintingRequest.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\Staff.Master.cs">
       <DependentUpon>Staff.Master</DependentUpon>
