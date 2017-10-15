@@ -90,6 +90,9 @@
   <ItemGroup>
     <Content Include="booking.aspx" />
     <Content Include="CompanySignUp.aspx" />
+    <Content Include="Images\mastercard.PNG" />
+    <Content Include="Images\paypal.PNG" />
+    <Content Include="Images\visa.PNG" />
     <Content Include="Login.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="Customer\Payment.aspx" />
