@@ -118,10 +118,20 @@ namespace ExpressPrintingSystem.Customer
     public void UploadFileToDatabase(string fileid, int pageNumber, string contentType, string filename, int size, string path)
     {
 
+            string ADDtoEntitydocumentID = "";
+            string documentName = filename;
+            string documentType = contentType;
+            string fileIdInCloud = fileid;
+            string customerID = CustomerID;
+            int Size = size;
+            int PageNumber = pageNumber;
+
+            Model.Entities.Document document = new Model.Entities.Document(documentName, documentType, fileIdInCloud, fileIdInCloud, customerID, Size, PageNumber);
 
 
 
-        SqlConnection conTaxi;
+
+            SqlConnection conTaxi;
       
 
         string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
@@ -187,6 +197,19 @@ namespace ExpressPrintingSystem.Customer
         public void UploadDocumentDetailToDatabase(string DocumentIDid)
         {
 
+            string documentid = DocumentIDid;
+            int sequences = 0; ////remember to do it;  
+            string documentColor = rbtDocumentColor.SelectedValue;
+            string documentbothside = rbtDocumentSide.SelectedValue;
+            string documentpapertype = ddlPaperType.SelectedItem.ToString();
+            int documentquantity = Convert.ToInt32(txtDocumentQuantity.Text);
+            string documentdescription = txtDocumentDescription.Text;
+
+
+
+           // Documentlist documentlist = new Documentlist(documentid, sequences, documentColor, documentbothside, documentpapertype, documentquantity, documentdescription);
+
+
             SqlConnection conTaxi;
             string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
             conTaxi = new SqlConnection(connStr);
@@ -232,11 +255,18 @@ namespace ExpressPrintingSystem.Customer
         public void UploadRequestlistToDatabase()
         {
 
-            string RequestStatus = "Pending";
-            string RequestQuantity = "";
-            string requestItemID = "";
-            string requestID = "";
 
+            string requestID = "";
+            string requestItemID = "";
+            int RequestQuantity = 0;
+            string RequestStatus = "Pending";
+            string requestype = rbtRequestType.SelectedValue;
+
+
+           // Requestlist requestlist = new Requestlist(requestID, requestItemID, RequestQuantity, RequestStatus, requestype);//one more get array)
+
+
+         
             SqlConnection conTaxi;
             string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
             conTaxi = new SqlConnection(connStr);
