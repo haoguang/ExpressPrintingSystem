@@ -37,6 +37,17 @@ namespace ExpressPrintingSystem.Model.Entities
             this.requestLists = requestLists;
         }
 
+        public Request(DateTime requestDateTime, DateTime dueDateTime, Payment payment, string companyID, string customerID)
+        {
+            this.requestID = null;
+            this.requestDateTime = requestDateTime;
+            this.dueDateTime = dueDateTime;
+            this.payment = payment;
+            this.companyID = companyID;
+            this.customerID = customerID;
+            this.requestLists = new List<Requestlist>();
+        }
+
         public string RequestID
         {
             get { return requestID; }

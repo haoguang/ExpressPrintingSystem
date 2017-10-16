@@ -43,10 +43,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=16.1.1.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
-    </Reference>
     <Reference Include="FormsAuthenticationExtensions, Version=1.3.0.15, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FormsAuthenticationExtensions.1.3.0.15\lib\net40\FormsAuthenticationExtensions.dll</HintPath>
       <Private>True</Private>
@@ -111,6 +107,9 @@
     <Content Include="Staff\Owner\Item\ViewItem.aspx" />
     <Content Include="Staff\Owner\Package\AddPackage.aspx" />
     <Content Include="Staff\Owner\Package\ViewPackage.aspx" />
+    <Content Include="Staff\Owner\StaffManagement\editStaff.aspx" />
+    <Content Include="Staff\Owner\StaffManagement\manageStaff.aspx" />
+    <Content Include="Staff\Owner\StaffManagement\registerStaff.aspx" />
     <Content Include="Staff\Printing\viewPrintingRequest.aspx" />
     <Content Include="styles\bootstrap.min.css" />
     <Content Include="styles\fonts\Multicolore.otf" />
@@ -253,6 +252,27 @@
     </Compile>
     <Compile Include="Staff\Owner\Package\ViewPackage.aspx.designer.cs">
       <DependentUpon>ViewPackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\Owner\StaffManagement\editStaff.aspx.cs">
+      <DependentUpon>editStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Owner\StaffManagement\editStaff.aspx.designer.cs">
+      <DependentUpon>editStaff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\Owner\StaffManagement\manageStaff.aspx.cs">
+      <DependentUpon>manageStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Owner\StaffManagement\manageStaff.aspx.designer.cs">
+      <DependentUpon>manageStaff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\Owner\StaffManagement\registerStaff.aspx.cs">
+      <DependentUpon>registerStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Owner\StaffManagement\registerStaff.aspx.designer.cs">
+      <DependentUpon>registerStaff.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\Printing\viewPrintingRequest.aspx.cs">
       <DependentUpon>viewPrintingRequest.aspx</DependentUpon>

@@ -49,6 +49,7 @@ namespace ExpressPrintingSystem.Model
                 throw new Exception(ex.ToString());
             }
         }
+
         public static bool verifyUser(string username, string password, string loginType)
         {
             DataTable result = null;
@@ -90,6 +91,46 @@ namespace ExpressPrintingSystem.Model
                 throw new Exception(ex.ToString());
             }
 
+        }
+
+        public static bool isActivatedUser(string username, string loginType)
+        {
+            DataTable result = null;
+            try
+            {
+                using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
+                {
+                    string strSelect = null;
+                    if (loginType.Equals(ROLE_STAFF))
+                        strSelect = "select StaffPassword As Password from CompanyStaff where StaffEmail = @uname";
+                    else
+                        strSelect = "select CustomerPassword As Password from Customer where CustomerEmail = @uname";
+
+
+                    using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
+                    {
+                        cmdSelect.Parameters.AddWithValue("@uname", username);
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmdSelect))
+                        {
+                            result = new DataTable();
+                            da.Fill(result);
+                        }
+
+                        //retrieve password info
+                        byte[] storedPassword = (byte[])result.Rows[0]["Password"];
+                        byte[] emptyPassword = { 0, 0 };
+
+                        //compare the password and return the result
+                        return ClassHashing.CompareByteArrays(storedPassword, emptyPassword);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
         //Get the Roles for this particular user
@@ -144,6 +185,16 @@ namespace ExpressPrintingSystem.Model
             Response.Cookies["UserCookie"].Expires = DateTime.Now.AddDays(-1);
             FormsAuthentication.SignOut();
             FormsAuthentication.RedirectToLoginPage();
+
+            if (Response.Cookies["CompanyID"] != null)
+            {
+                Response.Cookies["CompanyID"].Expires = DateTime.Now.AddDays(-1);
+            }
+        }
+
+        public static byte[] getVerificationCode(string text, byte[] salt)
+        {
+            return ClassHashing.generateSaltedHash(text, salt);
         }
 
         public const string ROLE_ADMIN = "Owner";
