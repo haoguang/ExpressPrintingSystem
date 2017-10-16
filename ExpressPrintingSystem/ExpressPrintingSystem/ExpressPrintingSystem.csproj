@@ -90,6 +90,7 @@
   <ItemGroup>
     <Content Include="booking.aspx" />
     <Content Include="CompanySignUp.aspx" />
+    <Content Include="Customer\ThanksYouPage.aspx" />
     <Content Include="Images\mastercard.PNG" />
     <Content Include="Images\paypal.PNG" />
     <Content Include="Images\visa.PNG" />
@@ -166,6 +167,13 @@
     </Compile>
     <Compile Include="Customer\Payment.aspx.designer.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\ThanksYouPage.aspx.cs">
+      <DependentUpon>ThanksYouPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\ThanksYouPage.aspx.designer.cs">
+      <DependentUpon>ThanksYouPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

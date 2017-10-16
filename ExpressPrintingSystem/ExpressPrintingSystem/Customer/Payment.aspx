@@ -49,6 +49,7 @@
  div[class=head]{
 
      padding-bottom:20px;
+    
  }
 
  
@@ -96,9 +97,9 @@
 
    <div class="head">
        <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" Font-Size="X-Large">
-
-           <asp:ListItem Value="company">cash</asp:ListItem>
-           <asp:ListItem value="individual">payment</asp:ListItem>
+          <asp:ListItem value="CreditCard" Selected="True" Text="Payment">Credit Card</asp:ListItem>
+           <asp:ListItem Value="Cash" Text="Cash">cash</asp:ListItem>
+        
        </asp:RadioButtonList>
 
       
@@ -106,7 +107,7 @@
     <input type="radio" name="user-type" value="individual">Individual<br>--%>
   </div>
 
-  <fieldset class="company-fieldset">
+  <fieldset class="Cash-fieldset">
     <table style="width: 100%;">
             <tr>
                 <td><h1>Cash</h1></td>
@@ -153,7 +154,7 @@
         </table>
   </fieldset>
 
-  <fieldset class="individual-fieldset">
+  <fieldset class="CreditCard-fieldset">
      <table style="width: 100%;">
             <tr>
                 <td colspan="4"><h1>Payment</h1></td>
@@ -218,7 +219,7 @@
                 <td colspan="4" class="auto-style1">
                     <br />
                     Total Payment<br />
-                    <asp:TextBox ID="txtpaymentTotal" runat="server" Enabled="False"></asp:TextBox>
+                    RM<asp:TextBox ID="txtpaymentTotal" runat="server" Enabled="False">100</asp:TextBox>
                 </td>
                 <td class="auto-style1"></td>
                 <td class="auto-style1"></td>
@@ -254,7 +255,7 @@
                 $("fieldset[class^='" + $(this).val() + "']>input:checked").change();//show children as required.
             }
         });
-        $("input[value=company]").change();
+        $("input[value=Cash]").change();
     });
 
     var textbox = document.getElementById('txtCardNumber');

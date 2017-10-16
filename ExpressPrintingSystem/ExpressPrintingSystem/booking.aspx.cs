@@ -118,19 +118,7 @@ namespace ExpressPrintingSystem.Customer
     public void UploadFileToDatabase(string fileid, int pageNumber, string contentType, string filename, int size, string path)
     {
 
-            string ADDtoEntitydocumentID = "";
-            string documentName = filename;
-            string documentType = contentType;
-            string fileIdInCloud = fileid;
-            string customerID = CustomerID;
-            int Size = size;
-            int PageNumber = pageNumber;
-
-            Model.Entities.Document document = new Model.Entities.Document(documentName, documentType, fileIdInCloud, fileIdInCloud, customerID, Size, PageNumber);
-
-
-
-
+          
             SqlConnection conTaxi;
       
 
@@ -167,9 +155,21 @@ namespace ExpressPrintingSystem.Customer
 
                 if (getDocumentID != null)
                 {
-                    string documentID = getDocumentID.ToString();
+                 
+                    string ADDtoEntitydocumentID = getDocumentID.ToString();
+                    string documentName = filename;
+                    string documentType = contentType;
+                    string fileIdInCloud = fileid;
+                    string customerID = CustomerID;
+                    int Size = size;
+                    int PageNumber = pageNumber;
 
-                    UploadDocumentDetailToDatabase(documentID);
+                    Model.Entities.Document document = new Model.Entities.Document(ADDtoEntitydocumentID, documentName, documentType, fileIdInCloud, customerID, Size, PageNumber);
+
+
+
+
+                    UploadDocumentDetailToDatabase(ADDtoEntitydocumentID);
 
                 }
 
@@ -197,6 +197,7 @@ namespace ExpressPrintingSystem.Customer
         public void UploadDocumentDetailToDatabase(string DocumentIDid)
         {
 
+
             string documentid = DocumentIDid;
             int sequences = 0; ////remember to do it;  
             string documentColor = rbtDocumentColor.SelectedValue;
@@ -205,9 +206,9 @@ namespace ExpressPrintingSystem.Customer
             int documentquantity = Convert.ToInt32(txtDocumentQuantity.Text);
             string documentdescription = txtDocumentDescription.Text;
 
-
-
-           // Documentlist documentlist = new Documentlist(documentid, sequences, documentColor, documentbothside, documentpapertype, documentquantity, documentdescription);
+          
+            //to find requestlistID and documentID
+         //Documentlist documentlist = new Documentlist(Requestlist. , documentid, sequences, documentColor, documentbothside, documentpapertype, documentquantity, documentdescription);
 
 
             SqlConnection conTaxi;
@@ -257,14 +258,21 @@ namespace ExpressPrintingSystem.Customer
 
 
             string requestID = "";
-            string requestItemID = "";
+            int requestItemID = 0;
             int RequestQuantity = 0;
             string RequestStatus = "Pending";
             string requestype = rbtRequestType.SelectedValue;
 
+            //create a requestlist object to store data
+           //Requestlist newrequestlist = new Requestlist(requestID, requestItemID, RequestQuantity, RequestStatus, requestype,);
 
-           // Requestlist requestlist = new Requestlist(requestID, requestItemID, RequestQuantity, RequestStatus, requestype);//one more get array)
+            //create a list for documentlist to store requestlist data 
+            //List<Documentlist> newDocumentlist = newrequestlist.DocumentList;
+         
 
+
+      
+        
 
          
             SqlConnection conTaxi;
