@@ -75,9 +75,7 @@ namespace ExpressPrintingSystem.Staff.Owner.StaffManagement
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            ExpressPrintingSystem.Model.Entities.Request Requests = new ExpressPrintingSystem.Model.Entities.Request();
-            List<Requestlist> newRequestlist = Requests.RequestLists;
-            newRequestlist.Add(new Requestlist())
+
             SqlConnection conPrintDB;
             string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
             conPrintDB = new SqlConnection(connStr);
