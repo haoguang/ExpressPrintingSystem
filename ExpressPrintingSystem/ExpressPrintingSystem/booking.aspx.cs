@@ -200,9 +200,9 @@ namespace ExpressPrintingSystem.Customer
             cmdInsert = new SqlCommand(strInsert, conTaxi);
 
 
-                cmdInsert.Parameters.AddWithValue("@RequestlistID", );
+                //cmdInsert.Parameters.AddWithValue("@RequestlistID", );
                 cmdInsert.Parameters.AddWithValue("@DocumentID", DocumentIDid);
-                cmdInsert.Parameters.AddWithValue("@Sequences", );
+                //cmdInsert.Parameters.AddWithValue("@Sequences", );
                 cmdInsert.Parameters.AddWithValue("@DocumentColor", rbtDocumentColor.SelectedValue);
                 cmdInsert.Parameters.AddWithValue("@DocumentBothSide", rbtDocumentSide.SelectedValue);
                 cmdInsert.Parameters.AddWithValue("@DocumentPaperType", ddlPaperType.SelectedItem);

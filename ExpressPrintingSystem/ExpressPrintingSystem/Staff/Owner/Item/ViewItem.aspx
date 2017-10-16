@@ -5,7 +5,7 @@
     <h1>View Item</h1>
     <p><asp:Label ID="lblMessage" runat="server" ForeColor="Red"  Text=""></asp:Label></p>
     <p><asp:Label ID="lblSearch" runat="server" Text="Search :"></asp:Label><asp:TextBox ID="txtSearch" TextMode="Search" AutoPostBack="true" ToolTip="Press Enter after finish typing keywords" runat="server" Width="144px"></asp:TextBox></p>
-    <asp:GridView ID="gvItemList" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ItemID" DataSourceID="sdsItem" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" ForeColor="#333333" OnRowCommand="gvItemList_RowCommand">
+    <asp:GridView ID="gvItemList" runat="server" AllowSorting="True" ShowHeaderWhenEmpty="true" AutoGenerateColumns="False" DataKeyNames="ItemID" DataSourceID="sdsItem" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" ForeColor="#333333" OnRowCommand="gvItemList_RowCommand">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="ItemID" HeaderText="Item ID" ReadOnly="True" SortExpression="ItemID" />
@@ -15,6 +15,7 @@
             <asp:BoundField DataField="ItemSupplier" HeaderText="Supplier" SortExpression="ItemSupplier" />
             <asp:ButtonField CommandName="Edit" HeaderText="Operation" ShowHeader="True" Text="Edit Item" />
         </Columns>
+        <EmptyDataTemplate>No Record Available.</EmptyDataTemplate> 
         <EditRowStyle BackColor="#99BBFF" Font-Bold="True" />
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

@@ -49,9 +49,12 @@ namespace ExpressPrintingSystem.Staff.Owner.Item
             {
                 lblError.Text = "An error occured when adding item :" + ex.ToString();
             }
+            finally
+            {
+                conPrintDB.Close();
+            }
 
-
-            conPrintDB.Close();
+            
         }
     }
 }

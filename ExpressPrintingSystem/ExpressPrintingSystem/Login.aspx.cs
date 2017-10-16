@@ -10,6 +10,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using FormsAuthenticationExtensions;
+using System.Data.SqlClient;
 
 namespace ExpressPrintingSystem.Customer
 {
@@ -18,6 +19,7 @@ namespace ExpressPrintingSystem.Customer
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.Form.DefaultButton = this.btnSubmit.UniqueID;
             DisplayAppropriateAuthorizationMessage();
 
             if(Request.Cookies["me"] != null)
@@ -91,6 +93,35 @@ namespace ExpressPrintingSystem.Customer
             }
         }
 
+        private void setCompanyCookie(string toggleOption, string id)
+        {
+            if (toggleOption.Equals(UserVerification.ROLE_STAFF))
+            {
+                SqlConnection conPrint;
+
+
+                string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
+                conPrint = new SqlConnection(connStr);
+
+                conPrint.Open();
+
+                string strInsert;
+                SqlCommand cmdInsert;
+                strInsert = "SELECT CompanyID from CompanyStaff where StaffID = @staffID";
+
+
+                cmdInsert = new SqlCommand(strInsert, conPrint);
+                cmdInsert.Parameters.AddWithValue("@staffID", id);
+
+                var CompanyId = cmdInsert.ExecuteScalar();
+
+                var company = new HttpCookie("CompanyID");
+                company.Value = CompanyId.ToString();
+                company.Expires = DateTime.Now.AddMinutes(480);
+                Response.Cookies.Add(company);
+            }
+        }
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             string roles;
@@ -110,6 +141,7 @@ namespace ExpressPrintingSystem.Customer
                 User user = UserVerification.getUserBasicInfo(username, toggleOption);
                 myCookie.Values.Add("UserInfo", ClassHashing.basicEncryption(ExpressPrintingSystem.Model.Entities.User.toCompactString(user)));
                 Response.Cookies.Add(myCookie);
+                setCompanyCookie(toggleOption, user.ID);
                 //Let us now set the authentication cookie so that we can use that later.
                 FormsAuthentication.SetAuthCookie(username, false);
                 //Login successful lets put him to requested page
@@ -126,6 +158,10 @@ namespace ExpressPrintingSystem.Customer
                     //no return URL specified so lets kick him to home page
                     Response.Redirect("masterPageTest.aspx");
                 }
+            }
+            else if(UserVerification.isActivatedUser(username, toggleOption))
+            {
+                Response.Write("<script LANGUAGE='JavaScript' >alert('Your account is not activated, please check your social media for account activation link.')</script>");
             }
             else
             {

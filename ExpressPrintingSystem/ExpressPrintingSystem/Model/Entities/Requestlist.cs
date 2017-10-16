@@ -69,6 +69,8 @@ namespace ExpressPrintingSystem.Model.Entities
         public const string STATUS_PENDING = "Pending";
         public const string STATUS_PRINTED = "Printed";
         public const string STATUS_COMPLETED = "Completed";
+        public const string STATUS_COLLECTED = "Collected";
+        public const string STATUS_CANCELLED = "Cancelled"; 
 
     }
 }

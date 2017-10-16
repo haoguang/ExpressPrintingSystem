@@ -15,6 +15,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
         private const int QUANTITY_INDEX = 2; //the column index for txtQuantity
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.Form.DefaultButton = this.btnSubmit.UniqueID;
             if (!Page.IsPostBack)
             {
                 SetInitialRow();
