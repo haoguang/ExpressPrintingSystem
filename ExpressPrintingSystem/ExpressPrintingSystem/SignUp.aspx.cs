@@ -66,7 +66,7 @@ namespace ExpressPrintingSystem
             if (n > 0)
             {
 
-                Response.Write("<script LANGUAGE='JavaScript' >alert('Login Successful')</script>");
+                Response.Write("<script LANGUAGE='JavaScript' >alert('Register Successfully')</script>");
                 Response.Redirect("Login.aspx");
             }
             else

@@ -12,6 +12,7 @@ namespace ExpressPrintingSystem.Staff.Owner.StaffManagement
 {
     public partial class registerStaff : System.Web.UI.Page
     {
+        private const string DOMAIN_NAME = "http://localhost:53859";
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Form.DefaultButton = this.btnSubmit.UniqueID;
@@ -42,7 +43,7 @@ namespace ExpressPrintingSystem.Staff.Owner.StaffManagement
                 cmdInsert.Parameters.AddWithValue("@staffEmail", txtEmail.Text);
                 cmdInsert.Parameters.AddWithValue("@staffPassword", hashPassword);
                 cmdInsert.Parameters.AddWithValue("@staffNRIC", txtNRIC.Text);
-                cmdInsert.Parameters.AddWithValue("@staffDOB", cldBOD.SelectedDate.ToShortDateString());
+                cmdInsert.Parameters.AddWithValue("@staffDOB", cldBOD.SelectedDate);
                 cmdInsert.Parameters.AddWithValue("@staffPhoneNo", txtPhoneNo.Text);
                 cmdInsert.Parameters.AddWithValue("@staffSalt", generatedSalt);
                 cmdInsert.Parameters.AddWithValue("@staffRole", UserVerification.ROLE_STAFF);
@@ -52,15 +53,18 @@ namespace ExpressPrintingSystem.Staff.Owner.StaffManagement
 
                 if (!chkPassSet.Checked)
                 {
-                    byte[] verificationCode = UserVerification.getVerificationCode(staffID + txtNRIC.Text, generatedSalt);
+                    string verificationCode = UserVerification.getVerificationCode(staffID + txtNRIC.Text, generatedSalt);
                     //then it will generate a url to activate the account and send it to the staff
+                    string verificationLink = DOMAIN_NAME + Page.ResolveUrl("~/StaffAccountActivation.aspx?VC=" + HttpUtility.UrlEncode(verificationCode));
+
                 }
 
                 lblError.Text = "Successfully added";
+                
             }
             catch (Exception ex)
             {
-                lblError.Text = "An error occured when adding item :" + ex.ToString();
+                lblError.Text = "An error occured when register staff :" + ex.ToString();
             }
             finally
             {

@@ -9,26 +9,23 @@ namespace ExpressPrintingSystem.Model.Entities
     {
         private string requestlistID;
         private string requestItemID;
-        private int requestQuantity;
         private string requestStatus;
         private string requestType;
         private List<Documentlist> documentList;
 
-        public Requestlist (string requestlistID, string requestItemID, int requestQuantity, string requestStatus, string requestType, List<Documentlist> documentList)
+        public Requestlist (string requestlistID, string requestItemID, string requestStatus, string requestType, List<Documentlist> documentList)
         {
             this.requestlistID = requestlistID;
             this.requestItemID = requestItemID;
-            this.requestQuantity = requestQuantity;
             this.requestStatus = requestStatus;
             this.requestType = requestType;
             this.documentList = documentList;
         }
 
-        public Requestlist(string requestItemID, int requestQuantity, string requestStatus, string requestType, List<Documentlist> documentList)
+        public Requestlist(string requestItemID, string requestStatus, string requestType, List<Documentlist> documentList)
         {
             this.requestlistID = null;
             this.requestItemID = requestItemID;
-            this.requestQuantity = requestQuantity;
             this.requestStatus = requestStatus;
             this.requestType = requestType;
             this.documentList = documentList;

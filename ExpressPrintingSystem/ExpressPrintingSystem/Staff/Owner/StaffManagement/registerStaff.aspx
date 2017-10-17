@@ -66,6 +66,7 @@
             <td>
                 <asp:CompareValidator ID="cvPassword" runat="server" ErrorMessage="Password does not match." ControlToValidate="txtConfirmPass" ControlToCompare="txtPassword" ForeColor="Red" Operator="Equal" Display="Dynamic"></asp:CompareValidator>
                 <asp:RequiredFieldValidator ID="rfvPassword" ForeColor="red" runat="server" ControlToValidate="txtPassword" ErrorMessage="Please fill in the password field." Display="Dynamic"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="rfvConfirmPassword" ForeColor="red" runat="server" ControlToValidate="txtConfirmPass" ErrorMessage="Please fill in the confirm password field." Display="Dynamic"></asp:RequiredFieldValidator>
             </td>
         </tr>
         
