@@ -38,7 +38,8 @@ namespace ExpressPrintingSystem
             //abc = abc + "hashedPassword 2：" + Convert.ToBase64String(ClassHashing.generateSaltedHash(TextBox3.Text, generatedSalt));
             //Button1.Text = abc;
 
-            try { 
+            try
+            {
 
             SqlConnection conPrint;
             string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
@@ -77,7 +78,8 @@ namespace ExpressPrintingSystem
 
             
             }
-            catch (SqlException ex) {
+            catch (SqlException ex)
+            {
                 Response.Write("<script LANGUAGE='JavaScript' >alert('Something gone wrong with the database.')</script>");
             }
 

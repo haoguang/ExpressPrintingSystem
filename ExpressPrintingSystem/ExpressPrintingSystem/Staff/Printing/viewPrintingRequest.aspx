@@ -32,7 +32,7 @@
                             <td width="20%"><%#Eval("RequestID") %></td>
                             <td width="20%"><%#Eval("RequestType") %></td>
                             <td width="20%"><%#Eval("DueDateTime") %></td>
-                            <td width="20%"><% "paid" %></td>   
+                            <td width="20%"></td>   
                             <td style="visibility:hidden"><%#Eval("RequestItemID") %></td>                      
                             <td width="17%"></td>
                         </tr>

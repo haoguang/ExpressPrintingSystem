@@ -17,7 +17,7 @@
 html {
 
 	height: 100%;
-
+    
 	/*Image only BG fallback*/
 
 	background: url('http://thecodeplayer.com/uploads/media/gs.png');
@@ -92,7 +92,7 @@ body {
 
 /*inputs*/
 
-#msform input, #msform textarea, #rbtDocumentColor, #rbtDocumentSide, #ddlPaperType, #rbtRequestType{
+#msform input, #msform textarea, #rbtDocumentColor, #rbtDocumentSide, #ddlPaperType, #rbtRequestType, #ddlPackage{
 
 	padding: 15px;
 
@@ -306,8 +306,10 @@ body {
 
 		<h2 class="fs-title">Upload Your File</h2>
          <hr/>
-		<h2 class="fs-subtitle">Customer ID</h2>
-        <asp:TextBox ID="txtcustomerID" runat="server" Text="jdsdf" Enabled="False">CU10001</asp:TextBox>
+        <br/>
+        <asp:Label ID="Label9" runat="server" Text="Customer ID"></asp:Label><br/>
+        <asp:TextBox ID="txtcustomerID" runat="server" Text="" Enabled="False"></asp:TextBox>
+        <br/>
         <br/>
         <br/>
         <asp:Label ID="lblUploadDocument" runat="server" Text="Upload Document"></asp:Label>
@@ -338,13 +340,7 @@ body {
             <asp:ListItem>Double Side</asp:ListItem>
         </asp:RadioButtonList>
         <br/>
-        <asp:Label ID="Label1" runat="server" Text="Request Type" Font-Underline="True"></asp:Label>
-        <asp:RadioButtonList ID="rbtRequestType" runat="server" RepeatDirection="Horizontal">
-            <asp:ListItem>Urgent</asp:ListItem>
-            <asp:ListItem>Normal</asp:ListItem>
-        </asp:RadioButtonList>
-        <br />
-
+       
         <asp:Label ID="Label4" runat="server" Text="Paper Type" Font-Underline="True"></asp:Label>
         <asp:DropDownList ID="ddlPaperType" runat="server">
             <asp:ListItem>70gsm</asp:ListItem>
@@ -353,9 +349,9 @@ body {
             <asp:ListItem>100gsm</asp:ListItem>
         </asp:DropDownList>
         <br />
-        <br />
+        <br/>
         <asp:Label ID="Label5" runat="server" Text="Document Quantity"></asp:Label>
-        <asp:TextBox ID="txtDocumentQuantity" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtDocumentQuantity" runat="server" placeholder="According of set.write number only"></asp:TextBox>
         <br/>
         <asp:Label ID="Label6" runat="server" Text="Document Description"></asp:Label>
         <asp:TextBox ID="txtDocumentDescription" runat="server"></asp:TextBox>
@@ -372,17 +368,29 @@ body {
 		<h2 class="fs-title">Comformation</h2>
         <hr/>
 		<h3 class="fs-subtitle"></h3>
-        
-        
-		<input type="text" name="fname" placeholder="First Name" />
-
-		<input type="text" name="lname" placeholder="Last Name" />
-
-		<input type="text" name="phone" placeholder="Phone" />
-
-		<textarea name="address" placeholder="Address"></textarea>
-        
-        
+         <br />
+        <asp:Label ID="Label8" runat="server" Text="Package" Font-Underline="True"></asp:Label>
+        <br />
+        <asp:DropDownList ID="ddlPackage" runat="server" DataSourceID="SqlDataSource1" DataTextField="PackageDesc" DataValueField="PackageID">
+            <asp:ListItem></asp:ListItem>
+            <asp:ListItem></asp:ListItem>
+            <asp:ListItem></asp:ListItem>
+        </asp:DropDownList>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:printDBServer %>" SelectCommand="SELECT [PackageID], [PackageName] +'- Additional Item Price: RM' + CONVERT(nvarchar(10), [PackagePrice] )+' (RM '+CONVERT(nvarchar(10), [PrintingPricePerPaper] ) +' per Paper)' AS PackageDesc FROM [Package] WHERE ([PackageType] = @PackageType)">
+            <SelectParameters>
+                <asp:Parameter DefaultValue="Printing" Name="PackageType" Type="String" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+        <br />
+        <br />
+        <asp:Label ID="Label1" runat="server" Text="Request Type" Font-Underline="True"></asp:Label>
+        <asp:RadioButtonList ID="rbtRequestType" runat="server" RepeatDirection="Horizontal">
+            <asp:ListItem>Urgent</asp:ListItem>
+            <asp:ListItem>Normal</asp:ListItem>
+        </asp:RadioButtonList>
+        <br />
+		
+               
 		<input type="button" name="previous" class="previous action-button" value="Previous"/>
         <asp:Button ID="Button1" runat="server" Text="Submit" class="submit action-button" OnClick="Button1_Click"/>
 		
@@ -395,7 +403,7 @@ body {
 <!-- jQuery easing plugin --> 
 <script src="js/jquery.easing.min.js" type="text/javascript"></script> 
 
-<script>
+<script >
 var current_fs, next_fs, previous_fs; //fieldsets
 
 var left, opacity, scale; //fieldset properties which we will animate
@@ -549,6 +557,8 @@ $(".submit").click(function(){
 	return true;
 
 });
+
+
     </script>
 
 

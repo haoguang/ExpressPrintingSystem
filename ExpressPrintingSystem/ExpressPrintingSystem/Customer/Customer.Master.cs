@@ -88,5 +88,12 @@ namespace ExpressPrintingSystem.Customer
         {
             UserVerification.signOutUser(Response);
         }
+
+        public void customerDetail()
+        {
+
+
+        }
+
     }
 }

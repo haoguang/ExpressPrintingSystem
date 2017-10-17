@@ -22,7 +22,7 @@ namespace ExpressPrintingSystem.Customer
             this.Form.DefaultButton = this.btnSubmit.UniqueID;
             DisplayAppropriateAuthorizationMessage();
 
-            if(Request.Cookies["me"] != null)
+            if (Request.Cookies["me"] != null)
             {
                 txtname.Text = ClassHashing.basicDecryption((string)Request.Cookies["me"].Value);
                 CheckBox1.Checked = true;
@@ -53,18 +53,18 @@ namespace ExpressPrintingSystem.Customer
             {
                 authorizationDeniedMessage = "Staff only. Please login as a staff to continue.";
             }
-            
 
-            if(authorizationDeniedMessage != null)
+
+            if (authorizationDeniedMessage != null)
             {
                 Response.Write("<script LANGUAGE='JavaScript' >alert('" + authorizationDeniedMessage + "')</script>");
             }
             else
-            {   
+            {
                 //when user access to log in page when user is already authenticated.
                 Response.Redirect("masterPageTest.aspx");//main page
             }
-            
+
 
         }
 
@@ -73,7 +73,7 @@ namespace ExpressPrintingSystem.Customer
 
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void rememberMe()
@@ -86,7 +86,7 @@ namespace ExpressPrintingSystem.Customer
             }
             else
             {
-                if(Request.Cookies["me"] != null)
+                if (Request.Cookies["me"] != null)
                 {
                     Request.Cookies["me"].Expires = DateTime.Now.AddDays(-1);
                 }
@@ -159,7 +159,7 @@ namespace ExpressPrintingSystem.Customer
                     Response.Redirect("masterPageTest.aspx");
                 }
             }
-            else if(UserVerification.isActivatedUser(username, toggleOption))
+            else if (UserVerification.isActivatedUser(username, toggleOption))
             {
                 Response.Write("<script LANGUAGE='JavaScript' >alert('Your account is not activated, please check your social media for account activation link.')</script>");
             }

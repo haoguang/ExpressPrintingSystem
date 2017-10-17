@@ -35,7 +35,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
             if (Request.Params.Get("__EVENTTARGET") != "")
             {
 
-                if(Request.Params.Get("__EVENTTARGET") == "DoubleClickEvent")
+                if (Request.Params.Get("__EVENTTARGET") == "DoubleClickEvent")
                 {
                     addRowToGridView();
                 }
@@ -47,7 +47,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
         private bool validateItemPackage(string itemID, DataTable dt)
         {
             string a;
-            for (int i=0; i < dt.Rows.Count; i++)
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (dt.Rows[i]["itemID"].Equals(itemID))
                 {
@@ -63,7 +63,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
             if (ViewState["CurrentTable"] != null)
             {
                 DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
-                setRowData(dtCurrentTable);             
+                setRowData(dtCurrentTable);
                 ViewState["CurrentTable"] = dtCurrentTable;
                 gvPackageItem.DataSource = dtCurrentTable;
                 gvPackageItem.DataBind();
@@ -76,14 +76,14 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
             string itemID = ItemList.Items[ItemList.SelectedIndex].Value;
             string itemName = ItemList.Items[ItemList.SelectedIndex].Text;
 
-            if (ViewState["CurrentTable"] != null )
+            if (ViewState["CurrentTable"] != null)
             {
                 DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
                 DataRow drCurrentRow = null;
                 setRowData(dtCurrentTable);
                 if (validateItemPackage(itemID, dtCurrentTable))
                 {
-                    
+
                     //add new row
                     if (dtCurrentTable.Rows[0]["itemName"].Equals("N/A"))
                     {
@@ -111,8 +111,8 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                 {
                     Response.Write("<script LANGUAGE='JavaScript' >alert('Item already exist in the package.')</script>");
                 }
-                
-                
+
+
             }
             else
             {
@@ -176,7 +176,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                         TextBox txtQuantity = (TextBox)gvPackageItem.Rows[rowIndex].Cells[QUANTITY_INDEX].FindControl("txtQuantity");
 
                         txtQuantity.Text = dt.Rows[i]["Column1"].ToString();
-                        
+
                         rowIndex++;
                     }
                 }
@@ -185,7 +185,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
         protected void gvPackageItem_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            
+
             if (ViewState["CurrentTable"] != null)
             {
                 DataTable dt = (DataTable)ViewState["CurrentTable"];
@@ -197,7 +197,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                 if (dt.Rows.Count > 1)
                 {
                     dt.Rows.Remove(dt.Rows[rowIndex]);
-                    drCurrentRow = dt.NewRow();    
+                    drCurrentRow = dt.NewRow();
                 }
                 else
                 {
@@ -251,7 +251,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
                 using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
                 {
-                    
+
                     using (SqlDataAdapter da = new SqlDataAdapter(cmdSelect))
                     {
                         result = new DataTable();
@@ -344,7 +344,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
 
                 cmdInsert = new SqlCommand(strInsert, conPrint);
-                
+
                 cmdInsert.Parameters.AddWithValue("@packageName", txtName.Text);
                 cmdInsert.Parameters.AddWithValue("@packagePrice", txtPrice.Text);
 
@@ -371,14 +371,14 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
                 var packageID = cmdInsert.ExecuteScalar();
 
-                if(packageID != null && ViewState["CurrentTable"] != null)
+                if (packageID != null && ViewState["CurrentTable"] != null)
                 {
                     DataTable dt = (DataTable)ViewState["CurrentTable"];
 
                     string strInsertPackageItem = "Insert into PackageItem (PackageID, ItemID, Quantity) values (@packageID, @itemID, @quantity)";
                     SqlCommand cmdPackageItemInsert = new SqlCommand(strInsertPackageItem, conPrint);
 
-                    for (int i=0; i<dt.Rows.Count; i++)
+                    for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         cmdPackageItemInsert.Parameters.Clear();
                         cmdPackageItemInsert.Parameters.AddWithValue("@packageID", packageID);
@@ -393,11 +393,11 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                 string returnUrl = Request.QueryString["ReturnUrl"] as string;
                 Response.Redirect(returnUrl);
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 Response.Write("<script LANGUAGE='JavaScript' >alert('Something gone wrong with the database. Please contact the administrator for the problem.')</script>");
             }
-            
+
         }
     }
 }

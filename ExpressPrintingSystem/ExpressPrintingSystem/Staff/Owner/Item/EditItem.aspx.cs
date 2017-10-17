@@ -14,8 +14,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Item
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
-                populateItemToControls();
+            populateItemToControls();
         }
 
         private void populateItemToControls()

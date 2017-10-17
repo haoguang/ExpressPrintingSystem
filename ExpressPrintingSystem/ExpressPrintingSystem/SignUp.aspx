@@ -249,7 +249,7 @@
                         <asp:RegularExpressionValidator
             ID="RegularExpressionValidator1" runat="server" 
             ErrorMessage="Must be at leat 10-digit Contact Number" 
-            ControlToValidate="txtPhoneNumber" ValidationExpression="^\(?([0-9]{3}|[0-9]{2})\)?[-. ]?([0-9]{3}|[0-9]{4})[-. ]?([0-9]{4})$"></asp:RegularExpressionValidator>
+            ControlToValidate="txtPhoneNumber" ValidationExpression="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"></asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
