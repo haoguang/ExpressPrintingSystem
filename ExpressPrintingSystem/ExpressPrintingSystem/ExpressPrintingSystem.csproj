@@ -86,7 +86,8 @@
   <ItemGroup>
     <Content Include="booking.aspx" />
     <Content Include="CompanySignUp.aspx" />
-    <Content Include="Customer\ThanksYouPage.aspx" />
+    <Content Include="Customer\ChooseCompany.aspx" />
+    <Content Include="Customer\ThankYouPage.aspx" />
     <Content Include="Images\mastercard.PNG" />
     <Content Include="Images\paypal.PNG" />
     <Content Include="Images\visa.PNG" />
@@ -107,9 +108,6 @@
     <Content Include="Staff\Owner\Item\ViewItem.aspx" />
     <Content Include="Staff\Owner\Package\AddPackage.aspx" />
     <Content Include="Staff\Owner\Package\ViewPackage.aspx" />
-    <Content Include="Staff\Owner\StaffManagement\editStaff.aspx" />
-    <Content Include="Staff\Owner\StaffManagement\manageStaff.aspx" />
-    <Content Include="Staff\Owner\StaffManagement\registerStaff.aspx" />
     <Content Include="Staff\Printing\viewPrintingRequest.aspx" />
     <Content Include="styles\bootstrap.min.css" />
     <Content Include="styles\fonts\Multicolore.otf" />
@@ -153,6 +151,13 @@
     <Compile Include="CompanySignUp.aspx.designer.cs">
       <DependentUpon>CompanySignUp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\ChooseCompany.aspx.cs">
+      <DependentUpon>ChooseCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\ChooseCompany.aspx.designer.cs">
+      <DependentUpon>ChooseCompany.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\Customer.Master.cs">
       <DependentUpon>Customer.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -167,12 +172,12 @@
     <Compile Include="Customer\Payment.aspx.designer.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer\ThanksYouPage.aspx.cs">
-      <DependentUpon>ThanksYouPage.aspx</DependentUpon>
+    <Compile Include="Customer\ThankYouPage.aspx.cs">
+      <DependentUpon>ThankYouPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Customer\ThanksYouPage.aspx.designer.cs">
-      <DependentUpon>ThanksYouPage.aspx</DependentUpon>
+    <Compile Include="Customer\ThankYouPage.aspx.designer.cs">
+      <DependentUpon>ThankYouPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -252,27 +257,6 @@
     </Compile>
     <Compile Include="Staff\Owner\Package\ViewPackage.aspx.designer.cs">
       <DependentUpon>ViewPackage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Staff\Owner\StaffManagement\editStaff.aspx.cs">
-      <DependentUpon>editStaff.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Staff\Owner\StaffManagement\editStaff.aspx.designer.cs">
-      <DependentUpon>editStaff.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Staff\Owner\StaffManagement\manageStaff.aspx.cs">
-      <DependentUpon>manageStaff.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Staff\Owner\StaffManagement\manageStaff.aspx.designer.cs">
-      <DependentUpon>manageStaff.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Staff\Owner\StaffManagement\registerStaff.aspx.cs">
-      <DependentUpon>registerStaff.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Staff\Owner\StaffManagement\registerStaff.aspx.designer.cs">
-      <DependentUpon>registerStaff.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\Printing\viewPrintingRequest.aspx.cs">
       <DependentUpon>viewPrintingRequest.aspx</DependentUpon>

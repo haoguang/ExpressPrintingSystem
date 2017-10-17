@@ -102,7 +102,8 @@ input[type=text], select {
             <br />
             <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:HyperLink ID="HyperLink1" runat="server">Forgot password ?</asp:HyperLink>
-&nbsp;<asp:TextBox ID="txtPassword" TextMode="Password" runat="server" Height="28px"></asp:TextBox>
+            <br />
+             <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" Height="28px"></asp:TextBox>
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

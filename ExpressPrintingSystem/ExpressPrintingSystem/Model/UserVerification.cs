@@ -39,7 +39,7 @@ namespace ExpressPrintingSystem.Model
 
                         return new User((string)result.Rows[0]["ID"], (string)result.Rows[0]["Name"], GetUserRoles(username, loginType), (string)result.Rows[0]["Email"]);
 
-                        
+
                     }
 
                 }
@@ -53,12 +53,13 @@ namespace ExpressPrintingSystem.Model
         public static bool verifyUser(string username, string password, string loginType)
         {
             DataTable result = null;
-            try {
+            try
+            {
                 using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
                 {
                     string strSelect = null;
                     if (loginType.Equals(ROLE_STAFF))
-                        strSelect = "select StaffPassword As Password, StaffSalt As Salt from CompanyStaff where StaffEmail = @uname";      
+                        strSelect = "select StaffPassword As Password, StaffSalt As Salt from CompanyStaff where StaffEmail = @uname";
                     else
                         strSelect = "select CustomerPassword As Password, CustomerSalt As Salt from Customer where CustomerEmail = @uname";
 
@@ -86,7 +87,7 @@ namespace ExpressPrintingSystem.Model
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.ToString());
             }
@@ -143,7 +144,7 @@ namespace ExpressPrintingSystem.Model
                 using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
                 {
                     string strSelect;
-                    if(signInType.Equals(ROLE_STAFF))
+                    if (signInType.Equals(ROLE_STAFF))
                         strSelect = "select TOP 1 StaffRole from CompanyStaff where StaffEmail = @uname";
                     else
                         strSelect = "select TOP 1 * from Customer where CustomerEmail = @uname";
@@ -157,10 +158,10 @@ namespace ExpressPrintingSystem.Model
                             result = new DataTable();
                             da.Fill(result);
                         }
-                        
+
                         if (result.Rows.Count == 1)
                         {
-                            if(signInType.Equals(ROLE_STAFF))
+                            if (signInType.Equals(ROLE_STAFF))
                                 return (string)result.Rows[0]["StaffRole"];
                             else
                                 return ROLE_CUSTOMER;

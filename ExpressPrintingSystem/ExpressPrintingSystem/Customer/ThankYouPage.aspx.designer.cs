@@ -11,7 +11,7 @@ namespace ExpressPrintingSystem.Customer
 {
 
 
-    public partial class ThanksYouPage
+    public partial class ThankYouPage
     {
 
         /// <summary>

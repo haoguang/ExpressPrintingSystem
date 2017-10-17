@@ -26,7 +26,7 @@ namespace ExpressPrintingSystem.Model.Entities
             this.requestLists = requestLists;
         }
 
-        public Request( DateTime requestDateTime, DateTime dueDateTime, Payment payment, string companyID, string customerID, List<Requestlist> requestLists)
+        public Request(DateTime requestDateTime, DateTime dueDateTime, Payment payment, string companyID, string customerID, List<Requestlist> requestLists)
         {
             this.requestID = null;
             this.requestDateTime = requestDateTime;

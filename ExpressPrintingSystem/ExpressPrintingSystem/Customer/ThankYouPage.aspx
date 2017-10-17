@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ThanksYouPage.aspx.cs" Inherits="ExpressPrintingSystem.Customer.ThanksYouPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ThankYouPage.aspx.cs" Inherits="ExpressPrintingSystem.Customer.ThankYouPage" %>
 
 <!DOCTYPE html>
 
@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-     <h1>Thanks for using</h1>
+    <h1>Thanks for using</h1>
     </div>
     </form>
 </body>

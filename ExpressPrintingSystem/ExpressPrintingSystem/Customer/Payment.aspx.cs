@@ -13,7 +13,7 @@ namespace ExpressPrintingSystem.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
@@ -70,9 +70,9 @@ namespace ExpressPrintingSystem.Customer
 
 
             cmdInsert.Parameters.AddWithValue("@PaymentType", RadioButtonList1.SelectedValue);
-            cmdInsert.Parameters.AddWithValue("@PaymentAmount", txtpaymentTotal.Text );
+            cmdInsert.Parameters.AddWithValue("@PaymentAmount", txtpaymentTotal.Text);
             cmdInsert.Parameters.AddWithValue("@PaymentDateTime", DateTime.Today.ToShortDateString());
-            
+
 
 
             int n = cmdInsert.ExecuteNonQuery();
