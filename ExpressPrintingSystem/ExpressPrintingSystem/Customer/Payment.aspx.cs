@@ -55,6 +55,15 @@ namespace ExpressPrintingSystem.Customer
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+
+            DateTime currentDate = DateTime.Now;
+            Decimal totalPayment = Convert.ToDecimal(txtpaymentTotal.Text);
+
+            Model.Entities.Payment newpayment = new Model.Entities.Payment(RadioButtonList1.SelectedValue, totalPayment, currentDate);
+            Model.Entities.Request request = (Model.Entities.Request)Session["request"];
+            request.Payment = newpayment;
+
+
             SqlConnection conTaxi;
             string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
             conTaxi = new SqlConnection(connStr);
@@ -64,15 +73,68 @@ namespace ExpressPrintingSystem.Customer
             SqlCommand cmdInsert;
 
 
-            strInsert = "Insert Into Payment (PaymentType, PaymentAmount, PaymentDateTime) Values (@PaymentType, @PaymentAmount, @PaymentDateTime)";
+            strInsert = "Insert Into Payment (PaymentType, PaymentAmount, PaymentDateTime) Values (@PaymentType, @PaymentAmount, @PaymentDateTime);SELECT MAX(PaymentID) from Payment where PaymentAmount=@PaymentAmount";
+            cmdInsert = new SqlCommand(strInsert, conTaxi);
+
+            Decimal totalamount = Convert.ToDecimal(txtpaymentTotal.Text);
+            
+            cmdInsert.Parameters.AddWithValue("@PaymentType", RadioButtonList1.SelectedValue);
+            cmdInsert.Parameters.AddWithValue("@PaymentAmount", totalamount);
+            cmdInsert.Parameters.AddWithValue("@PaymentDateTime", DateTime.Now);
+            var getPaymentID = cmdInsert.ExecuteScalar();
+
+            if (getPaymentID != null)
+            {
+
+
+                newpayment.PaymentID = getPaymentID.ToString();
+
+
+
+            }
+
+
+            int n = cmdInsert.ExecuteNonQuery();
+
+            if (n > 0)
+            {
+                Response.Write("<script>alert('Upload Successful');</script>");
+
+                forRetriveRequest(request);
+
+            }
+            else
+            {
+                Response.Write("<script>alert('Upload Failed');</script>");
+            }
+
+            /*Close database connection*/
+
+
+            conTaxi.Close();
+        }
+        public void forRetriveRequest(Model.Entities.Request request) { 
+
+            SqlConnection conTaxi;
+            string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
+            conTaxi = new SqlConnection(connStr);
+            conTaxi.Open();
+
+            string strInsert;
+            SqlCommand cmdInsert;
+
+
+            strInsert = "Insert Into Request(RequestDateTime, DueDateTime, PaymentID, CompanyID, CustomerID) Values (@RequestDateTime, @DueDateTime, @PaymentID, @CompanyID, @CustomerID)";
             cmdInsert = new SqlCommand(strInsert, conTaxi);
 
 
+            cmdInsert.Parameters.AddWithValue("@RequestDateTime",request.RequestDateTime);
+            cmdInsert.Parameters.AddWithValue("@DueDateTime", request.DueDateTime);
+            cmdInsert.Parameters.AddWithValue("@PaymentID", request.Payment.PaymentID);
+            cmdInsert.Parameters.AddWithValue("@CompanyID", request.CompanyID);
+            cmdInsert.Parameters.AddWithValue("@CustomerID", request.CustomerID);
 
-            cmdInsert.Parameters.AddWithValue("@PaymentType", RadioButtonList1.SelectedValue);
-            cmdInsert.Parameters.AddWithValue("@PaymentAmount", txtpaymentTotal.Text);
-            cmdInsert.Parameters.AddWithValue("@PaymentDateTime", DateTime.Today.ToShortDateString());
-
+           
 
 
             int n = cmdInsert.ExecuteNonQuery();
@@ -92,6 +154,8 @@ namespace ExpressPrintingSystem.Customer
 
 
             conTaxi.Close();
+
         }
+    
     }
 }

@@ -42,7 +42,7 @@ namespace ExpressPrintingSystem
             {
 
             SqlConnection conPrint;
-            string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
+            string connStr = ConfigurationManager.ConnectionStrings["PrintDBConnectionString"].ConnectionString;
             conPrint = new SqlConnection(connStr);
             conPrint.Open();
             

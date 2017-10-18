@@ -6,13 +6,12 @@
 <head runat="server">
     <title></title>
     <script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
-
-
     <script type="text/javascript" src="scripts/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="scripts/jquery.datetimepicker.full.js"></script>
     <script type="text/javascript" src="scripts/jquery.datetimepicker.full.min.js"></script>
-    <link href="scripts/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+   
     <link href="scripts/bootstrap/dist/css/jquery.datetimepicker.css" rel="stylesheet" />
+
 <script type="text/javascript">
             $(function () {
                 $('#datetimepicker1').datetimepicker();
@@ -22,11 +21,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
-
+        <fieldset>
    <div class="container">
     <input id="datetimepicker1" type="text" />
 </div>
-
+        </fieldset>
     </form>
 
 </body>
