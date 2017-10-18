@@ -280,6 +280,23 @@ body {
 
 	font-size: 15px;
         }
+        #txtCalander {
+             padding: 15px;
+
+	margin-bottom: 10px;
+    max-width:200px;
+	font-family: montserrat;
+     text-align:center;
+	color: #2C3E50;
+
+	font-size: 15px;
+        }
+      
+
+        .auto-style1 {
+            width: 35px;
+            height: 31px;
+        }
       
 
     </style>
@@ -355,7 +372,7 @@ body {
         <br/>
         <asp:Label ID="Label6" runat="server" Text="Document Description"></asp:Label>
         <asp:TextBox ID="txtDocumentDescription" runat="server"></asp:TextBox>
-       
+        <br/>
        
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 
@@ -388,8 +405,7 @@ body {
             <asp:ListItem>Urgent</asp:ListItem>
             <asp:ListItem>Normal</asp:ListItem>
         </asp:RadioButtonList>
-        <br />
-		
+       
                
 		<input type="button" name="previous" class="previous action-button" value="Previous"/>
         <asp:Button ID="Button1" runat="server" Text="Submit" class="submit action-button" OnClick="Button1_Click"/>
@@ -398,7 +414,7 @@ body {
 	</fieldset>
 
 </form>
-
+   
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <!-- jQuery easing plugin --> 
 <script src="js/jquery.easing.min.js" type="text/javascript"></script> 
@@ -557,6 +573,7 @@ $(".submit").click(function(){
 	return true;
 
 });
+
 
 
     </script>
