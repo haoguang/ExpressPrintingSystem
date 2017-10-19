@@ -75,6 +75,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -523,6 +524,7 @@
     <Content Include="styles\main.css" />
     <Content Include="testDatePicker.aspx" />
     <Content Include="testDocumentViewer.aspx" />
+    <Content Include="VerificationPassword.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -723,6 +725,13 @@
     </Compile>
     <Compile Include="testDocumentViewer.aspx.designer.cs">
       <DependentUpon>testDocumentViewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerificationPassword.aspx.cs">
+      <DependentUpon>VerificationPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerificationPassword.aspx.designer.cs">
+      <DependentUpon>VerificationPassword.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
