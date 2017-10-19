@@ -98,6 +98,7 @@ namespace ExpressPrintingSystem.Staff.Owner.StaffManagement
                 int n = cmdInsert.ExecuteNonQuery();
                 if (n > 0)
                 {
+                    
                     lblError.Text = "Successfully updated";
                     Response.Redirect("manageStaff.aspx?Message=Success");
                 }

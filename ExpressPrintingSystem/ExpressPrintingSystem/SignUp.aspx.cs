@@ -19,6 +19,7 @@ namespace ExpressPrintingSystem
             btnCustomer.CssClass = "btn btn-success";
             btnCompany.CssClass = "btn btn-default";
             this.Form.DefaultButton = this.btnSubmit.UniqueID;
+            
         }
 
         protected void Button1_Click(object sender, EventArgs e)

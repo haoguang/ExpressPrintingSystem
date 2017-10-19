@@ -113,7 +113,7 @@ namespace ExpressPrintingSystem.Customer
             Session["request"] = request;
             Response.Redirect("~/Customer/Payment.aspx");
 
-           // UploadFileToDatabase(request.RequestLists.);
+         // UploadFileToDatabase(request.RequestLists[0].DocumentList);
            
 
         }
@@ -129,64 +129,70 @@ namespace ExpressPrintingSystem.Customer
         {
 
 
-            SqlConnection conTaxi;
+           
+
+            //for (int i = 0; i < newdocument.Count; i++)
+            //{
+            //   string  dfd = newdocument[i] as string;
+            //    if () 
+
+                SqlConnection conTaxi;
+                string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
+                conTaxi = new SqlConnection(connStr);
+                conTaxi.Open();
+
+                string strInsert;
+                SqlCommand cmdInsert;
 
 
-            string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
-            conTaxi = new SqlConnection(connStr);
-            conTaxi.Open();
+                strInsert = "Insert Into Document (DocumentName, DocumentType, FileIDInCloud, CustomerID, Size, PageNumber) Values (@DocumentName, @DocumentType, @FileIDInCloud, @CustomerID, @Size, @PageNumber);SELECT MAX(DocumentID) from Document where DocumentName=@DocumentName and DocumentType=@DocumentType";
+                cmdInsert = new SqlCommand(strInsert, conTaxi);
 
-            string strInsert;
-            SqlCommand cmdInsert;
-
-
-            strInsert = "Insert Into Document (DocumentName, DocumentType, FileIDInCloud, CustomerID, Size, PageNumber) Values (@DocumentName, @DocumentType, @FileIDInCloud, @CustomerID, @Size, @PageNumber);SELECT MAX(DocumentID) from Document where DocumentName=@DocumentName and DocumentType=@DocumentType";
-            cmdInsert = new SqlCommand(strInsert, conTaxi);
-
-            if (FileUpload1 != null)
-            {
-
-
-                cmdInsert.Parameters.AddWithValue("@DocumentName", newdocument.DocumentName);
-                cmdInsert.Parameters.AddWithValue("@DocumentType", newdocument.DocumentType);
-                cmdInsert.Parameters.AddWithValue("@FileIDInCloud", newdocument.FileIDInCloud);
-                cmdInsert.Parameters.AddWithValue("@CustomerID", newdocument.CustomerID);
-                cmdInsert.Parameters.AddWithValue("@Size", newdocument.Size);
-                cmdInsert.Parameters.AddWithValue("@PageNumber", newdocument.PageNumber);
-                
-
-
-
-                var getDocumentID = cmdInsert.ExecuteScalar();
-
-                if (getDocumentID != null)
+                if (FileUpload1 != null)
                 {
 
-                    newdocument.DocumentID = getDocumentID.ToString();
-                    
-                  
 
+                    cmdInsert.Parameters.AddWithValue("@DocumentName", newdocument.DocumentName);
+                    cmdInsert.Parameters.AddWithValue("@DocumentType", newdocument.DocumentType);
+                    cmdInsert.Parameters.AddWithValue("@FileIDInCloud", newdocument.FileIDInCloud);
+                    cmdInsert.Parameters.AddWithValue("@CustomerID", newdocument.CustomerID);
+                    cmdInsert.Parameters.AddWithValue("@Size", newdocument.Size);
+                    cmdInsert.Parameters.AddWithValue("@PageNumber", newdocument.PageNumber);
+
+
+
+
+                    var getDocumentID = cmdInsert.ExecuteScalar();
+
+                    if (getDocumentID != null)
+                    {
+
+                        newdocument.DocumentID = getDocumentID.ToString();
+
+
+
+                    }
+
+
+                    int n = cmdInsert.ExecuteNonQuery();
+
+                    if (n > 0)
+                    {
+                        Response.Write("<script>alert('Upload Successful');</script>");
+
+
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Upload Failed');</script>");
+                    }
+
+                    /*Close database connection*/
+
+
+                    conTaxi.Close();
                 }
-
-
-                int n = cmdInsert.ExecuteNonQuery();
-
-                if (n > 0)
-                {
-                    Response.Write("<script>alert('Upload Successful');</script>");
-
-
-                }
-                else
-                {
-                    Response.Write("<script>alert('Upload Failed');</script>");
-                }
-
-                /*Close database connection*/
-
-
-                conTaxi.Close();
-            }
+            
         }
 
         public void UploadDocumentDetailToDatabase(Model.Entities.Document databasedocument, Model.Entities.Documentlist databasedocumentlist, Model.Entities.Requestlist databaseRequestlist)
