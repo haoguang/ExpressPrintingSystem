@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Express Printing</title>
-    <link rel="stylesheet" href="~/styles/main.css"" type="text/css" />
+    <link rel="stylesheet" href="<%=Page.ResolveUrl("~/styles/main.css") %>" type="text/css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

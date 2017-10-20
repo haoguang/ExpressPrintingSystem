@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 
 <html>
-<head>
+<head runat="server">
     <style>
         @import url(http://fonts.googleapis.com/css?family=Montserrat);
 
@@ -281,9 +281,27 @@ body {
 	font-size: 15px;
         }
       
+      
+
+        .auto-style1 {
+            width: 35px;
+            height: 31px;
+        }
+        #datetimepicker1 {
+             padding: 15px;
+
+	margin-bottom: 10px;
+    max-width:200px;
+	font-family: montserrat;
+    
+	color: #2C3E50;
+
+	font-size: 15px;
+        }
+      
 
     </style>
-    <title></title>
+    <title></title> 
 </head>
 <body>
     <form id="msform" runat="server">
@@ -355,7 +373,7 @@ body {
         <br/>
         <asp:Label ID="Label6" runat="server" Text="Document Description"></asp:Label>
         <asp:TextBox ID="txtDocumentDescription" runat="server"></asp:TextBox>
-       
+        <br/>
        
 		<input type="button" name="previous" class="previous action-button" value="Previous" />
 
@@ -368,6 +386,9 @@ body {
 		<h2 class="fs-title">Comformation</h2>
         <hr/>
 		<h3 class="fs-subtitle"></h3>
+      
+    <input id="datetimepicker1" type="text" />
+
          <br />
         <asp:Label ID="Label8" runat="server" Text="Package" Font-Underline="True"></asp:Label>
         <br />
@@ -388,8 +409,9 @@ body {
             <asp:ListItem>Urgent</asp:ListItem>
             <asp:ListItem>Normal</asp:ListItem>
         </asp:RadioButtonList>
-        <br />
-		
+        <br/>
+        <asp:TextBox ID="txtCalender" runat="server"></asp:TextBox>
+       
                
 		<input type="button" name="previous" class="previous action-button" value="Previous"/>
         <asp:Button ID="Button1" runat="server" Text="Submit" class="submit action-button" OnClick="Button1_Click"/>
@@ -398,12 +420,24 @@ body {
 	</fieldset>
 
 </form>
-
+   
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <!-- jQuery easing plugin --> 
 <script src="js/jquery.easing.min.js" type="text/javascript"></script> 
+     <script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.datetimepicker.full.js"></script>
+    <script type="text/javascript" src="scripts/jquery.datetimepicker.full.min.js"></script>
+   
+    <link href="scripts/bootstrap/dist/css/jquery.datetimepicker.css" rel="stylesheet" />
 
 <script >
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+
+
+
 var current_fs, next_fs, previous_fs; //fieldsets
 
 var left, opacity, scale; //fieldset properties which we will animate
@@ -557,7 +591,6 @@ $(".submit").click(function(){
 	return true;
 
 });
-
 
     </script>
 

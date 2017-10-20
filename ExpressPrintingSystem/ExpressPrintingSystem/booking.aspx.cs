@@ -47,65 +47,75 @@ namespace ExpressPrintingSystem.Customer
 
             //try
             //{
-            if (FileUpload1.HasFile)
+            //if (FileUpload1.HasFile)
 
-            {
-                HttpFileCollection hfc = Request.Files;
-                for (int i = 0; i < hfc.Count; i++)
-                {
-                    HttpPostedFile hpf = hfc[i];
-                    if (hpf.ContentLength > 0)
-                    {
+            //{
+            //    HttpFileCollection hfc = Request.Files;
+            //    for (int i = 0; i < hfc.Count; i++)
+            //    {
+            //        HttpPostedFile hpf = hfc[i];
+            //        if (hpf.ContentLength > 0)
+            //        {
 
-                        //upload to backblaze
-                        String contentType = hpf.ContentType; //Type of file i.e. image/jpeg, audio/mpeg...
-                        String getPath = Path.GetFileName(hpf.FileName);
-                        hpf.SaveAs(Server.MapPath("~/File/") + getPath);//save to server side file
-                        String fileName = hpf.FileName; //Desired name for the file
-                        String filePath = Server.MapPath("~/File/") + getPath;//File path of desired upload
-                        int size = FileUpload1.PostedFile.ContentLength;
-
-
-                        string getFileIDInCloud = backblaze.UploadFile(contentType, filePath, fileName);
-                        var numberOfPages = 0;
-                        if (Path.GetExtension(hpf.FileName).Equals(".docx"))
-                        {
-
-                            // get the page number
-                            var application = new Application();
-                            var document = application.Documents.Open(filePath);//open document
-                            numberOfPages = document.ComputeStatistics(WdStatistic.wdStatisticPages, false);
-                            document.Close();///close document
-
-                        }
-                        else if (Path.GetExtension(hpf.FileName).Equals(".pdf"))
-                        {
-
-                            FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-                            StreamReader r = new StreamReader(fs);
-                            string pdfText = r.ReadToEnd();
-                            Regex rx1 = new Regex(@"/Type\s*/Page[^s]");
-                            MatchCollection matches = rx1.Matches(pdfText);
-                            numberOfPages = Convert.ToInt32(matches.Count.ToString());
-                            fs.Close();
-                        }
-
-                        // upload to my sqldatabase
-                        var uploadFileObject = (JObject)JsonConvert.DeserializeObject(getFileIDInCloud);
-                        String FileIdInCloud = uploadFileObject["fileId"].Value<string>();//get file ID
-
-                        UploadFileToDatabase(FileIdInCloud, numberOfPages, contentType, fileName, size, filePath);//pass to uploadfiledatabase
-                        UploadRequestlistToDatabase();
-                    }
+            //            //upload to backblaze
+            //            String contentType = hpf.ContentType; //Type of file i.e. image/jpeg, audio/mpeg...
+            //            String getPath = Path.GetFileName(hpf.FileName);
+            //            hpf.SaveAs(Server.MapPath("~/File/") + getPath);//save to server side file
+            //            String fileName = hpf.FileName; //Desired name for the file
+            //            String filePath = Server.MapPath("~/File/") + getPath;//File path of desired upload
+            //            int size = FileUpload1.PostedFile.ContentLength;
 
 
-                }
-                Response.Redirect("~/Customer/Payment.aspx");
-            }
-            else
-            {
-                Response.Write("<script LANGUAGE='JavaScript' >alert('Please Upload a file First!!!')</script>");
-            }
+            //            string getFileIDInCloud = backblaze.UploadFile(contentType, filePath, fileName);
+            //            var numberOfPages = 0;
+            //            if (Path.GetExtension(hpf.FileName).Equals(".docx"))
+            //            {
+
+            //                // get the page number
+            //                var application = new Application();
+            //                var document = application.Documents.Open(filePath);//open document
+            //                numberOfPages = document.ComputeStatistics(WdStatistic.wdStatisticPages, false);
+            //                document.Close();///close document
+
+            //            }
+            //            else if (Path.GetExtension(hpf.FileName).Equals(".pdf"))
+            //            {
+
+            //                FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            //                StreamReader r = new StreamReader(fs);
+            //                string pdfText = r.ReadToEnd();
+            //                Regex rx1 = new Regex(@"/Type\s*/Page[^s]");
+            //                MatchCollection matches = rx1.Matches(pdfText);
+            //                numberOfPages = Convert.ToInt32(matches.Count.ToString());
+            //                fs.Close();
+            //            }
+
+            //            // upload to my sqldatabase
+            //            var uploadFileObject = (JObject)JsonConvert.DeserializeObject(getFileIDInCloud);
+            //            String FileIdInCloud = uploadFileObject["fileId"].Value<string>();//get file ID
+
+            //            UploadFileToDatabase(FileIdInCloud, numberOfPages, contentType, fileName, size, filePath);//pass to uploadfiledatabase
+            //            UploadRequestlistToDatabase();
+            //        }
+
+
+            //    }
+            //    Response.Redirect("~/Customer/Payment.aspx");
+            //}
+            //else
+            //{
+            //    Response.Write("<script LANGUAGE='JavaScript' >alert('Please Upload a file First!!!')</script>");
+            //}
+
+            Request request = PopulateDataToObject();
+            List<Documentlist> zxcdocumentList = createDocumentList();
+
+            Session["request"] = request;
+            Response.Redirect("~/Customer/Payment.aspx");
+
+         // UploadFileToDatabase(request.RequestLists[0].DocumentList);
+           
+
         }
         //catch (Exception ex) {
         //    throw new Exception(ex.ToString());
@@ -115,100 +125,82 @@ namespace ExpressPrintingSystem.Customer
 
 
 
-        public void UploadFileToDatabase(string fileid, int pageNumber, string contentType, string filename, int size, string path)
+        public void UploadFileToDatabase(Model.Entities.Document newdocument)
         {
 
 
-            SqlConnection conTaxi;
+           
+
+            //for (int i = 0; i < newdocument.Count; i++)
+            //{
+            //   string  dfd = newdocument[i] as string;
+            //    if () 
+
+                SqlConnection conTaxi;
+                string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
+                conTaxi = new SqlConnection(connStr);
+                conTaxi.Open();
+
+                string strInsert;
+                SqlCommand cmdInsert;
 
 
-            string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
-            conTaxi = new SqlConnection(connStr);
-            conTaxi.Open();
+                strInsert = "Insert Into Document (DocumentName, DocumentType, FileIDInCloud, CustomerID, Size, PageNumber) Values (@DocumentName, @DocumentType, @FileIDInCloud, @CustomerID, @Size, @PageNumber);SELECT MAX(DocumentID) from Document where DocumentName=@DocumentName and DocumentType=@DocumentType";
+                cmdInsert = new SqlCommand(strInsert, conTaxi);
 
-            string strInsert;
-            SqlCommand cmdInsert;
-
-
-            strInsert = "Insert Into Document (DocumentName, DocumentType, FileIDInCloud, CustomerID, Size, PageNumber) Values (@DocumentName, @DocumentType, @FileIDInCloud, @CustomerID, @Size, @PageNumber);SELECT MAX(DocumentID) from Document where DocumentName=@DocumentName and DocumentType=@DocumentType";
-            cmdInsert = new SqlCommand(strInsert, conTaxi);
-
-            if (FileUpload1 != null)
-            {
-
-
-                cmdInsert.Parameters.AddWithValue("@DocumentName", filename);
-                cmdInsert.Parameters.AddWithValue("@DocumentType", contentType);
-                cmdInsert.Parameters.AddWithValue("@FileIDInCloud", fileid);
-                //cmdInsert.Parameters.AddWithValue("@CustomerID", );
-                cmdInsert.Parameters.AddWithValue("@Size", size);
-                cmdInsert.Parameters.AddWithValue("@PageNumber", pageNumber);
-                if (File.Exists(path))
-                {
-                    File.Delete(path);
-
-                }
-
-
-
-                var getDocumentID = cmdInsert.ExecuteScalar();
-
-                if (getDocumentID != null)
+                if (FileUpload1 != null)
                 {
 
-                    string ADDtoEntitydocumentID = getDocumentID.ToString();
-                    string documentName = filename;
-                    string documentType = contentType;
-                    string fileIdInCloud = fileid;
 
-                    int Size = size;
-                    int PageNumber = pageNumber;
-
-                    // Model.Entities.Document document = new Model.Entities.Document(ADDtoEntitydocumentID, documentName, documentType, fileIdInCloud, customerID, Size, PageNumber);
+                    cmdInsert.Parameters.AddWithValue("@DocumentName", newdocument.DocumentName);
+                    cmdInsert.Parameters.AddWithValue("@DocumentType", newdocument.DocumentType);
+                    cmdInsert.Parameters.AddWithValue("@FileIDInCloud", newdocument.FileIDInCloud);
+                    cmdInsert.Parameters.AddWithValue("@CustomerID", newdocument.CustomerID);
+                    cmdInsert.Parameters.AddWithValue("@Size", newdocument.Size);
+                    cmdInsert.Parameters.AddWithValue("@PageNumber", newdocument.PageNumber);
 
 
 
 
-                    UploadDocumentDetailToDatabase(ADDtoEntitydocumentID);
+                    var getDocumentID = cmdInsert.ExecuteScalar();
 
+                    if (getDocumentID != null)
+                    {
+
+                        newdocument.DocumentID = getDocumentID.ToString();
+
+
+
+                    }
+
+
+                    int n = cmdInsert.ExecuteNonQuery();
+
+                    if (n > 0)
+                    {
+                        Response.Write("<script>alert('Upload Successful');</script>");
+
+
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Upload Failed');</script>");
+                    }
+
+                    /*Close database connection*/
+
+
+                    conTaxi.Close();
                 }
-
-
-                int n = cmdInsert.ExecuteNonQuery();
-
-                if (n > 0)
-                {
-                    Response.Write("<script>alert('Upload Successful');</script>");
-
-
-                }
-                else
-                {
-                    Response.Write("<script>alert('Upload Failed');</script>");
-                }
-
-                /*Close database connection*/
-
-
-                conTaxi.Close();
-            }
+            
         }
 
-        public void UploadDocumentDetailToDatabase(string DocumentIDid)
+        public void UploadDocumentDetailToDatabase(Model.Entities.Document databasedocument, Model.Entities.Documentlist databasedocumentlist, Model.Entities.Requestlist databaseRequestlist)
         {
 
 
-            string documentid = DocumentIDid;
-            int sequences = 0; ////remember to do it;  
-            string documentColor = rbtDocumentColor.SelectedValue;
-            string documentbothside = rbtDocumentSide.SelectedValue;
-            string documentpapertype = ddlPaperType.SelectedItem.ToString();
-            int documentquantity = Convert.ToInt32(txtDocumentQuantity.Text);
-            string documentdescription = txtDocumentDescription.Text;
-
-
-            //to find requestlistID and documentID
-            //Documentlist documentlist = new Documentlist(, documentid, sequences, documentColor, documentbothside, documentpapertype, documentquantity, documentdescription);
+         
+           
 
 
             SqlConnection conTaxi;
@@ -224,14 +216,15 @@ namespace ExpressPrintingSystem.Customer
             cmdInsert = new SqlCommand(strInsert, conTaxi);
 
 
-            //cmdInsert.Parameters.AddWithValue("@RequestlistID", );
-            cmdInsert.Parameters.AddWithValue("@DocumentID", DocumentIDid);
-            //cmdInsert.Parameters.AddWithValue("@Sequences", );
-            cmdInsert.Parameters.AddWithValue("@DocumentColor", rbtDocumentColor.SelectedValue);
-            cmdInsert.Parameters.AddWithValue("@DocumentBothSide", rbtDocumentSide.SelectedValue);
-            cmdInsert.Parameters.AddWithValue("@DocumentPaperType", ddlPaperType.SelectedItem);
-            cmdInsert.Parameters.AddWithValue("@DocumentQuantity", txtDocumentQuantity.Text);
-            cmdInsert.Parameters.AddWithValue("@DocumentDescription", txtDocumentDescription.Text);
+            cmdInsert.Parameters.AddWithValue("@RequestlistID", databaseRequestlist.RequestlistID);
+            cmdInsert.Parameters.AddWithValue("@DocumentID", databasedocument.DocumentID);
+            cmdInsert.Parameters.AddWithValue("@Sequences", databasedocumentlist.Sequences);
+            cmdInsert.Parameters.AddWithValue("@DocumentColor", databasedocumentlist.DocumentColor);
+            cmdInsert.Parameters.AddWithValue("@DocumentBothSide", databasedocumentlist.DocumentBothSide);
+            cmdInsert.Parameters.AddWithValue("@DocumentPaperType", databasedocumentlist.DocumentPaperType);
+            cmdInsert.Parameters.AddWithValue("@DocumentQuantity", databasedocumentlist.DocumentQuantity);
+            cmdInsert.Parameters.AddWithValue("@DocumentDescription", databasedocumentlist.DocumentDescription);
+
 
 
 
@@ -253,24 +246,8 @@ namespace ExpressPrintingSystem.Customer
 
             conTaxi.Close();
         }
-        public void UploadRequestlistToDatabase()
+        public void UploadRequestlistToDatabase(Model.Entities.Requestlist databaserequestlist, Model.Entities.Request request)
         {
-
-
-            string requestID = "";
-            int requestItemID = 0;
-            int RequestQuantity = 0;
-            string RequestStatus = "Pending";
-            string requestype = rbtRequestType.SelectedValue;
-
-            //create a requestlist object to store data
-            //Requestlist newrequestlist = new Requestlist(requestID, requestItemID, RequestQuantity, RequestStatus, requestype,);
-
-            //create a list for documentlist to store requestlist data 
-            //List<Documentlist> newDocumentlist = newrequestlist.DocumentList;
-
-
-
 
 
 
@@ -284,15 +261,26 @@ namespace ExpressPrintingSystem.Customer
             SqlCommand cmdInsert;
 
 
-            strInsert = "Insert Into Documentlist (RequestID, RequestItemID, RequestQuantity, RequestStatus, RequestType) Values (@RequestID, @RequestItemID, @RequestQuantity, @RequestStatus, @RequestType)";
+            strInsert = "Insert Into Requestlist (RequestID, RequestItemID, RequestStatus, RequestType) Values (@RequestID, @RequestItemID, @RequestQuantity, @RequestStatus, @RequestType);SELECT MAX(RequestlistID) from Requestlist where RequestStatus=@RequestStatus";
             cmdInsert = new SqlCommand(strInsert, conTaxi);
 
 
-            cmdInsert.Parameters.AddWithValue("@RequestID", requestID);
-            cmdInsert.Parameters.AddWithValue("@RequestItemID", requestItemID);
-            cmdInsert.Parameters.AddWithValue("@RequestQuantity", RequestQuantity);
-            cmdInsert.Parameters.AddWithValue("@RequestStatus", RequestStatus);
-            cmdInsert.Parameters.AddWithValue("@RequestType", rbtRequestType.SelectedValue);
+            cmdInsert.Parameters.AddWithValue("@RequestID", request.RequestID);
+            cmdInsert.Parameters.AddWithValue("@RequestItemID", databaserequestlist.RequestItemID);
+            cmdInsert.Parameters.AddWithValue("@RequestStatus", databaserequestlist.RequestStatus);
+            cmdInsert.Parameters.AddWithValue("@RequestType", databaserequestlist.RequestType);
+
+            var getRequestlistID = cmdInsert.ExecuteScalar();
+
+            if (getRequestlistID != null)
+            {
+
+
+                databaserequestlist.RequestlistID = getRequestlistID.ToString();
+
+
+
+            }
 
 
 
@@ -388,30 +376,34 @@ namespace ExpressPrintingSystem.Customer
 
 
                 }
-
             }
 
             return documentList;
 
         }
 
-        //private Request PopulateDataToObject()
-        //{
-        //    List<Documentlist> documentlist = createDocumentList();
+        private Request PopulateDataToObject()
+        {
+            List<Documentlist> documentlist = createDocumentList();
 
-        //    List<Requestlist> requestlist = new List<Requestlist>();
+            List<Requestlist> requestlist = new List<Requestlist>();
 
-        //    Requestlist newRequestlist = new Requestlist(ddlPackage.SelectedValue, Requestlist.STATUS_PENDING, rbtRequestType.SelectedValue, documentlist);
+            Requestlist newRequestlist = new Requestlist(ddlPackage.SelectedValue, Requestlist.STATUS_PENDING, rbtRequestType.SelectedValue, documentlist);
 
-        //    requestlist.Add(newRequestlist);
 
-        //    string paymentID = "";
-        //    string companyID = "";
-        //    string CustomerID = "";
-        //    string currentDate = DateTime.Now.ToString();
 
-        //    // Request request = new Model.Entities.Request(newRequestlist, currentDate,CldDueDateTime, paymentID, companyID, CustomerID);
-        //}
+            requestlist.Add(newRequestlist);
+
+            string paymentID = null;
+            string companyID = "";
+            string CustomerID = "";
+            DateTime currentDate = DateTime.Now;
+            DateTime DueDate = Convert.ToDateTime(txtCalender.Text);
+
+            Request request = new Model.Entities.Request(currentDate, DueDate, null, companyID, CustomerID, requestlist);
+            return request;
+
+        }
 
 
     }
