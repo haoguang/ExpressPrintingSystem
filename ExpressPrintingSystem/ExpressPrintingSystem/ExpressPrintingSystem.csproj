@@ -98,9 +98,15 @@
     <Content Include="Customer\EditCustomerDetail.aspx" />
     <Content Include="Customer\ThankYouPage.aspx" />
     <Content Include="ForgetPassword.aspx" />
+    <Content Include="Images\arrow-down.png" />
     <Content Include="Images\Calancer.PNG" />
+    <Content Include="Images\check-mark.png" />
     <Content Include="Images\mastercard.PNG" />
+    <Content Include="Images\minus.png" />
     <Content Include="Images\paypal.PNG" />
+    <Content Include="Images\square-outline-red.png" />
+    <Content Include="Images\square-outline-yellow.png" />
+    <Content Include="Images\view.png" />
     <Content Include="Images\visa.PNG" />
     <Content Include="Login.aspx" />
     <Content Include="scripts\bootstrap\dist\css\bootstrap-theme.css" />
@@ -371,9 +377,11 @@
     <Content Include="Staff\Owner\StaffManagement\editStaff.aspx" />
     <Content Include="Staff\Owner\StaffManagement\manageStaff.aspx" />
     <Content Include="Staff\Owner\StaffManagement\registerStaff.aspx" />
+    <Content Include="Staff\Printing\ViewDocument.aspx" />
     <Content Include="Staff\Printing\viewPrintingRequest.aspx" />
     <Content Include="Staff\TestSendFBMessage.aspx" />
     <Content Include="styles\bootstrap.min.css" />
+    <Content Include="styles\expendableTable.css" />
     <Content Include="styles\fonts\Multicolore.otf" />
     <Content Include="Staff\Staff.Master" />
     <Content Include="Staff\Staff.sitemap" />
@@ -516,6 +524,8 @@
     <Content Include="scripts\bootstrap\package.json" />
     <Content Include="scripts\bootstrap\README.md" />
     <Content Include="scripts\bootstrap\_config.yml" />
+    <Content Include="styles\fonts\CODE Bold.otf" />
+    <Content Include="styles\fonts\CODE Light.otf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -708,6 +718,13 @@
     </Compile>
     <Compile Include="Staff\Owner\StaffManagement\registerStaff.aspx.designer.cs">
       <DependentUpon>registerStaff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\Printing\ViewDocument.aspx.cs">
+      <DependentUpon>ViewDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Printing\ViewDocument.aspx.designer.cs">
+      <DependentUpon>ViewDocument.aspx</DependentUpon>
     </Compile>
     <Compile Include="Staff\Printing\viewPrintingRequest.aspx.cs">
       <DependentUpon>viewPrintingRequest.aspx</DependentUpon>

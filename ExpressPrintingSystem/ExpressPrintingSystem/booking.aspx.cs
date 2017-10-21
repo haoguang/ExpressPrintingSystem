@@ -366,7 +366,7 @@ namespace ExpressPrintingSystem.Customer
                         int sequences = 0; ////remember to do it;  
                         string documentColor = rbtDocumentColor.SelectedValue;
                         string documentbothside = rbtDocumentSide.SelectedValue;
-                        string documentpapertype = ddlPaperType.SelectedItem.ToString();
+                        int documentpapertype = Convert.ToInt32(ddlPaperType.SelectedItem.ToString());
                         int documentquantity = Convert.ToInt32(txtDocumentQuantity.Text);
                         string documentdescription = txtDocumentDescription.Text;
 

@@ -18,6 +18,7 @@ namespace ExpressPrintingSystem.Staff.Printing
             List<ExpressPrintingSystem.Model.Entities.Request> requestList = getRequestList(Requestlist.STATUS_PENDING, Request.Cookies["CompanyID"].Value);
             lvRequestConfirmation.DataSource = requestList;
             lvRequestConfirmation.DataBind();
+            
 
         }
 
@@ -95,8 +96,8 @@ namespace ExpressPrintingSystem.Staff.Printing
 
                         for (int i = 0; i < documentResult.Rows.Count; i++)
                         {
-                            Document document = new Document((string)documentResult.Rows[i]["DocumentID"], (string)documentResult.Rows[i]["DocumentName"], (string)documentResult.Rows[i]["DocumentType"], (string)documentResult.Rows[i]["FileIDInCloud"], (string)documentResult.Rows[i]["CustomerID"], (int)documentResult.Rows[i]["Size"], (int)documentResult.Rows[i]["PageNumber"]);
-                            Documentlist newDocumentlist = new Documentlist(document, (int)documentResult.Rows[i]["Sequences"], (string)documentResult.Rows[i]["DocumentColor"], (string)documentResult.Rows[i]["DocumentBothSide"], (int)documentResult.Rows[i]["DocumentPaperType"], (int)documentResult.Rows[i]["DocumentQuantity"], (string)documentResult.Rows[i]["DocumentDescription"]);
+                            Document document = new Document((string)documentResult.Rows[i]["DocumentID"], (string)documentResult.Rows[i]["DocumentName"], (string)documentResult.Rows[i]["DocumentType"], (string)documentResult.Rows[i]["FileIDInCloud"], (string)documentResult.Rows[i]["CustomerID"], (int)documentResult.Rows[i]["Size"], Convert.ToInt32(documentResult.Rows[i]["PageNumber"]));
+                            Documentlist newDocumentlist = new Documentlist(document, (int)documentResult.Rows[i]["Sequences"], (string)documentResult.Rows[i]["DocumentColor"], (string)documentResult.Rows[i]["DocumentBothSide"], (int)documentResult.Rows[i]["DocumentPaperType"], (int)documentResult.Rows[i]["DocumentQuantity"], documentResult.Rows[i]["DocumentDescription"].ToString());
 
                             documentList.Add(newDocumentlist);
                         }
@@ -109,6 +110,11 @@ namespace ExpressPrintingSystem.Staff.Printing
             {
                 throw new Exception(ex.ToString());
             }
+        }
+
+        public string getDocumentViewerUrl(object text)
+        {
+            return String.Format("ViewDocument.aspx?documentID={0}", HttpUtility.UrlEncode(ClassHashing.basicEncryption((string)text)));
         }
     }
 }
