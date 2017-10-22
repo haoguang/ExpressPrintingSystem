@@ -47,71 +47,84 @@ namespace ExpressPrintingSystem.Customer
             redirect += "&quantity=1";
             redirect += "&currency_code=" + currency_code;
 
-            redirect += "&return=" + ConfigurationManager.AppSettings["SuccessURL"].ToString();
+            string successURL = ConfigurationManager.AppSettings["SuccessURL"].ToString();
+            redirect += "&return=" + successURL;
             redirect += "&cancel_return=" + ConfigurationManager.AppSettings["FailedURL"].ToString();
 
+
+            Session["amount"] = amount;
             Response.Redirect(redirect);
+
+
+            
+           
+            
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-            DateTime currentDate = DateTime.Now;
-            Decimal totalPayment = Convert.ToDecimal(txtpaymentTotal.Text);
+            //DateTime currentDate = DateTime.Now;
+            //Decimal totalPayment = Convert.ToDecimal(txtpaymentTotal.Text);
 
-            Model.Entities.Payment newpayment = new Model.Entities.Payment(RadioButtonList1.SelectedValue, totalPayment, currentDate);
-            Model.Entities.Request request = (Model.Entities.Request)Session["request"];
-            request.Payment = newpayment;
+            //Model.Entities.Payment newpayment = new Model.Entities.Payment(RadioButtonList1.SelectedValue, totalPayment, currentDate);
+            //Model.Entities.Request request = (Model.Entities.Request)Session["request"];
+            //request.Payment = newpayment;
 
-
-            SqlConnection conTaxi;
-            string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
-            conTaxi = new SqlConnection(connStr);
-            conTaxi.Open();
-
-            string strInsert;
-            SqlCommand cmdInsert;
-
-
-            strInsert = "Insert Into Payment (PaymentType, PaymentAmount, PaymentDateTime) Values (@PaymentType, @PaymentAmount, @PaymentDateTime);SELECT MAX(PaymentID) from Payment where PaymentAmount=@PaymentAmount";
-            cmdInsert = new SqlCommand(strInsert, conTaxi);
-
-            Decimal totalamount = Convert.ToDecimal(txtpaymentTotal.Text);
-            
-            cmdInsert.Parameters.AddWithValue("@PaymentType", RadioButtonList1.SelectedValue);
-            cmdInsert.Parameters.AddWithValue("@PaymentAmount", totalamount);
-            cmdInsert.Parameters.AddWithValue("@PaymentDateTime", DateTime.Now);
-            var getPaymentID = cmdInsert.ExecuteScalar();
-
-            if (getPaymentID != null)
+            try
             {
+                SqlConnection conTaxi;
+                string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
+                conTaxi = new SqlConnection(connStr);
+                conTaxi.Open();
+
+                string strInsert;
+                SqlCommand cmdInsert;
 
 
-                newpayment.PaymentID = getPaymentID.ToString();
+                strInsert = "Insert Into Payment (PaymentType, PaymentAmount, PaymentDateTime) Values (@PaymentType, @PaymentAmount, @PaymentDateTime);SELECT MAX(PaymentID) from Payment where PaymentAmount=@PaymentAmount";
+                cmdInsert = new SqlCommand(strInsert, conTaxi);
+
+                Decimal totalamount = Convert.ToDecimal(txtpaymentTotal.Text);
+
+                cmdInsert.Parameters.AddWithValue("@PaymentType", RadioButtonList1.SelectedValue);
+                cmdInsert.Parameters.AddWithValue("@PaymentAmount", totalamount);
+                cmdInsert.Parameters.AddWithValue("@PaymentDateTime", DateTime.Now);
+                var getPaymentID = cmdInsert.ExecuteScalar();
+
+                //if (getPaymentID != null)
+                //{
+
+
+                //    newpayment.PaymentID = getPaymentID.ToString();
 
 
 
+                //}
+
+
+
+
+                if (getPaymentID != null)
+                {
+                    Response.Write("<script>alert('Upload Successful');</script>");
+
+                    //forRetriveRequest(request);
+
+                }
+                else
+                {
+                    Response.Write("<script>alert('Upload Failed');</script>");
+                }
+
+                /*Close database connection*/
+
+
+                conTaxi.Close();
             }
-
-
-            int n = cmdInsert.ExecuteNonQuery();
-
-            if (n > 0)
-            {
-                Response.Write("<script>alert('Upload Successful');</script>");
-
-                forRetriveRequest(request);
-
-            }
-            else
-            {
+            catch {
                 Response.Write("<script>alert('Upload Failed');</script>");
             }
-
-            /*Close database connection*/
-
-
-            conTaxi.Close();
         }
         public void forRetriveRequest(Model.Entities.Request request) { 
 
@@ -156,6 +169,10 @@ namespace ExpressPrintingSystem.Customer
             conTaxi.Close();
 
         }
-    
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

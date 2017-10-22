@@ -63,6 +63,7 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -92,11 +93,15 @@
     <Content Include="Customer\EditCustomerDetail.aspx" />
     <Content Include="Customer\ThankYouPage.aspx" />
     <Content Include="ForgetPassword.aspx" />
+    <Content Include="GenerateReport.aspx" />
     <Content Include="Images\Calancer.PNG" />
     <Content Include="Images\mastercard.PNG" />
     <Content Include="Images\paypal.PNG" />
     <Content Include="Images\visa.PNG" />
     <Content Include="Login.aspx" />
+    <Content Include="OrderReport.aspx" />
+    <Content Include="PendingReport.aspx" />
+    <Content Include="resetPassword.aspx" />
     <Content Include="scripts\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="scripts\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="scripts\bootstrap\dist\css\bootstrap.css" />
@@ -507,6 +512,17 @@
     <Content Include="scripts\bootstrap\package.json" />
     <Content Include="scripts\bootstrap\README.md" />
     <Content Include="scripts\bootstrap\_config.yml" />
+    <Content Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -584,12 +600,24 @@
     <Compile Include="Customer\ThankYouPage.aspx.designer.cs">
       <DependentUpon>ThankYouPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ForgetPassword.aspx.cs">
       <DependentUpon>ForgetPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ForgetPassword.aspx.designer.cs">
       <DependentUpon>ForgetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenerateReport.aspx.cs">
+      <DependentUpon>GenerateReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GenerateReport.aspx.designer.cs">
+      <DependentUpon>GenerateReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -612,6 +640,27 @@
     <Compile Include="Model\Entities\Request.cs" />
     <Compile Include="Model\Entities\Requestlist.cs" />
     <Compile Include="Model\Entities\User.cs" />
+    <Compile Include="OrderReport.aspx.cs">
+      <DependentUpon>OrderReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderReport.aspx.designer.cs">
+      <DependentUpon>OrderReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PendingReport.aspx.cs">
+      <DependentUpon>PendingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PendingReport.aspx.designer.cs">
+      <DependentUpon>PendingReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="resetPassword.aspx.cs">
+      <DependentUpon>resetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="resetPassword.aspx.designer.cs">
+      <DependentUpon>resetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -736,6 +785,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="File\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report2.rdlc" />
+    <EmbeddedResource Include="Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

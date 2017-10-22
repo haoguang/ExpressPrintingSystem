@@ -70,5 +70,7 @@ namespace ExpressPrintingSystem.Customer
         {
             Response.Redirect("EditCustomerDetail.aspx");
         }
+
+       
     }
 }

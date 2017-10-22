@@ -52,7 +52,7 @@ namespace ExpressPrintingSystem.Customer
                             txtEmail.Text = customeremail;
                             CldDate.SelectedDate = customerdob;
                             txtPhoNo.Text = customerphoneno;
-                            txtContMet.Text = customercontmethod;
+                            rbtContMet.SelectedValue = customercontmethod;
 
 
                         }
@@ -90,7 +90,7 @@ namespace ExpressPrintingSystem.Customer
             cmdAdd.Parameters.AddWithValue("@customerEmail", txtEmail.Text);
             cmdAdd.Parameters.AddWithValue("@customerDOB", CldDate.SelectedDate);
             cmdAdd.Parameters.AddWithValue("@customerPhoneNo", txtPhoNo.Text);
-            cmdAdd.Parameters.AddWithValue("@customerContactMethod", txtContMet.Text);
+            cmdAdd.Parameters.AddWithValue("@customerContactMethod", rbtContMet.SelectedValue);
             cmdAdd.Parameters.AddWithValue("@customerID", userID);
 
 
@@ -110,6 +110,11 @@ namespace ExpressPrintingSystem.Customer
 
 
             conTaxi.Close();
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

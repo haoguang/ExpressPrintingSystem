@@ -224,7 +224,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
                 </td>
                 <td colspan="2">
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />

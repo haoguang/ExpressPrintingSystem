@@ -63,7 +63,7 @@ namespace ExpressPrintingSystem
             cmdInsert.Parameters.AddWithValue("@CustomerSalt", generatedSalt);
                 
             int n = cmdInsert.ExecuteNonQuery();
-            conPrint.Close();
+           
             if (n > 0)
             {
                MessageBox.Show("Sign up done. Redirecting to homepage.", "Congratulation !!",
@@ -77,9 +77,9 @@ namespace ExpressPrintingSystem
             {
                 Response.Write("<script LANGUAGE='JavaScript' >alert('sign up failded')</script>");
             }
+                conPrint.Close();
 
 
-            
             }
             catch (SqlException ex)
             {
@@ -87,7 +87,7 @@ namespace ExpressPrintingSystem
             }
 
 
-
+           
 
         }
 
