@@ -43,15 +43,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FormsAuthenticationExtensions, Version=1.3.0.15, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FormsAuthenticationExtensions.1.3.0.15\lib\net40\FormsAuthenticationExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GleamTech.Core, Version=1.5.0.0, Culture=neutral, PublicKeyToken=a05198837413a6d8, processorArchitecture=MSIL">
-      <HintPath>..\packages\GleamTech.Core.1.9.9\lib\net40\GleamTech.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DocumentUltimate\Bin\GleamTech.Core.dll</HintPath>
     </Reference>
     <Reference Include="GleamTech.DocumentUltimate, Version=3.1.0.0, Culture=neutral, PublicKeyToken=a05198837413a6d8, processorArchitecture=MSIL">
-      <HintPath>..\packages\DocumentUltimate.3.6.0\lib\net40\GleamTech.DocumentUltimate.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DocumentUltimate\Bin\GleamTech.DocumentUltimate.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -66,6 +72,7 @@
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -93,10 +100,16 @@
     <Content Include="Customer\EditCustomerDetail.aspx" />
     <Content Include="Customer\ThankYouPage.aspx" />
     <Content Include="ForgetPassword.aspx" />
+    <Content Include="Images\arrow-down.png" />
     <Content Include="GenerateReport.aspx" />
     <Content Include="Images\Calancer.PNG" />
+    <Content Include="Images\check-mark.png" />
     <Content Include="Images\mastercard.PNG" />
+    <Content Include="Images\minus.png" />
     <Content Include="Images\paypal.PNG" />
+    <Content Include="Images\square-outline-red.png" />
+    <Content Include="Images\square-outline-yellow.png" />
+    <Content Include="Images\view.png" />
     <Content Include="Images\visa.PNG" />
     <Content Include="Login.aspx" />
     <Content Include="OrderReport.aspx" />
@@ -357,7 +370,9 @@
     <Content Include="Images\logo\company_name.png" />
     <Content Include="Images\logo\logo.png" />
     <Content Include="Images\logo\long_logo.png" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Main.Master" />
     <Content Include="StaffAccountActivation.aspx" />
     <Content Include="Staff\Owner\Item\AddItem.aspx" />
@@ -368,8 +383,11 @@
     <Content Include="Staff\Owner\StaffManagement\editStaff.aspx" />
     <Content Include="Staff\Owner\StaffManagement\manageStaff.aspx" />
     <Content Include="Staff\Owner\StaffManagement\registerStaff.aspx" />
+    <Content Include="Staff\Printing\ViewDocument.aspx" />
     <Content Include="Staff\Printing\viewPrintingRequest.aspx" />
+    <Content Include="Staff\TestSendFBMessage.aspx" />
     <Content Include="styles\bootstrap.min.css" />
+    <Content Include="styles\expendableTable.css" />
     <Content Include="styles\fonts\Multicolore.otf" />
     <Content Include="Staff\Staff.Master" />
     <Content Include="Staff\Staff.sitemap" />
@@ -512,6 +530,8 @@
     <Content Include="scripts\bootstrap\package.json" />
     <Content Include="scripts\bootstrap\README.md" />
     <Content Include="scripts\bootstrap\_config.yml" />
+    <Content Include="styles\fonts\CODE Bold.otf" />
+    <Content Include="styles\fonts\CODE Light.otf" />
     <Content Include="DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
@@ -661,6 +681,9 @@
     <Compile Include="resetPassword.aspx.designer.cs">
       <DependentUpon>resetPassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Messenging\EmailClass.cs" />
+    <Compile Include="Model\Messenging\MessengerClass.cs" />
+    <Compile Include="Model\Messenging\WhatappClass.cs" />
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -747,6 +770,13 @@
     <Compile Include="Staff\Owner\StaffManagement\registerStaff.aspx.designer.cs">
       <DependentUpon>registerStaff.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Staff\Printing\ViewDocument.aspx.cs">
+      <DependentUpon>ViewDocument.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Printing\ViewDocument.aspx.designer.cs">
+      <DependentUpon>ViewDocument.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Staff\Printing\viewPrintingRequest.aspx.cs">
       <DependentUpon>viewPrintingRequest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -760,6 +790,13 @@
     </Compile>
     <Compile Include="Staff\Staff.Master.designer.cs">
       <DependentUpon>Staff.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\TestSendFBMessage.aspx.cs">
+      <DependentUpon>TestSendFBMessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\TestSendFBMessage.aspx.designer.cs">
+      <DependentUpon>TestSendFBMessage.aspx</DependentUpon>
     </Compile>
     <Compile Include="testDatePicker.aspx.cs">
       <DependentUpon>testDatePicker.aspx</DependentUpon>

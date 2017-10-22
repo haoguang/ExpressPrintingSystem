@@ -1,0 +1,108 @@
+﻿@font-face {
+	        font-family: 'code-normal';
+	        src: url('fonts/CODE Light.otf'); 
+            src: url('fonts/CODE Light.otf') format("opentype");
+            font-style: normal;
+        }
+
+@font-face {
+	        font-family: 'code-bold';
+	        src: url('fonts/CODE Bold.otf'); 
+            src: url('fonts/CODE Bold.otf') format("opentype");
+            font-style: oblique;
+        }
+
+        .collapserequest {
+            margin:0;
+            padding:0;
+            background-position: 5px 3px;
+            background-repeat: no-repeat;
+            background-image: url('../../Images/arrow-down.png');
+            cursor: pointer;
+        }
+        .expandrequest
+        {
+            margin:0;
+            padding:0;
+            background-position: 5px 3px;
+            background-repeat: no-repeat;
+            background-image: url('../../Images/minus.png');
+            cursor:pointer;
+
+        }
+            .expendableTable
+            {
+                color: #333;
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+            .expendableTable td, th 
+            {
+                height:50px;
+                border-bottom:solid 1px transparent; 
+                vertical-align:central;
+                text-align:center;
+            }
+            
+            .expendableTable tr th{
+                font-family:code-bold,Verdana,sans-serif;
+                letter-spacing:2px;
+                background: #005ce6; /* For browsers that do not support gradients */
+                background: -webkit-linear-gradient(#005ce6,#1a75ff); /* Safari 5.1 to 6.0 */
+                background: -o-linear-gradient(#005ce6,#1a75ff); /* For Opera 11.6 to 12.0 */
+                background: -moz-linear-gradient(#005ce6,#1a75ff); /* For Firefox 3.6 to 15 */
+                background: linear-gradient(#005ce6,#1a75ff); /* Standard syntax */
+                color:white;
+            }
+
+            .expendableTable td 
+            {
+                color:black;
+            }
+
+            .expendableTable tr:first-child th:first-child{
+                border-top-left-radius : 10px;
+            }
+
+            .expendableTable tr:first-child th:last-child{
+                border-top-right-radius : 10px;
+            }
+
+            .expendableTable a{
+                color: #0060B6;
+                text-decoration: none;
+            }
+
+            .expendableTable tr:nth-child(even) td
+            { 
+                background-color:#3385ff;
+            }   
+      
+            .expendableTable tr:nth-child(odd) td { background-color: #cce0ff; }
+
+            .expendableTable table{
+                width:100%;
+            }
+
+            .expendableTable table tr th{
+                background: #00b359; /* For browsers that do not support gradients */
+                background: -webkit-linear-gradient(#00b359,#4dffc3); /* Safari 5.1 to 6.0 */
+                background: -o-linear-gradient(#00b359,#4dffc3); /* For Opera 11.6 to 12.0 */
+                background: -moz-linear-gradient(#00b359,#4dffc3); /* For Firefox 3.6 to 15 */
+                background: linear-gradient(#00b359,#4dffc3); /* Standard syntax */
+                color:white;
+            }
+            .expendableTable table tr:nth-child(even) td 
+            { 
+                background-color:#ccffee;
+            }   
+      
+            .expendableTable table tr:nth-child(odd) td { background: #80ffd4; }
+
+            .expendableTable table tr:first-child th:nth-child(2){
+                border-top-left-radius :5px;
+            }
+
+            .expendableTable table tr:first-child th:last-child{
+                border-top-right-radius : 5px;
+            }

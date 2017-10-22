@@ -11,11 +11,11 @@ namespace ExpressPrintingSystem.Model.Entities
         private int sequences;
         private string documentColor;
         private string documentBothSide;
-        private string documentPaperType;
+        private int documentPaperType;
         private int documentQuantity;
         private string documentDescription;
 
-        public Documentlist(Document document, int sequences, string documentColor, string documentBothSide, string documentPaperType, int documentQuantity, string documentDescription)
+        public Documentlist(Document document, int sequences, string documentColor, string documentBothSide, int documentPaperType, int documentQuantity, string documentDescription)
         {
             this.document = document;
             this.sequences = sequences;
@@ -50,7 +50,7 @@ namespace ExpressPrintingSystem.Model.Entities
             set { documentBothSide = value; }
         }
 
-        public string DocumentPaperType
+        public int DocumentPaperType
         {
             get { return documentPaperType; }
             set { documentPaperType = value; }

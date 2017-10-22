@@ -56,7 +56,7 @@ namespace ExpressPrintingSystem.Model.Entities
 
         public DateTime DueDateTime
         {
-            get { return DueDateTime; }
+            get { return dueDateTime; }
             set { dueDateTime = value; }
         }
 

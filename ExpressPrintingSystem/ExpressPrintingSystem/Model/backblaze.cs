@@ -134,14 +134,14 @@ namespace ExpressPrintingSystem.Model
             }
             responseStream.Close();
             response.Close();
-
+            string abc = Convert.ToBase64String(fileBytes);
             return fileBytes;
             
         }
 
         public static void downloadFileToFile(string fileDir, string fileId)
         {
-            String downloadsFolder = @"FILE DIRECTORY HERE";
+            String downloadsFolder = fileDir;
             Byte[] fileBytes = downloadFileIntoBytes(fileId);
             FileStream saveFile = new FileStream(downloadsFolder, FileMode.Create);
             BinaryWriter writeFile = new BinaryWriter(saveFile);
