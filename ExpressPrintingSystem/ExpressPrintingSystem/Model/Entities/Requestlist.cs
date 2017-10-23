@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -59,6 +61,38 @@ namespace ExpressPrintingSystem.Model.Entities
         {
             get { return documentList; }
             set { documentList = value; }
+        }
+
+        public static bool updateRequestlistStatus(string requestlistID, string status)
+        {
+            SqlConnection conPrint = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString);
+            conPrint.Open();
+
+            try
+            {
+                string strUpdate = "Update Requestlist SET RequestStatus = @requestStatus WHERE RequestlistID = @requestlistID";
+                SqlCommand cmdUpdate = new SqlCommand(strUpdate, conPrint);
+
+                cmdUpdate.Parameters.AddWithValue("requestStatus", status);
+                cmdUpdate.Parameters.AddWithValue("requestlistID", requestlistID);
+
+                int n = cmdUpdate.ExecuteNonQuery();
+
+                if (n > 0)
+                    return true;
+                else
+                    return false;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+            finally
+            {
+                conPrint.Close();
+            }
+            
         }
 
         public const string TYPE_URGENT = "Urgent";

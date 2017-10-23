@@ -132,43 +132,54 @@ namespace ExpressPrintingSystem.Customer
             var myCookie = new HttpCookie("UserCookie");//instantiate an new cookie and give it a name
             myCookie.Values.Add("SignInType", ClassHashing.basicEncryption(toggleOption));//populate it with key, value pairs
             myCookie.Expires = DateTime.Now.AddMinutes(481);
-
-            if (UserVerification.verifyUser(username, password, toggleOption))
+            try
             {
-                //These session values are just for demo purpose to show the user details on master page
-                roles = UserVerification.GetUserRoles(username, toggleOption);
-
-                User user = UserVerification.getUserBasicInfo(username, toggleOption);
-                myCookie.Values.Add("UserInfo", ClassHashing.basicEncryption(ExpressPrintingSystem.Model.Entities.User.toCompactString(user)));
-                Response.Cookies.Add(myCookie);
-                setCompanyCookie(toggleOption, user.ID);
-                //Let us now set the authentication cookie so that we can use that later.
-                FormsAuthentication.SetAuthCookie(username, false);
-                //Login successful lets put him to requested page
-                string returnUrl = Request.QueryString["ReturnUrl"] as string;
-
-                rememberMe();
-
-                if (returnUrl != null)
+                if (UserVerification.verifyUser(username, password, toggleOption))
                 {
-                    Response.Redirect(returnUrl);
+                    //These session values are just for demo purpose to show the user details on master page
+                    roles = UserVerification.GetUserRoles(username, toggleOption);
+
+                    User user = UserVerification.getUserBasicInfo(username, toggleOption);
+                    myCookie.Values.Add("UserInfo", ClassHashing.basicEncryption(ExpressPrintingSystem.Model.Entities.User.toCompactString(user)));
+                    Response.Cookies.Add(myCookie);
+                    setCompanyCookie(toggleOption, user.ID);
+                    //Let us now set the authentication cookie so that we can use that later.
+                    FormsAuthentication.SetAuthCookie(username, false);
+                    //Login successful lets put him to requested page
+                    string returnUrl = Request.QueryString["ReturnUrl"] as string;
+
+                    rememberMe();
+
+                    if (returnUrl != null)
+                    {
+                        Response.Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        //no return URL specified so lets kick him to home page
+                        Response.Redirect("masterPageTest.aspx");
+                    }
+                }
+                else if (UserVerification.isActivatedUser(username, toggleOption))
+                {
+                    Response.Write("<script LANGUAGE='JavaScript' >alert('Your account is not activated, please check your social media for account activation link.')</script>");
                 }
                 else
                 {
-                    //no return URL specified so lets kick him to home page
-                    Response.Redirect("masterPageTest.aspx");
+                    txtname.Text = "Login Failed";//temporary, for testing purpose only
                 }
             }
-            else if (UserVerification.isActivatedUser(username, toggleOption))
+            catch(Exception ex)
             {
-                Response.Write("<script LANGUAGE='JavaScript' >alert('Your account is not activated, please check your social media for account activation link.')</script>");
+                Response.Write("<script LANGUAGE='JavaScript' >alert('Your username or password is invalid.')</script>");
             }
-            else
+            finally
             {
-                txtname.Text = "Login Failed";//temporary, for testing purpose only
+                Response.Cookies.Add(myCookie);
             }
+            
 
-            Response.Cookies.Add(myCookie);
+            
         }
 
         protected void btnCustomer_Click(object sender, EventArgs e)

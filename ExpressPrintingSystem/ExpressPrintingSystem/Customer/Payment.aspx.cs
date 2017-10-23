@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpressPrintingSystem.Staff.Printing;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -64,12 +65,12 @@ namespace ExpressPrintingSystem.Customer
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-            //DateTime currentDate = DateTime.Now;
-            //Decimal totalPayment = Convert.ToDecimal(txtpaymentTotal.Text);
+            DateTime currentDate = DateTime.Now;
+            Decimal totalPayment = Convert.ToDecimal(txtpaymentTotal.Text);
 
-            //Model.Entities.Payment newpayment = new Model.Entities.Payment(RadioButtonList1.SelectedValue, totalPayment, currentDate);
-            //Model.Entities.Request request = (Model.Entities.Request)Session["request"];
-            //request.Payment = newpayment;
+            Model.Entities.Payment newpayment = new Model.Entities.Payment(RadioButtonList1.SelectedValue, totalPayment, currentDate);
+            Model.Entities.Request request = (Model.Entities.Request)Session["request"];
+            request.Payment = newpayment;
 
             try
             {
@@ -87,29 +88,16 @@ namespace ExpressPrintingSystem.Customer
 
                 Decimal totalamount = Convert.ToDecimal(txtpaymentTotal.Text);
 
-                cmdInsert.Parameters.AddWithValue("@PaymentType", RadioButtonList1.SelectedValue);
-                cmdInsert.Parameters.AddWithValue("@PaymentAmount", totalamount);
-                cmdInsert.Parameters.AddWithValue("@PaymentDateTime", DateTime.Now);
+                cmdInsert.Parameters.AddWithValue("@PaymentType",request.Payment.PaymentType);
+                cmdInsert.Parameters.AddWithValue("@PaymentAmount", request.Payment.PaymentAmount);
+                cmdInsert.Parameters.AddWithValue("@PaymentDateTime", request.Payment.PaymentDateTime);
                 var getPaymentID = cmdInsert.ExecuteScalar();
-
-                //if (getPaymentID != null)
-                //{
-
-
-                //    newpayment.PaymentID = getPaymentID.ToString();
-
-
-
-                //}
-
-
-
 
                 if (getPaymentID != null)
                 {
+                    request.Payment.PaymentID = (string)getPaymentID;
+                    insertNewRequest(request);
                     Response.Write("<script>alert('Upload Successful');</script>");
-
-                    //forRetriveRequest(request);
 
                 }
                 else
@@ -122,53 +110,139 @@ namespace ExpressPrintingSystem.Customer
 
                 conTaxi.Close();
             }
-            catch {
+            catch (Exception ex){
                 Response.Write("<script>alert('Upload Failed');</script>");
             }
         }
-        public void forRetriveRequest(Model.Entities.Request request) { 
 
-            SqlConnection conTaxi;
+        private void insertNewRequest(Model.Entities.Request request)
+        {
+            SqlConnection conPrintDB;
             string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
-            conTaxi = new SqlConnection(connStr);
-            conTaxi.Open();
+            conPrintDB = new SqlConnection(connStr);
+            conPrintDB.Open();
 
             string strInsert;
             SqlCommand cmdInsert;
 
+            //request
+            strInsert = "Insert Into Request (RequestDateTime, DueDateTime, PaymentID, CompanyID, CustomerID) Values (@requestDateTime, @dueDateTime, @paymentID, @companyID, @customerID);SELECT MAX(RequestID) from Request where CustomerID=@customerID AND RequestDateTime = @requestDateTime;";
+            cmdInsert = new SqlCommand(strInsert, conPrintDB);
 
-            strInsert = "Insert Into Request(RequestDateTime, DueDateTime, PaymentID, CompanyID, CustomerID) Values (@RequestDateTime, @DueDateTime, @PaymentID, @CompanyID, @CustomerID)";
-            cmdInsert = new SqlCommand(strInsert, conTaxi);
+            cmdInsert.Parameters.AddWithValue("@requestDateTime", DateTime.Now);
+            cmdInsert.Parameters.AddWithValue("@dueDateTime", request.DueDateTime);
+            cmdInsert.Parameters.AddWithValue("@paymentID", request.Payment.PaymentID);
+            cmdInsert.Parameters.AddWithValue("@companyID", request.CompanyID);
+            cmdInsert.Parameters.AddWithValue("@customerID", request.CustomerID);
 
+            var requestID = cmdInsert.ExecuteScalar();
 
-            cmdInsert.Parameters.AddWithValue("@RequestDateTime",request.RequestDateTime);
-            cmdInsert.Parameters.AddWithValue("@DueDateTime", request.DueDateTime);
-            cmdInsert.Parameters.AddWithValue("@PaymentID", request.Payment.PaymentID);
-            cmdInsert.Parameters.AddWithValue("@CompanyID", request.CompanyID);
-            cmdInsert.Parameters.AddWithValue("@CustomerID", request.CustomerID);
+            request.RequestID = (string)requestID;
 
-           
-
-
-            int n = cmdInsert.ExecuteNonQuery();
-
-            if (n > 0)
-            {
-                Response.Write("<script>alert('Upload Successful');</script>");
+            //Requestlist
+            strInsert = "Insert Into Requestlist (RequestID, RequestItemID, RequestStatus, RequestType) Values (@RequestID, @RequestItemID, @RequestStatus, @RequestType);SELECT MAX(RequestlistID) from Requestlist where RequestID=@RequestID AND RequestItemID=@RequestItemID";
+            cmdInsert = new SqlCommand(strInsert, conPrintDB);
 
 
+            cmdInsert.Parameters.AddWithValue("@RequestID", request.RequestID);
+            cmdInsert.Parameters.AddWithValue("@RequestItemID", request.RequestLists[0].RequestItemID);
+            cmdInsert.Parameters.AddWithValue("@RequestStatus", request.RequestLists[0].RequestStatus);
+            cmdInsert.Parameters.AddWithValue("@RequestType", request.RequestLists[0].RequestType);
+
+            var requestlistID = cmdInsert.ExecuteScalar();
+
+            request.RequestLists[0].RequestlistID = (string)requestlistID;
+
+            //documentlist
+            strInsert = "Insert Into Documentlist (RequestlistID, DocumentID, Sequences, DocumentColor, DocumentBothSide, DocumentPaperType, DocumentQuantity, DocumentDescription) Values (@RequestlistID, @DocumentID, @Sequences, @DocumentColor, @DocumentBothSide, @DocumentPaperType, @DocumentQuantity, @DocumentDescription)";
+            cmdInsert = new SqlCommand(strInsert, conPrintDB);
+
+            foreach (Model.Entities.Documentlist documentlist in request.RequestLists[0].DocumentList) {
+                insertDocument(documentlist.Document, conPrintDB);//insert document contain in documentlist
+
+                cmdInsert.Parameters.Clear();//clear parameter before loop
+                cmdInsert.Parameters.AddWithValue("@RequestlistID", request.RequestLists[0].RequestlistID);
+                cmdInsert.Parameters.AddWithValue("@DocumentID", documentlist.Document.DocumentID);
+                cmdInsert.Parameters.AddWithValue("@Sequences", documentlist.Sequences);
+                cmdInsert.Parameters.AddWithValue("@DocumentColor", documentlist.DocumentColor);
+                cmdInsert.Parameters.AddWithValue("@DocumentBothSide", documentlist.DocumentBothSide);
+                cmdInsert.Parameters.AddWithValue("@DocumentPaperType", documentlist.DocumentPaperType);
+                cmdInsert.Parameters.AddWithValue("@DocumentQuantity", documentlist.DocumentQuantity);
+                cmdInsert.Parameters.AddWithValue("@DocumentDescription", documentlist.DocumentDescription);
+                cmdInsert.ExecuteNonQuery();
             }
-            else
-            {
-                Response.Write("<script>alert('Upload Failed');</script>");
-            }
 
-            /*Close database connection*/
+            conPrintDB.Close();
+            PrintingRequestHub.refreshTable();
+            
 
-
-            conTaxi.Close();
 
         }
+
+        private void insertDocument(Model.Entities.Document document ,SqlConnection condocument) {
+
+
+            
+            string strInsert = "Insert Into Document (DocumentName, DocumentType, FileIDInCloud, CustomerID, Size, PageNumber) Values (@DocumentName, @DocumentType, @FileIDInCloud, @CustomerID, @Size, @PageNumber);SELECT MAX(DocumentID) from Document where DocumentName=@DocumentName and DocumentType=@DocumentType";
+            SqlCommand cmdInsert = new SqlCommand(strInsert, condocument);
+
+                cmdInsert.Parameters.AddWithValue("@DocumentName", document.DocumentName);
+                cmdInsert.Parameters.AddWithValue("@DocumentType", document.DocumentType);
+                cmdInsert.Parameters.AddWithValue("@FileIDInCloud", document.FileIDInCloud);
+                cmdInsert.Parameters.AddWithValue("@CustomerID", document.CustomerID);
+                cmdInsert.Parameters.AddWithValue("@Size", document.Size);
+                cmdInsert.Parameters.AddWithValue("@PageNumber", document.PageNumber);
+
+                var getDocumentID = cmdInsert.ExecuteScalar();
+
+                document.DocumentID = getDocumentID.ToString();
+
+
+            }
+
+        //public void forRetriveRequest(Model.Entities.Request request) { 
+
+            //    SqlConnection conTaxi;
+            //    string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
+            //    conTaxi = new SqlConnection(connStr);
+            //    conTaxi.Open();
+
+            //    string strInsert;
+            //    SqlCommand cmdInsert;
+
+
+            //    strInsert = "Insert Into Request(RequestDateTime, DueDateTime, PaymentID, CompanyID, CustomerID) Values (@RequestDateTime, @DueDateTime, @PaymentID, @CompanyID, @CustomerID)";
+            //    cmdInsert = new SqlCommand(strInsert, conTaxi);
+
+
+            //    cmdInsert.Parameters.AddWithValue("@RequestDateTime",request.RequestDateTime);
+            //    cmdInsert.Parameters.AddWithValue("@DueDateTime", request.DueDateTime);
+            //    cmdInsert.Parameters.AddWithValue("@PaymentID", request.Payment.PaymentID);
+            //    cmdInsert.Parameters.AddWithValue("@CompanyID", request.CompanyID);
+            //    cmdInsert.Parameters.AddWithValue("@CustomerID", request.CustomerID);
+
+
+
+
+            //    int n = cmdInsert.ExecuteNonQuery();
+
+            //    if (n > 0)
+            //    {
+            //        Response.Write("<script>alert('Upload Successful');</script>");
+
+
+            //    }
+            //    else
+            //    {
+            //        Response.Write("<script>alert('Upload Failed');</script>");
+            //    }
+
+            //    /*Close database connection*/
+
+
+            //    conTaxi.Close();
+
+            //}
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {

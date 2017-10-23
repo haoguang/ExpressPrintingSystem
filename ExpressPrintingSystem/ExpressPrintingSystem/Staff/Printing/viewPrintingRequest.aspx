@@ -20,23 +20,20 @@
                     $(this).addClass('collapserequest');
                 }
             });
-            alert('test 1');
+
             function postBack() {
 
                 __doPostBack("", "ReloadTable");
             }
-
-            alert('test 2');
             
             var con = $.hubConnection();
             var hub = con.createHubProxy('PrintingRequestHub');
             hub.on('displayTable', function () {
                 postBack();
             });
-            
-            alert('test 3');
+
             con.start();
-            alert('test 4');
+
             
         });
     </script>
@@ -74,7 +71,7 @@
                             <td width="20%"><%#(Eval("Payment")!= null) ? "Paid": "Unpaid" %></td>   
                             <td style="display:none"><%#Eval("RequestLists[0].RequestItemID") %></td>                      
                             <td class="operationColumn">
-                                <asp:LinkButton ID="lbtnComplete" runat="server" CommandArgument='<%#Eval("RequestLists[0].RequestlistID") %>' CommandName="TaskComplete"  ForeColor="Red">
+                                <asp:LinkButton ID="lbtnComplete" runat="server" CssClass="" CommandArgument='<%#Eval("RequestLists[0].RequestlistID") %>' CommandName="completeTask"  ForeColor="Red">
                                     <asp:Image ID="imgBox" ImageUrl="~/Images/square-outline-red.png" runat="server" /><asp:Label ID="lblComplete" runat="server" Text="Complete" Css="completeLabel"></asp:Label>
                                 </asp:LinkButton>                          
                             </td>

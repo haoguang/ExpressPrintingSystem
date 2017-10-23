@@ -46,7 +46,7 @@ namespace ExpressPrintingSystem.Staff.Printing
                                 da.Fill(documentDataTable);
                             }
 
-                            document = new Document((string)documentDataTable.Rows[0]["DocumentID"],(string)documentDataTable.Rows[0]["DocumentName"],(string)documentDataTable.Rows[0]["DocumentType"],(string)documentDataTable.Rows[0]["FileIDInCloud"],(string)documentDataTable.Rows[0]["CustomerID"],(int)documentDataTable.Rows[0]["Size"], Convert.ToInt32(documentDataTable.Rows[0]["PageNumber"]));
+                            document = new Document((string)documentDataTable.Rows[0]["DocumentID"],(string)documentDataTable.Rows[0]["DocumentName"],(string)documentDataTable.Rows[0]["DocumentType"],(string)documentDataTable.Rows[0]["FileIDInCloud"],(string)documentDataTable.Rows[0]["CustomerID"],(int)documentDataTable.Rows[0]["Size"], (int)documentDataTable.Rows[0]["PageNumber"]);
 
                         }
                     }

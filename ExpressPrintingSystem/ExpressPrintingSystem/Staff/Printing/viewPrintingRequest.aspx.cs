@@ -112,7 +112,7 @@ namespace ExpressPrintingSystem.Staff.Printing
 
                         for (int i = 0; i < documentResult.Rows.Count; i++)
                         {
-                            Document document = new Document((string)documentResult.Rows[i]["DocumentID"], (string)documentResult.Rows[i]["DocumentName"], (string)documentResult.Rows[i]["DocumentType"], (string)documentResult.Rows[i]["FileIDInCloud"], (string)documentResult.Rows[i]["CustomerID"], (int)documentResult.Rows[i]["Size"], Convert.ToInt32(documentResult.Rows[i]["PageNumber"]));
+                            Document document = new Document((string)documentResult.Rows[i]["DocumentID"], (string)documentResult.Rows[i]["DocumentName"], (string)documentResult.Rows[i]["DocumentType"], (string)documentResult.Rows[i]["FileIDInCloud"], (string)documentResult.Rows[i]["CustomerID"], (int)documentResult.Rows[i]["Size"], (int)documentResult.Rows[i]["PageNumber"]);
                             Documentlist newDocumentlist = new Documentlist(document, (int)documentResult.Rows[i]["Sequences"], (string)documentResult.Rows[i]["DocumentColor"], (string)documentResult.Rows[i]["DocumentBothSide"], (int)documentResult.Rows[i]["DocumentPaperType"], (int)documentResult.Rows[i]["DocumentQuantity"], documentResult.Rows[i]["DocumentDescription"].ToString());
 
                             documentList.Add(newDocumentlist);
@@ -135,9 +135,15 @@ namespace ExpressPrintingSystem.Staff.Printing
 
         protected void lvRequestConfirmation_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
-            string abc = e.CommandName;
-            Console.WriteLine("");
+            string operation = e.CommandName;
+            if (operation.Equals("completeTask"))
+            {
+                string requestlistID = (string)e.CommandArgument;
+                Requestlist.updateRequestlistStatus(requestlistID, Requestlist.STATUS_COMPLETED);
+                PrintingRequestHub.refreshTable();
+            }
         }
+
 
     }
 }
