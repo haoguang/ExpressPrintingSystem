@@ -8,8 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-
+using System.Windows.Forms;
 
 namespace ExpressPrintingSystem
 {
@@ -43,7 +42,7 @@ namespace ExpressPrintingSystem
             {
 
             SqlConnection conPrint;
-            string connStr = ConfigurationManager.ConnectionStrings["PrintDBConnectionString"].ConnectionString;
+            string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
             conPrint = new SqlConnection(connStr);
             conPrint.Open();
             
@@ -64,20 +63,23 @@ namespace ExpressPrintingSystem
             cmdInsert.Parameters.AddWithValue("@CustomerSalt", generatedSalt);
                 
             int n = cmdInsert.ExecuteNonQuery();
-            conPrint.Close();
+           
             if (n > 0)
             {
-
-                Response.Write("<script LANGUAGE='JavaScript' >alert('Register Successfully')</script>");
-                Response.Redirect("Login.aspx");
+               MessageBox.Show("Sign up done. Redirecting to homepage.", "Congratulation !!",
+               MessageBoxButtons.OK,
+               MessageBoxIcon.Exclamation,
+               MessageBoxDefaultButton.Button1);
+                    //Response.Write("<script LANGUAGE='JavaScript' >alert('Register Successfully')</script>");
+                    Response.Redirect("Login.aspx");
             }
             else
             {
                 Response.Write("<script LANGUAGE='JavaScript' >alert('sign up failded')</script>");
             }
+                conPrint.Close();
 
 
-            
             }
             catch (SqlException ex)
             {
@@ -85,7 +87,7 @@ namespace ExpressPrintingSystem
             }
 
 
-
+           
 
         }
 

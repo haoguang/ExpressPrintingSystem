@@ -10,7 +10,7 @@
 namespace ExpressPrintingSystem {
     
     
-    public partial class ForgetPassword {
+    public partial class VerificationPassword {
         
         /// <summary>
         /// form1 control.

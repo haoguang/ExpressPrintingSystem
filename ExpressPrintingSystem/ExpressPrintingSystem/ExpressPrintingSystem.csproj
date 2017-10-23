@@ -110,6 +110,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -127,6 +128,7 @@
     <Content Include="Customer\ThankYouPage.aspx" />
     <Content Include="ForgetPassword.aspx" />
     <Content Include="Images\arrow-down.png" />
+    <Content Include="GenerateReport.aspx" />
     <Content Include="Images\Calancer.PNG" />
     <Content Include="Images\check-mark.png" />
     <Content Include="Images\mastercard.PNG" />
@@ -137,6 +139,9 @@
     <Content Include="Images\view.png" />
     <Content Include="Images\visa.PNG" />
     <Content Include="Login.aspx" />
+    <Content Include="OrderReport.aspx" />
+    <Content Include="PendingReport.aspx" />
+    <Content Include="resetPassword.aspx" />
     <Content Include="scripts\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="scripts\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="scripts\bootstrap\dist\css\bootstrap.css" />
@@ -559,6 +564,17 @@
     <Content Include="scripts\bootstrap\_config.yml" />
     <Content Include="styles\fonts\CODE Bold.otf" />
     <Content Include="styles\fonts\CODE Light.otf" />
+    <Content Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -576,6 +592,7 @@
     <Content Include="styles\main.css" />
     <Content Include="testDatePicker.aspx" />
     <Content Include="testDocumentViewer.aspx" />
+    <Content Include="VerificationPassword.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -635,12 +652,24 @@
     <Compile Include="Customer\ThankYouPage.aspx.designer.cs">
       <DependentUpon>ThankYouPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ForgetPassword.aspx.cs">
       <DependentUpon>ForgetPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ForgetPassword.aspx.designer.cs">
       <DependentUpon>ForgetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GenerateReport.aspx.cs">
+      <DependentUpon>GenerateReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GenerateReport.aspx.designer.cs">
+      <DependentUpon>GenerateReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -663,6 +692,27 @@
     <Compile Include="Model\Entities\Request.cs" />
     <Compile Include="Model\Entities\Requestlist.cs" />
     <Compile Include="Model\Entities\User.cs" />
+    <Compile Include="OrderReport.aspx.cs">
+      <DependentUpon>OrderReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderReport.aspx.designer.cs">
+      <DependentUpon>OrderReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PendingReport.aspx.cs">
+      <DependentUpon>PendingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PendingReport.aspx.designer.cs">
+      <DependentUpon>PendingReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="resetPassword.aspx.cs">
+      <DependentUpon>resetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="resetPassword.aspx.designer.cs">
+      <DependentUpon>resetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Messenging\EmailClass.cs" />
     <Compile Include="Model\Messenging\MessengerClass.cs" />
     <Compile Include="Model\Messenging\WhatappClass.cs" />
@@ -796,9 +846,20 @@
     <Compile Include="testDocumentViewer.aspx.designer.cs">
       <DependentUpon>testDocumentViewer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VerificationPassword.aspx.cs">
+      <DependentUpon>VerificationPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerificationPassword.aspx.designer.cs">
+      <DependentUpon>VerificationPassword.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="File\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report2.rdlc" />
+    <EmbeddedResource Include="Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

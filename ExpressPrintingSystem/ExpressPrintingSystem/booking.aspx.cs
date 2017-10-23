@@ -334,7 +334,7 @@ namespace ExpressPrintingSystem.Customer
 
 
                         string getFileIDInCloud = backblaze.UploadFile(contentType, filePath, fileName);
-                        var numberOfPages = 0;
+                        int numberOfPages = 0;
                         if (Path.GetExtension(hpf.FileName).Equals(".docx"))
                         {
 

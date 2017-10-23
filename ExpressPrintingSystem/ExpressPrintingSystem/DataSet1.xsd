@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="PrintDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="PrintDBConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.PrintDBConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="OrderReportTableAdapter" GeneratorDataComponentClassName="OrderReportTableAdapter" Name="OrderReport" UserDataComponentName="OrderReportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PrintDBConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Request.RequestID, Payment.PaymentDateTime, Requestlist.RequestlistID, Payment.PaymentAmount
+FROM            Request INNER JOIN
+                         Requestlist ON Request.RequestID = Requestlist.RequestID INNER JOIN
+                         Payment ON Request.PaymentID = Payment.PaymentID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RequestID" DataSetColumn="RequestID" />
+              <Mapping SourceColumn="PaymentDateTime" DataSetColumn="PaymentDateTime" />
+              <Mapping SourceColumn="RequestlistID" DataSetColumn="RequestlistID" />
+              <Mapping SourceColumn="PaymentAmount" DataSetColumn="PaymentAmount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="PrintDBConnectionString (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        Customer.CustomerID, Company.CompanyID, Request.RequestID, Request.RequestDateTime, Requestlist.RequestlistID, Requestlist.RequestStatus
+FROM            Customer INNER JOIN
+                         Request ON Customer.CustomerID = Request.CustomerID INNER JOIN
+                         Requestlist ON Request.RequestID = Requestlist.RequestID INNER JOIN
+                         Company ON Request.CompanyID = Company.CompanyID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CustomerID" DataSetColumn="CustomerID" />
+              <Mapping SourceColumn="CompanyID" DataSetColumn="CompanyID" />
+              <Mapping SourceColumn="RequestID" DataSetColumn="RequestID" />
+              <Mapping SourceColumn="RequestDateTime" DataSetColumn="RequestDateTime" />
+              <Mapping SourceColumn="RequestlistID" DataSetColumn="RequestlistID" />
+              <Mapping SourceColumn="RequestStatus" DataSetColumn="RequestStatus" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="OrderReport" msprop:Generator_TableClassName="OrderReportDataTable" msprop:Generator_TableVarName="tableOrderReport" msprop:Generator_RowChangedName="OrderReportRowChanged" msprop:Generator_TablePropName="OrderReport" msprop:Generator_RowDeletingName="OrderReportRowDeleting" msprop:Generator_RowChangingName="OrderReportRowChanging" msprop:Generator_RowEvHandlerName="OrderReportRowChangeEventHandler" msprop:Generator_RowDeletedName="OrderReportRowDeleted" msprop:Generator_RowClassName="OrderReportRow" msprop:Generator_UserTableName="OrderReport" msprop:Generator_RowEvArgName="OrderReportRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RequestID" msprop:Generator_ColumnVarNameInTable="columnRequestID" msprop:Generator_ColumnPropNameInRow="RequestID" msprop:Generator_ColumnPropNameInTable="RequestIDColumn" msprop:Generator_UserColumnName="RequestID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaymentDateTime" msprop:Generator_ColumnVarNameInTable="columnPaymentDateTime" msprop:Generator_ColumnPropNameInRow="PaymentDateTime" msprop:Generator_ColumnPropNameInTable="PaymentDateTimeColumn" msprop:Generator_UserColumnName="PaymentDateTime" type="xs:dateTime" />
+              <xs:element name="RequestlistID" msprop:Generator_ColumnVarNameInTable="columnRequestlistID" msprop:Generator_ColumnPropNameInRow="RequestlistID" msprop:Generator_ColumnPropNameInTable="RequestlistIDColumn" msprop:Generator_UserColumnName="RequestlistID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="19" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PaymentAmount" msprop:Generator_ColumnVarNameInTable="columnPaymentAmount" msprop:Generator_ColumnPropNameInRow="PaymentAmount" msprop:Generator_ColumnPropNameInTable="PaymentAmountColumn" msprop:Generator_UserColumnName="PaymentAmount" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CustomerID" msprop:Generator_ColumnVarNameInTable="columnCustomerID" msprop:Generator_ColumnPropNameInRow="CustomerID" msprop:Generator_ColumnPropNameInTable="CustomerIDColumn" msprop:Generator_UserColumnName="CustomerID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CompanyID" msprop:Generator_ColumnVarNameInTable="columnCompanyID" msprop:Generator_ColumnPropNameInRow="CompanyID" msprop:Generator_ColumnPropNameInTable="CompanyIDColumn" msprop:Generator_UserColumnName="CompanyID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RequestID" msprop:Generator_ColumnVarNameInTable="columnRequestID" msprop:Generator_ColumnPropNameInRow="RequestID" msprop:Generator_ColumnPropNameInTable="RequestIDColumn" msprop:Generator_UserColumnName="RequestID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RequestDateTime" msprop:Generator_ColumnVarNameInTable="columnRequestDateTime" msprop:Generator_ColumnPropNameInRow="RequestDateTime" msprop:Generator_ColumnPropNameInTable="RequestDateTimeColumn" msprop:Generator_UserColumnName="RequestDateTime" type="xs:dateTime" />
+              <xs:element name="RequestlistID" msprop:Generator_ColumnVarNameInTable="columnRequestlistID" msprop:Generator_ColumnPropNameInRow="RequestlistID" msprop:Generator_ColumnPropNameInTable="RequestlistIDColumn" msprop:Generator_UserColumnName="RequestlistID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="19" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RequestStatus" msprop:Generator_ColumnVarNameInTable="columnRequestStatus" msprop:Generator_ColumnPropNameInRow="RequestStatus" msprop:Generator_ColumnPropNameInTable="RequestStatusColumn" msprop:Generator_UserColumnName="RequestStatus">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable1" />
+      <xs:field xpath="mstns:CustomerID" />
+      <xs:field xpath="mstns:CompanyID" />
+      <xs:field xpath="mstns:RequestID" />
+      <xs:field xpath="mstns:RequestlistID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
