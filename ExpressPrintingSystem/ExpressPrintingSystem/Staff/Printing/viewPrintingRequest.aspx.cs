@@ -15,11 +15,27 @@ namespace ExpressPrintingSystem.Staff.Printing
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                bindData();
+            }
+
+            string parameter = Request["__EVENTARGUMENT"];
+            if (parameter == "ReloadTable")
+                bindData();
+
+        }
+
+        private void bindData()
+        {
             List<ExpressPrintingSystem.Model.Entities.Request> requestList = getRequestList(Requestlist.STATUS_PENDING, Request.Cookies["CompanyID"].Value);
             lvRequestConfirmation.DataSource = requestList;
             lvRequestConfirmation.DataBind();
-            
+        }
 
+        private void dependency_OnChange(object sender, SqlNotificationEventArgs e)
+        {
+            PrintingRequestHub.refreshTable();
         }
 
         private List<Request> getRequestList(string status, string companyID)
@@ -86,7 +102,7 @@ namespace ExpressPrintingSystem.Staff.Printing
                     using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
                     {
                         
-                            cmdSelect.Parameters.AddWithValue("@requestlistID", requestlistID);
+                        cmdSelect.Parameters.AddWithValue("@requestlistID", requestlistID);
 
                         using (SqlDataAdapter da = new SqlDataAdapter(cmdSelect))
                         {
@@ -116,5 +132,12 @@ namespace ExpressPrintingSystem.Staff.Printing
         {
             return String.Format("ViewDocument.aspx?documentID={0}", HttpUtility.UrlEncode(ClassHashing.basicEncryption((string)text)));
         }
+
+        protected void lvRequestConfirmation_ItemCommand(object sender, ListViewCommandEventArgs e)
+        {
+            string abc = e.CommandName;
+            Console.WriteLine("");
+        }
+
     }
 }

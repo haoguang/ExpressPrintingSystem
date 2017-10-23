@@ -2,8 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="<%= Page.ResolveUrl("~/styles/expendableTable.css") %>" type="text/css" />
-   
-    <script language="javascript">
+    <script src="<%= Page.ResolveUrl("~/scripts/jquery-1.6.4.js") %>"></script>
+    <script src="<%= Page.ResolveUrl("~/scripts/jquery.signalR-2.2.2.js") %>"></script>
+    <script type="text/javascript">
         $(document).ready(function () {
             // THIS IS FOR HIDE ALL DETAILS ROW
             $(".childRow").hide();
@@ -19,14 +20,33 @@
                     $(this).addClass('collapserequest');
                 }
             });
+            alert('test 1');
+            function postBack() {
+
+                __doPostBack("", "ReloadTable");
+            }
+
+            alert('test 2');
+            
+            var con = $.hubConnection();
+            var hub = con.createHubProxy('PrintingRequestHub');
+            hub.on('displayTable', function () {
+                postBack();
+            });
+            
+            alert('test 3');
+            con.start();
+            alert('test 4');
+            
         });
     </script>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphStaffContent" runat="server">
     <h1>Printing Request Room</h1>
     <h2>Requests Pending for Confirmation</h2>
-    <asp:ListView ID="lvRequestConfirmation"  ItemPlaceholderID="PlaceHolderConfirm" runat="server">
+    <asp:ListView ID="lvRequestConfirmation"  ItemPlaceholderID="PlaceHolderConfirm" runat="server" OnItemCommand="lvRequestConfirmation_ItemCommand">
         <LayoutTemplate>
             <table class="expendableTable"  width="100%" border="0" cellpadding="0" cellspacing="0">
                     <tr>
@@ -53,7 +73,11 @@
                             <td width="20%"><%#Eval("DueDateTime", "{0:dd/MM/yyyy HH:mm}") %></td>
                             <td width="20%"><%#(Eval("Payment")!= null) ? "Paid": "Unpaid" %></td>   
                             <td style="display:none"><%#Eval("RequestLists[0].RequestItemID") %></td>                      
-                            <td ><asp:ImageButton ID="ibComplete" ImageUrl="" runat="server" Text="abc"/></td>
+                            <td class="operationColumn">
+                                <asp:LinkButton ID="lbtnComplete" runat="server" CommandArgument='<%#Eval("RequestLists[0].RequestlistID") %>' CommandName="TaskComplete"  ForeColor="Red">
+                                    <asp:Image ID="imgBox" ImageUrl="~/Images/square-outline-red.png" runat="server" /><asp:Label ID="lblComplete" runat="server" Text="Complete" Css="completeLabel"></asp:Label>
+                                </asp:LinkButton>                          
+                            </td>
                         </tr>
                         <tr class="childRow">
                             <td colspan="6">
