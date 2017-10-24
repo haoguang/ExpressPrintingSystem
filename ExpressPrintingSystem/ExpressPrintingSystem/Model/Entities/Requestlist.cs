@@ -14,6 +14,7 @@ namespace ExpressPrintingSystem.Model.Entities
         private string requestStatus;
         private string requestType;
         private List<Documentlist> documentList;
+        private Package package;
 
         public Requestlist (string requestlistID, string requestItemID, string requestStatus, string requestType, List<Documentlist> documentList)
         {
@@ -61,6 +62,12 @@ namespace ExpressPrintingSystem.Model.Entities
         {
             get { return documentList; }
             set { documentList = value; }
+        }
+
+        public Package Package
+        {
+            get { return package; }
+            set { package = value; }
         }
 
         public static bool updateRequestlistStatus(string requestlistID, string status)

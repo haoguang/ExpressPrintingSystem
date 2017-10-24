@@ -1,4 +1,5 @@
 ﻿using ExpressPrintingSystem.Model;
+using ExpressPrintingSystem.Model.Messenging;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -53,10 +54,18 @@ namespace ExpressPrintingSystem.Staff.Owner.StaffManagement
 
                 if (!chkPassSet.Checked)
                 {
+                    string strSelect = "SELECT CompanyName FROM Company WHERE CompanyID = @companyID";
+                    SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB);
+                    cmdSelect.Parameters.AddWithValue("@companyID", Request.Cookies["CompanyID"].Value);
+                    var companyName = cmdSelect.ExecuteScalar();
+
                     string verificationCode = UserVerification.getVerificationCode(staffID + txtNRIC.Text, generatedSalt);
                     //then it will generate a url to activate the account and send it to the staff
                     string verificationLink = DOMAIN_NAME + Page.ResolveUrl("~/StaffAccountActivation.aspx?VC=" + HttpUtility.UrlEncode(verificationCode));
+                    string emailContent = EmailClass.populateActivationEmail((string)companyName, verificationLink);
+                    EmailClass emailClass = new EmailClass("sender email", txtEmail.Text , "Staff Account Activation", emailContent,true);
 
+                    emailClass.sendEmail("sender email", "password", "email type");
                 }
 
                 lblError.Text = "Successfully added";

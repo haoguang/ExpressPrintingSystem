@@ -22,12 +22,12 @@ namespace ExpressPrintingSystem.Staff.Printing {
         protected global::System.Web.UI.WebControls.ListView lvRequestConfirmation;
         
         /// <summary>
-        /// gvPrint control.
+        /// lvPickUpRequest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPrint;
+        protected global::System.Web.UI.WebControls.ListView lvPickUpRequest;
     }
 }

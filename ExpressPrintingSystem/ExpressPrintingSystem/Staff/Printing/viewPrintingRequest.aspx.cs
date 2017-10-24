@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,6 +14,8 @@ namespace ExpressPrintingSystem.Staff.Printing
 {
     public partial class viewPrintingRequest : System.Web.UI.Page
     {
+        private static SortAttribute sortAttribute;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -21,24 +24,54 @@ namespace ExpressPrintingSystem.Staff.Printing
             }
 
             string parameter = Request["__EVENTARGUMENT"];
-            if (parameter == "ReloadTable")
-                bindData();
+
+            if(parameter != null)
+            {
+                if (parameter.Equals("ReloadTable"))
+                    bindData();
+                else if ("SortTable".Equals(parameter.Split(';')[0]))
+                {
+
+                    string[] parameters = parameter.Split(';');
+                    SortAttribute newSort = new SortAttribute(parameters[1], SortAttribute.FLOW_ASC, parameters[2]);
+
+                    if (sortAttribute != null)
+                    {
+                        sortAttribute = SortAttribute.processSorting(sortAttribute, newSort);
+                    }
+                    else
+                        sortAttribute = newSort;
+
+                    if (sortAttribute.Control.Equals("0"))
+                    {
+                        List<ExpressPrintingSystem.Model.Entities.Request> requestList = getRequestList(Requestlist.STATUS_PENDING, Requestlist.STATUS_PRINTED, Request.Cookies["CompanyID"].Value, sortAttribute.Header);
+                        lvRequestConfirmation.DataSource = requestList;
+                        lvRequestConfirmation.DataBind();
+                    }
+                    else if (sortAttribute.Control.Equals("1"))
+                    {
+                        List<ExpressPrintingSystem.Model.Entities.Request> requestList2 = getRequestList(Requestlist.STATUS_COLLECTED, Requestlist.STATUS_COMPLETED, Request.Cookies["CompanyID"].Value, sortAttribute.Header);
+                        lvPickUpRequest.DataSource = requestList2;
+                        lvPickUpRequest.DataBind();
+                    }
+                }
+            }
+            
 
         }
 
         private void bindData()
         {
-            List<ExpressPrintingSystem.Model.Entities.Request> requestList = getRequestList(Requestlist.STATUS_PENDING, Request.Cookies["CompanyID"].Value);
+            List<ExpressPrintingSystem.Model.Entities.Request> requestList = getRequestList(Requestlist.STATUS_PENDING,Requestlist.STATUS_PRINTED, Request.Cookies["CompanyID"].Value, "");
             lvRequestConfirmation.DataSource = requestList;
             lvRequestConfirmation.DataBind();
+
+            List<ExpressPrintingSystem.Model.Entities.Request> requestList2 = getRequestList(Requestlist.STATUS_COLLECTED, Requestlist.STATUS_COMPLETED, Request.Cookies["CompanyID"].Value, "");
+            lvPickUpRequest.DataSource = requestList2;
+            lvPickUpRequest.DataBind();
         }
 
-        private void dependency_OnChange(object sender, SqlNotificationEventArgs e)
-        {
-            PrintingRequestHub.refreshTable();
-        }
-
-        private List<Request> getRequestList(string status, string companyID)
+        private List<Request> getRequestList(string status, string status2, string companyID, string orderBy)
         {
             List<Request> requestList = new List<Request>();
 
@@ -49,12 +82,14 @@ namespace ExpressPrintingSystem.Staff.Printing
             {
                 using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
                 {
-                    string strSelect = "SELECT * FROM Requestlist rl, Request r WHERE rl.RequestID = r.RequestID AND rl.RequestStatus = @status AND r.CompanyID = @companyID";
+                    //removed "rl.RequestStatus = @status AND" to get all data display at table for testing purpose 
+                    string strSelect = "SELECT * FROM Requestlist rl, Request r WHERE rl.RequestID = r.RequestID AND (rl.RequestStatus = @status OR rl.RequestStatus = @status2) AND r.CompanyID = @companyID" + getOrderByString(orderBy);
 
                     using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
                     {
                         
                         cmdSelect.Parameters.AddWithValue("@status", status);
+                        cmdSelect.Parameters.AddWithValue("@status2", status2);
                         cmdSelect.Parameters.AddWithValue("@companyID", companyID);
 
                         using (SqlDataAdapter da = new SqlDataAdapter(cmdSelect))
@@ -67,13 +102,13 @@ namespace ExpressPrintingSystem.Staff.Printing
                         {
                             Requestlist newRequestlist = new Requestlist((string)requestResult.Rows[i]["RequestlistID"], (string)requestResult.Rows[i]["RequestItemID"], (string)requestResult.Rows[i]["RequestStatus"], (string)requestResult.Rows[i]["RequestType"],getDocumentList((string)requestResult.Rows[i]["RequestlistID"]));
                             List<Requestlist> requestlistArray = new List<Requestlist>();
+                            newRequestlist.Package = Package.getPackage(newRequestlist.RequestItemID);
                             requestlistArray.Add(newRequestlist);
-                            Request request = new Model.Entities.Request((string)requestResult.Rows[i]["RequestID"],Convert.ToDateTime(requestResult.Rows[i]["RequestDateTime"]), Convert.ToDateTime(requestResult.Rows[i]["DueDateTime"]), null, (string)requestResult.Rows[i]["CompanyID"], (string)requestResult.Rows[i]["CustomerID"], requestlistArray);
+                            string paymentID = requestResult.Rows[i]["PaymentID"].ToString();
+                            Request request = new Model.Entities.Request((string)requestResult.Rows[i]["RequestID"],Convert.ToDateTime(requestResult.Rows[i]["RequestDateTime"]), Convert.ToDateTime(requestResult.Rows[i]["DueDateTime"]), paymentID.Equals("")? null: new Payment(), (string)requestResult.Rows[i]["CompanyID"], (string)requestResult.Rows[i]["CustomerID"], requestlistArray);
 
                             requestList.Add(request);
                         }
-
-                      
 
                     }
                 }
@@ -97,7 +132,7 @@ namespace ExpressPrintingSystem.Staff.Printing
             {
                 using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
                 {
-                    string strSelect= "SELECT * FROM Documentlist dl, Document d WHERE dl.DocumentID = d.DocumentID AND RequestlistID = @requestlistID";
+                    string strSelect= "SELECT * FROM Documentlist dl, Document d WHERE dl.DocumentID = d.DocumentID AND RequestlistID = @requestlistID ORDER BY Sequences";
 
                     using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
                     {
@@ -114,6 +149,7 @@ namespace ExpressPrintingSystem.Staff.Printing
                         {
                             Document document = new Document((string)documentResult.Rows[i]["DocumentID"], (string)documentResult.Rows[i]["DocumentName"], (string)documentResult.Rows[i]["DocumentType"], (string)documentResult.Rows[i]["FileIDInCloud"], (string)documentResult.Rows[i]["CustomerID"], (int)documentResult.Rows[i]["Size"], (int)documentResult.Rows[i]["PageNumber"]);
                             Documentlist newDocumentlist = new Documentlist(document, (int)documentResult.Rows[i]["Sequences"], (string)documentResult.Rows[i]["DocumentColor"], (string)documentResult.Rows[i]["DocumentBothSide"], (int)documentResult.Rows[i]["DocumentPaperType"], (int)documentResult.Rows[i]["DocumentQuantity"], documentResult.Rows[i]["DocumentDescription"].ToString());
+                            newDocumentlist.RequestlistID = requestlistID;
 
                             documentList.Add(newDocumentlist);
                         }
@@ -128,22 +164,145 @@ namespace ExpressPrintingSystem.Staff.Printing
             }
         }
 
-        public string getDocumentViewerUrl(object text)
+        public string getDocumentViewerUrl(object requestlistID, object documentID)
         {
-            return String.Format("ViewDocument.aspx?documentID={0}", HttpUtility.UrlEncode(ClassHashing.basicEncryption((string)text)));
+            return String.Format("ViewDocument.aspx?documentID={0}&requestlistid={1}", HttpUtility.UrlEncode(ClassHashing.basicEncryption((string)documentID)), HttpUtility.UrlEncode(ClassHashing.basicEncryption((string)requestlistID)));
         }
 
         protected void lvRequestConfirmation_ItemCommand(object sender, ListViewCommandEventArgs e)
         {
             string operation = e.CommandName;
-            if (operation.Equals("completeTask"))
-            {
-                string requestlistID = (string)e.CommandArgument;
+            string requestlistID = (string)e.CommandArgument;
+            if (operation.Equals(COMMAND_PRINT))
+            {                
+                Requestlist.updateRequestlistStatus(requestlistID, Requestlist.STATUS_PRINTED);               
+            }else if (operation.Equals(COMMAND_COMPLETE)){
                 Requestlist.updateRequestlistStatus(requestlistID, Requestlist.STATUS_COMPLETED);
-                PrintingRequestHub.refreshTable();
+                //send notification here;
+            }
+            else if (operation.Equals(COMMAND_PICKUP))
+            {
+                Requestlist.updateRequestlistStatus(requestlistID, Requestlist.STATUS_COLLECTED);
+            }
+            PrintingRequestHub.refreshTable();
+        }
+
+        private string getOrderByString(string order)
+        {
+            switch (order)
+            {
+                case "RequestID":
+                    return " ORDER BY rl.RequestID " + sortAttribute.Flow;
+                case "Type":
+                    return " ORDER BY RequestType " + sortAttribute.Flow;
+                case "DueTime":
+                    return " ORDER BY DueDateTime " + sortAttribute.Flow;
+                case "PaymentState":
+                    return " ORDER BY PaymentID " + sortAttribute.Flow;
+                default:
+                    return " ORDER BY RequestStatus DESC, DueDateTime, RequestType DESC, RequestDateTime";
             }
         }
 
+     public static string getButtonText(string status)
+        {
+            switch (status)
+            {
+                case Requestlist.STATUS_PENDING:
+                    return "Printed";
+                case Requestlist.STATUS_PRINTED:
+                    return "Complete";
+                case Requestlist.STATUS_COMPLETED:
+                    return "Pick Up";
+                default:
+                    return "-";
 
+            }
+        }
+
+        public static string getCommenName(string status)
+        {
+            switch (status)
+            {
+                case Requestlist.STATUS_PENDING:
+                    return COMMAND_PRINT;
+                case Requestlist.STATUS_PRINTED:
+                    return COMMAND_COMPLETE;
+                case Requestlist.STATUS_COMPLETED:
+                    return COMMAND_PICKUP;
+                default:
+                    return "-";
+
+            }
+        }
+
+        public static Color getLabelColor(string status)
+        {
+            switch (status)
+            {
+                case Requestlist.STATUS_PENDING:
+                    return Color.Red;
+                case Requestlist.STATUS_PRINTED:
+                    return Color.Red;
+                case Requestlist.STATUS_COMPLETED:
+                    return Color.Yellow;
+                case Requestlist.STATUS_COLLECTED:
+                    return Color.Green;
+                default:
+                    return Color.Black;
+
+            }
+        }
+
+        public const string COMMAND_PRINT = "printTask";
+        public const string COMMAND_COMPLETE = "completeTask";
+        public const string COMMAND_PICKUP = "pickupTask";
+
+        private class SortAttribute
+        {
+            private string header;
+            private string flow;
+            private string control;
+
+            public SortAttribute(string header, string flow, string control)
+            {
+                this.header = header;
+                this.flow = flow;
+                this.control = control;
+            }
+
+            //identity how the header should be sorted
+            public static SortAttribute processSorting(SortAttribute oldAttribute, SortAttribute newAttribute)
+            {
+                if(oldAttribute.Header.Equals(newAttribute.Header) && oldAttribute.Control.Equals(newAttribute.Control))
+                {
+                    if (oldAttribute.Flow.Equals(FLOW_ASC))
+                        newAttribute.Flow = FLOW_DESC;
+                    else
+                        newAttribute.Flow=FLOW_ASC;
+                }
+
+                return newAttribute;
+            }
+
+            public string Header {
+                get { return header; }
+                set { header = value; }
+            }
+            public string Flow {
+                get { return flow; }
+                set { flow = value; }
+            }
+            public string Control {
+                get { return control; }
+                set { control = value; }
+            }
+
+            public static string FLOW_ASC = "ASC";
+            public static string FLOW_DESC = "DESC";
+
+        }
     }
+
+   
 }
