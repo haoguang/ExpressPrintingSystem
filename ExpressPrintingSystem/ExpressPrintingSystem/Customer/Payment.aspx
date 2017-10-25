@@ -87,6 +87,12 @@
 
 
  
+       .auto-style4 {
+           height: 78px;
+       }
+
+
+ 
  </style>   
     
     <title></title>
@@ -98,7 +104,7 @@
    <div class="head">
        <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" Font-Size="X-Large">
           <asp:ListItem value="CreditCard" Selected="True" Text="Payment">Credit Card</asp:ListItem>
-           <asp:ListItem Value="Cash" Text="Cash">cash</asp:ListItem>
+           <asp:ListItem Value="Cash"  Text="Cash">cash</asp:ListItem>
         
        </asp:RadioButtonList>
 
@@ -120,31 +126,36 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style2">Cash<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </td>
+                <td class="auto-style2">Please fill in you email, The payment Receipt will send to you Email.</td>
                 <td class="auto-style2"></td>
                 <td class="auto-style2"></td>
+               
+       
+     
+            </tr>
+            <tr>
+                <td class="auto-style1" colspan="2"><asp:TextBox ID="txtEmails" runat="server"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Email is Required!" Text="*" ControlToValidate="txtEmails"></asp:RequiredFieldValidator>&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnGenerate" runat="server" OnClick="btnGenerate_Click" Text="Submit" /></td>
+                <td class="auto-style1" colspan="2">
+                  
+           </td>
+                <td class="auto-style1"></td>
+            </tr>
+            <tr>
+                <td class="auto-style1"><asp:PlaceHolder ID="plQRCode" runat="server" /></td>
+                <td class="auto-style1"></td>
+                <td class="auto-style1"></td>
+            </tr>
+            <tr>
+                <td class="auto-style1">
+                   
+                </td>
+                <td class="auto-style1"></td>
+                <td class="auto-style1"></td>
             </tr>
             <tr>
                 <td class="auto-style1"></td>
                 <td class="auto-style1"></td>
                 <td class="auto-style1"></td>
-            </tr>
-            <tr>
-                <td class="auto-style1">da</td>
-                <td class="auto-style1"></td>
-                <td class="auto-style1"></td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
@@ -198,26 +209,26 @@
                 <td class="auto-style1"></td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td colspan="2" class="auto-style4">
                     <br />
                     Expiry Date<br />
                     <asp:TextBox ID="txtExpitymonth" runat="server" MaxLength="2"></asp:TextBox>
                     &nbsp;/
                     <asp:TextBox ID="txtExpiryYear" runat="server" MaxLength="2"></asp:TextBox>
                 </td>
-                <td colspan="2">
+                <td colspan="2" class="auto-style4">
                     <br />
                     CVV/CVC<br />
                     <asp:TextBox ID="txtCCV" runat="server" MaxLength="3"></asp:TextBox>
                 </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="auto-style4"></td>
+                <td class="auto-style4"></td>
             </tr>
             <tr>
                 <td colspan="4" class="auto-style1">
                     <br />
                     Total Payment<br />
-                    RM <asp:TextBox ID="txtpaymentTotal" runat="server" Enabled="False">100</asp:TextBox>
+                    RM<asp:TextBox ID="txtpaymentTotal" runat="server" Enabled="False">100</asp:TextBox>
                 </td>
                 <td class="auto-style1"></td>
                 <td class="auto-style1"></td>
