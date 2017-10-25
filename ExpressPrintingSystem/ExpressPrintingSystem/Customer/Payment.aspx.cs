@@ -71,61 +71,73 @@ namespace ExpressPrintingSystem.Customer
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-                DateTime currentDate = DateTime.Now;
-                Decimal totalPayment = Convert.ToDecimal(txtpaymentTotal.Text);
 
-                Model.Entities.Payment newpayment = new Model.Entities.Payment(RadioButtonList1.SelectedValue, totalPayment, currentDate);
-                Model.Entities.Request request = (Model.Entities.Request)Session["request"];
-                //request.RequestLists[0].RequestItemID[0]
-                request.Payment = newpayment;
+            try
+            {
+               
 
-                try
+                if (txtCardName.Text == "" || txtCardNumber.Text == "" || txtCCV.Text == "" || txtExpiryYear.Text == "" || txtExpitymonth.Text == "")
                 {
-                    if (plQRCode != null)
-                    {
-
-                    Response.Write("<script>alert('You have choose Cash for paying fees, thanks for using');</script>");
-                    Response.Redirect("Login.aspx");
+                    Response.Write("<script>alert('Please fill in credit card detail!');</script>");
 
                 }
-            else {
-               
-                    SqlConnection conTaxi;
-                    string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
-                    conTaxi = new SqlConnection(connStr);
-                    conTaxi.Open();
-
-                    string strInsert;
-                    SqlCommand cmdInsert;
-
-
-                    strInsert = "Insert Into Payment (PaymentType, PaymentAmount, PaymentDateTime) Values (@PaymentType, @PaymentAmount, @PaymentDateTime);SELECT MAX(PaymentID) from Payment where PaymentAmount=@PaymentAmount";
-                    cmdInsert = new SqlCommand(strInsert, conTaxi);
-
-                    Decimal totalamount = Convert.ToDecimal(txtpaymentTotal.Text);
-
-                    cmdInsert.Parameters.AddWithValue("@PaymentType", request.Payment.PaymentType);
-                    cmdInsert.Parameters.AddWithValue("@PaymentAmount", request.Payment.PaymentAmount);
-                    cmdInsert.Parameters.AddWithValue("@PaymentDateTime", request.Payment.PaymentDateTime);
-                    var getPaymentID = cmdInsert.ExecuteScalar();
-
-                    if (getPaymentID != null)
+                
+                else
+                {
+                    if (plQRCode == null)///do it again
                     {
-                        request.Payment.PaymentID = (string)getPaymentID;
-                        insertNewRequest(request);
 
-                        Response.Write("<script>alert('Successful payment');</script>");
-                        //Response.Redirect();
+                        Response.Write("<script>alert('You have choose Cash for paying fees, thanks for using');</script>");
+                        Response.Redirect("Login.aspx");
+
                     }
                     else
                     {
-                        Response.Write("<script>alert('Upload Failed');</script>");
+                        DateTime currentDate = DateTime.Now;
+                        Decimal totalPayment = Convert.ToDecimal(txtpaymentTotal.Text);
+
+                        Model.Entities.Payment newpayment = new Model.Entities.Payment(RadioButtonList1.SelectedValue, totalPayment, currentDate);
+                        Model.Entities.Request request = (Model.Entities.Request)Session["request"];
+                        //request.RequestLists[0].RequestItemID[0]
+                        request.Payment = newpayment;
+
+                        SqlConnection conTaxi;
+                        string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
+                        conTaxi = new SqlConnection(connStr);
+                        conTaxi.Open();
+
+                        string strInsert;
+                        SqlCommand cmdInsert;
+
+
+                        strInsert = "Insert Into Payment (PaymentType, PaymentAmount, PaymentDateTime) Values (@PaymentType, @PaymentAmount, @PaymentDateTime);SELECT MAX(PaymentID) from Payment where PaymentAmount=@PaymentAmount";
+                        cmdInsert = new SqlCommand(strInsert, conTaxi);
+
+                        Decimal totalamount = Convert.ToDecimal(txtpaymentTotal.Text);
+
+                        cmdInsert.Parameters.AddWithValue("@PaymentType", request.Payment.PaymentType);
+                        cmdInsert.Parameters.AddWithValue("@PaymentAmount", request.Payment.PaymentAmount);
+                        cmdInsert.Parameters.AddWithValue("@PaymentDateTime", request.Payment.PaymentDateTime);
+                        var getPaymentID = cmdInsert.ExecuteScalar();
+
+                        if (getPaymentID != null)
+                        {
+                            request.Payment.PaymentID = (string)getPaymentID;
+                            insertNewRequest(request);
+
+                            Response.Write("<script>alert('Successful payment');</script>");
+                            //Response.Redirect();
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('Upload Failed');</script>");
+                        }
+
+                        /*Close database connection*/
+
+
+                        conTaxi.Close();
                     }
-
-                    /*Close database connection*/
-
-
-                    conTaxi.Close();
                 }
             }
             catch (Exception ex)
@@ -222,51 +234,61 @@ namespace ExpressPrintingSystem.Customer
         protected void btnGenerate_Click(object sender, EventArgs e)
         {
 
-            DateTime currentDate = DateTime.Now;
-            Decimal totalPayment = Convert.ToDecimal(txtpaymentTotal.Text);
-
-            Model.Entities.Payment newpayment = new Model.Entities.Payment(RadioButtonList1.SelectedValue, totalPayment, currentDate);
-            Model.Entities.Request request = (Model.Entities.Request)Session["request"];
-            request.Payment = newpayment;
+           
 
             try
             {
-                SqlConnection conTaxi;
-                string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
-                conTaxi = new SqlConnection(connStr);
-                conTaxi.Open();
-
-                string strInsert;
-                SqlCommand cmdInsert;
-
-
-                strInsert = "Insert Into Payment (PaymentType, PaymentAmount, PaymentDateTime) Values (@PaymentType, @PaymentAmount, @PaymentDateTime);SELECT MAX(PaymentID) from Payment where PaymentAmount=@PaymentAmount";
-                cmdInsert = new SqlCommand(strInsert, conTaxi);
-
-                Decimal totalamount = Convert.ToDecimal(txtpaymentTotal.Text);
-
-                cmdInsert.Parameters.AddWithValue("@PaymentType", request.Payment.PaymentType);
-                cmdInsert.Parameters.AddWithValue("@PaymentAmount", request.Payment.PaymentAmount);
-                cmdInsert.Parameters.AddWithValue("@PaymentDateTime", request.Payment.PaymentDateTime);
-                var getPaymentID = cmdInsert.ExecuteScalar();
-
-                if (getPaymentID != null)
+                if (txtEmails.Text != null)
                 {
-                    request.Payment.PaymentID = (string)getPaymentID;
-                    insertNewRequest(request);
-                    generateQRcode(request);
-                    Response.Write("<script>alert('Upload Successful');</script>");
+                    DateTime currentDate = DateTime.Now;
+                    Decimal totalPayment = Convert.ToDecimal(txtpaymentTotal.Text);
 
+                    Model.Entities.Payment newpayment = new Model.Entities.Payment(RadioButtonList1.SelectedValue, totalPayment, currentDate);
+                    Model.Entities.Request request = (Model.Entities.Request)Session["request"];
+                    request.Payment = newpayment;
+
+                    SqlConnection conTaxi;
+                    string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
+                    conTaxi = new SqlConnection(connStr);
+                    conTaxi.Open();
+
+                    string strInsert;
+                    SqlCommand cmdInsert;
+
+
+                    strInsert = "Insert Into Payment (PaymentType, PaymentAmount, PaymentDateTime) Values (@PaymentType, @PaymentAmount, @PaymentDateTime);SELECT MAX(PaymentID) from Payment where PaymentAmount=@PaymentAmount";
+                    cmdInsert = new SqlCommand(strInsert, conTaxi);
+
+                    Decimal totalamount = Convert.ToDecimal(txtpaymentTotal.Text);
+
+                    cmdInsert.Parameters.AddWithValue("@PaymentType", request.Payment.PaymentType);
+                    cmdInsert.Parameters.AddWithValue("@PaymentAmount", request.Payment.PaymentAmount);
+                    cmdInsert.Parameters.AddWithValue("@PaymentDateTime", request.Payment.PaymentDateTime);
+                    var getPaymentID = cmdInsert.ExecuteScalar();
+
+                    if (getPaymentID != null)
+                    {
+                        request.Payment.PaymentID = (string)getPaymentID;
+                        insertNewRequest(request);
+                        generateQRcode(request);
+                        Response.Write("<script>alert('Upload Successful');</script>");
+
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('Upload Failed');</script>");
+                    }
+
+                    /*Close database connection*/
+
+
+                    conTaxi.Close();
                 }
-                else
-                {
-                    Response.Write("<script>alert('Upload Failed');</script>");
+                else {
+
+                    Response.Write("<script>alert('Please fill in email');</script>");
                 }
-
-                /*Close database connection*/
-
-
-                conTaxi.Close();
+                
             }
             catch (Exception ex)
             {

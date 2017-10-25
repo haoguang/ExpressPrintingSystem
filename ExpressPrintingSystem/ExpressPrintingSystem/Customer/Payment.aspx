@@ -134,7 +134,7 @@
      
             </tr>
             <tr>
-                <td class="auto-style1" colspan="2"><asp:TextBox ID="txtEmails" runat="server"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Email is Required!" Text="*" ControlToValidate="txtEmails"></asp:RequiredFieldValidator>&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnGenerate" runat="server" OnClick="btnGenerate_Click" Text="Submit" /></td>
+                <td class="auto-style1" colspan="2"><asp:TextBox ID="txtEmails" runat="server"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnGenerate" runat="server" OnClick="btnGenerate_Click" Text="Submit" /></td>
                 <td class="auto-style1" colspan="2">
                   
            </td>
