@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -87,6 +88,19 @@ namespace ExpressPrintingSystem.Model.Messenging
             SmtpServer.Credentials = new NetworkCredential(user, pass); ;
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
+        }
+
+        public static string populateActivationEmail(string companyName, string activationLink)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Model/Messenging/EmailTemplates/StaffActivationEmail.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{CompanyName}", companyName);
+            body = body.Replace("{ActivationLink}", activationLink);
+
+            return body;
         }
 
 

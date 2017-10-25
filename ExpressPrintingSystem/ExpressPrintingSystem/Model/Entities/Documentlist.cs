@@ -14,6 +14,7 @@ namespace ExpressPrintingSystem.Model.Entities
         private int documentPaperType;
         private int documentQuantity;
         private string documentDescription;
+        private string requestlistID;
 
         public Documentlist(Document document, int sequences, string documentColor, string documentBothSide, int documentPaperType, int documentQuantity, string documentDescription)
         {
@@ -66,6 +67,12 @@ namespace ExpressPrintingSystem.Model.Entities
         {
             get { return documentDescription; }
             set { documentDescription = value;}
+        }
+
+        public string RequestlistID
+        {
+            get { return requestlistID; }
+            set { requestlistID = value; }
         }
 
 

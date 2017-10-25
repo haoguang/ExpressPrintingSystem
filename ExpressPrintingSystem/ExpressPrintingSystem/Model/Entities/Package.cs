@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -110,6 +113,76 @@ namespace ExpressPrintingSystem.Model.Entities
         public void removePackageItem(int index)
         {
             packageItems.RemoveAt(index);
+        }
+
+        public static Package getPackage(string packageID)
+        {
+            DataTable packageResult = null;
+            DataTable itemsResult = null;
+            Package package = null;
+
+            try
+            {
+                using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
+                {
+                    string strSelect = "SELECT * FROM Package WHERE PackageID = @packageID";
+
+                    using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
+                    {
+                        cmdSelect.Parameters.AddWithValue("@packageID", packageID);
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmdSelect))
+                        {
+                            packageResult = new DataTable();
+                            da.Fill(packageResult);
+                        }
+
+                    }
+
+                    if (packageResult != null)
+                    {
+                        itemsResult = null;
+
+                        strSelect = "SELECT i.ItemID, i.ItemName, i.ItemPrice, i.ItemStockQuantity, i.ItemSupplier, p.Quantity FROM Item i, PackageItem p WHERE i.ItemID = p.ItemID AND p.PackageID = @packageID";
+
+                        using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
+                        {
+                            cmdSelect.Parameters.Clear();
+                            cmdSelect.Parameters.AddWithValue("@packageID", packageID);
+
+                            using (SqlDataAdapter da = new SqlDataAdapter(cmdSelect))
+                            {
+                                itemsResult = new DataTable();
+                                da.Fill(itemsResult);
+                            }
+                        }
+
+                        List<PackageItems> packageItems = new List<PackageItems>();
+
+
+                        if (itemsResult != null)
+                        {
+                            for (int j = 0; j < itemsResult.Rows.Count; j++)
+                            {
+                                packageItems.Add(new PackageItems(new Model.Entities.Item((string)itemsResult.Rows[j]["ItemID"], (string)itemsResult.Rows[j]["ItemName"], (decimal)itemsResult.Rows[j]["ItemPrice"],
+                                    (int)itemsResult.Rows[j]["ItemStockQuantity"], (string)itemsResult.Rows[j]["ItemSupplier"]), (int)itemsResult.Rows[j]["Quantity"]));
+                            }
+                            package = new Package((string)packageResult.Rows[0]["PackageID"], (string)packageResult.Rows[0]["PackageName"], (decimal)packageResult.Rows[0]["PackagePrice"], (string)packageResult.Rows[0]["PackageSupport"], (string)packageResult.Rows[0]["PackageType"], (decimal)packageResult.Rows[0]["PrintingPricePerPaper"], packageItems);
+                        }
+                        else
+                        {
+                            package = new Package((string)packageResult.Rows[0]["PackageID"], (string)packageResult.Rows[0]["PackageName"], (decimal)packageResult.Rows[0]["PackagePrice"], (string)packageResult.Rows[0]["PackageSupport"], (string)packageResult.Rows[0]["PackageType"], (decimal)packageResult.Rows[0]["PrintingPricePerPaper"]);
+                        }
+
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return package;
         }
 
         public static readonly List<string> documentType = new List<string>{ ".docx", ".doc", ".pdf", "pptx"};
