@@ -13,6 +13,15 @@ namespace ExpressPrintingSystem.Staff.Owner.Item {
     public partial class ViewItem {
         
         /// <summary>
+        /// hyAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hyAdd;
+        
+        /// <summary>
         /// lblMessage control.
         /// </summary>
         /// <remarks>

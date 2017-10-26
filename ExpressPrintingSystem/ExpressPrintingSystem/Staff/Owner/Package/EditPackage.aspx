@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff/Staff.Master" AutoEventWireup="true" CodeBehind="AddPackage.aspx.cs" Inherits="ExpressPrintingSystem.Staff.Owner.Package.AddPackage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff/Staff.Master" AutoEventWireup="true" CodeBehind="EditPackage.aspx.cs" Inherits="ExpressPrintingSystem.Staff.Owner.Package.EditPackage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
         $.noConflict();
@@ -40,6 +40,10 @@
     <asp:Label ID="lblError" runat="server" ForeColor="Red" Text=""></asp:Label>
     
         <table>
+            <tr>
+                <td><asp:Label ID="lblID" runat="server" Text="Package ID:"></asp:Label></td>
+                <td><asp:Label ID="lblPackageID" runat="server" Text=""></asp:Label></td>
+            </tr>
             <tr>
                 <td><asp:Label ID="lblName" runat="server" Text="Name:"></asp:Label></td>
                 <td><asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
@@ -101,6 +105,6 @@
                 </td>
             </tr>    
         </table>
-            <asp:Button ID="btnSubmit" runat="server" Text="Add Package" OnClick="btnSubmit_Click"/>
+            <asp:Button ID="btnSubmit" runat="server" Text="Edit Package" OnClick="btnSubmit_Click"/>
             <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click"/>
 </asp:Content>

@@ -101,5 +101,10 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                 throw new Exception(ex.ToString());
             }
         }
+
+        public static string getEditPackageUrl(string packageID)
+        {
+            return String.Format("EditPackage.aspx?PackageID={0}", HttpUtility.UrlEncode(ClassHashing.basicEncryption(packageID)));
+        }
     }
 }

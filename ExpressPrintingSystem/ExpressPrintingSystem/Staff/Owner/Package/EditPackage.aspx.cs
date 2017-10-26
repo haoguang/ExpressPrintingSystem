@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpressPrintingSystem.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace ExpressPrintingSystem.Staff.Owner.Package
 {
-    public partial class AddPackage : System.Web.UI.Page
+    public partial class EditPackage : System.Web.UI.Page
     {
         private const int QUANTITY_INDEX = 2; //the column index for txtQuantity
         protected void Page_Load(object sender, EventArgs e)
@@ -19,6 +20,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
             if (!Page.IsPostBack)
             {
                 SetInitialRow();
+                
 
                 ddlType.DataSource = ExpressPrintingSystem.Model.Entities.Package.PACKAGE_TYPE_LIST;
                 ddlType.DataBind();
@@ -27,6 +29,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                 cblSupport.DataBind();
 
                 retrieveItemList();
+                populateDataToControls();
             }
 
             refreshGridView(); //refresh table
@@ -41,7 +44,138 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                 }
 
             }
+        }
 
+        private void populateDataToControls()
+        {
+            if (Request.QueryString["PackageID"] != null)
+            {
+                string packageid = ClassHashing.basicDecryption(Request.QueryString["PackageID"]);
+
+                DataTable packageResult = null;
+                DataTable itemsResult = null;
+
+                try
+                {
+                    using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
+                    {
+                        string strSelect = "SELECT * FROM Package WHERE PackageID = @packageid";
+
+                        using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
+                        {
+                            cmdSelect.Parameters.AddWithValue("@packageid", packageid);
+
+                            using (SqlDataAdapter da = new SqlDataAdapter(cmdSelect))
+                            {
+                                packageResult = new DataTable();
+                                da.Fill(packageResult);
+                            }
+
+                        }
+
+                        if (packageResult != null)
+                        {
+
+                                itemsResult = null;
+
+                                strSelect = "SELECT i.ItemID, i.ItemName, i.ItemPrice, i.ItemStockQuantity, i.ItemSupplier, p.Quantity FROM Item i, PackageItem p WHERE i.ItemID = p.ItemID AND p.PackageID = @packageID";
+
+                                using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
+                                {
+                                    cmdSelect.Parameters.Clear();
+                                    cmdSelect.Parameters.AddWithValue("@packageID", packageid);
+
+                                    using (SqlDataAdapter da = new SqlDataAdapter(cmdSelect))
+                                    {
+                                        itemsResult = new DataTable();
+                                        da.Fill(itemsResult);
+                                    }
+                                }
+                            Model.Entities.Package package;
+                                List<PackageItems> packageItems = new List<PackageItems>();
+
+                            if (itemsResult != null)
+                            {
+                                for (int j = 0; j < itemsResult.Rows.Count; j++)
+                                {
+                                    packageItems.Add(new PackageItems(new Model.Entities.Item((string)itemsResult.Rows[j]["ItemID"], (string)itemsResult.Rows[j]["ItemName"], (decimal)itemsResult.Rows[j]["ItemPrice"],
+                                        (int)itemsResult.Rows[j]["ItemStockQuantity"], (string)itemsResult.Rows[j]["ItemSupplier"]), (int)itemsResult.Rows[j]["Quantity"]));
+                                }
+
+                                package = new Model.Entities.Package((string)packageResult.Rows[0]["PackageID"], (string)packageResult.Rows[0]["PackageName"], (decimal)packageResult.Rows[0]["PackagePrice"], (string)packageResult.Rows[0]["PackageSupport"], (string)packageResult.Rows[0]["PackageType"], (decimal)packageResult.Rows[0]["PrintingPricePerPaper"], packageItems);
+                                }
+                                else
+                                {
+                                    package = new Model.Entities.Package((string)packageResult.Rows[0]["PackageID"], (string)packageResult.Rows[0]["PackageName"], (decimal)packageResult.Rows[0]["PackagePrice"], (string)packageResult.Rows[0]["PackageSupport"], (string)packageResult.Rows[0]["PackageType"], (decimal)packageResult.Rows[0]["PrintingPricePerPaper"]);
+                                }
+
+                            lblPackageID.Text = package.PackageID;
+                            txtName.Text = package.PackageName;
+                            txtPrice.Text = String.Format("{0:0.00}", package.PackagePrice);
+                            ddlType.SelectedValue = package.PackageType;
+
+                            if (ddlType.SelectedValue.Equals(Model.Entities.Package.TYPE_PRINTING))
+                            {
+                                string[] documentSupport = package.PackageSupport.Split(';');
+
+                                foreach(string document in documentSupport)
+                                {
+                                    for(int i=0; i<cblSupport.Items.Count; i++)
+                                    {
+                                        if (cblSupport.Items[i].ToString().Equals(document))
+                                        {
+                                            cblSupport.Items[i].Selected = true;
+                                        }
+                                    }
+                                }
+
+                                txtPricePerPaper.Text = String.Format("{0:0.00}", package.PrintingPrice);
+                            }
+
+                            DataTable dtCurrentTable = (DataTable)ViewState["CurrentTable"];
+                            DataRow drCurrentRow = null;
+
+                            foreach(PackageItems packageitem in package.PackageItems)
+                            {
+                                //add new row
+                                if (dtCurrentTable.Rows[0]["itemName"].Equals("N/A"))
+                                {
+
+                                    dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["itemID"] = packageitem.Item.ItemID;
+                                    dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["itemName"] = packageitem.Item.ItemName;
+                                    dtCurrentTable.Rows[dtCurrentTable.Rows.Count - 1]["Column1"] = packageitem.Quantity;
+
+                                }
+                                else
+                                {
+                                    drCurrentRow = dtCurrentTable.NewRow();
+                                    drCurrentRow["itemID"] = packageitem.Item.ItemID;
+                                    drCurrentRow["itemName"] = packageitem.Item.ItemName;
+                                    drCurrentRow["Column1"] = packageitem.Quantity;
+                                    dtCurrentTable.Rows.Add(drCurrentRow);
+                                }
+                            }
+                            ViewState["CurrentTable"] = dtCurrentTable;
+
+                            gvPackageItem.DataSource = dtCurrentTable;
+                            gvPackageItem.DataBind();
+                            SetPreviousData();
+
+                        }
+
+                        
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.ToString());
+                }
+            }
+            else
+            {
+                lblError.Text = "Invalid PackageID. Please reselect your package to edit.";
+            }
         }
 
         private bool validateItemPackage(string itemID, DataTable dt)
@@ -323,8 +457,8 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            string returnUrl = Request.QueryString["ReturnUrl"] as string;
-            Response.Redirect(returnUrl);
+
+            Response.Redirect("ViewPackage.aspx");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -333,6 +467,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
             try
             {
+                string packageID = lblPackageID.Text;
                 SqlConnection conPrint;
                 string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
                 conPrint = new SqlConnection(connStr);
@@ -341,11 +476,12 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                 string strInsert;
                 SqlCommand cmdInsert;
 
-                strInsert = "Insert Into Package (PackageName, PackagePrice, PackageSupport, PackageType, PrintingPricePerPaper) Values (@packageName, @packagePrice, @packageSupport, @packageType, @printingPricePerPaper);SELECT MAX(PackageID) from Package where PackageName=@PackageName and PackageType=@packageType ";
+                strInsert = "UPDATE Package SET PackageName=@packageName, PackagePrice=@packagePrice, PackageSupport=@packageSupport, PackageType=@packageType, PrintingPricePerPaper=@printingPricePerPaper WHERE PackageID = @packageID";
 
 
                 cmdInsert = new SqlCommand(strInsert, conPrint);
 
+                cmdInsert.Parameters.AddWithValue("@packageID", packageID);
                 cmdInsert.Parameters.AddWithValue("@packageName", txtName.Text);
                 cmdInsert.Parameters.AddWithValue("@packagePrice", txtPrice.Text);
 
@@ -370,15 +506,19 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                 cmdInsert.Parameters.AddWithValue("@packageSupport", packageSupport);
                 cmdInsert.Parameters.AddWithValue("@printingPricePerPaper", printingPaperPrice);
 
-                var packageID = cmdInsert.ExecuteScalar();
+                cmdInsert.ExecuteScalar();
 
                 if (packageID != null && ViewState["CurrentTable"] != null)
                 {
                     DataTable dt = (DataTable)ViewState["CurrentTable"];
 
+                    string strDeleteRows = "DELETE FROM PackageItem WHERE PackageID = @packageID";
+                    SqlCommand cmdDelete = new SqlCommand(strDeleteRows, conPrint);
+                    cmdDelete.Parameters.AddWithValue("@packageID", packageID);
+                    cmdDelete.ExecuteNonQuery();
+
                     string strInsertPackageItem = "Insert into PackageItem (PackageID, ItemID, Quantity) values (@packageID, @itemID, @quantity)";
                     SqlCommand cmdPackageItemInsert = new SqlCommand(strInsertPackageItem, conPrint);
-
 
                     if (!dt.Rows[0]["itemName"].Equals("N/A"))
                     {
@@ -390,22 +530,18 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                             cmdPackageItemInsert.Parameters.AddWithValue("@quantity", Convert.ToInt32((string)dt.Rows[i]["Column1"]));
                             cmdPackageItemInsert.ExecuteNonQuery();
                         }
-
                     }
-
-                    
+                        
                 }
 
                 conPrint.Close();
 
-                string returnUrl = Request.QueryString["ReturnUrl"] as string;
-                Response.Redirect(returnUrl);
+                Response.Redirect("ViewPackage.aspx");
             }
             catch (SqlException ex)
             {
                 Response.Write("<script LANGUAGE='JavaScript' >alert('Something gone wrong with the database. Please contact the administrator for the problem.')</script>");
             }
-
         }
     }
 }

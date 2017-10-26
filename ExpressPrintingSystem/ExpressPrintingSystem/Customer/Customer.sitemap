@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap>
   <siteMapNode url="" title="Customer"  description="">
-    <siteMapNode url="" title="My Request"  description="">
-      <siteMapNode url="" title="Pending"  description="" />
-      <siteMapNode url="" title="Completed"  description="" />
+    <siteMapNode url="~/Customer/ChooseCompany.aspx" title="Printing Shop"  description="choose company">
     </siteMapNode>
-    <siteMapNode url="" title="--title"  description="" />
-    <siteMapNode url="" title="you wanted--"  description="" />
   </siteMapNode>
 </siteMap>

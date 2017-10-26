@@ -156,8 +156,11 @@ namespace ExpressPrintingSystem.Customer
                     }
                     else
                     {
-                        //no return URL specified so lets kick him to home page
-                        Response.Redirect("masterPageTest.aspx");
+                        if (toggleOption.Equals("Staff"))
+                            Response.Redirect("~/Staff/Printing/viewPrintingRequest.aspx");
+                        else
+                            Response.Redirect("~/Customer/ChooseCompany.aspx");
+
                     }
                 }
                 else if (UserVerification.isActivatedUser(username, toggleOption))

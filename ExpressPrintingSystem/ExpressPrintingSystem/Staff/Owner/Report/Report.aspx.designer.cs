@@ -7,63 +7,63 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExpressPrintingSystem.Staff.Owner.StaffManagement {
+namespace ExpressPrintingSystem.Staff.Owner.Report {
     
     
-    public partial class manageStaff {
+    public partial class Report {
         
         /// <summary>
-        /// hyAdd control.
+        /// lblReportName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hyAdd;
+        protected global::System.Web.UI.WebControls.Label lblReportName;
         
         /// <summary>
-        /// lblMessage control.
+        /// ddlReportName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.DropDownList ddlReportName;
         
         /// <summary>
-        /// lblSearch control.
+        /// periodRow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSearch;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow periodRow;
         
         /// <summary>
-        /// txtSearch control.
+        /// lblPeriod control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+        protected global::System.Web.UI.WebControls.Label lblPeriod;
         
         /// <summary>
-        /// gvStaffList control.
+        /// rblPeriod control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvStaffList;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblPeriod;
         
         /// <summary>
-        /// sdsStaffList control.
+        /// dateControl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sdsStaffList;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow dateControl;
     }
 }

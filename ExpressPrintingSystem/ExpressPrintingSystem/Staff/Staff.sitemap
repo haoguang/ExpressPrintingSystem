@@ -1,10 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <siteMap>
-    <siteMapNode url="" title="staff"  description="">
+    <siteMapNode url="" title=""  description="">
       <siteMapNode url="" title="Printing Request"  description="">
-        <siteMapNode url="" title="Pending"  description="" />
-        <siteMapNode url="" title="Completed"  description="" />
+        <siteMapNode url="~/Staff/Printing/viewPrintingRequest.aspx" title="View Request"  description="View Printing Request" />      
+      </siteMapNode>
+      <siteMapNode url="" title="Admin"  description="">
+        <siteMapNode url="~/Staff/Owner/Package/ViewPackage.aspx" title="Package"  description="View Package" />
+        <siteMapNode url="~/Staff/Owner/Item/ViewItem.aspx" title="Item"  description="View Item" />
+        <siteMapNode url="~/Staff/Owner/StaffManagement/manageStaff.aspx" title="Staff"  description="View Item" />
+        <siteMapNode url="" title="Report"  description="View Item" />
       </siteMapNode>
     </siteMapNode>
 </siteMap>
