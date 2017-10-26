@@ -169,7 +169,7 @@ namespace ExpressPrintingSystem.Customer
                 }
                 else
                 {
-                    txtname.Text = "Login Failed";//temporary, for testing purpose only
+                    Response.Write("<script LANGUAGE='JavaScript' >alert('Login Failed')</script>");
                 }
             }
             catch(Exception ex)

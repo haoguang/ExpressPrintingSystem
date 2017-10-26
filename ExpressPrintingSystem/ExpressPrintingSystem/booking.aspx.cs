@@ -35,6 +35,7 @@ namespace ExpressPrintingSystem.Customer
                     User user = ExpressPrintingSystem.Model.Entities.User.toUserObject(userString);
                     txtcustomerID.Text = user.ID;
                     ViewState["UserID"] = ClassHashing.basicEncryption(user.ID);
+
                 }
             }
         }
@@ -45,7 +46,7 @@ namespace ExpressPrintingSystem.Customer
         {
 
             Request request = PopulateDataToObject();
-            List<Documentlist> zxcdocumentList = createDocumentList();
+         
 
             Session["request"] = request;
             Response.Redirect("~/Customer/Payment.aspx");
@@ -75,9 +76,9 @@ namespace ExpressPrintingSystem.Customer
                         //upload to backblaze
                         String contentType = hpf.ContentType; //Type of file i.e. image/jpeg, audio/mpeg...
                         String getPath = Path.GetFileName(hpf.FileName);
-                        hpf.SaveAs(Server.MapPath("~/File/") + getPath);//save to server side file
+                        hpf.SaveAs(Server.MapPath("'~/File/'") + getPath);//save to server side file
                         String fileName = hpf.FileName; //Desired name for the file
-                        String filePath = Server.MapPath("~/File/") + getPath;//File path of desired upload
+                        String filePath = Server.MapPath("'~/File/'") + getPath;//File path of desired upload
                         int size = FileUpload1.PostedFile.ContentLength;
 
 
@@ -146,12 +147,26 @@ namespace ExpressPrintingSystem.Customer
             string companyID = Request.QueryString["CompanyID"];
             string CustomerID = ClassHashing.basicDecryption((string)ViewState["UserID"]);
             DateTime currentDate = DateTime.Now;
-            string dateString = DropDownList4.SelectedItem + "-" + DropDownList5.SelectedItem +"-" + DropDownList6.SelectedItem;
+            string dateString = DropDownList4.SelectedItem + "-" + DropDownList5.SelectedItem + "-" + DropDownList6.SelectedItem;
 
             string timer = DropDownList1.SelectedItem + ":" + DropDownList2.SelectedItem + " " + DropDownList3.SelectedItem;
 
             DateTime DueDate = Convert.ToDateTime(dateString + " " + timer);
+
+            if (DueDate <= currentDate)
+            {
+
+                Response.Write("<script>alert('please select the date and time is more than current Date');</script>");
+
+
+            }
+            
+            
+       
             Request request = new Model.Entities.Request(currentDate, DueDate, null, companyID, CustomerID, requestlist);
+                
+            
+
             return request;
 
         }
