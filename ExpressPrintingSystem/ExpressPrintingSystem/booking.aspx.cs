@@ -76,9 +76,9 @@ namespace ExpressPrintingSystem.Customer
                         //upload to backblaze
                         String contentType = hpf.ContentType; //Type of file i.e. image/jpeg, audio/mpeg...
                         String getPath = Path.GetFileName(hpf.FileName);
-                        hpf.SaveAs(Server.MapPath("~/File/") + getPath);//save to server side file
+                        hpf.SaveAs(Server.MapPath("'~/File/'") + getPath);//save to server side file
                         String fileName = hpf.FileName; //Desired name for the file
-                        String filePath = Server.MapPath("~/File/") + getPath;//File path of desired upload
+                        String filePath = Server.MapPath("'~/File/'") + getPath;//File path of desired upload
                         int size = FileUpload1.PostedFile.ContentLength;
 
 

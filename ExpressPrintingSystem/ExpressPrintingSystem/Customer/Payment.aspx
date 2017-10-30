@@ -173,7 +173,7 @@
                 <td colspan="4" class="auto-style1">
                     <br />
                     Total Payment<br />
-                    RM <asp:TextBox ID="txtpaymentTotal" runat="server" Enabled="False">100</asp:TextBox>
+                    RM<asp:TextBox ID="txtpaymentTotal" runat="server" Enabled="False">100</asp:TextBox>
                 </td>
                 <td class="auto-style1"></td>
                 <td class="auto-style1"></td>
