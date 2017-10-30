@@ -18,7 +18,7 @@ namespace ExpressPrintingSystem.Customer
         {
             string companyID = DropDownList1.SelectedValue;
 
-            Response.Redirect("Customer/booking.aspx?CompanyID=" + companyID);
+            Response.Redirect("~/booking.aspx?CompanyID=" + companyID);
             // Response.Redirect("PaymentForm.aspx?PickupAdd=" + txtPUA.Text + "&Destination=" + txtDA.Text + "&ReservationID=" + lblID.Text + "&taxiID=" + lblTaxi.Text);
 
         }

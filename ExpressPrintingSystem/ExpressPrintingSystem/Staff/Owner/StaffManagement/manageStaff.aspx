@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphStaffContent" runat="server">
-    <h1>Manage Staff</h1>
+    <h1>Manage Staff <asp:HyperLink ID="hyAdd" ToolTip="Register Staff" ImageUrl="~/Images/add-user.png" NavigateUrl="~/Staff/Owner/StaffManagement/registerStaff.aspx" runat="server"></asp:HyperLink></h1>
      <p><asp:Label ID="lblMessage" runat="server" ForeColor="Red"  Text=""></asp:Label></p>
      <p><asp:Label ID="lblSearch" runat="server" Text="Search :"></asp:Label><asp:TextBox ID="txtSearch" TextMode="Search" AutoPostBack="true" ToolTip="Press Enter after finish typing keywords" runat="server" Width="144px"></asp:TextBox></p>
      <asp:GridView ID="gvStaffList" runat="server" ShowHeaderWhenEmpty="true" AutoGenerateColumns="False" DataKeyNames="StaffID" DataSourceID="sdsStaffList" AllowSorting="True" OnRowCommand="gvStaffList_RowCommand">

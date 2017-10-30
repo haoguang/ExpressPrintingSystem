@@ -144,13 +144,13 @@
                 </tr>
                 <tr>
                     <td class="auto-style1">
-                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="Button1_Click" />
+                        <asp:Button ID="btnEdit" runat="server" OnClick="Button2_Click" Text="Edit" 
+                            />
                     </td>
                     <td class="auto-style2">
                         &nbsp;</td>
                     <td>
-                        <asp:Button ID="btnEdit" runat="server" OnClick="Button2_Click" Text="Edit" 
-                            />
+                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="Button1_Click" />
                     </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>

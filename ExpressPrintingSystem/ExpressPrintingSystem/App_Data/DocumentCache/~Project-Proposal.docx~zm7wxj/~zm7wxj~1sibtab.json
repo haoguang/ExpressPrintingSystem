@@ -1,0 +1,27 @@
+{
+  "CacheSourceKey": "zm7wxj",
+  "CachePdfKey": "zm7wxj/zm7wxj-1dpzcbb.pdf",
+  "CacheXpzKey": "zm7wxj/zm7wxj-1sibtab.xpz",
+  "CacheInfoKey": "zm7wxj/zm7wxj-1sibtab.json",
+  "CacheCopyKey": "zm7wxj/zm7wxj.docx",
+  "Document": null,
+  "DocumentHandlerType": null,
+  "DocumentFileName": "Project-Proposal.docx",
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": "Project-Proposal.docx",
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "zm7wxj",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

@@ -83,7 +83,7 @@
         <div>
             <table style="width: 100%;">
                 <tr>
-                    <td colspan="3">Edit Customer Detail&nbsp;<br />
+                    <td colspan="4">Edit Customer Detail&nbsp;<br />
                     <hr/></td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -93,7 +93,7 @@
                         <br />
                         <br />
                     </td>
-                    <td class="auto-style2">
+                    <td class="auto-style2" colspan="2">
                         <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
                         <br />
                     </td>
@@ -108,7 +108,7 @@
                         <br />
                         <br />
                     </td>
-                    <td class="auto-style2">
+                    <td class="auto-style2" colspan="2">
                         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                         <br />
                     </td>
@@ -121,7 +121,7 @@
                 <tr>
                     <td>Customer Date of birth&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
                         </td>
-                    <td class="auto-style2">
+                    <td class="auto-style2" colspan="2">
                         <asp:Calendar ID="CldDate" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="350px">
                             <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
                             <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
@@ -141,7 +141,7 @@
                         <br />
                         <br />
                     </td>
-                    <td class="auto-style2"> <asp:TextBox ID="txtPhoNo" runat="server" MaxLength="12"></asp:TextBox>
+                    <td class="auto-style2" colspan="2"> <asp:TextBox ID="txtPhoNo" runat="server" MaxLength="12"></asp:TextBox>
                         <br />
                     </td>
                     <td> 
@@ -154,7 +154,7 @@
                     <td class="auto-style3">Customer Contact Method&nbsp;&nbsp; :
                         <br />
                     </td>
-                    <td class="auto-style4">
+                    <td class="auto-style4" colspan="2">
                         <br />
                         <asp:RadioButtonList ID="rbtContMet" runat="server" RepeatDirection="Horizontal">
                             <asp:ListItem>Email</asp:ListItem>
@@ -167,7 +167,7 @@
                     <td class="auto-style3"></td>
                 </tr>
                 <tr>
-                    <td colspan="3">
+                    <td colspan="4">
                         <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
                     </td>
                     <td>&nbsp;</td>
@@ -175,11 +175,16 @@
                 </tr>
                 <tr>
                     <td class="auto-style1">
-                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
-                    </td>
-                    <td colspan="2">
+                        &nbsp;</td>
+                    <td>
                         <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                     </td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+                    </td>
+                    <td>
+                        &nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>

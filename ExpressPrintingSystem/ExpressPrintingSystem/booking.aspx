@@ -283,10 +283,6 @@ body {
       
       
 
-        .auto-style1 {
-            width: 35px;
-            height: 31px;
-        }
         #datetimepicker1 {
              padding: 15px;
 
@@ -330,7 +326,7 @@ body {
         <br/>
         <br/>
         <br/>
-        <asp:Label ID="lblUploadDocument" runat="server" Text="Upload Document"></asp:Label>
+        <asp:Label ID="lblUploadDocument" runat="server" Text="Upload Document"></asp:Label><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Upload File is required!" ControlToValidate="FileUpload1" Visible="True" Text="*" ForeColor="Red">*</asp:RequiredFieldValidator>
         <asp:FileUpload ID="FileUpload1" runat="server" AllowMultiple="True" />
         <asp:Label ID="Label7" runat="server" Text="*Please Rename The File name, if the file name contain space!!!" ForeColor="Red"></asp:Label>
         <asp:Label ID="lblPage" runat="server" Text="page Number" Visible="False"></asp:Label>
@@ -346,32 +342,32 @@ body {
         <hr/>
 		<h3 class="fs-subtitle"></h3>
         <br />
-        <asp:Label ID="Label2" runat="server" Text="Document Color" Font-Underline="True"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Text="Document Color" Font-Underline="True"></asp:Label><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Document color is required!" ControlToValidate="rbtDocumentColor" Text="*" ForeColor="Red">*</asp:RequiredFieldValidator>
         <asp:RadioButtonList ID="rbtDocumentColor" runat="server" RepeatDirection="Horizontal">
              <asp:ListItem>Color page</asp:ListItem>
              <asp:ListItem>Non- Color</asp:ListItem>
         </asp:RadioButtonList>
         <br />
-        <asp:Label ID="Label3" runat="server" Text="Both Side" Font-Underline="True"></asp:Label>
+        <asp:Label ID="Label3" runat="server" Text="Document Side" Font-Underline="True"></asp:Label><asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Document Side is required" ControlToValidate="rbtDocumentSide" Text="*" ForeColor="Red">*</asp:RequiredFieldValidator>
         <asp:RadioButtonList ID="rbtDocumentSide" runat="server" RepeatDirection="Horizontal">
             <asp:ListItem>Single Side</asp:ListItem>
             <asp:ListItem>Double Side</asp:ListItem>
         </asp:RadioButtonList>
         <br/>
        
-        <asp:Label ID="Label4" runat="server" Text="Paper Type" Font-Underline="True"></asp:Label>
+        <asp:Label ID="Label4" runat="server" Text="Paper Type" Font-Underline="True"></asp:Label><asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Paper Type is required!" ControlToValidate="ddlPaperType" Text="*" ForeColor="Red">*</asp:RequiredFieldValidator>
         <asp:DropDownList ID="ddlPaperType" runat="server">
-            <asp:ListItem>70gsm</asp:ListItem>
-            <asp:ListItem>80gsm</asp:ListItem>
-            <asp:ListItem>90gsm</asp:ListItem>
-            <asp:ListItem>100gsm</asp:ListItem>
+            <asp:ListItem Value="70">70gsm</asp:ListItem>
+            <asp:ListItem Value="80">80gsm</asp:ListItem>
+            <asp:ListItem Value="90">90gsm</asp:ListItem>
+            <asp:ListItem Value="100">100gsm</asp:ListItem>
         </asp:DropDownList>
         <br />
         <br/>
-        <asp:Label ID="Label5" runat="server" Text="Document Quantity"></asp:Label>
+        <asp:Label ID="Label5" runat="server" Text="Document Quantity"></asp:Label><asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Document Quantity is required!" ControlToValidate="txtDocumentQuantity" ForeColor="Red">*</asp:RequiredFieldValidator><asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Write number only!" ValidationExpression="^[0-9]*$" ControlToValidate="txtDocumentQuantity" Text="*"></asp:RegularExpressionValidator>
         <asp:TextBox ID="txtDocumentQuantity" runat="server" placeholder="According of set.write number only"></asp:TextBox>
         <br/>
-        <asp:Label ID="Label6" runat="server" Text="Document Description"></asp:Label>
+        <asp:Label ID="Label6" runat="server" Text="Document Description"></asp:Label><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Document Description is required!" ControlToValidate="txtDocumentDescription" Text="*" ForeColor="Red">*</asp:RequiredFieldValidator>
         <asp:TextBox ID="txtDocumentDescription" runat="server"></asp:TextBox>
         <br/>
        
@@ -387,7 +383,7 @@ body {
         <hr/>
 		<h3 class="fs-subtitle"></h3>
       
-    <input id="datetimepicker1" type="text" />
+   
 
          <br />
         <asp:Label ID="Label8" runat="server" Text="Package" Font-Underline="True"></asp:Label>
@@ -404,15 +400,150 @@ body {
         </asp:SqlDataSource>
         <br />
         <br />
-        <asp:Label ID="Label1" runat="server" Text="Request Type" Font-Underline="True"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Request Type" Font-Underline="True"></asp:Label><asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Request Type is required!" ControlToValidate="rbtRequestType" Text="*" ForeColor="Red">*</asp:RequiredFieldValidator>
         <asp:RadioButtonList ID="rbtRequestType" runat="server" RepeatDirection="Horizontal">
             <asp:ListItem>Urgent</asp:ListItem>
             <asp:ListItem>Normal</asp:ListItem>
         </asp:RadioButtonList>
         <br/>
-        <asp:TextBox ID="txtCalender" runat="server"></asp:TextBox>
-       
-               
+        <asp:Label ID="Label10" runat="server" Text="Due Date" Font-Underline="True"></asp:Label>
+        <br/>
+        <br/>
+        Date : <asp:DropDownList ID="DropDownList4" runat="server">
+            <asp:ListItem>1</asp:ListItem>
+            <asp:ListItem>2</asp:ListItem>
+            <asp:ListItem>3</asp:ListItem>
+            <asp:ListItem>4</asp:ListItem>
+            <asp:ListItem>5</asp:ListItem>
+            <asp:ListItem>6</asp:ListItem>
+            <asp:ListItem>7</asp:ListItem>
+            <asp:ListItem>8</asp:ListItem>
+            <asp:ListItem>9</asp:ListItem>
+            <asp:ListItem>10</asp:ListItem>
+            <asp:ListItem>11</asp:ListItem>
+            <asp:ListItem>12</asp:ListItem>
+            <asp:ListItem>13</asp:ListItem>
+            <asp:ListItem>14</asp:ListItem>
+            <asp:ListItem>15</asp:ListItem>
+            <asp:ListItem>16</asp:ListItem>
+            <asp:ListItem>17</asp:ListItem>
+            <asp:ListItem>18</asp:ListItem>
+            <asp:ListItem>19</asp:ListItem>
+            <asp:ListItem>20</asp:ListItem>
+            <asp:ListItem>21</asp:ListItem>
+            <asp:ListItem>22</asp:ListItem>
+            <asp:ListItem>23</asp:ListItem>
+            <asp:ListItem>24</asp:ListItem>
+            <asp:ListItem>25</asp:ListItem>
+            <asp:ListItem>26</asp:ListItem>
+            <asp:ListItem>27</asp:ListItem>
+            <asp:ListItem>28</asp:ListItem>
+            <asp:ListItem>29</asp:ListItem>
+            <asp:ListItem>30</asp:ListItem>
+            <asp:ListItem>31</asp:ListItem>
+        </asp:DropDownList>
+        <asp:DropDownList ID="DropDownList5" runat="server">
+            <asp:ListItem>1</asp:ListItem>
+            <asp:ListItem>2</asp:ListItem>
+            <asp:ListItem>3</asp:ListItem>
+            <asp:ListItem>4</asp:ListItem>
+            <asp:ListItem>5</asp:ListItem>
+            <asp:ListItem>6</asp:ListItem>
+            <asp:ListItem>7</asp:ListItem>
+            <asp:ListItem>8</asp:ListItem>
+            <asp:ListItem>9</asp:ListItem>
+            <asp:ListItem>10</asp:ListItem>
+            <asp:ListItem>11</asp:ListItem>
+            <asp:ListItem>12</asp:ListItem>
+        </asp:DropDownList>
+        <asp:DropDownList ID="DropDownList6" runat="server">
+            <asp:ListItem>2017</asp:ListItem>
+            <asp:ListItem>2018</asp:ListItem>
+        </asp:DropDownList>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Time : <asp:DropDownList ID="DropDownList1" runat="server">
+            <asp:ListItem>1</asp:ListItem>
+            <asp:ListItem>2</asp:ListItem>
+            <asp:ListItem>3</asp:ListItem>
+            <asp:ListItem>4</asp:ListItem>
+            <asp:ListItem>5</asp:ListItem>
+            <asp:ListItem>6</asp:ListItem>
+            <asp:ListItem>7</asp:ListItem>
+            <asp:ListItem>8</asp:ListItem>
+            <asp:ListItem>9</asp:ListItem>
+            <asp:ListItem>10</asp:ListItem>
+            <asp:ListItem>11</asp:ListItem>
+            <asp:ListItem>12</asp:ListItem>
+        </asp:DropDownList>
+        <asp:DropDownList ID="DropDownList2" runat="server">
+            <asp:ListItem>1</asp:ListItem>
+            <asp:ListItem>2</asp:ListItem>
+            <asp:ListItem>3</asp:ListItem>
+            <asp:ListItem>4</asp:ListItem>
+            <asp:ListItem>5</asp:ListItem>
+            <asp:ListItem>6</asp:ListItem>
+            <asp:ListItem>7</asp:ListItem>
+            <asp:ListItem>8</asp:ListItem>
+            <asp:ListItem>9</asp:ListItem>
+            <asp:ListItem>10</asp:ListItem>
+            <asp:ListItem>11</asp:ListItem>
+            <asp:ListItem>12</asp:ListItem>
+            <asp:ListItem>13</asp:ListItem>
+            <asp:ListItem>14</asp:ListItem>
+            <asp:ListItem>15</asp:ListItem>
+            <asp:ListItem>16</asp:ListItem>
+            <asp:ListItem>17</asp:ListItem>
+            <asp:ListItem>18</asp:ListItem>
+            <asp:ListItem>19</asp:ListItem>
+            <asp:ListItem>20</asp:ListItem>
+            <asp:ListItem>21</asp:ListItem>
+            <asp:ListItem>22</asp:ListItem>
+            <asp:ListItem>23</asp:ListItem>
+            <asp:ListItem>24</asp:ListItem>
+            <asp:ListItem>25</asp:ListItem>
+            <asp:ListItem>26</asp:ListItem>
+            <asp:ListItem>27</asp:ListItem>
+            <asp:ListItem>28</asp:ListItem>
+            <asp:ListItem>29</asp:ListItem>
+            <asp:ListItem>30</asp:ListItem>
+            <asp:ListItem>31</asp:ListItem>
+            <asp:ListItem>32</asp:ListItem>
+            <asp:ListItem>33</asp:ListItem>
+            <asp:ListItem>34</asp:ListItem>
+            <asp:ListItem>35</asp:ListItem>
+            <asp:ListItem>36</asp:ListItem>
+            <asp:ListItem>37</asp:ListItem>
+            <asp:ListItem>38</asp:ListItem>
+            <asp:ListItem>39</asp:ListItem>
+            <asp:ListItem>40</asp:ListItem>
+            <asp:ListItem>41</asp:ListItem>
+            <asp:ListItem>42</asp:ListItem>
+            <asp:ListItem>43</asp:ListItem>
+            <asp:ListItem>44</asp:ListItem>
+            <asp:ListItem>45</asp:ListItem>
+            <asp:ListItem>46</asp:ListItem>
+            <asp:ListItem>47</asp:ListItem>
+            <asp:ListItem>48</asp:ListItem>
+            <asp:ListItem>49</asp:ListItem>
+            <asp:ListItem>50</asp:ListItem>
+            <asp:ListItem>51</asp:ListItem>
+            <asp:ListItem>52</asp:ListItem>
+            <asp:ListItem>53</asp:ListItem>
+            <asp:ListItem>54</asp:ListItem>
+            <asp:ListItem>55</asp:ListItem>
+            <asp:ListItem>56</asp:ListItem>
+            <asp:ListItem>57</asp:ListItem>
+            <asp:ListItem>58</asp:ListItem>
+            <asp:ListItem>59</asp:ListItem>
+        </asp:DropDownList>
+        <asp:DropDownList ID="DropDownList3" runat="server">
+            <asp:ListItem>AM</asp:ListItem>
+            <asp:ListItem>PM</asp:ListItem>
+        </asp:DropDownList>
+        <br/>
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
+        <br/>
+        <br/>      
 		<input type="button" name="previous" class="previous action-button" value="Previous"/>
         <asp:Button ID="Button1" runat="server" Text="Submit" class="submit action-button" OnClick="Button1_Click"/>
 		

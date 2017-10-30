@@ -204,6 +204,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                     dt.Rows[rowIndex]["itemID"] = 0;
                     dt.Rows[rowIndex]["itemName"] = "N/A";
                     dt.Rows[rowIndex]["Column1"] = string.Empty;
+                    lblEstimatedPrice.Text = "0";
                 }
                 ViewState["CurrentTable"] = dt;
                 gvPackageItem.DataSource = dt;
@@ -378,14 +379,21 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                     string strInsertPackageItem = "Insert into PackageItem (PackageID, ItemID, Quantity) values (@packageID, @itemID, @quantity)";
                     SqlCommand cmdPackageItemInsert = new SqlCommand(strInsertPackageItem, conPrint);
 
-                    for (int i = 0; i < dt.Rows.Count; i++)
+
+                    if (!dt.Rows[0]["itemName"].Equals("N/A"))
                     {
-                        cmdPackageItemInsert.Parameters.Clear();
-                        cmdPackageItemInsert.Parameters.AddWithValue("@packageID", packageID);
-                        cmdPackageItemInsert.Parameters.AddWithValue("@itemID", (string)dt.Rows[i]["itemID"]);
-                        cmdPackageItemInsert.Parameters.AddWithValue("@quantity", Convert.ToInt32((string)dt.Rows[i]["Column1"]));
-                        cmdPackageItemInsert.ExecuteNonQuery();
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            cmdPackageItemInsert.Parameters.Clear();
+                            cmdPackageItemInsert.Parameters.AddWithValue("@packageID", packageID);
+                            cmdPackageItemInsert.Parameters.AddWithValue("@itemID", (string)dt.Rows[i]["itemID"]);
+                            cmdPackageItemInsert.Parameters.AddWithValue("@quantity", Convert.ToInt32((string)dt.Rows[i]["Column1"]));
+                            cmdPackageItemInsert.ExecuteNonQuery();
+                        }
+
                     }
+
+                    
                 }
 
                 conPrint.Close();

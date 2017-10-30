@@ -67,10 +67,10 @@
 <body>
     <form id="form1" runat="server">
         <fieldset>
-    <div>
+    <div style="text-align:center;">
 
-    <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thanks for using</h1>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <h1>Thanks for using</h1>
+    
     <asp:Button ID="btnBack" runat="server" Text="Back To Home Page" OnClick="btnBack_Click" />
     </div>
             </fieldset>

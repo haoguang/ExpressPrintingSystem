@@ -59,6 +59,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\DocumentUltimate\Bin\GleamTech.DocumentUltimate.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -69,10 +77,33 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QRCoder">
+      <HintPath>C:\Users\haoguang\Desktop\New folder (8)\QRCoder.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -96,22 +127,32 @@
     <Content Include="booking.aspx" />
     <Content Include="CompanySignUp.aspx" />
     <Content Include="Customer\ChooseCompany.aspx" />
+    <Content Include="Customer\CreditCard.aspx" />
     <Content Include="Customer\CustomerDetail.aspx" />
+    <Content Include="Customer\CustomerFile\FileManagement.aspx" />
+    <Content Include="Customer\CustomerFile\ViewFile.aspx" />
     <Content Include="Customer\EditCustomerDetail.aspx" />
     <Content Include="Customer\ThankYouPage.aspx" />
     <Content Include="ForgetPassword.aspx" />
+    <Content Include="Images\add-user.png" />
+    <Content Include="Images\add.png" />
     <Content Include="Images\arrow-down.png" />
     <Content Include="GenerateReport.aspx" />
     <Content Include="Images\Calancer.PNG" />
-    <Content Include="Images\check-mark.png" />
+    <Content Include="Images\Collected.png" />
+    <Content Include="Images\edit.png" />
+    <Content Include="Images\logo\cash.PNG" />
+    <Content Include="Images\logo\creditcard.PNG" />
     <Content Include="Images\mastercard.PNG" />
     <Content Include="Images\minus.png" />
     <Content Include="Images\paypal.PNG" />
-    <Content Include="Images\square-outline-red.png" />
-    <Content Include="Images\square-outline-yellow.png" />
+    <Content Include="Images\Pending.png" />
+    <Content Include="Images\Printed.png" />
+    <Content Include="Images\Completed.png" />
     <Content Include="Images\view.png" />
     <Content Include="Images\visa.PNG" />
     <Content Include="Login.aspx" />
+    <Content Include="Model\Messenging\EmailTemplates\StaffActivationEmail.html" />
     <Content Include="OrderReport.aspx" />
     <Content Include="PendingReport.aspx" />
     <Content Include="resetPassword.aspx" />
@@ -356,10 +397,15 @@
     <Content Include="scripts\bootstrap\js\tooltip.js" />
     <Content Include="scripts\bootstrap\js\transition.js" />
     <Content Include="scripts\bootstrap\package.js" />
+    <None Include="scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="scripts\jquery-1.6.4.js" />
+    <Content Include="scripts\jquery-1.6.4.min.js" />
     <Content Include="scripts\jquery-3.2.1.min.js" />
     <Content Include="scripts\bootstrap\dist\css\jquery.datetimepicker.css" />
     <Content Include="scripts\jquery.datetimepicker.full.js" />
     <Content Include="scripts\jquery.datetimepicker.full.min.js" />
+    <Content Include="scripts\jquery.signalR-2.2.2.js" />
+    <Content Include="scripts\jquery.signalR-2.2.2.min.js" />
     <Content Include="scripts\moment.js" />
     <Content Include="SignUp.aspx" />
     <Content Include="Customer\Payment.aspx" />
@@ -379,7 +425,10 @@
     <Content Include="Staff\Owner\Item\EditItem.aspx" />
     <Content Include="Staff\Owner\Item\ViewItem.aspx" />
     <Content Include="Staff\Owner\Package\AddPackage.aspx" />
+    <Content Include="Staff\Owner\Package\EditPackage.aspx" />
     <Content Include="Staff\Owner\Package\ViewPackage.aspx" />
+    <Content Include="Staff\Owner\Report\GenerateSalesReport.aspx" />
+    <Content Include="Staff\Owner\Report\Report.aspx" />
     <Content Include="Staff\Owner\StaffManagement\editStaff.aspx" />
     <Content Include="Staff\Owner\StaffManagement\manageStaff.aspx" />
     <Content Include="Staff\Owner\StaffManagement\registerStaff.aspx" />
@@ -543,6 +592,17 @@
     <Content Include="DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
+    <Content Include="Staff\Owner\Report\StaffReport.xsc">
+      <DependentUpon>StaffReport.xsd</DependentUpon>
+    </Content>
+    <None Include="Staff\Owner\Report\StaffReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StaffReport.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Staff\Owner\Report\StaffReport.xss">
+      <DependentUpon>StaffReport.xsd</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -585,6 +645,13 @@
     <Compile Include="Customer\ChooseCompany.aspx.designer.cs">
       <DependentUpon>ChooseCompany.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Customer\CreditCard.aspx.cs">
+      <DependentUpon>CreditCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CreditCard.aspx.designer.cs">
+      <DependentUpon>CreditCard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Customer\Customer.Master.cs">
       <DependentUpon>Customer.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -598,6 +665,20 @@
     </Compile>
     <Compile Include="Customer\CustomerDetail.aspx.designer.cs">
       <DependentUpon>CustomerDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CustomerFile\FileManagement.aspx.cs">
+      <DependentUpon>FileManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CustomerFile\FileManagement.aspx.designer.cs">
+      <DependentUpon>FileManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\CustomerFile\ViewFile.aspx.cs">
+      <DependentUpon>ViewFile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\CustomerFile\ViewFile.aspx.designer.cs">
+      <DependentUpon>ViewFile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Customer\EditCustomerDetail.aspx.cs">
       <DependentUpon>EditCustomerDetail.aspx</DependentUpon>
@@ -742,12 +823,38 @@
     <Compile Include="Staff\Owner\Package\AddPackage.aspx.designer.cs">
       <DependentUpon>AddPackage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Staff\Owner\Package\EditPackage.aspx.cs">
+      <DependentUpon>EditPackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Owner\Package\EditPackage.aspx.designer.cs">
+      <DependentUpon>EditPackage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Staff\Owner\Package\ViewPackage.aspx.cs">
       <DependentUpon>ViewPackage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Staff\Owner\Package\ViewPackage.aspx.designer.cs">
       <DependentUpon>ViewPackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\Owner\Report\GenerateSalesReport.aspx.cs">
+      <DependentUpon>GenerateSalesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Owner\Report\GenerateSalesReport.aspx.designer.cs">
+      <DependentUpon>GenerateSalesReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\Owner\Report\Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Owner\Report\Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\Owner\Report\StaffReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaffReport.xsd</DependentUpon>
     </Compile>
     <Compile Include="Staff\Owner\StaffManagement\editStaff.aspx.cs">
       <DependentUpon>editStaff.aspx</DependentUpon>
@@ -770,6 +877,7 @@
     <Compile Include="Staff\Owner\StaffManagement\registerStaff.aspx.designer.cs">
       <DependentUpon>registerStaff.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Staff\Printing\PrintingRequestHub.cs" />
     <Compile Include="Staff\Printing\ViewDocument.aspx.cs">
       <DependentUpon>ViewDocument.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -798,6 +906,7 @@
     <Compile Include="Staff\TestSendFBMessage.aspx.designer.cs">
       <DependentUpon>TestSendFBMessage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Startup.cs" />
     <Compile Include="testDatePicker.aspx.cs">
       <DependentUpon>testDatePicker.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -822,10 +931,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="File\" />
+    <Folder Include="QRcode\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Report2.rdlc" />
     <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="Staff\Owner\Report\SalesReport.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

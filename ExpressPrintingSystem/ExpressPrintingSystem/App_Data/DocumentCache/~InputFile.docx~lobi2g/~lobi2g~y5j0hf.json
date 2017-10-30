@@ -1,0 +1,27 @@
+{
+  "CacheSourceKey": "lobi2g",
+  "CachePdfKey": "lobi2g/lobi2g-1k92z0.pdf",
+  "CacheXpzKey": "lobi2g/lobi2g-y5j0hf.xpz",
+  "CacheInfoKey": "lobi2g/lobi2g-y5j0hf.json",
+  "CacheCopyKey": "lobi2g/lobi2g.docx",
+  "Document": null,
+  "DocumentHandlerType": null,
+  "DocumentFileName": "InputFile.docx",
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": "InputFile.docx",
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "lobi2g",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

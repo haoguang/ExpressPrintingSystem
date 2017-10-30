@@ -1,0 +1,27 @@
+{
+  "CacheSourceKey": "1ri3l1k",
+  "CachePdfKey": "1ri3l1k/1ri3l1k-qb1x16.pdf",
+  "CacheXpzKey": "1ri3l1k/1ri3l1k-14ien58.xpz",
+  "CacheInfoKey": "1ri3l1k/1ri3l1k-14ien58.json",
+  "CacheCopyKey": null,
+  "Document": "~/File/chapter-4.docx",
+  "DocumentHandlerType": null,
+  "DocumentFileName": "chapter-4.docx",
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": null,
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "1ri3l1k",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

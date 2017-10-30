@@ -9,11 +9,7 @@
  
 
    <style>
-  #msform fieldset:not(:first-of-type) {
-
-	display: none;
-
-}
+ 
 
  #form1 fieldset {
 
@@ -32,12 +28,23 @@
 	width: 80%;
 
 	margin: 0 10%;
-
-
-
-	position: absolute;
+    position:absolute;
 
 }
+       #orderdetail {
+           background: white;
+
+	border: 0 none;
+
+	border-radius: 3px;
+ 
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+
+	padding: 20px 30px;
+	margin: 0 10%;
+  
+
+       }
  #form1 {
 
     width: 1000px;
@@ -46,20 +53,12 @@
 
 	position: relative;
         }
- div[class=head]{
-
-     padding-bottom:20px;
-    
- }
 
  
        .auto-style1 {
            height: 20px;
        }
-       .auto-style2 {
-           height: 36px;
-       }
-
+       
        #form1 input{
 
 	padding: 5px;
@@ -87,6 +86,11 @@
 
 
  
+       .auto-style4 {
+           height: 78px;
+       }
+
+
  </style>   
     
     <title></title>
@@ -94,75 +98,25 @@
 <body>
     <form id="form1" runat="server" class="auto-style1" method="POST">
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-   <div class="head">
-       <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal" Font-Size="X-Large">
-          <asp:ListItem value="CreditCard" Selected="True" Text="Payment">Credit Card</asp:ListItem>
-           <asp:ListItem Value="Cash" Text="Cash">cash</asp:ListItem>
-        
-       </asp:RadioButtonList>
-
-      
-    <%--<input type="radio" name="user-type" value="company" checked>Company<br>
-    <input type="radio" name="user-type" value="individual">Individual<br>--%>
-  </div>
-
-  <fieldset class="Cash-fieldset">
-    <table style="width: 100%;">
-            <tr>
-                <td><h1>Cash</h1></td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td><hr/></td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style2">Cash<br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </td>
-                <td class="auto-style2"></td>
-                <td class="auto-style2"></td>
-            </tr>
-            <tr>
-                <td class="auto-style1"></td>
-                <td class="auto-style1"></td>
-                <td class="auto-style1"></td>
-            </tr>
-            <tr>
-                <td class="auto-style1">da</td>
-                <td class="auto-style1"></td>
-                <td class="auto-style1"></td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
+      <div>
+  <fieldset class="orderdetail">
+      <asp:Label ID="Label1" runat="server" Text="Label" Font-Size="Large"></asp:Label>
   </fieldset>
+      </div>
 
+
+  <div style="padding-top:250px;">
   <fieldset class="CreditCard-fieldset">
      <table style="width: 100%;">
             <tr>
                 <td colspan="4"><h1>Payment</h1></td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
+                <td>&nbsp;</td>
             </tr>
             <tr>
                 <td colspan="4"><hr/></td>
+                <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
@@ -195,23 +149,25 @@
                     <asp:TextBox ID="txtCardNumber" runat="server" MaxLength="16"></asp:TextBox>
                 </td>
                 <td class="auto-style1"></td>
-                <td class="auto-style1"></td>
+                <td></td>
+                <td>&nbsp;</td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td colspan="2" class="auto-style4">
                     <br />
                     Expiry Date<br />
                     <asp:TextBox ID="txtExpitymonth" runat="server" MaxLength="2"></asp:TextBox>
                     &nbsp;/
                     <asp:TextBox ID="txtExpiryYear" runat="server" MaxLength="2"></asp:TextBox>
                 </td>
-                <td colspan="2">
+                <td colspan="2" class="auto-style4">
                     <br />
                     CVV/CVC<br />
                     <asp:TextBox ID="txtCCV" runat="server" MaxLength="3"></asp:TextBox>
                 </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="auto-style4"></td>
+                <td class="auto-style4"></td>
+                <td class="auto-style4">&nbsp;</td>
             </tr>
             <tr>
                 <td colspan="4" class="auto-style1">
@@ -221,14 +177,16 @@
                 </td>
                 <td class="auto-style1"></td>
                 <td class="auto-style1"></td>
+                <td class="auto-style1">&nbsp;</td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
-                </td>
-                <td colspan="2">
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
                 </td>
+                <td colspan="2">
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+                </td>
+                <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
@@ -236,29 +194,19 @@
                 <td colspan="4">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
+                <td>&nbsp;</td>
             </tr>
         </table>
   </fieldset>
-
+</div>
+        <div style="padding-top:700px">
+        </div>
+     
   
  </form>
 
 <script>
-
   
-
-    $(function () {
-        $("input[type=radio]").change(function () {
-            if ($(this).is(":checked")) {
-                $("fieldset:not(.main-fieldset)").hide();//hide everything
-                $(this).parent().show();//show this ones container
-                $("fieldset[class^='" + $(this).val() + "']").show(); //show the matching fieldset
-                $("fieldset[class^='" + $(this).val() + "']>input:checked").change();//show children as required.
-            }
-        });
-        $("input[value=Cash]").change();
-    });
-
     var textbox = document.getElementById('txtCardNumber');
     var image1 = document.getElementById('Image1');
     var image2 = document.getElementById("ImageButton1");

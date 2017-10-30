@@ -106,3 +106,20 @@
             .expendableTable table tr:first-child th:last-child{
                 border-top-right-radius : 5px;
             }
+
+            .operationColumn .completeLabel{
+                display:none;
+                vertical-align:middle;
+                padding-bottom:10px;
+                height:32px;
+            }
+
+            .operationColumn:hover .completeLabel{
+                display: initial;
+                vertical-align:middle;
+                margin-bottom:10px;
+                height:32px;
+            }
+
+
+

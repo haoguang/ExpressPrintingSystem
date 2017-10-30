@@ -1,0 +1,27 @@
+{
+  "CacheSourceKey": "18znfb8",
+  "CachePdfKey": "18znfb8/18znfb8-qb1x16.pdf",
+  "CacheXpzKey": "18znfb8/18znfb8-iu0d5t.xpz",
+  "CacheInfoKey": "18znfb8/18znfb8-iu0d5t.json",
+  "CacheCopyKey": null,
+  "Document": "~/File/dont starve recipe.docx",
+  "DocumentHandlerType": null,
+  "DocumentFileName": "dont starve recipe.docx",
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": null,
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "18znfb8",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

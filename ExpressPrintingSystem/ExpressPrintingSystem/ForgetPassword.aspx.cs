@@ -116,13 +116,13 @@ namespace ExpressPrintingSystem
 
             
             string strbody;
-            strbody = "Hi " + CustomerName + ", based on our record, you have requested to reset your password, please enter the verification code provided into the field." + "<br/>";
-            strbody += "&nbsp;&nbsp;&nbsp;" + "Express Printing System" + "<br/>";
+            strbody = "Hi " + CustomerName + ", based on our record, you have requested to reset your password, please enter the verification code provided into the field." + "<br/>" + "<br/>";
+            strbody += "Express Printing System" + "<br/>";
             strbody += "---------------------------------" + "<br/>";
-            strbody += "User ID                  : " + CustomerID + "<br/>";
-            strbody += "User Name            : " + CustomerName + "<br/>";
-            strbody += "Verification Code  : " + asgenerateCode + "<br/>";
-            strbody += "Please ignore This Email if you did not requested to reset password." + "<br/>";
+            strbody += "User ID" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:" + CustomerID + "<br/>";
+            strbody += "User Name" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:" + CustomerName + "<br/>";
+            strbody += "Verification Code" + "&nbsp;&nbsp;:" + asgenerateCode + "<br/>" + "<br/>";
+            strbody += "Please ignore This Email if you did not requested to reset password." + "<br/>" + "<br/>";
             strbody += "Best Regards, " + "<br/>";
             strbody += "Express Printing System Admin";
 

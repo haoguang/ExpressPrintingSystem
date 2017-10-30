@@ -29,6 +29,11 @@ namespace ExpressPrintingSystem.Model.Entities
             this.paymentDateTime = paymentDateTime;
         }
 
+        public Payment()
+        {
+
+        }
+
         public string PaymentID
         {
             get { return paymentID; }
