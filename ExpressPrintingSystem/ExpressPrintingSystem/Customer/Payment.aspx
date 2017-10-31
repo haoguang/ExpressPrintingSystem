@@ -100,7 +100,7 @@
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
       <div>
   <fieldset class="orderdetail">
-      <asp:Label ID="Label1" runat="server" Text="Label" Font-Size="Large"></asp:Label>
+      <asp:Label ID="lblreceipt" runat="server" Text="Label"></asp:Label>
   </fieldset>
       </div>
 

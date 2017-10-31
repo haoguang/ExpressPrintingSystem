@@ -81,7 +81,7 @@ namespace ExpressPrintingSystem.Customer
                         String filePath = Server.MapPath("~/File/") + getPath;//File path of desired upload
                         int size = FileUpload1.PostedFile.ContentLength;
 
-
+                        Session["pathfile"] = filePath;
 
                         string getFileIDInCloud = backblaze.UploadFile(contentType, filePath, fileName);
                         int numberOfPages = 0;
@@ -152,7 +152,7 @@ namespace ExpressPrintingSystem.Customer
             string companyID = Request.QueryString["CompanyID"];
             string CustomerID = ClassHashing.basicDecryption((string)ViewState["UserID"]);
             DateTime currentDate = DateTime.Now;
-            string dateString = DropDownList5.SelectedItem + "/" + DropDownList4.SelectedItem + "/" + DropDownList6.SelectedItem;
+            string dateString =  DropDownList4.SelectedItem + "/" + DropDownList5.SelectedItem + "/" + DropDownList6.SelectedItem;
 
             string timer = DropDownList1.SelectedItem + ":" + DropDownList2.SelectedItem + " " + DropDownList3.SelectedItem;
 
