@@ -71,6 +71,9 @@ namespace ExpressPrintingSystem.Customer
             Response.Redirect("EditCustomerDetail.aspx");
         }
 
-       
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

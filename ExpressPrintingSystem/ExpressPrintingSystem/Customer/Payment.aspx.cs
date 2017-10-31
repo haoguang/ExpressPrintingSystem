@@ -298,9 +298,10 @@ namespace ExpressPrintingSystem.Customer
         private void generateQRcode(Model.Entities.Request request)
         {
             string code;
+            string title = "Express Printing System Shop";
             string paymentID = request.Payment.PaymentID;
-            code = "Express Printing System Shop" + "\n";
-            code += "---------------------------------" + "\n";
+            code = title + "\n";
+            code += "------------------------------------" + "\n";
             code += "Payment ID     :" + paymentID + "\n";
             code += "Payment Date   :" + request.Payment.PaymentDateTime + "\n";
             code += "Payment Amount :" + request.Payment.PaymentAmount + "\n"; 
