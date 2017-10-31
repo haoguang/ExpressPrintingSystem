@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap>
   <siteMapNode url="" title="Customer"  description="">
-    <siteMapNode url="~/Customer/ChooseCompany.aspx" title="Printing Shop"  description="choose company">
+    <siteMapNode url="~/Customer/ChooseCompany.aspx" title="Printing Request"  description="choose company">
     </siteMapNode>
   </siteMapNode>
 </siteMap>

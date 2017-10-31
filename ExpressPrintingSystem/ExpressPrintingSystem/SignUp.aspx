@@ -54,28 +54,32 @@
 
 }
       
-         input[type=text], select {
- 
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 5px;
- height : 20px;
-    width:250px;
-    
-}
-        #txtPassword {
-          margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 5px;
- height : 20px;
-    width:250px;
-        }
+   
+      
         html {
             background-color :azure;
         }
-       
+      #txtName, #txtEmail , #txtPassword, #txtPhoneNumber , #btnSubmit, #btnCancel, #rblMethod , #Calendar1{
+
+	
+
+	border: 1px solid #ccc;
+
+	border-radius: 3px;
+
+	margin-bottom: 10px;
+
+	
+    
+	box-sizing: border-box;
+
+	font-family: montserrat;
+
+	color: #2C3E50;
+
+	font-size: 20px;
+
+}
 
      
         .auto-style1 {
@@ -137,6 +141,7 @@
     display: flex;
   align-items: center;
   justify-content: center;
+ 
     }
     #btnCustomer, #btnCompany{
         border-radius : 20px;
@@ -192,27 +197,17 @@
                     </td>
                     <td class="auto-style17" colspan="2">
                         &nbsp;</td>
-                    <td class="auto-style9" rowspan="4">Date Of Birth<br />
+                    <td class="auto-style9" rowspan="5"><br />
                         <br />
-                        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#999999" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px" CellPadding="4" DayNameFormat="Shortest">
-                            <DayHeaderStyle Font-Bold="True" Font-Size="7pt" BackColor="#CCCCCC" />
-                            <NextPrevStyle VerticalAlign="Bottom" />
-                            <OtherMonthDayStyle ForeColor="#808080" />
-                            <SelectedDayStyle BackColor="#666666" ForeColor="White" Font-Bold="True" />
-                            <SelectorStyle BackColor="#CCCCCC" />
-                            <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                            <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                            <WeekendDayStyle BackColor="#FFFFCC" />
-                        </asp:Calendar>
                         <br />
                         <br />
                         <br />
                     </td>
-                    <td class="auto-style11" rowspan="8">
+                    <td class="auto-style11" rowspan="9">
                         <br />
                     </td>
-                    <td class="auto-style11" rowspan="8"></td>
-                    <td class="auto-style11" rowspan="8"></td>
+                    <td class="auto-style11" rowspan="9"></td>
+                    <td class="auto-style11" rowspan="9"></td>
                 </tr>
                 <tr>
                     <td class="auto-style18">Email<br />
@@ -230,8 +225,26 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="auto-style18">Password<br />
-                        <asp:TextBox ID="txtPassword" runat="server" placeholder="123456" MaxLength="8" TextMode="Password"></asp:TextBox>
+                    <td class="auto-style18">Date Of Birth<br />
+                        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#999999" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px" CellPadding="4" DayNameFormat="Shortest">
+                            <DayHeaderStyle Font-Bold="True" Font-Size="7pt" BackColor="#CCCCCC" />
+                            <NextPrevStyle VerticalAlign="Bottom" />
+                            <OtherMonthDayStyle ForeColor="#808080" />
+                            <SelectedDayStyle BackColor="#666666" ForeColor="White" Font-Bold="True" />
+                            <SelectorStyle BackColor="#CCCCCC" />
+                            <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
+                            <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
+                            <WeekendDayStyle BackColor="#FFFFCC" />
+                        </asp:Calendar>
+                    </td>
+                    <td class="auto-style12" colspan="2">
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style18">
+                        <br />
+                        Password<br />
+                        <asp:TextBox ID="txtPassword" runat="server" MaxLength="8" TextMode="Password"></asp:TextBox>
                     </td>
                     <td>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required!" ForeColor="Red">*</asp:RequiredFieldValidator>
@@ -255,7 +268,7 @@
                 <tr>
                     <td class="auto-style19" colspan="3">Contact Method<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Contact Method is required!" ControlToValidate="rblMethod" ForeColor="Red">*</asp:RequiredFieldValidator>
                         <br />
-                        <asp:RadioButtonList ID="rblMethod" runat="server">
+                        <asp:RadioButtonList ID="rblMethod" runat="server" BorderStyle="None">
                             <asp:ListItem>whatsapp</asp:ListItem>
                             <asp:ListItem>wechat</asp:ListItem>
                             <asp:ListItem>E-mail</asp:ListItem>
@@ -272,11 +285,12 @@
                 <tr>
                     <td class="auto-style12" colspan="4">
                         <br />
-                        &nbsp;<asp:Button ID="btnCancel" runat="server" Height="30px" Text="Cancel" Width="100px" OnClick="btnCancel_Click" />
+                        &nbsp;<asp:Button ID="btnSubmit" runat="server" OnClick="Button1_Click" Text="Submit" Height="30px" Width="100px" />
+                        <br />
                     </td>
                     <td class="auto-style9">
+                        <asp:Button ID="btnCancel" runat="server" Height="30px" Text="Cancel" Width="100px" OnClick="btnCancel_Click" />
                         <br />
-                        <asp:Button ID="btnSubmit" runat="server" OnClick="Button1_Click" Text="Submit" Height="30px" Width="100px" />
                     </td>
                 </tr>
                 <tr>

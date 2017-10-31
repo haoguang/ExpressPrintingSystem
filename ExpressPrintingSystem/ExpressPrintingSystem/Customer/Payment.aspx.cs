@@ -1,4 +1,5 @@
-﻿using ExpressPrintingSystem.Staff.Printing;
+﻿using ExpressPrintingSystem.Model.Entities;
+using ExpressPrintingSystem.Staff.Printing;
 using QRCoder;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,15 @@ namespace ExpressPrintingSystem.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string detail;
+            detail = "Order Detail" + "<br/>";
+            detail += "------------------" + "<br/>";
+            detail += "Item Name = " + "<br/>";
+            detail += "Item price = " + "<br/>";
+            detail += "package =" + "<br/>";
+            detail += "Amount =" + "<br/>";
+            detail += "<br/>";
+            Label1.Text = detail;
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
@@ -72,39 +81,27 @@ namespace ExpressPrintingSystem.Customer
         {
 
 
-            try
+            if (txtCardName.Text == "" || txtCardNumber.Text == "" || txtCCV.Text == "" || txtExpiryYear.Text == "" || txtExpitymonth.Text == "")
             {
-               
+                Response.Write("<script>alert('Please fill in credit card detail!');</script>");
 
-                if (txtCardName.Text == "" || txtCardNumber.Text == "" || txtCCV.Text == "" || txtExpiryYear.Text == "" || txtExpitymonth.Text == "")
-                {
-                    Response.Write("<script>alert('Please fill in credit card detail!');</script>");
+            }
 
-                }
-                
-                else
-                {
-                    if (plQRCode == null)///do it again
-                    {
+            else
+            {
+                DateTime currentDate = DateTime.Now;
+                Decimal totalPayment = Convert.ToDecimal(txtpaymentTotal.Text);
+                string type = "Credir Card";
 
-                        Response.Write("<script>alert('You have choose Cash for paying fees, thanks for using');</script>");
-                        Response.Redirect("Login.aspx");
+                Model.Entities.Payment newpayment = new Model.Entities.Payment(type, totalPayment, currentDate);
+                Model.Entities.Request request = (Model.Entities.Request)Session["request"];
+                //request.RequestLists[0].RequestItemID[0]
+                request.Payment = newpayment;
 
-                    }
-                    else
-                    {
-                        DateTime currentDate = DateTime.Now;
-                        Decimal totalPayment = Convert.ToDecimal(txtpaymentTotal.Text);
-
-                        Model.Entities.Payment newpayment = new Model.Entities.Payment(RadioButtonList1.SelectedValue, totalPayment, currentDate);
-                        Model.Entities.Request request = (Model.Entities.Request)Session["request"];
-                        //request.RequestLists[0].RequestItemID[0]
-                        request.Payment = newpayment;
-
-                        SqlConnection conTaxi;
-                        string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
-                        conTaxi = new SqlConnection(connStr);
-                        conTaxi.Open();
+                SqlConnection conTaxi;
+                string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
+                conTaxi = new SqlConnection(connStr);
+                conTaxi.Open();
 
                         string strInsert;
                         SqlCommand cmdInsert;
@@ -115,35 +112,69 @@ namespace ExpressPrintingSystem.Customer
 
                         Decimal totalamount = Convert.ToDecimal(txtpaymentTotal.Text);
 
-                        cmdInsert.Parameters.AddWithValue("@PaymentType", request.Payment.PaymentType);
-                        cmdInsert.Parameters.AddWithValue("@PaymentAmount", request.Payment.PaymentAmount);
-                        cmdInsert.Parameters.AddWithValue("@PaymentDateTime", request.Payment.PaymentDateTime);
-                        var getPaymentID = cmdInsert.ExecuteScalar();
+                cmdInsert.Parameters.AddWithValue("@PaymentType", request.Payment.PaymentType);
+                cmdInsert.Parameters.AddWithValue("@PaymentAmount", request.Payment.PaymentAmount);
+                cmdInsert.Parameters.AddWithValue("@PaymentDateTime", request.Payment.PaymentDateTime);
+                var getPaymentID = cmdInsert.ExecuteScalar();
 
-                        if (getPaymentID != null)
-                        {
-                            request.Payment.PaymentID = (string)getPaymentID;
-                            insertNewRequest(request);
+                if (getPaymentID != null)
+                {
+                    request.Payment.PaymentID = (string)getPaymentID;
+                    insertNewRequest(request);
+                    generateQRcode(request);
 
-                            Response.Write("<script>alert('Successful payment');</script>");
-                            //Response.Redirect();
-                        }
-                        else
-                        {
-                            Response.Write("<script>alert('Upload Failed');</script>");
-                        }
+                    Response.Write("<script>alert('Successful payment');</script>");
 
-                        /*Close database connection*/
+            request.RequestID = (string)requestID;
+
+            //Requestlist
+            strInsert = "Insert Into Requestlist (RequestID, RequestItemID, RequestStatus, RequestType) Values (@RequestID, @RequestItemID, @RequestStatus, @RequestType);SELECT MAX(RequestlistID) from Requestlist where RequestID=@RequestID AND RequestItemID=@RequestItemID";
+            cmdInsert = new SqlCommand(strInsert, conPrintDB);
 
 
-                        conTaxi.Close();
-                    }
-                }
+            cmdInsert.Parameters.AddWithValue("@RequestID", request.RequestID);
+            cmdInsert.Parameters.AddWithValue("@RequestItemID", request.RequestLists[0].RequestItemID);
+            cmdInsert.Parameters.AddWithValue("@RequestStatus", request.RequestLists[0].RequestStatus);
+            cmdInsert.Parameters.AddWithValue("@RequestType", request.RequestLists[0].RequestType);
+
+            var requestlistID = cmdInsert.ExecuteScalar();
+
+            request.RequestLists[0].RequestlistID = (string)requestlistID;
+
+            //documentlist
+            strInsert = "Insert Into Documentlist (RequestlistID, DocumentID, Sequences, DocumentColor, DocumentBothSide, DocumentPaperType, DocumentQuantity, DocumentDescription) Values (@RequestlistID, @DocumentID, @Sequences, @DocumentColor, @DocumentBothSide, @DocumentPaperType, @DocumentQuantity, @DocumentDescription)";
+            cmdInsert = new SqlCommand(strInsert, conPrintDB);
+
+            foreach (Model.Entities.Documentlist documentlist in request.RequestLists[0].DocumentList) {
+                insertDocument(documentlist.Document, conPrintDB);//insert document contain in documentlist
+
+                cmdInsert.Parameters.Clear();//clear parameter before loop
+                cmdInsert.Parameters.AddWithValue("@RequestlistID", request.RequestLists[0].RequestlistID);
+                cmdInsert.Parameters.AddWithValue("@DocumentID", documentlist.Document.DocumentID);
+                cmdInsert.Parameters.AddWithValue("@Sequences", documentlist.Sequences);
+                cmdInsert.Parameters.AddWithValue("@DocumentColor", documentlist.DocumentColor);
+                cmdInsert.Parameters.AddWithValue("@DocumentBothSide", documentlist.DocumentBothSide);
+                cmdInsert.Parameters.AddWithValue("@DocumentPaperType", documentlist.DocumentPaperType);
+                cmdInsert.Parameters.AddWithValue("@DocumentQuantity", documentlist.DocumentQuantity);
+                cmdInsert.Parameters.AddWithValue("@DocumentDescription", documentlist.DocumentDescription);
+                cmdInsert.ExecuteNonQuery();
             }
-            catch (Exception ex)
-            {
-                Response.Write("<script>alert('Upload Failed');</script>");
+
+            conPrintDB.Close();
+            PrintingRequestHub.refreshTable();
+            
+
+
+        }
+
+        private void insertDocument(Model.Entities.Document document ,SqlConnection condocument) {
+
+               
+                conTaxi.Close();
+                Response.Redirect("/Customer/masterPageTest.aspx");
             }
+
+            
 
         }
 
@@ -154,8 +185,8 @@ namespace ExpressPrintingSystem.Customer
             conPrintDB = new SqlConnection(connStr);
             conPrintDB.Open();
 
-            string strInsert;
-            SqlCommand cmdInsert;
+                    string strInsert;
+                    SqlCommand cmdInsert;
 
             //request
             strInsert = "Insert Into Request (RequestDateTime, DueDateTime, PaymentID, CompanyID, CustomerID) Values (@requestDateTime, @dueDateTime, @paymentID, @companyID, @customerID);SELECT MAX(RequestID) from Request where CustomerID=@customerID AND RequestDateTime = @requestDateTime;";
@@ -231,70 +262,7 @@ namespace ExpressPrintingSystem.Customer
 
 
             }
-        protected void btnGenerate_Click(object sender, EventArgs e)
-        {
-
-           
-
-            try
-            {
-                if (txtEmails.Text != null)
-                {
-                    DateTime currentDate = DateTime.Now;
-                    Decimal totalPayment = Convert.ToDecimal(txtpaymentTotal.Text);
-
-                    Model.Entities.Payment newpayment = new Model.Entities.Payment(RadioButtonList1.SelectedValue, totalPayment, currentDate);
-                    Model.Entities.Request request = (Model.Entities.Request)Session["request"];
-                    request.Payment = newpayment;
-
-                    SqlConnection conTaxi;
-                    string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
-                    conTaxi = new SqlConnection(connStr);
-                    conTaxi.Open();
-
-                    string strInsert;
-                    SqlCommand cmdInsert;
-
-
-                    strInsert = "Insert Into Payment (PaymentType, PaymentAmount, PaymentDateTime) Values (@PaymentType, @PaymentAmount, @PaymentDateTime);SELECT MAX(PaymentID) from Payment where PaymentAmount=@PaymentAmount";
-                    cmdInsert = new SqlCommand(strInsert, conTaxi);
-
-                    Decimal totalamount = Convert.ToDecimal(txtpaymentTotal.Text);
-
-                    cmdInsert.Parameters.AddWithValue("@PaymentType", request.Payment.PaymentType);
-                    cmdInsert.Parameters.AddWithValue("@PaymentAmount", request.Payment.PaymentAmount);
-                    cmdInsert.Parameters.AddWithValue("@PaymentDateTime", request.Payment.PaymentDateTime);
-                    var getPaymentID = cmdInsert.ExecuteScalar();
-
-                    if (getPaymentID != null)
-                    {
-                        request.Payment.PaymentID = (string)getPaymentID;
-                        insertNewRequest(request);
-                        generateQRcode(request);
-                        Response.Write("<script>alert('Upload Successful');</script>");
-
-                    }
-                    else
-                    {
-                        Response.Write("<script>alert('Upload Failed');</script>");
-                    }
-
-                    /*Close database connection*/
-
-
-                    conTaxi.Close();
-                }
-                else {
-
-                    Response.Write("<script>alert('Please fill in email');</script>");
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>alert('Upload Failed');</script>");
-            }
-        } 
+      
         private void generateQRcode(Model.Entities.Request request)
         {
             string code;
@@ -307,6 +275,10 @@ namespace ExpressPrintingSystem.Customer
             code += "Payment Amount :" + request.Payment.PaymentAmount + "\n"; 
             code += "Best Regards" + "\n";
 
+                }
+                plQRCode.Controls.Add(imgBarCode);
+            }
+        }
 
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
@@ -324,11 +296,11 @@ namespace ExpressPrintingSystem.Customer
                     CreateImage(result.ToString(), paymentID);
 
                 }
-                plQRCode.Controls.Add(imgBarCode);
+               // plQRCode.Controls.Add(imgBarCode);
             }
         }
 
-        public string CreateImage(string Byt, string paymentID)
+        private string CreateImage(string Byt, string paymentID)
         {
 
             try
@@ -337,9 +309,9 @@ namespace ExpressPrintingSystem.Customer
                 
 
                 var filename = paymentID + ".png";// +System.DateTime.Now.ToString("fffffffffff") + ".png";
-                var file = HttpContext.Current.Server.MapPath("~/qrimage/" + filename);
+                var file = HttpContext.Current.Server.MapPath("~/QRcode/" + filename);
                 System.IO.File.WriteAllBytes(file, data);
-                string ImgName = ".../qrimage/" + filename;
+                //string ImgName = ".../QRcode/" + filename;
                 SendMail(filename, paymentID);
                 return filename;
             }
@@ -349,17 +321,18 @@ namespace ExpressPrintingSystem.Customer
 
             }
         }
-        protected void SendMail(string filename, string paymentid)
+        private void SendMail(string filename, string paymentid)
         {
 
+            string customeremail = (string)(Session["email"]);
 
             var fromAddress = "darrenlai95@gmail.com";
-            var toAddress = txtEmails.Text;
+            var toAddress = customeremail;
             const string fromPassword = "940917105277";
 
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("darrenlai95@gmail.com", "Express Printing System");
-            mail.To.Add(txtEmails.Text);
+            mail.To.Add(customeremail);
             mail.Subject = "Receipt";
             mail.AlternateViews.Add(Mail_Body(filename, paymentid));
             mail.IsBodyHtml = true;
@@ -379,7 +352,7 @@ namespace ExpressPrintingSystem.Customer
         private AlternateView Mail_Body(string filename, string paymentid)
         {
 
-            string path = Server.MapPath("~/qrimage/" + filename);
+            string path = Server.MapPath("~/QRcode/" + filename);
             LinkedResource Img = new LinkedResource(path, MediaTypeNames.Image.Jpeg);
             Img.ContentId = "MyImage";
             string str = @"  
@@ -427,5 +400,7 @@ Express Printing System Admin
         {
             Response.Redirect("Booking.aspx");
         }
+
+       
     }
 }

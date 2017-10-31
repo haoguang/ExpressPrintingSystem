@@ -1,0 +1,27 @@
+{
+  "CacheSourceKey": "17neo6c",
+  "CachePdfKey": "17neo6c/17neo6c-1k7u2pc.pdf",
+  "CacheXpzKey": "17neo6c/17neo6c-vuehj1.xpz",
+  "CacheInfoKey": "17neo6c/17neo6c-vuehj1.json",
+  "CacheCopyKey": "17neo6c/17neo6c.docx",
+  "Document": null,
+  "DocumentHandlerType": null,
+  "DocumentFileName": "Document3.docx",
+  "InputOptions": {
+    "$type": "GleamTech.DocumentUltimate.WordProcessingInputOptions, GleamTech.DocumentUltimate",
+    "FieldFileName": "Document3.docx",
+    "Format": "Docx",
+    "Password": null
+  },
+  "PdfOutputOptions": {
+    "Watermarks": [],
+    "FastWebViewEnabled": false,
+    "Password": null,
+    "Format": "Pdf"
+  },
+  "XpzOutputOptions": {
+    "Password": "17neo6c",
+    "HighQualityEnabled": false,
+    "Format": "Xpz"
+  }
+}

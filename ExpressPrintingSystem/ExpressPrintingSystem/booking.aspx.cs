@@ -49,7 +49,7 @@ namespace ExpressPrintingSystem.Customer
          
 
             Session["request"] = request;
-            Response.Redirect("~/Customer/Payment.aspx");
+            Response.Redirect("~/Customer/CreditCard.aspx");
 
 
         }
@@ -106,6 +106,11 @@ namespace ExpressPrintingSystem.Customer
                             numberOfPages = Convert.ToInt32(matches.Count.ToString());
                             fs.Close();
                         }
+                        else if (Path.GetExtension(hpf.FileName).Equals(".png"))
+                        {
+
+                            numberOfPages = 1;
+                        }
 
                         // upload to my sqldatabase
                         var uploadFileObject = (JObject)JsonConvert.DeserializeObject(getFileIDInCloud);
@@ -147,7 +152,7 @@ namespace ExpressPrintingSystem.Customer
             string companyID = Request.QueryString["CompanyID"];
             string CustomerID = ClassHashing.basicDecryption((string)ViewState["UserID"]);
             DateTime currentDate = DateTime.Now;
-            string dateString = DropDownList4.SelectedItem + "-" + DropDownList5.SelectedItem + "-" + DropDownList6.SelectedItem;
+            string dateString = DropDownList5.SelectedItem + "/" + DropDownList4.SelectedItem + "/" + DropDownList6.SelectedItem;
 
             string timer = DropDownList1.SelectedItem + ":" + DropDownList2.SelectedItem + " " + DropDownList3.SelectedItem;
 
