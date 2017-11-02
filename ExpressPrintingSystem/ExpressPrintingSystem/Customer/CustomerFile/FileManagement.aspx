@@ -10,14 +10,10 @@
 <body>
     <form id="form1" runat="server">
       
-
-
-
-    <h1>Printing Request Room</h1>
-    <h2>Requests Pending for Process</h2>
+    <h1>View Document Room</h1>
                            
                <div style="padding:0;margin:0;width:70%;">
-                 <asp:ListView ID="lvPackageItems" DataSource='<%# Eval("RequestLists[0].DocumentList") %>' runat="server" ItemPlaceholderID="PlaceHolderDocumentList">
+                 <asp:ListView ID="lvPackageItems" runat="server" ItemPlaceholderID="PlaceHolderDocumentList">
                      <LayoutTemplate>
 
                          <table style="width:100%;">
@@ -35,12 +31,12 @@
                       </LayoutTemplate>
                     <ItemTemplate>
                                         <tr>
-                                            <td style="display:none"><%#Eval ("Document.DocumentID") %></td>
-                                            <td><%#Eval ("Document.DocumentName") %></td>
-                                            <td><%#Eval ("Document.DocumentType") %></td>
-                                            <td><%#Eval ("DocumentQuantity") %></td>
-                                            <td><%#Eval ("DocumentPaperType") %></td>
-                                            <td><asp:HyperLink ID="hplViewDocument" ToolTip="View Document" ImageUrl="~/Images/view.png" Target="_blank" NavigateUrl='<%# getDocumentViewerUrl(Eval("RequestlistID") ,Eval("Document.DocumentID")) %>' runat="server"></asp:HyperLink></td>
+                                            <td style="display:none"><%#Eval ("DocumentID") %></td>
+                                            <td><%#Eval ("DocumentName") %></td>
+                                            <td><%#Eval ("DocumentType") %></td>
+                                            <td><%#Eval ("Size") %></td>
+                                            <td><%#Eval ("PageNumber") %></td>
+                                            <td><asp:HyperLink ID="hplViewDocument" ToolTip="View Document" ImageUrl="~/Images/view.png" Target="_blank" NavigateUrl='<%# string.Format("ViewFile.aspx?documentID={0}",Eval("DocumentID"))%>' runat="server"></asp:HyperLink></td>
                                         </tr>
                      </ItemTemplate>
                       <EmptyDataTemplate>

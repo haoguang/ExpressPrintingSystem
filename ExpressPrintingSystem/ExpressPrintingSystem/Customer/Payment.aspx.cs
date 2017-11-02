@@ -29,7 +29,7 @@ namespace ExpressPrintingSystem.Customer
             detail += "package =" + "<br/>";
             detail += "Amount =" + "<br/>";
             detail += "<br/>";
-            Label1.Text = detail;
+            lblreceipt.Text = detail;
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
@@ -120,8 +120,16 @@ namespace ExpressPrintingSystem.Customer
                 if (getPaymentID != null)
                 {
                     request.Payment.PaymentID = (string)getPaymentID;
+                    string path = (string)(Session["pathfile"]);
+
                     insertNewRequest(request);
                     generateQRcode(request);
+                    FileInfo file = new FileInfo(path);
+                    if (file.Exists)//check file exsit or not
+                    {
+                        file.Delete();
+                      
+                    }
 
                     Response.Write("<script>alert('Successful payment');</script>");
 
