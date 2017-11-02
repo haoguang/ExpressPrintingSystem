@@ -9,7 +9,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetSalesReportTableAdapter" GeneratorDataComponentClassName="GetSalesReportTableAdapter" Name="GetSalesReport" UserDataComponentName="GetSalesReportTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="printDBServer (Web.config)" DbObjectName="PrintDB.dbo.GetSalesReport" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="printDBServer (Web.config)" DbObjectName="PrintDB.dbo.GetSalesReport" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.GetSalesReport</CommandText>
@@ -24,11 +24,12 @@
               </DbSource>
             </MainSource>
             <Mappings>
+              <Mapping SourceColumn="RequestlistID" DataSetColumn="RequestlistID" />
               <Mapping SourceColumn="RequestID" DataSetColumn="RequestID" />
               <Mapping SourceColumn="RequestDateTime" DataSetColumn="RequestDateTime" />
               <Mapping SourceColumn="PackageName" DataSetColumn="PackageName" />
-              <Mapping SourceColumn="PaymentAmount" DataSetColumn="PaymentAmount" />
               <Mapping SourceColumn="PaymentType" DataSetColumn="PaymentType" />
+              <Mapping SourceColumn="PaymentAmount" DataSetColumn="PaymentAmount" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -43,6 +44,13 @@
         <xs:element name="GetSalesReport" msprop:Generator_TableClassName="GetSalesReportDataTable" msprop:Generator_TableVarName="tableGetSalesReport" msprop:Generator_TablePropName="GetSalesReport" msprop:Generator_RowDeletingName="GetSalesReportRowDeleting" msprop:Generator_RowChangingName="GetSalesReportRowChanging" msprop:Generator_RowEvHandlerName="GetSalesReportRowChangeEventHandler" msprop:Generator_RowDeletedName="GetSalesReportRowDeleted" msprop:Generator_UserTableName="GetSalesReport" msprop:Generator_RowChangedName="GetSalesReportRowChanged" msprop:Generator_RowEvArgName="GetSalesReportRowChangeEvent" msprop:Generator_RowClassName="GetSalesReportRow">
           <xs:complexType>
             <xs:sequence>
+              <xs:element name="RequestlistID" msprop:Generator_ColumnVarNameInTable="columnRequestlistID" msprop:Generator_ColumnPropNameInRow="RequestlistID" msprop:Generator_ColumnPropNameInTable="RequestlistIDColumn" msprop:Generator_UserColumnName="RequestlistID">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="19" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
               <xs:element name="RequestID" msprop:Generator_ColumnVarNameInTable="columnRequestID" msprop:Generator_ColumnPropNameInRow="RequestID" msprop:Generator_ColumnPropNameInTable="RequestIDColumn" msprop:Generator_UserColumnName="RequestID">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -58,22 +66,18 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="PaymentAmount" msprop:Generator_ColumnVarNameInTable="columnPaymentAmount" msprop:Generator_ColumnPropNameInRow="PaymentAmount" msprop:Generator_ColumnPropNameInTable="PaymentAmountColumn" msprop:Generator_UserColumnName="PaymentAmount" type="xs:decimal" />
               <xs:element name="PaymentType" msprop:Generator_ColumnVarNameInTable="columnPaymentType" msprop:Generator_ColumnPropNameInRow="PaymentType" msprop:Generator_ColumnPropNameInTable="PaymentTypeColumn" msprop:Generator_UserColumnName="PaymentType">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
+                    <xs:maxLength value="15" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="PaymentAmount" msprop:Generator_ColumnVarNameInTable="columnPaymentAmount" msprop:Generator_ColumnPropNameInRow="PaymentAmount" msprop:Generator_ColumnPropNameInTable="PaymentAmountColumn" msprop:Generator_UserColumnName="PaymentAmount" type="xs:decimal" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:GetSalesReport" />
-      <xs:field xpath="mstns:RequestID" />
-    </xs:unique>
   </xs:element>
 </xs:schema>

@@ -279,15 +279,17 @@ namespace ExpressPrintingSystem.Staff.Owner.Report {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class GetSalesReportDataTable : global::System.Data.TypedTableBase<GetSalesReportRow> {
             
+            private global::System.Data.DataColumn columnRequestlistID;
+            
             private global::System.Data.DataColumn columnRequestID;
             
             private global::System.Data.DataColumn columnRequestDateTime;
             
             private global::System.Data.DataColumn columnPackageName;
             
-            private global::System.Data.DataColumn columnPaymentAmount;
-            
             private global::System.Data.DataColumn columnPaymentType;
+            
+            private global::System.Data.DataColumn columnPaymentAmount;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -324,6 +326,14 @@ namespace ExpressPrintingSystem.Staff.Owner.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RequestlistIDColumn {
+                get {
+                    return this.columnRequestlistID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn RequestIDColumn {
                 get {
                     return this.columnRequestID;
@@ -348,17 +358,17 @@ namespace ExpressPrintingSystem.Staff.Owner.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PaymentAmountColumn {
+            public global::System.Data.DataColumn PaymentTypeColumn {
                 get {
-                    return this.columnPaymentAmount;
+                    return this.columnPaymentType;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PaymentTypeColumn {
+            public global::System.Data.DataColumn PaymentAmountColumn {
                 get {
-                    return this.columnPaymentType;
+                    return this.columnPaymentAmount;
                 }
             }
             
@@ -399,24 +409,18 @@ namespace ExpressPrintingSystem.Staff.Owner.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetSalesReportRow AddGetSalesReportRow(string RequestID, System.DateTime RequestDateTime, string PackageName, decimal PaymentAmount, string PaymentType) {
+            public GetSalesReportRow AddGetSalesReportRow(string RequestlistID, string RequestID, System.DateTime RequestDateTime, string PackageName, string PaymentType, decimal PaymentAmount) {
                 GetSalesReportRow rowGetSalesReportRow = ((GetSalesReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        RequestlistID,
                         RequestID,
                         RequestDateTime,
                         PackageName,
-                        PaymentAmount,
-                        PaymentType};
+                        PaymentType,
+                        PaymentAmount};
                 rowGetSalesReportRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGetSalesReportRow);
                 return rowGetSalesReportRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GetSalesReportRow FindByRequestID(string RequestID) {
-                return ((GetSalesReportRow)(this.Rows.Find(new object[] {
-                            RequestID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -436,37 +440,39 @@ namespace ExpressPrintingSystem.Staff.Owner.Report {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
+                this.columnRequestlistID = base.Columns["RequestlistID"];
                 this.columnRequestID = base.Columns["RequestID"];
                 this.columnRequestDateTime = base.Columns["RequestDateTime"];
                 this.columnPackageName = base.Columns["PackageName"];
-                this.columnPaymentAmount = base.Columns["PaymentAmount"];
                 this.columnPaymentType = base.Columns["PaymentType"];
+                this.columnPaymentAmount = base.Columns["PaymentAmount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
+                this.columnRequestlistID = new global::System.Data.DataColumn("RequestlistID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRequestlistID);
                 this.columnRequestID = new global::System.Data.DataColumn("RequestID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRequestID);
                 this.columnRequestDateTime = new global::System.Data.DataColumn("RequestDateTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRequestDateTime);
                 this.columnPackageName = new global::System.Data.DataColumn("PackageName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPackageName);
-                this.columnPaymentAmount = new global::System.Data.DataColumn("PaymentAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPaymentAmount);
                 this.columnPaymentType = new global::System.Data.DataColumn("PaymentType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPaymentType);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnRequestID}, true));
+                this.columnPaymentAmount = new global::System.Data.DataColumn("PaymentAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPaymentAmount);
+                this.columnRequestlistID.AllowDBNull = false;
+                this.columnRequestlistID.MaxLength = 19;
                 this.columnRequestID.AllowDBNull = false;
-                this.columnRequestID.Unique = true;
                 this.columnRequestID.MaxLength = 15;
                 this.columnRequestDateTime.AllowDBNull = false;
                 this.columnPackageName.AllowDBNull = false;
                 this.columnPackageName.MaxLength = 100;
-                this.columnPaymentAmount.AllowDBNull = false;
                 this.columnPaymentType.AllowDBNull = false;
-                this.columnPaymentType.MaxLength = 10;
+                this.columnPaymentType.MaxLength = 15;
+                this.columnPaymentAmount.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -609,6 +615,17 @@ namespace ExpressPrintingSystem.Staff.Owner.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string RequestlistID {
+                get {
+                    return ((string)(this[this.tableGetSalesReport.RequestlistIDColumn]));
+                }
+                set {
+                    this[this.tableGetSalesReport.RequestlistIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string RequestID {
                 get {
                     return ((string)(this[this.tableGetSalesReport.RequestIDColumn]));
@@ -642,23 +659,23 @@ namespace ExpressPrintingSystem.Staff.Owner.Report {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal PaymentAmount {
-                get {
-                    return ((decimal)(this[this.tableGetSalesReport.PaymentAmountColumn]));
-                }
-                set {
-                    this[this.tableGetSalesReport.PaymentAmountColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string PaymentType {
                 get {
                     return ((string)(this[this.tableGetSalesReport.PaymentTypeColumn]));
                 }
                 set {
                     this[this.tableGetSalesReport.PaymentTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal PaymentAmount {
+                get {
+                    return ((decimal)(this[this.tableGetSalesReport.PaymentAmountColumn]));
+                }
+                set {
+                    this[this.tableGetSalesReport.PaymentAmountColumn] = value;
                 }
             }
         }
@@ -822,11 +839,12 @@ namespace ExpressPrintingSystem.Staff.Owner.Report.StaffReportTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "GetSalesReport";
+            tableMapping.ColumnMappings.Add("RequestlistID", "RequestlistID");
             tableMapping.ColumnMappings.Add("RequestID", "RequestID");
             tableMapping.ColumnMappings.Add("RequestDateTime", "RequestDateTime");
             tableMapping.ColumnMappings.Add("PackageName", "PackageName");
-            tableMapping.ColumnMappings.Add("PaymentAmount", "PaymentAmount");
             tableMapping.ColumnMappings.Add("PaymentType", "PaymentType");
+            tableMapping.ColumnMappings.Add("PaymentAmount", "PaymentAmount");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

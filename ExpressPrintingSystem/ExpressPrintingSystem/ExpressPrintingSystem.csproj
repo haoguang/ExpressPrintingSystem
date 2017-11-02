@@ -728,6 +728,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Entities\Company.cs" />
     <Compile Include="Model\Entities\Document.cs" />
     <Compile Include="Model\Entities\Documentlist.cs" />
     <Compile Include="Model\Entities\Item.cs" />
@@ -932,7 +933,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Report2.rdlc" />
     <EmbeddedResource Include="Report1.rdlc" />
-    <EmbeddedResource Include="Staff\Owner\Report\SalesReport.rdlc" />
+    <EmbeddedResource Include="Staff\Owner\Report\SaleReport.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
