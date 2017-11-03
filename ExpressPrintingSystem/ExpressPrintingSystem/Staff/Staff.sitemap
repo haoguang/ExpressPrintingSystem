@@ -8,8 +8,8 @@
       <siteMapNode url="" title="Admin"  description="">
         <siteMapNode url="~/Staff/Owner/Package/ViewPackage.aspx" title="Package"  description="View Package" />
         <siteMapNode url="~/Staff/Owner/Item/ViewItem.aspx" title="Item"  description="View Item" />
-        <siteMapNode url="~/Staff/Owner/StaffManagement/manageStaff.aspx" title="Staff"  description="View Item" />
-        <siteMapNode url="" title="Report"  description="View Item" />
+        <siteMapNode url="~/Staff/Owner/StaffManagement/manageStaff.aspx" title="Staff"  description="View Staff" />
+        <siteMapNode url="~/Staff/Owner/Report/Report.aspx" title="Reports"  description="Generate Reports" />
       </siteMapNode>
     </siteMapNode>
 </siteMap>

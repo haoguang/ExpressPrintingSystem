@@ -13,7 +13,6 @@
             <asp:BoundField DataField="ItemPrice" HeaderText="Price (RM)" SortExpression="ItemPrice" />
             <asp:BoundField DataField="ItemStockQuantity" HeaderText="Stock Quantity" SortExpression="ItemStockQuantity" />
             <asp:BoundField DataField="ItemSupplier" HeaderText="Supplier" SortExpression="ItemSupplier" />
-            <asp:ButtonField CommandName="Edit" HeaderText="Operation" ShowHeader="True" Text="Edit Item" />
         </Columns>
         <EditRowStyle BackColor="#99BBFF" Font-Bold="True" />
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -26,8 +25,9 @@
         <SortedDescendingCellStyle BackColor="#E9EBEF" />
         <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>
-    <asp:SqlDataSource ID="sdsItem" runat="server" ConnectionString="<%$ ConnectionStrings:printDBServer %>" SelectCommand="SELECT [ItemID], [ItemName], [ItemPrice], [ItemStockQuantity], [ItemSupplier] FROM [Item] WHERE ([ItemID] LIKE '%' + @keyword + '%')  OR ([ItemName] LIKE '%' + @keyword + '%') OR ([ItemSupplier] LIKE '%' + @keyword + '%')">
+    <asp:SqlDataSource ID="sdsItem" runat="server" ConnectionString="<%$ ConnectionStrings:printDBServer %>" SelectCommand="SELECT [ItemID], [ItemName], [ItemPrice], [ItemStockQuantity], [ItemSupplier] FROM [Item] WHERE CompanyID = @companyID AND  ([ItemID] LIKE '%' + @keyword + '%')  OR ([ItemName] LIKE '%' + @keyword + '%') OR ([ItemSupplier] LIKE '%' + @keyword + '%')">
         <SelectParameters>
+            <asp:CookieParameter CookieName="CompanyID" Name="companyID" />
             <asp:ControlParameter ControlID="txtSearch" Name="keyword" PropertyName="Text" DefaultValue="i" />
         </SelectParameters>
     </asp:SqlDataSource>

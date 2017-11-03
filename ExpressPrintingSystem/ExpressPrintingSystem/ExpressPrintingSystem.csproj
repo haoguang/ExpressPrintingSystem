@@ -145,6 +145,7 @@
     <Content Include="Images\Pending.png" />
     <Content Include="Images\Printed.png" />
     <Content Include="Images\Completed.png" />
+    <Content Include="Images\printer.png" />
     <Content Include="Images\view.png" />
     <Content Include="Images\visa.PNG" />
     <Content Include="Login.aspx" />
@@ -424,6 +425,7 @@
     <Content Include="Staff\Owner\Package\EditPackage.aspx" />
     <Content Include="Staff\Owner\Package\ViewPackage.aspx" />
     <Content Include="Staff\Owner\Report\GenerateSalesReport.aspx" />
+    <Content Include="Staff\Owner\Report\GenerateStockRemainReport.aspx" />
     <Content Include="Staff\Owner\Report\Report.aspx" />
     <Content Include="Staff\Owner\StaffManagement\editStaff.aspx" />
     <Content Include="Staff\Owner\StaffManagement\manageStaff.aspx" />
@@ -729,6 +731,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Entities\Company.cs" />
     <Compile Include="Model\Entities\Document.cs" />
     <Compile Include="Model\Entities\Documentlist.cs" />
     <Compile Include="Model\Entities\Item.cs" />
@@ -738,6 +741,9 @@
     <Compile Include="Model\Entities\Request.cs" />
     <Compile Include="Model\Entities\Requestlist.cs" />
     <Compile Include="Model\Entities\User.cs" />
+    <Compile Include="Model\ReportPrintDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="OrderReport.aspx.cs">
       <DependentUpon>OrderReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -841,6 +847,13 @@
     <Compile Include="Staff\Owner\Report\GenerateSalesReport.aspx.designer.cs">
       <DependentUpon>GenerateSalesReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Staff\Owner\Report\GenerateStockRemainReport.aspx.cs">
+      <DependentUpon>GenerateStockRemainReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\Owner\Report\GenerateStockRemainReport.aspx.designer.cs">
+      <DependentUpon>GenerateStockRemainReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Staff\Owner\Report\Report.aspx.cs">
       <DependentUpon>Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -933,7 +946,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Report2.rdlc" />
     <EmbeddedResource Include="Report1.rdlc" />
-    <EmbeddedResource Include="Staff\Owner\Report\SalesReport.rdlc" />
+    <EmbeddedResource Include="Staff\Owner\Report\SaleReport.rdlc" />
+    <EmbeddedResource Include="Staff\Owner\Report\StockRemainReport.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

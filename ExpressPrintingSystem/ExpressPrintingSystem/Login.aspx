@@ -89,8 +89,8 @@ input[type=text], select {
         <div class="login" style="width:350px; margin:0 auto;">
             
              <div class="btn-group" role="group" aria-label="Basic example">
-                 <asp:Button ID="btnCustomer" runat="server" CssClass="btn btn-success" Text="Customer" OnClick="btnCustomer_Click" />
-                 <asp:Button ID="btnCompany" runat="server" CssClass="btn btn-default" Text="Company" OnClick="btnCompany_Click" />
+                 <asp:Button ID="btnCustomer" runat="server" CssClass="btn btn-success" Text="Customer" OnClick="btnCustomer_Click" CausesValidation="False" />
+                 <asp:Button ID="btnCompany" runat="server" CssClass="btn btn-default" Text="Company" OnClick="btnCompany_Click" CausesValidation="False" />
   
              </div>
             <br />
@@ -101,17 +101,17 @@ input[type=text], select {
             <br />
             <br />
             <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label>
-             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/ForgetPassword.aspx">Forgot password ?</asp:HyperLink>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/ForgetPassword.aspx" TabIndex="4">Forgot password ?</asp:HyperLink>
             <br />
-             <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" Height="28px"></asp:TextBox>
+             <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" Height="28px" TabIndex="1"></asp:TextBox>
             <br />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="Remember me next time" />
+            <asp:CheckBox ID="CheckBox1" runat="server" OnCheckedChanged="CheckBox1_CheckedChanged" Text="Remember me next time" TabIndex="2" />
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnSubmit" runat="server" Text="Button" Height="28px" OnClick="btnSubmit_Click" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Button" Height="28px" OnClick="btnSubmit_Click" TabIndex="3" />
                
 
         </div>
@@ -119,7 +119,7 @@ input[type=text], select {
         <div class="bottom" style="width:350px; margin:0 auto; text-align:center;">
             <asp:Label ID="Label" runat="server" Text="New User?"></asp:Label>
 
-            &nbsp;<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/SignUp.aspx">Sign Up</asp:HyperLink>
+            &nbsp;<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/SignUp.aspx" TabIndex="5">Sign Up</asp:HyperLink>
 
             </div>
     </form>

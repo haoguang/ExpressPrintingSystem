@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff/Staff.Master" AutoEventWireup="true" CodeBehind="GenerateSalesReport.aspx.cs" Inherits="ExpressPrintingSystem.Staff.Owner.Report.GenerateSalesReport" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Staff/Staff.Master" AutoEventWireup="true" CodeBehind="GenerateStockRemainReport.aspx.cs" Inherits="ExpressPrintingSystem.Staff.Owner.Report.GenerateStockRemainReport" %>
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -19,9 +18,9 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphStaffContent" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div id="report">
-    <rsweb:ReportViewer ID="rvSalesReport" CssClass="abc" runat="server" SizeToReportContent="True">
+    <rsweb:ReportViewer ID="rvStockRemainReport" runat="server" SizeToReportContent="True">
     </rsweb:ReportViewer>
         </div>
 </asp:Content>
