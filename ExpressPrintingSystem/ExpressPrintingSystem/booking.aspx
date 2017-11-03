@@ -384,7 +384,7 @@ body {
 		<h3 class="fs-subtitle"></h3>
       
    
-
+        <asp:TextBox ID="txtpackagedetail" runat="server"></asp:TextBox>
          <br />
         <asp:Label ID="Label8" runat="server" Text="Package" Font-Underline="True"></asp:Label>
         <br />

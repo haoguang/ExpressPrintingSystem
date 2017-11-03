@@ -614,6 +614,7 @@
     <Content Include="Staff\index.html" />
     <Content Include="styles\fonts\index.html" />
     <Content Include="styles\main.css" />
+    <Content Include="styles\viewfilecss.css" />
     <Content Include="testDatePicker.aspx" />
     <Content Include="testDocumentViewer.aspx" />
     <Content Include="VerificationPassword.aspx" />

@@ -9,7 +9,9 @@
  
 
    <style>
- 
+ html {
+            background-color :azure;
+        }
 
  #form1 fieldset {
 

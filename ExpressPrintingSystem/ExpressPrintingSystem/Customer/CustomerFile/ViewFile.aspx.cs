@@ -17,7 +17,7 @@ namespace ExpressPrintingSystem.Customer.CustomerFile
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            populateDocumentControl();
         }
 
 
@@ -30,18 +30,19 @@ namespace ExpressPrintingSystem.Customer.CustomerFile
 
             if (Request.QueryString["documentID"] != null)
             {
-                string documentID = ClassHashing.basicDecryption(Request.QueryString["documentID"]);
+                // string documentID = ClassHashing.basicDecryption(Request.QueryString["documentID"]);
+                string documentID = Request.QueryString["documentID"];
 
                 try
                 {
                     using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
                     {
-                        string strSelect = "SELECT * FROM Document WHERE DocumentID = @documentID";
+                        string strSelect = "SELECT * FROM Document WHERE DocumentID = @DocumentID";
 
                         using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
                         {
 
-                            cmdSelect.Parameters.AddWithValue("@documentID", documentID);
+                            cmdSelect.Parameters.AddWithValue("@DocumentID", documentID);
                             using (SqlDataAdapter da = new SqlDataAdapter(cmdSelect))
                             {
                                 documentDataTable = new DataTable();

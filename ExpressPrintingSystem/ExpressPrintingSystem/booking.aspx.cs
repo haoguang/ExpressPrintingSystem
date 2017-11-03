@@ -36,6 +36,10 @@ namespace ExpressPrintingSystem.Customer
                     txtcustomerID.Text = user.ID;
                     ViewState["UserID"] = ClassHashing.basicEncryption(user.ID);
 
+
+                    //string detail = "package 1" + "";
+                    //txtpackagedetail.Text= 
+
                 }
             }
         }
@@ -61,7 +65,7 @@ namespace ExpressPrintingSystem.Customer
 
             //create document list and upload file to cloud
             List<Documentlist> documentList = new List<Documentlist>();
-
+            int totalpage = 0;
 
             if (FileUpload1.HasFile)
 
@@ -106,14 +110,17 @@ namespace ExpressPrintingSystem.Customer
                             numberOfPages = Convert.ToInt32(matches.Count.ToString());
                             fs.Close();
                         }
-                        else if (Path.GetExtension(hpf.FileName).Equals(".png"))
+                        else if (Path.GetExtension(hpf.FileName).Equals(".png") || Path.GetExtension(hpf.FileName).Equals(".PNG") || Path.GetExtension(hpf.FileName).Equals(".jpg"))
                         {
 
                             numberOfPages = 1;
                         }
 
-                        // upload to my sqldatabase
-                        var uploadFileObject = (JObject)JsonConvert.DeserializeObject(getFileIDInCloud);
+                        totalpage += numberOfPages; 
+
+
+                         // upload to my sqldatabase
+                         var uploadFileObject = (JObject)JsonConvert.DeserializeObject(getFileIDInCloud);
                         String FileIdInCloud = uploadFileObject["fileId"].Value<string>();//get file ID
 
                         Model.Entities.Document newdocument = new Model.Entities.Document(fileName, contentType, FileIdInCloud, userID, size, numberOfPages);

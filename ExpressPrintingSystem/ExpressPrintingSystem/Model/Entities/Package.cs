@@ -185,7 +185,7 @@ namespace ExpressPrintingSystem.Model.Entities
             return package;
         }
 
-        public static readonly List<string> documentType = new List<string>{ ".docx", ".doc", ".pdf", "pptx"};
+        public static readonly List<string> documentType = new List<string>{ ".docx", ".doc", ".pdf", "pptx", ".jpg", ".png"};
 
         public const string TYPE_PRINTING = "Printing";
         public const string TYPE_PRODUCT = "Product";

@@ -331,8 +331,8 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
         {
             refreshGridView();
 
-            try
-            {
+            //try
+            //{
                 SqlConnection conPrint;
                 string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
                 conPrint = new SqlConnection(connStr);
@@ -341,7 +341,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                 string strInsert;
                 SqlCommand cmdInsert;
 
-                strInsert = "Insert Into Package (PackageName, PackagePrice, PackageSupport, PackageType, PrintingPricePerPaper) Values (@packageName, @packagePrice, @packageSupport, @packageType, @printingPricePerPaper);SELECT MAX(PackageID) from Package where PackageName=@PackageName and PackageType=@packageType ";
+                strInsert = "Insert Into Package (PackageName, PackagePrice, PackageSupport, PackageType, PrintingPricePerPaper, CompanyID) Values (@packageName, @packagePrice, @packageSupport, @packageType, @printingPricePerPaper,@companyID);SELECT MAX(PackageID) from Package where PackageName=@PackageName and PackageType=@packageType ";
 
 
                 cmdInsert = new SqlCommand(strInsert, conPrint);
@@ -369,8 +369,10 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
                 cmdInsert.Parameters.AddWithValue("@packageSupport", packageSupport);
                 cmdInsert.Parameters.AddWithValue("@printingPricePerPaper", printingPaperPrice);
+                cmdInsert.Parameters.AddWithValue("@companyID", Request.Cookies["CompanyID"].Value);
 
                 var packageID = cmdInsert.ExecuteScalar();
+               
 
                 if (packageID != null && ViewState["CurrentTable"] != null)
                 {
@@ -400,11 +402,11 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
                 string returnUrl = Request.QueryString["ReturnUrl"] as string;
                 Response.Redirect(returnUrl);
-            }
-            catch (SqlException ex)
-            {
-                Response.Write("<script LANGUAGE='JavaScript' >alert('Something gone wrong with the database. Please contact the administrator for the problem.')</script>");
-            }
+            //}
+            //catch (SqlException ex)
+            //{
+            //    Response.Write("<script LANGUAGE='JavaScript' >alert('Something gone wrong with the database. Please contact the administrator for the problem.')</script>");
+            //}
 
         }
     }
