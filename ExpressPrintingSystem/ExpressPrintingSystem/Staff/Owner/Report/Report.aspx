@@ -6,7 +6,7 @@
     <table>
         <tr>
             <td><asp:Label ID="lblReportName" runat="server" Text="Report Name:"></asp:Label></td>
-            <td><asp:DropDownList ID="ddlReportName" runat="server">
+            <td><asp:DropDownList ID="ddlReportName" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlReportName_SelectedIndexChanged">
                 <asp:ListItem Value="SR">Sales Report</asp:ListItem>
                 <asp:ListItem Value="SRR">Stock Remain Report</asp:ListItem>
                 </asp:DropDownList></td>
@@ -19,6 +19,10 @@
                 <asp:ListItem>Yearly</asp:ListItem>
                 <asp:ListItem>Custom</asp:ListItem>
                 </asp:RadioButtonList></td>
+        </tr>
+        <tr id="stockControl" runat="server">
+            <td>Show Stock Quantity Lower Than :</td>
+            <td><asp:TextBox ID="txtStock" TextMode="Number" Text="0" runat="server"></asp:TextBox></td>
         </tr>
         <tr id="dateControlDaily" runat="server" style="vertical-align:top;">
             <td>Date:</td>

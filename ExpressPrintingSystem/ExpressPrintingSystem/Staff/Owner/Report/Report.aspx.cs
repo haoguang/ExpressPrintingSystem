@@ -10,6 +10,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Report
     public partial class Report : System.Web.UI.Page
     {
         private const string SaleReportUrl = "GenerateSalesReport.aspx";
+        private const string StockReportUrl = "GenerateStockRemainReport.aspx";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,6 +18,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Report
             {
                 rblPeriod.SelectedIndex = 0;
                 rblPeriod_SelectedIndexChanged(null, null);
+                ddlReportName_SelectedIndexChanged(null, null);
             }
         }
 
@@ -57,7 +59,8 @@ namespace ExpressPrintingSystem.Staff.Owner.Report
                     url = SaleReportUrl + "?StartDate=" + HttpUtility.UrlEncode(ClassHashing.basicEncryption(startingDate.ToString("dd/MM/yyyy"))) + "&EndDate="+ HttpUtility.UrlEncode(ClassHashing.basicEncryption(endingDate.ToString("dd/MM/yyyy"))) + "&ReportType=" + HttpUtility.UrlEncode(ClassHashing.basicEncryption(rblPeriod.SelectedValue));
                     break;
                 case STOCK_REMAIN_REPORT:
-                    return "";
+                    url = StockReportUrl + "?QuantityUnder=" + HttpUtility.UrlEncode(ClassHashing.basicEncryption(txtStock.Text));
+                    break;
             }
 
             return url;
@@ -157,6 +160,33 @@ namespace ExpressPrintingSystem.Staff.Owner.Report
                 dateControlCustom.Visible = false;
                 cdrTo.Enabled = false;
                 cdrFrom.Enabled = false;
+            }
+        }
+
+        protected void ddlReportName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (ddlReportName.SelectedValue)
+            {
+                case SALES_REPORT:
+                    periodRow.Visible = true;
+                    rblPeriod.Enabled = true;
+                    rblPeriod_SelectedIndexChanged(null, null);
+
+                    stockControl.Visible = false;
+                    txtStock.Enabled = false;
+                    break;
+                case STOCK_REMAIN_REPORT:
+                    periodRow.Visible = false;
+                    rblPeriod.Enabled = false;
+                    enableDailyControl(false);
+                    enableMonthlyControl(false);
+                    enableYearlyControl(false);
+                    enableCustomControl(false);
+
+                    stockControl.Visible = true;
+                    txtStock.Enabled = true;
+
+                    break;
             }
         }
     }

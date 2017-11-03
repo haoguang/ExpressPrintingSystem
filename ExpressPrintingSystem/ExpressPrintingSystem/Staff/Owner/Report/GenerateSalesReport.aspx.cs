@@ -1,5 +1,6 @@
 ﻿using ExpressPrintingSystem.Model.Entities;
 using Microsoft.Reporting.WebForms;
+using PrintReportSample;
 using System;
 using System.Collections.Generic;
 using System.Data;

@@ -33,25 +33,32 @@ namespace ExpressPrintingSystem.Staff.Owner.Item
                 string strInsert;
                 SqlCommand cmdInsert;
 
-                strInsert = "Insert Into Item (ItemName, ItemPrice, ItemStockQuantity, ItemSupplier) Values (@itemName, @itemPrice, @itemStockQuantity, @itemSupplier)";
+                strInsert = "Insert Into Item (ItemName, ItemPrice, ItemStockQuantity, ItemSupplier, CompanyID) Values (@itemName, @itemPrice, @itemStockQuantity, @itemSupplier, @companyID)";
 
                 cmdInsert = new SqlCommand(strInsert, conPrintDB);
                 cmdInsert.Parameters.AddWithValue("@itemName", txtName.Text);
                 cmdInsert.Parameters.AddWithValue("@itemPrice", Convert.ToDecimal(txtPrice.Text) );
                 cmdInsert.Parameters.AddWithValue("@itemStockQuantity", Convert.ToInt32(txtQuantity.Text));
                 cmdInsert.Parameters.AddWithValue("@itemSupplier", txtSupplier.Text);
+                cmdInsert.Parameters.AddWithValue("@companyID", Request.Cookies["CompanyID"].Value);
 
 
                 int n = cmdInsert.ExecuteNonQuery();
+
+                Response.Redirect("ViewItem.aspx");
 
             }
             catch (Exception ex)
             {
                 lblError.Text = "An error occured when adding item :" + ex.ToString();
             }
+            finally
+            {
+                conPrintDB.Close();
+            }
 
 
-            conPrintDB.Close();
+            
         }
     }
 }
