@@ -5,24 +5,26 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+   
     <title></title>
 </head>
 <body>
     <form id="form1" runat="server">
       
-    <h1>View Document Room</h1>
+    
                            
                <div style="padding:0;margin:0;width:70%;">
+                <h1>View Document Room</h1>
                  <asp:ListView ID="lvPackageItems" runat="server" ItemPlaceholderID="PlaceHolderDocumentList">
                      <LayoutTemplate>
 
-                         <table style="width:100%;">
+                         <table class="expendableTable" style="width:100%;">
                                    <tr>
                                        <th style="display:none">Document ID</th>
                                        <th>Document Name</th>
                                        <th>Type</th>
-                                       <th>Print Quantity</th>
-                                       <th>Paper Type</th>
+                                       <th>Size</th>
+                                       <th>Page Number</th>
                                        <th>View</th>
                                        </tr>
                                        <asp:PlaceHolder runat="server" ID="PlaceHolderDocumentList" />
@@ -48,7 +50,7 @@
         
 
     </form>
-    <link rel="stylesheet" href="<%= Page.ResolveUrl("~/styles/expendableTable.css") %>" type="text/css" />
+    <link rel="stylesheet" href="<%= Page.ResolveUrl("~/styles/viewfilecss.css") %>" type="text/css" />
     <script src="<%= Page.ResolveUrl("~/scripts/jquery-1.6.4.js") %>"></script>
     <script src="<%= Page.ResolveUrl("~/scripts/jquery.signalR-2.2.2.js") %>"></script>
     <script type="text/javascript">
