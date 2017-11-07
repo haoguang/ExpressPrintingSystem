@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,35 +13,26 @@ namespace ExpressPrintingSystem.Model.Messenging
     public class EmailClass
     {
 
-        private string senderEmail;
         private List<string> receiverEmail;
         private string subject;
         private string content;
         private bool isHtmlEnabled;
 
-        public EmailClass(string senderEmail, List<string> receiverEmail, string subject, string content, bool isHtmlEnabled)
+        public EmailClass(List<string> receiverEmail, string subject, string content, bool isHtmlEnabled)
         {
-            this.senderEmail = senderEmail;
             this.receiverEmail = receiverEmail;
             this.subject = subject;
             this.content = content;
             this.isHtmlEnabled = isHtmlEnabled;
         }
 
-        public EmailClass(string senderEmail, string receiverEmail, string subject, string content, bool isHtmlEnabled)
+        public EmailClass(string receiverEmail, string subject, string content, bool isHtmlEnabled)
         {
-            this.senderEmail = senderEmail;
             this.receiverEmail = new List<string>();
             this.receiverEmail.Add(receiverEmail);
             this.subject = subject;
             this.content = content;
             this.isHtmlEnabled = isHtmlEnabled;
-        }
-
-        public string SenderEmail
-        {
-            get { return senderEmail; }
-            set { senderEmail = value; }
         }
 
         public List<string> ReceiverEmail
@@ -66,28 +59,104 @@ namespace ExpressPrintingSystem.Model.Messenging
             set { isHtmlEnabled = value; }
         }
 
-
-        public void sendEmail(string user, string pass, string option)
+        public static bool isCredentialed()
         {
-            SmtpClient SmtpServer = new SmtpClient(option);
-            var mail = new MailMessage();
-            mail.From = new MailAddress(senderEmail);
+            return HttpContext.Current.Session["EmailCredential"] != null;
+        }
 
-            for(int i=0; i<receiverEmail.Count; i++)
+        public static void generateCredential(string user, string pass, string stmpClient)
+        {
+            NetworkCredential networkCredential = new NetworkCredential(user, pass);
+
+            HttpContext.Current.Session["EmailCredential"] = networkCredential;
+            
+        }
+
+        public static string getStmpClient(string emailProvider)
+        {
+            switch (emailProvider)
             {
-                mail.To.Add(receiverEmail[i]);
+                case PROVIDER_HOTMAIL:
+                    return STMP_HOTMAIL;
+                case PROVIDER_GMAIL:
+                    return STMP_GMAIL;
+                case PROVIDER_YAHOO:
+                    return STMP_YAHOO;
+                case PROVIDER_YAHOO_PLUS:
+                    return STMP_YAHOO_PLUS;
+                case PROVIDER_YAHOO_UK:
+                    return STMP_YAHOO_UK;
+                case PROVIDER_OFFICE365:
+                    return STMP_OFFICE365;
+                default:
+                    return null;
+            }
+        }
+
+        public static string getProviderName(string email)
+        {
+            if (email.ToLower().Contains("hotmail")|| email.ToLower().Contains("live") || email.ToLower().Contains("outlook"))
+            {
+                return PROVIDER_HOTMAIL;
+            }else if (email.ToLower().Contains("gmail"))
+            {
+                return PROVIDER_GMAIL;
+            }
+            else if (email.ToLower().Contains("yahoo"))
+            {
+                return PROVIDER_YAHOO;
+            }
+            else if (email.ToLower().Contains("yahoo.com.uk"))
+            {
+                return PROVIDER_YAHOO_UK;
+            }
+            else if (email.ToLower().Contains("office365"))
+            {
+                return PROVIDER_OFFICE365;
+            }
+            else
+            {
+                return null;
+            }
+
+
+    }
+
+
+        public bool sendEmail(string option)
+        {
+            if(HttpContext.Current.Session["EmailCredential"] != null)
+            {
+                NetworkCredential emailCredential = (NetworkCredential)HttpContext.Current.Session["EmailCredential"];
+
+                var emailProvider = (JObject)JsonConvert.DeserializeObject(option);
+
+                SmtpClient SmtpServer = new SmtpClient(emailProvider["server"].Value<string>());
+                var mail = new MailMessage();
+                mail.From = new MailAddress(emailCredential.UserName);
+
+                for (int i = 0; i < receiverEmail.Count; i++)
+                {
+                    mail.To.Add(receiverEmail[i]);
+                }
+
+                mail.Subject = subject;
+                mail.IsBodyHtml = isHtmlEnabled;
+                string htmlBody;
+                htmlBody = content;
+                mail.Body = htmlBody;
+                SmtpServer.Port = emailProvider["port"].Value<int>();
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = emailCredential;
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+                return true;
+            }
+            else
+            {
+                return false;
             }
             
-            mail.Subject = subject;
-            mail.IsBodyHtml = isHtmlEnabled;
-            string htmlBody;
-            htmlBody = content;
-            mail.Body = htmlBody;
-            SmtpServer.Port = 587;
-            SmtpServer.UseDefaultCredentials = false;
-            SmtpServer.Credentials = new NetworkCredential(user, pass); ;
-            SmtpServer.EnableSsl = true;
-            SmtpServer.Send(mail);
         }
 
         public static string populateActivationEmail(string companyName, string activationLink)
@@ -104,7 +173,46 @@ namespace ExpressPrintingSystem.Model.Messenging
         }
 
 
-        public const string STMP_HOTMAIL = "smtp.live.com";
-        public const string STMP_GMAIL = "smtp.gmail.com";
+        public const string STMP_HOTMAIL = "{ \"name\":\"Hotmail\", \"server\":\"smtp.live.com\", \"port\":587 }";
+        public const string STMP_GMAIL = "{ \"name\":\"Gmail\", \"server\":\"smtp.gmail.com\", \"port\":465 }";
+        public const string STMP_YAHOO = "{ \"name\":\"Yahoo\", \"server\":\"smtp.mail.yahoo.com\", \"port\":465 }";
+        public const string STMP_YAHOO_PLUS = "{ \"name\":\"Yahoo Plus\", \"server\":\"plus.smtp.mail.yahoo.com\", \"port\":465 }";
+        public const string STMP_YAHOO_UK = "{ \"name\":\"Yahoo UK\", \"server\":\"smtp.mail.yahoo.co.uk\", \"port\":465 }";
+        public const string STMP_OFFICE365 = "{ \"name\":\"OFFICE365\", \"server\":\"smtp.office365.com\", \"port\":587 }";
+
+        public const string PROVIDER_HOTMAIL = "microsoft";
+        public const string PROVIDER_GMAIL = "google";
+        public const string PROVIDER_YAHOO = "yahoo";
+        public const string PROVIDER_YAHOO_PLUS = "yahoo plus";
+        public const string PROVIDER_YAHOO_UK = "yahoo uk";
+        public const string PROVIDER_OFFICE365 = "office365";
+
+
     }
+
+    public class EmailCredential
+    {
+        private NetworkCredential emailCredential;
+        private string stmpClient;
+
+        public EmailCredential(NetworkCredential emailCredential, string stmpClient)
+        {
+            this.emailCredential = emailCredential;
+            this.stmpClient = stmpClient;
+        }
+
+        public NetworkCredential Credential
+        {
+            get { return emailCredential; }
+            set { emailCredential = value; }
+        }
+
+        public string STMPClient
+        {
+            get { return stmpClient; }
+            set { stmpClient = value; }
+        }
+    }
+
+
 }
