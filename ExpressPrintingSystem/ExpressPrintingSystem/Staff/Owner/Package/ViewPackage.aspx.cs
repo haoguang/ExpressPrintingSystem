@@ -81,11 +81,11 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                                         (int)itemsResult.Rows[j]["ItemStockQuantity"], (string)itemsResult.Rows[j]["ItemSupplier"]),(int)itemsResult.Rows[j]["Quantity"]));
                                 }
 
-                                packageList.Add(new Model.Entities.Package((string)packageResult.Rows[i]["PackageID"], (string)packageResult.Rows[i]["PackageName"], (decimal)packageResult.Rows[i]["PackagePrice"], (string)packageResult.Rows[i]["PackageSupport"], (string)packageResult.Rows[i]["PackageType"], (decimal)packageResult.Rows[i]["PrintingPricePerPaper"], packageItems));
+                                packageList.Add(new Model.Entities.Package((string)packageResult.Rows[i]["PackageID"], (string)packageResult.Rows[i]["PackageName"], (decimal)packageResult.Rows[i]["PackagePrice"], (string)packageResult.Rows[i]["PackageSupport"].ToString(), (string)packageResult.Rows[i]["PackageType"], (decimal)packageResult.Rows[i]["PrintingPricePerPaper"], packageItems));
                             }
                             else
                             {
-                                packageList.Add(new Model.Entities.Package((string)packageResult.Rows[i]["PackageID"], (string)packageResult.Rows[i]["PackageName"], (decimal)packageResult.Rows[i]["PackagePrice"], (string)packageResult.Rows[i]["PackageSupport"], (string)packageResult.Rows[i]["PackageType"], (decimal)packageResult.Rows[i]["PrintingPricePerPaper"]));
+                                packageList.Add(new Model.Entities.Package((string)packageResult.Rows[i]["PackageID"], (string)packageResult.Rows[i]["PackageName"], (decimal)packageResult.Rows[i]["PackagePrice"], (string)packageResult.Rows[i]["PackageSupport"].ToString(), (string)packageResult.Rows[i]["PackageType"], (decimal)packageResult.Rows[i]["PrintingPricePerPaper"]));
                             }
 
                         }
