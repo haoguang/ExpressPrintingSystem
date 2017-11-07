@@ -20,7 +20,10 @@ namespace ExpressPrintingSystem.Customer
         protected void Page_Load(object sender, EventArgs e)
         {
             this.Form.DefaultButton = this.btnSubmit.UniqueID;
-            DisplayAppropriateAuthorizationMessage();
+            if (!IsPostBack)
+            {
+                DisplayAppropriateAuthorizationMessage();
+            }
 
             if (Request.Cookies["me"] != null)
             {

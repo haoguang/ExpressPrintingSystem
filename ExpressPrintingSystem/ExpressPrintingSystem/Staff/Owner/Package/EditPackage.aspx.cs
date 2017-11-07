@@ -30,6 +30,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
                 retrieveItemList();
                 populateDataToControls();
+                ddlType_SelectedIndexChanged(null, null);
             }
 
             refreshGridView(); //refresh table

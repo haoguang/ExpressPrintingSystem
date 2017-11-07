@@ -22,6 +22,7 @@ namespace ExpressPrintingSystem.Staff.Owner.StaffManagement
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+
             SqlConnection conPrintDB;
             string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
             conPrintDB = new SqlConnection(connStr);
@@ -38,7 +39,6 @@ namespace ExpressPrintingSystem.Staff.Owner.StaffManagement
 
                 if (chkPassSet.Checked)
                     hashPassword = ClassHashing.generateSaltedHash(txtPassword.Text, generatedSalt);
-                string abc = Request.Cookies["CompanyID"].Value;
                 cmdInsert = new SqlCommand(strInsert, conPrintDB);
                 cmdInsert.Parameters.AddWithValue("@staffName", txtName.Text);
                 cmdInsert.Parameters.AddWithValue("@staffEmail", txtEmail.Text);
@@ -62,10 +62,22 @@ namespace ExpressPrintingSystem.Staff.Owner.StaffManagement
                     string verificationCode = UserVerification.getVerificationCode(staffID + txtNRIC.Text, generatedSalt);
                     //then it will generate a url to activate the account and send it to the staff
                     string verificationLink = DOMAIN_NAME + Page.ResolveUrl("~/StaffAccountActivation.aspx?VC=" + HttpUtility.UrlEncode(verificationCode));
-                    string emailContent = EmailClass.populateActivationEmail((string)companyName, verificationLink);
-                    EmailClass emailClass = new EmailClass("sender email", txtEmail.Text , "Staff Account Activation", emailContent,true);
+                    string emailContent = EmailClass.populateActivationEmail((string)companyName, verificationLink);// content of the email
 
-                    emailClass.sendEmail("sender email", "password", "email type");
+                    if (EmailClass.isCredentialed())
+                    {
+                        //EmailClass emailClass = new EmailClass("sender email", txtEmail.Text , "Staff Account Activation", emailContent,true);
+
+                        //emailClass.sendEmail("sender email", "password", "email type");
+                    }
+                    else
+                    {
+                        ViewState["verificationUrl"] = verificationLink;
+                        Response.Write("<script>$(\"#overlay\").show();</script>");
+                        return;
+                    }
+
+
                 }
 
                 lblError.Text = "Successfully added";
@@ -107,6 +119,5 @@ namespace ExpressPrintingSystem.Staff.Owner.StaffManagement
             }
         }
 
-        
     }
 }

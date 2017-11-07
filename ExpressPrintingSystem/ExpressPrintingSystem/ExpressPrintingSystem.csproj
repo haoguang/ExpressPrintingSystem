@@ -439,6 +439,7 @@
     <Content Include="Staff\Printing\ViewDocument.aspx" />
     <Content Include="Staff\Printing\viewPrintingRequest.aspx" />
     <Content Include="Staff\TestSendFBMessage.aspx" />
+    <Content Include="Staff\VerifyEmail.aspx" />
     <Content Include="styles\bootstrap.min.css" />
     <Content Include="styles\expendableTable.css" />
     <Content Include="styles\fonts\Multicolore.otf" />
@@ -921,6 +922,13 @@
     </Compile>
     <Compile Include="Staff\TestSendFBMessage.aspx.designer.cs">
       <DependentUpon>TestSendFBMessage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\VerifyEmail.aspx.cs">
+      <DependentUpon>VerifyEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Staff\VerifyEmail.aspx.designer.cs">
+      <DependentUpon>VerifyEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="testDatePicker.aspx.cs">

@@ -331,8 +331,8 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
         {
             refreshGridView();
 
-            //try
-            //{
+            try
+            {
                 SqlConnection conPrint;
                 string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
                 conPrint = new SqlConnection(connStr);
@@ -400,14 +400,14 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
                 conPrint.Close();
 
-                string returnUrl = Request.QueryString["ReturnUrl"] as string;
-                Response.Redirect(returnUrl);
-            //}
-            //catch (SqlException ex)
-            //{
-            //    Response.Write("<script LANGUAGE='JavaScript' >alert('Something gone wrong with the database. Please contact the administrator for the problem.')</script>");
-            //}
-
+                
+                Response.Redirect("ViewPackage.aspx");
         }
+            catch (SqlException ex)
+            {
+                Response.Write("<script LANGUAGE='JavaScript' >alert('Something gone wrong with the database. Please contact the administrator for the problem.')</script>");
+            }
+
+}
     }
 }
