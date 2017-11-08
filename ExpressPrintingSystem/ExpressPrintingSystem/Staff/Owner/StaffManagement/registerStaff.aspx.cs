@@ -63,18 +63,17 @@ namespace ExpressPrintingSystem.Staff.Owner.StaffManagement
                     //then it will generate a url to activate the account and send it to the staff
                     string verificationLink = DOMAIN_NAME + Page.ResolveUrl("~/StaffAccountActivation.aspx?VC=" + HttpUtility.UrlEncode(verificationCode));
                     string emailContent = EmailClass.populateActivationEmail((string)companyName, verificationLink);// content of the email
+                    EmailClass emailClass = new EmailClass(txtEmail.Text, "Staff Account Activation", emailContent, true);
 
                     if (EmailClass.isCredentialed())
                     {
-                        //EmailClass emailClass = new EmailClass("sender email", txtEmail.Text , "Staff Account Activation", emailContent,true);
-
-                        //emailClass.sendEmail("sender email", "password", "email type");
+                        EmailCredential credential = (EmailCredential)Session["EmailCredential"];
+                         emailClass.sendEmail(credential);
                     }
                     else
                     {
-                        ViewState["verificationUrl"] = verificationLink;
-                        Response.Write("<script>$(\"#overlay\").show();</script>");
-                        return;
+                        Session["tempEmail"] = emailClass;
+                        Response.Redirect(ResolveUrl("~/Staff/VerifyEmail.aspx?ReturnURL="+ Request.Url.AbsoluteUri));
                     }
 
 
