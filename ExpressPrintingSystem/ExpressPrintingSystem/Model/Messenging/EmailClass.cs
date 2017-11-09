@@ -172,6 +172,18 @@ namespace ExpressPrintingSystem.Model.Messenging
             return body;
         }
 
+        public static string populateNotificationEmail(string companyName)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Model/Messenging/EmailTemplates/CustomerNotification.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{CompanyName}", companyName);
+
+            return body;
+        }
+
 
         public const string STMP_HOTMAIL = "{ \"name\":\"Hotmail\", \"server\":\"smtp.live.com\", \"port\":587 }";
         public const string STMP_GMAIL = "{ \"name\":\"Gmail\", \"server\":\"smtp.gmail.com\", \"port\":587 }";

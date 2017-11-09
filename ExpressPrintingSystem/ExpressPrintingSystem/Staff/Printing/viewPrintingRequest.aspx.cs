@@ -1,4 +1,5 @@
 ﻿using ExpressPrintingSystem.Model.Entities;
+using ExpressPrintingSystem.Model.Messenging;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -179,6 +180,7 @@ namespace ExpressPrintingSystem.Staff.Printing
             }else if (operation.Equals(COMMAND_COMPLETE)){
                 Requestlist.updateRequestlistStatus(requestlistID, Requestlist.STATUS_COMPLETED);
                 //send notification here;
+                sendNotification(requestlistID);
             }
             else if (operation.Equals(COMMAND_PICKUP))
             {
@@ -251,6 +253,64 @@ namespace ExpressPrintingSystem.Staff.Printing
                 default:
                     return Color.Black;
 
+            }
+        }
+
+        private void sendNotification(string requestlistID)
+        {
+            DataTable result = null;
+            try
+            {
+                using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
+                {
+                    string strSelect = "Select CustomerEmail, CustomerPhoneNo, CustomerContactMethod, CompanyName From Customer c, Request r, Requestlist rl, Company c WHERE rl.RequestID = r.RequestID AND r.CustomerID = c.CustomerID AND r.CompanyID = c.CompanyID AND rl.RequestlistID = @requestlistID";
+                    
+                    using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
+                    {
+                        cmdSelect.Parameters.AddWithValue("@requestlistID", requestlistID);
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmdSelect))
+                        {
+                            result = new DataTable();
+                            da.Fill(result);
+                        }
+
+                        //return new User((string)result.Rows[0]["ID"], (string)result.Rows[0]["Name"], GetUserRoles(username, loginType), (string)result.Rows[0]["Email"]);
+                        string contactNo = (string)result.Rows[0]["CustomerPhoneNo"];
+                        string email = (string)result.Rows[0]["CustomerEmail"];
+                        string contactMethod = (string)result.Rows[0]["CustomerContactMethod"];
+                        string companyName = (string)result.Rows[0]["CompanyName"];
+
+                        switch (contactMethod)
+                        {
+                            case "whatsapp":
+                            case "wechat":
+                            case "E-mail":
+                                string emailContent = EmailClass.populateNotificationEmail(companyName);// content of the email
+                                EmailClass emailClass = new EmailClass(email, "Document is Printed and Ready", emailContent, true);
+
+                                if (EmailClass.isCredentialed())
+                                {
+                                    EmailCredential credential = (EmailCredential)Session["EmailCredential"];
+                                    emailClass.sendEmail(credential);
+                                }
+                                else
+                                {
+                                    Session["tempEmail"] = emailClass;
+                                    Response.Redirect(ResolveUrl("~/Staff/VerifyEmail.aspx?ReturnURL=" + Request.Url.AbsoluteUri));
+                                }
+                                break;
+                            case "SMS":
+                                break;
+                        }
+                        
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
             }
         }
 
