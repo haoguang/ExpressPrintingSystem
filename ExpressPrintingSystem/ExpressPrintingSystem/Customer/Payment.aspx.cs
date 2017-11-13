@@ -14,6 +14,7 @@ using System.Net.Mime;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 namespace ExpressPrintingSystem.Customer
 {
@@ -21,19 +22,114 @@ namespace ExpressPrintingSystem.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string detail;
-            detail = "Order Detail" + "<br/>";
-            detail += "------------------" + "<br/>";
-            detail += "Item Name = " + "<br/>";
-            detail += "Item price = " + "<br/>";
-            detail += "package =" + "<br/>";
-            detail += "Amount =" + "<br/>";
-            detail += "<br/>";
-            lblreceipt.Text = detail;
+            Model.Entities.Request request = (Model.Entities.Request)Session["request"];
+            Package newpackage = (Package)Session["package"];
+            decimal receivepage = Convert.ToDecimal((int)Session["totalpage"]);
+            int normalcountFile = (int)Session["normalcount"];
+            decimal amountOFpage = 0;
+            decimal finalAmount = 0;
+            int countfile = 0;
+            decimal totalPackagePrice = 0;
+
+            
+            //calculate the total page in multiple file 
+            if (request.RequestLists[0].DocumentList[0].DocumentBothSide.Equals("Single Side"))
+            {
+                //calculate the totalamountofpage
+                amountOFpage = newpackage.PrintingPrice * receivepage * request.RequestLists[0].DocumentList[0].DocumentQuantity;
+
+                //calculate the countfile with package price  
+                countfile = (int)Session["countthepackageitem"];
+                totalPackagePrice = newpackage.PackagePrice * countfile;
+
+                //calculate final amount
+                finalAmount = amountOFpage + totalPackagePrice;
+
+                //getitem
+                string allFileName = (string)Session["allfilename"];
+
+                string detail;
+                detail = "Order Detail" + "<br />";
+                detail += "------------------" + "<br />";
+                detail += "Number of File =" + normalcountFile + "<br />";
+                detail += "Number of Page =" + receivepage + "<br />";
+                detail += "Number of set =" + request.RequestLists[0].DocumentList[0].DocumentQuantity + "<br />";
+                detail += "Document Color =" + request.RequestLists[0].DocumentList[0].DocumentColor + "<br/>";
+                detail += "Document Side =" + request.RequestLists[0].DocumentList[0].DocumentBothSide + "<br/>"; 
+                detail += "Item Name = " + allFileName + "<br />";
+                detail += "Item price = " + amountOFpage + "<br />";
+                detail += "Package = " + newpackage.PackageName + "<br />";
+                detail += "Package Price =" + totalPackagePrice + "<br />";
+                detail += "Total Amount=" + finalAmount + "<br />";
+                detail += "<br/>";
+                lblreceipt.Text = detail;
+                txtpaymentTotal.Text = Convert.ToString(finalAmount);
+            }
+            else if (request.RequestLists[0].DocumentList[0].DocumentBothSide.Equals("Double Side"))
+            {
+
+                decimal doublesidePageNumber;
+                doublesidePageNumber = receivepage / 2;
+
+                //calculate the totalamountofpage
+                amountOFpage = newpackage.PrintingPrice * doublesidePageNumber * request.RequestLists[0].DocumentList[0].DocumentQuantity;
+
+                //calculate the countfile with package price  
+                countfile = (int)Session["countthepackageitem"];
+                totalPackagePrice = newpackage.PackagePrice * countfile;
+
+                //calculate final amount
+                finalAmount = amountOFpage + totalPackagePrice;
+
+                //getitem
+                string allFileName = (string)Session["allfilename"];
+
+                string detail;
+                detail = "Order Detail" + "<br />";
+                detail += "------------------" + "<br />";
+                detail += "Number of File =" + normalcountFile + "<br />";
+                detail += "Number of Page =" + receivepage + "<br />";
+                detail += "Number of set =" + request.RequestLists[0].DocumentList[0].DocumentQuantity + "<br />";
+                detail += "Document Color =" + request.RequestLists[0].DocumentList[0].DocumentColor + "<br/>";
+                detail += "Item Name = " + allFileName + "<br />";
+                detail += "Item price = " + amountOFpage + "<br />";
+                detail += "Package = " + newpackage.PackageName + "<br />";
+                detail += "Package Price =" + totalPackagePrice + "<br />";
+                detail += "Total Amount=" + finalAmount + "<br />";
+                detail += "<br/>";
+                lblreceipt.Text = detail;
+                txtpaymentTotal.Text = Convert.ToString(finalAmount);
+
+
+            }
+
+
+           
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
+            Model.Entities.Request request = (Model.Entities.Request)Session["request"];
+            Package newpackage = (Package)Session["package"];
+            int receivepage = (int)Session["totalpage"];
+            decimal amountOFpage = 0;
+            decimal finalAmount = 0;
+            int countfile = 0;
+            decimal totalPackagePrice = 0;
+
+            //calculate the totalamountofpage
+            amountOFpage = newpackage.PrintingPrice * receivepage * request.RequestLists[0].DocumentList[0].DocumentQuantity;
+
+            //calculate the countfile with package price  
+            countfile = (int)Session["countthepackageitem"];
+            totalPackagePrice = newpackage.PackagePrice * countfile;
+
+            //calculate final amount
+            finalAmount = amountOFpage + totalPackagePrice;
+
+            //getitem
+            string allFileName = (string)Session["allfilename"];
+
             string Server_URL = "https://www.sandbox.paypal.com/cgi-bin/webscr?";
 
             //Assigning Cmd Path as Statically to Parameter
@@ -43,10 +139,10 @@ namespace ExpressPrintingSystem.Customer
             string business = "Expressprintingsystem2017@gmail.com";// Enter your business account here 
 
             //Assigning item name as Statically to Parameter
-            string item_name = "Item 1";
+            string item_name = allFileName;
 
             //Passing Amount as Statically to parameter 
-            double amount = 100.00;//Convert.ToDouble(txtpaymentTotal.Text);
+            decimal amount = finalAmount;//Convert.ToDouble(txtpaymentTotal.Text);
 
             //Passing Currency as Statically to parameter
             string currency_code = "MYR";
@@ -95,6 +191,8 @@ namespace ExpressPrintingSystem.Customer
 
                 Model.Entities.Payment newpayment = new Model.Entities.Payment(type, totalPayment, currentDate);
                 Model.Entities.Request request = (Model.Entities.Request)Session["request"];
+
+
                 //request.RequestLists[0].RequestItemID[0]
                 request.Payment = newpayment;
 
@@ -120,16 +218,9 @@ namespace ExpressPrintingSystem.Customer
                 if (getPaymentID != null)
                 {
                     request.Payment.PaymentID = (string)getPaymentID;
-                    string path = (string)(Session["pathfile"]);
-
+                  
                     insertNewRequest(request);
-                    generateQRcode(request);
-                    FileInfo file = new FileInfo(path);
-                    if (file.Exists)//check file exsit or not
-                    {
-                        file.Delete();
-                      
-                    }
+                    generateQRcode(request);  
 
                     Response.Write("<script>alert('Successful payment');</script>");
 
@@ -143,7 +234,7 @@ namespace ExpressPrintingSystem.Customer
 
 
                 conTaxi.Close();
-                Response.Redirect("/Customer/masterPageTest.aspx");
+                Response.Redirect("~/masterPageTest.aspx");
             }
 
 
@@ -240,21 +331,21 @@ namespace ExpressPrintingSystem.Customer
         private void generateQRcode(Model.Entities.Request request)
         {
             string code;
-            string title = "Express Printing System Shop";
+            string title = "Express Printing Shop";
             string paymentID = request.Payment.PaymentID;
-            code = title + "\n";
-            code += "------------------------------------" + "\n";
-            code += "Payment ID     :" + paymentID + "\n";
-            code += "Payment Date   :" + request.Payment.PaymentDateTime + "\n";
-            code += "Payment Amount :" + request.Payment.PaymentAmount + "\n";
-            code += "Best Regards" + "\n";
+            code = title + System.Environment.NewLine;
+            code += "------------------------------------" + System.Environment.NewLine ;
+            code += "Payment ID     :" + paymentID + System.Environment.NewLine;
+            code += "Payment Date   :" + request.Payment.PaymentDateTime + System.Environment.NewLine;
+            code += "Payment Amount :" + request.Payment.PaymentAmount + System.Environment.NewLine;
+           
 
 
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
             System.Web.UI.WebControls.Image imgBarCode = new System.Web.UI.WebControls.Image();
-            imgBarCode.Height = 250;
-            imgBarCode.Width = 250;
+            imgBarCode.Height = 300;
+            imgBarCode.Width = 300;
             using (Bitmap bitMap = qrCode.GetGraphic(20))
             {
                 using (MemoryStream ms = new MemoryStream())
@@ -368,7 +459,16 @@ Express Printing System Admin
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Booking.aspx");
+            //Response.Redirect("Booking.aspx");
+           DialogResult dialogresult =  MessageBox.Show("Cancellation for payment?","Comformation for cancel payment",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Exclamation,
+                MessageBoxDefaultButton.Button1);
+            if (dialogresult == DialogResult.OK) {
+
+                Response.Redirect("~/masterPageTest.aspx");
+            }
+           
         }
 
 

@@ -17,6 +17,7 @@ using Microsoft.Office.Interop.Word;
 using System.Text.RegularExpressions;
 using ExpressPrintingSystem.Model.Entities;
 
+
 namespace ExpressPrintingSystem.Customer
 {
     public partial class booking : System.Web.UI.Page
@@ -37,8 +38,18 @@ namespace ExpressPrintingSystem.Customer
                     ViewState["UserID"] = ClassHashing.basicEncryption(user.ID);
 
 
-                    //string detail = "package 1" + "";
-                    //txtpackagedetail.Text= 
+                    string detail = "Information" + "<br/>";
+                    detail += "----------------------" + "<br />";
+                    detail += "Color page" + "<br/>";
+                    detail += "-----------" + "<br/>";
+                    detail += "Package 1 -" + "RM1.30 for Binding, Plastic cover and RM0.20 for color page" + "<br/>";
+                    detail += "Package 2 -" + "Without Binding and Plastic cover and RM0.20 for color page" + "<br/>";
+                    detail += "Non-Color" + "<br/>";
+                    detail += "-----------" + "<br/>";
+                    detail += "Package 3 -" + "RM1.30 for binding, Plastic cover and RM0.10 for non-color page" + "<br/>";
+                    detail += "Package 4 -" + "Without binding, Plastic cover and RM0.10 for non-color page" + "<br/>";
+        
+                    Label11.Text = detail;
 
                 }
             }
@@ -50,8 +61,8 @@ namespace ExpressPrintingSystem.Customer
         {
 
             Request request = PopulateDataToObject();
-         
 
+            this.package();
             Session["request"] = request;
             Response.Redirect("~/Customer/CreditCard.aspx");
 
@@ -66,6 +77,8 @@ namespace ExpressPrintingSystem.Customer
             //create document list and upload file to cloud
             List<Documentlist> documentList = new List<Documentlist>();
             int totalpage = 0;
+            int count = 0;
+            int normalCount = 0;
 
             if (FileUpload1.HasFile)
 
@@ -85,6 +98,12 @@ namespace ExpressPrintingSystem.Customer
                         String filePath = Server.MapPath("~/File/") + getPath;//File path of desired upload
                         int size = FileUpload1.PostedFile.ContentLength;
 
+                       
+                           lblgetallfilename.Text += String.Format("{0} , ", fileName);
+
+                        string getallfilename = lblgetallfilename.Text;
+                        Session["allfilename"] = getallfilename;
+
                         Session["pathfile"] = filePath;
 
                         string getFileIDInCloud = backblaze.UploadFile(contentType, filePath, fileName);
@@ -98,6 +117,19 @@ namespace ExpressPrintingSystem.Customer
                             numberOfPages = document.ComputeStatistics(WdStatistic.wdStatisticPages, false);
                             document.Close();///close document
 
+                            //get the count of file
+                            count = hfc.Count;
+                            Session["countthepackageitem"] = count;
+
+                            FileInfo file = new FileInfo(filePath);
+                            if (file.Exists)//check file exsit or not
+                            {
+                                file.Delete();
+
+                                
+
+                            }
+
                         }
                         else if (Path.GetExtension(hpf.FileName).Equals(".pdf"))
                         {
@@ -109,19 +141,48 @@ namespace ExpressPrintingSystem.Customer
                             MatchCollection matches = rx1.Matches(pdfText);
                             numberOfPages = Convert.ToInt32(matches.Count.ToString());
                             fs.Close();
+
+                            //get the count of file
+                            count = hfc.Count;
+                            Session["countthepackageitem"] = count;
+
+                            FileInfo file = new FileInfo(filePath);
+                            if (file.Exists)//check file exsit or not
+                            {
+                                file.Delete();
+
+                            }
+
                         }
                         else if (Path.GetExtension(hpf.FileName).Equals(".png") || Path.GetExtension(hpf.FileName).Equals(".PNG") || Path.GetExtension(hpf.FileName).Equals(".jpg"))
                         {
-
+                            count = hfc.Count - 1;
+                            Session["countthepackageitem"] = count;
                             numberOfPages = 1;
+
+                            FileInfo file = new FileInfo(filePath);
+                            if (file.Exists)//check file exsit or not
+                            {
+                                file.Delete();
+
+                            }
                         }
 
-                        totalpage += numberOfPages; 
+
+                        //calculate the total page in multiple file 
+                       
+                            totalpage += numberOfPages;
+                            Session["totalpage"] = totalpage;
+
+                        normalCount = hfc.Count;
+                        Session["normalcount"] = normalCount;
 
 
                          // upload to my sqldatabase
-                         var uploadFileObject = (JObject)JsonConvert.DeserializeObject(getFileIDInCloud);
+                        var uploadFileObject = (JObject)JsonConvert.DeserializeObject(getFileIDInCloud);
                         String FileIdInCloud = uploadFileObject["fileId"].Value<string>();//get file ID
+
+                       
 
                         Model.Entities.Document newdocument = new Model.Entities.Document(fileName, contentType, FileIdInCloud, userID, size, numberOfPages);
 
@@ -134,6 +195,7 @@ namespace ExpressPrintingSystem.Customer
 
                         documentList.Add(new Documentlist(newdocument, sequences, documentColor, documentbothside, documentpapertype, documentquantity, documentdescription));
 
+                        
                     }
 
 
@@ -172,7 +234,7 @@ namespace ExpressPrintingSystem.Customer
 
                 
             }
-
+           
 
             Request request = new Model.Entities.Request(currentDate, DueDate, null, companyID, CustomerID, requestlist);
 
@@ -180,7 +242,63 @@ namespace ExpressPrintingSystem.Customer
 
         }
 
+        public void package() {
 
+           
+
+
+            SqlConnection conPrint;
+            string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
+            conPrint = new SqlConnection(connStr);
+            conPrint.Open();
+
+            string strInsert;
+            SqlCommand cmdInsert;
+
+            strInsert = "select PackageID, PackageName, PackagePrice, PackageSupport, PackageType, PrintingPricePerPaper, CompanyID  from Package where PackageName = @PackageName";
+
+
+            cmdInsert = new SqlCommand(strInsert, conPrint);
+
+            cmdInsert.Parameters.AddWithValue("@PackageName", ddlPackage.SelectedValue);
+            SqlDataReader dtr;
+            dtr = cmdInsert.ExecuteReader();
+
+
+
+            if (dtr.Read())
+            {
+                string pID = dtr["PackageID"].ToString();
+                string pName = dtr["PackageName"].ToString();
+                decimal pPrice =  Convert.ToDecimal(dtr["PackagePrice"].ToString());
+                string pSupport = dtr["PackageSupport"].ToString();
+                string pType = dtr["PackageType"].ToString();
+                decimal pPerPrice = Convert.ToDecimal( dtr["PrintingPricePerPaper"].ToString());
+                string pCustomerID = dtr["CompanyID"].ToString();
+
+
+                Package package = new Package(pID, pName, pPrice, pSupport, pType, pPerPrice);
+
+                Session["package"] = package;
+            }
+            else
+            {
+
+                Response.Write("<script LANGUAGE='JavaScript' >alert('Email invalid')</script>");
+            }
+            conPrint.Close();
+
+
+           
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            
+
+                Response.Redirect("~/masterPageTest.aspx");
+            
+        }
     }
 }
 

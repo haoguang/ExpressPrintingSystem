@@ -92,7 +92,7 @@
                 <td colspan="2">
                     <asp:Label ID="Label2" runat="server" Text="New Password" Font-Size="Large"></asp:Label>
                     <br />
-                    <asp:TextBox ID="txtNewPassword" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password"></asp:TextBox>
                 </td>
                 
             </tr>
@@ -100,16 +100,16 @@
                 <td colspan="2">
                     <asp:Label ID="Label3" runat="server" Text="Comfirm Password" Font-Size="Large"></asp:Label>
                     <br />
-                    <asp:TextBox ID="txtComfirmPassword" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtComfirmPassword" runat="server" TextMode="Password"></asp:TextBox>
                 </td>
                
             </tr>
             <tr>
                 <td class="auto-style1">
-                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="Button2_Click" />
                 </td>
                 <td class="auto-style1">
-                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="Button2_Click" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
                 </td>
                
             </tr>

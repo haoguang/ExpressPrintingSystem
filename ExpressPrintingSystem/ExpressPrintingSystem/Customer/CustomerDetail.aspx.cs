@@ -73,7 +73,7 @@ namespace ExpressPrintingSystem.Customer
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("masterPageTest.aspx");
+            Response.Redirect("~/masterPageTest.aspx");
         }
     }
 }
