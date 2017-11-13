@@ -46,7 +46,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
         private bool validateItemPackage(string itemID, DataTable dt)
         {
-            string a;
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (dt.Rows[i]["itemID"].Equals(itemID))
