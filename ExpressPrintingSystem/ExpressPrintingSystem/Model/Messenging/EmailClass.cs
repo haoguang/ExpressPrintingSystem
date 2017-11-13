@@ -66,9 +66,9 @@ namespace ExpressPrintingSystem.Model.Messenging
 
         public static void generateCredential(string user, string pass, string stmpClient)
         {
-            NetworkCredential networkCredential = new NetworkCredential(user, pass);
+            EmailCredential emailCredential = new EmailCredential(new NetworkCredential(user, pass), stmpClient);
 
-            HttpContext.Current.Session["EmailCredential"] = networkCredential;
+            HttpContext.Current.Session["EmailCredential"] = emailCredential;
             
         }
 
@@ -123,17 +123,17 @@ namespace ExpressPrintingSystem.Model.Messenging
     }
 
 
-        public bool sendEmail(string option)
+        public bool sendEmail(EmailCredential emailCredential)
         {
-            if(HttpContext.Current.Session["EmailCredential"] != null)
+            if(emailCredential != null)
             {
-                NetworkCredential emailCredential = (NetworkCredential)HttpContext.Current.Session["EmailCredential"];
+                
 
-                var emailProvider = (JObject)JsonConvert.DeserializeObject(option);
+                var emailProvider = (JObject)JsonConvert.DeserializeObject(emailCredential.STMPClient);
 
                 SmtpClient SmtpServer = new SmtpClient(emailProvider["server"].Value<string>());
                 var mail = new MailMessage();
-                mail.From = new MailAddress(emailCredential.UserName);
+                mail.From = new MailAddress(emailCredential.Credential.UserName);
 
                 for (int i = 0; i < receiverEmail.Count; i++)
                 {
@@ -147,7 +147,7 @@ namespace ExpressPrintingSystem.Model.Messenging
                 mail.Body = htmlBody;
                 SmtpServer.Port = emailProvider["port"].Value<int>();
                 SmtpServer.UseDefaultCredentials = false;
-                SmtpServer.Credentials = emailCredential;
+                SmtpServer.Credentials = emailCredential.Credential;
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
                 return true;
@@ -172,9 +172,21 @@ namespace ExpressPrintingSystem.Model.Messenging
             return body;
         }
 
+        public static string populateNotificationEmail(string companyName)
+        {
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(System.Web.HttpContext.Current.Server.MapPath("~/Model/Messenging/EmailTemplates/CustomerNotification.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{CompanyName}", companyName);
+
+            return body;
+        }
+
 
         public const string STMP_HOTMAIL = "{ \"name\":\"Hotmail\", \"server\":\"smtp.live.com\", \"port\":587 }";
-        public const string STMP_GMAIL = "{ \"name\":\"Gmail\", \"server\":\"smtp.gmail.com\", \"port\":465 }";
+        public const string STMP_GMAIL = "{ \"name\":\"Gmail\", \"server\":\"smtp.gmail.com\", \"port\":587 }";
         public const string STMP_YAHOO = "{ \"name\":\"Yahoo\", \"server\":\"smtp.mail.yahoo.com\", \"port\":465 }";
         public const string STMP_YAHOO_PLUS = "{ \"name\":\"Yahoo Plus\", \"server\":\"plus.smtp.mail.yahoo.com\", \"port\":465 }";
         public const string STMP_YAHOO_UK = "{ \"name\":\"Yahoo UK\", \"server\":\"smtp.mail.yahoo.co.uk\", \"port\":465 }";
@@ -186,7 +198,6 @@ namespace ExpressPrintingSystem.Model.Messenging
         public const string PROVIDER_YAHOO_PLUS = "yahoo plus";
         public const string PROVIDER_YAHOO_UK = "yahoo uk";
         public const string PROVIDER_OFFICE365 = "office365";
-
 
     }
 
