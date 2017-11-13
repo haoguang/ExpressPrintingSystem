@@ -365,7 +365,7 @@ body {
         <br />
         <br/>
         <asp:Label ID="Label5" runat="server" Text="Document Quantity"></asp:Label><asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Document Quantity is required!" ControlToValidate="txtDocumentQuantity" ForeColor="Red">*</asp:RequiredFieldValidator><asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Write number only!" ValidationExpression="^[0-9]*$" ControlToValidate="txtDocumentQuantity" Text="*"></asp:RegularExpressionValidator>
-        <asp:TextBox ID="txtDocumentQuantity" runat="server" placeholder="According of set.write number only"></asp:TextBox>
+        <asp:TextBox ID="txtDocumentQuantity" runat="server" placeholder="According of set.write number only" ControlToValidate="txtDocumentQuantity"></asp:TextBox>
         <br/>
         <asp:Label ID="Label6" runat="server" Text="Document Description"></asp:Label><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Document Description is required!" ControlToValidate="txtDocumentDescription" Text="*" ForeColor="Red">*</asp:RequiredFieldValidator>
         <asp:TextBox ID="txtDocumentDescription" runat="server"></asp:TextBox>
@@ -384,16 +384,16 @@ body {
 		<h3 class="fs-subtitle"></h3>
       
    
-        <asp:TextBox ID="txtpackagedetail" runat="server"></asp:TextBox>
+        <asp:Label ID="Label11" runat="server" Text="Label"></asp:Label>
          <br />
         <asp:Label ID="Label8" runat="server" Text="Package" Font-Underline="True"></asp:Label>
         <br />
-        <asp:DropDownList ID="ddlPackage" runat="server" DataSourceID="SqlDataSource1" DataTextField="PackageDesc" DataValueField="PackageID">
+        <asp:DropDownList ID="ddlPackage" runat="server" DataSourceID="SqlDataSource1" DataTextField="PackageName" DataValueField="PackageName">
             <asp:ListItem></asp:ListItem>
             <asp:ListItem></asp:ListItem>
             <asp:ListItem></asp:ListItem>
         </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:printDBServer %>" SelectCommand="SELECT [PackageID], [PackageName] +'- Additional Item Price: RM' + CONVERT(nvarchar(10), [PackagePrice] )+' (RM '+CONVERT(nvarchar(10), [PrintingPricePerPaper] ) +' per Paper)' AS PackageDesc FROM [Package] WHERE ([PackageType] = @PackageType)">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:printDBServer %>" SelectCommand="SELECT PackageName FROM Package WHERE (PackageType = @PackageType)">
             <SelectParameters>
                 <asp:Parameter DefaultValue="Printing" Name="PackageType" Type="String" />
             </SelectParameters>
@@ -543,9 +543,11 @@ body {
         <br/>
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
         <br/>
+        <asp:Label ID="lblgetallfilename" runat="server"></asp:Label>
         <br/>      
 		<input type="button" name="previous" class="previous action-button" value="Previous"/>
         <asp:Button ID="Button1" runat="server" Text="Submit" class="submit action-button" OnClick="Button1_Click"/>
+        <asp:Button ID="Button2" runat="server" Text="Cancel" class="submit action-button" OnClick="Button2_Click" />
 		
 
 	</fieldset>

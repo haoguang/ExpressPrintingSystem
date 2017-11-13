@@ -15,7 +15,7 @@ namespace ExpressPrintingSystem.Customer
         {
 
                 String Paypal = "Paypal";
-                double amountpaypal = (double)(Session["amount"]);
+                decimal amountpaypal = (decimal)(Session["amount"]);
                 decimal totalamount = Convert.ToDecimal(amountpaypal);
 
                 SqlConnection conTaxi;
@@ -52,7 +52,7 @@ namespace ExpressPrintingSystem.Customer
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Customer/masterPageTest.aspx");
+            Response.Redirect("~/masterPageTest.aspx");
         }
     }
 }

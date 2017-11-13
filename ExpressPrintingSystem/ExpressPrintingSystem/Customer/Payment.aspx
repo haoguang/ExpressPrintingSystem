@@ -107,7 +107,7 @@
       </div>
 
 
-  <div style="padding-top:250px;">
+  <div style="padding-top:300px;">
   <fieldset class="CreditCard-fieldset">
      <table style="width: 100%;">
             <tr>
@@ -175,7 +175,7 @@
                 <td colspan="4" class="auto-style1">
                     <br />
                     Total Payment<br />
-                    RM<asp:TextBox ID="txtpaymentTotal" runat="server" Enabled="False">100</asp:TextBox>
+                    RM<asp:TextBox ID="txtpaymentTotal" runat="server" Enabled="False"></asp:TextBox>
                 </td>
                 <td class="auto-style1"></td>
                 <td class="auto-style1"></td>
