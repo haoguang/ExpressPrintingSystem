@@ -220,13 +220,22 @@ namespace ExpressPrintingSystem {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator6;
         
         /// <summary>
-        /// Calendar1 control.
+        /// txtCalender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
+        protected global::System.Web.UI.WebControls.TextBox txtCalender;
+        
+        /// <summary>
+        /// RequiredFieldValidator11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator11;
         
         /// <summary>
         /// txtStaffPhoneNumber control.

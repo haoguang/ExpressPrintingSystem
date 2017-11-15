@@ -255,12 +255,12 @@ namespace ExpressPrintingSystem.Customer
             string strInsert;
             SqlCommand cmdInsert;
 
-            strInsert = "select PackageID, PackageName, PackagePrice, PackageSupport, PackageType, PrintingPricePerPaper, CompanyID  from Package where PackageName = @PackageName";
+            strInsert = "select PackageID, PackageName, PackagePrice, PackageSupport, PackageType, PrintingPricePerPaper, CompanyID  from Package where PackageID = @PackageID";
 
 
             cmdInsert = new SqlCommand(strInsert, conPrint);
 
-            cmdInsert.Parameters.AddWithValue("@PackageName", ddlPackage.SelectedValue);
+            cmdInsert.Parameters.AddWithValue("@PackageID", ddlPackage.SelectedValue);
             SqlDataReader dtr;
             dtr = cmdInsert.ExecuteReader();
 

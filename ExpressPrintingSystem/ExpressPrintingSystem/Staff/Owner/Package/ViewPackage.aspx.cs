@@ -15,9 +15,13 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<ExpressPrintingSystem.Model.Entities.Package> packageList = getPackageList(null);
-            lvProductList.DataSource = packageList;
-            lvProductList.DataBind();
+            if (!IsPostBack)
+            {
+                List<ExpressPrintingSystem.Model.Entities.Package> packageList = getPackageList(null);
+                lvProductList.DataSource = packageList;
+                lvProductList.DataBind();
+            }
+            
         }
 
         private List<ExpressPrintingSystem.Model.Entities.Package> getPackageList(string keyword)
@@ -105,6 +109,13 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
         public static string getEditPackageUrl(string packageID)
         {
             return String.Format("EditPackage.aspx?PackageID={0}", HttpUtility.UrlEncode(ClassHashing.basicEncryption(packageID)));
+        }
+
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            List<ExpressPrintingSystem.Model.Entities.Package> packageList = getPackageList(txtSearch.Text);
+            lvProductList.DataSource = packageList;
+            lvProductList.DataBind();
         }
     }
 }
