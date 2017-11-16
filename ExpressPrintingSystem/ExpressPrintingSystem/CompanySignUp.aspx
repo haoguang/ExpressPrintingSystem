@@ -280,17 +280,12 @@
             </tr>
             <tr>
                 <td class="auto-style1">Staff DOB<br />
-                    <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" Height="190px" NextPrevFormat="FullMonth" Width="261px" TabIndex="8">
-                        <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
-                        <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
-                        <OtherMonthDayStyle ForeColor="#999999" />
-                        <SelectedDayStyle BackColor="#333399" ForeColor="White" />
-                        <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
-                        <TodayDayStyle BackColor="#CCCCCC" />
-                    </asp:Calendar>
+                    <br />
+                    <asp:TextBox ID="txtCalender" TextMode="Date" runat="server"></asp:TextBox>
                 </td>
                 <td class="auto-style5">
-                    &nbsp;</td>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtCalender" ErrorMessage="staff dob is required!" ForeColor="Red">*</asp:RequiredFieldValidator>
+                </td>
                 <td class="auto-style26">
                      &nbsp;</td>
                 <td>&nbsp;</td>

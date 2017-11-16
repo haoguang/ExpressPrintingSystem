@@ -45,6 +45,8 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                 }
 
             }
+
+            disableEmptyTable();//if table has no item disable it
         }
 
         private void populateDataToControls()
@@ -298,6 +300,17 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
             }
         }
 
+        private void disableEmptyTable()
+        {
+            if (gvPackageItem.Rows[0].Cells[1].Text.Equals("N/A"))
+            {
+                TextBox txtQuantity = (TextBox)gvPackageItem.Rows[0].Cells[QUANTITY_INDEX].FindControl("txtQuantity");
+
+                txtQuantity.Enabled = false;
+            }
+
+        }
+
         private void SetPreviousData()
         {
             int rowIndex = 0;
@@ -345,6 +358,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                 gvPackageItem.DataSource = dt;
                 gvPackageItem.DataBind();
                 SetPreviousData();
+                disableEmptyTable();
             }
         }
 
@@ -445,7 +459,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
                         if (tempItem != null)
                         {
-                            estimatedPrice += tempItem.ItemPrice * Convert.ToInt32((string)dt.Rows[i]["Column1"]);
+                            estimatedPrice += tempItem.ItemPrice * Convert.ToInt32(((string)dt.Rows[i]["Column1"]).Equals("") ? "0" : (string)dt.Rows[i]["Column1"]);
                         }
 
                     }

@@ -30,7 +30,7 @@ namespace ExpressPrintingSystem
             byte[] generatedSalt = ClassHashing.generateSalt();
             byte[] hashPassword = ClassHashing.generateSaltedHash(txtPassword.Text, generatedSalt);
 
-            
+
 
 
             //string abc = "Salt:" + Convert.ToBase64String(generatedSalt) + "\n";
@@ -41,7 +41,7 @@ namespace ExpressPrintingSystem
             try
             {
 
-            SqlConnection conPrint;
+                SqlConnection conPrint;
             string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
             conPrint = new SqlConnection(connStr);
             conPrint.Open();
@@ -57,7 +57,7 @@ namespace ExpressPrintingSystem
             cmdInsert.Parameters.AddWithValue("@CustomerName", txtName.Text);
             cmdInsert.Parameters.AddWithValue("@CustomerEmail", txtEmail.Text);
             cmdInsert.Parameters.AddWithValue("@CustomerPassword", hashPassword);
-            cmdInsert.Parameters.AddWithValue("@CustomerDOB", Calendar1.SelectedDate.ToShortDateString());
+            cmdInsert.Parameters.AddWithValue("@CustomerDOB", Convert.ToDateTime(txtDOB.Text));
             cmdInsert.Parameters.AddWithValue("@CustomerPhoneNo", txtPhoneNumber.Text);
             cmdInsert.Parameters.AddWithValue("@CustomerContactMethod", rblMethod.SelectedValue);
             cmdInsert.Parameters.AddWithValue("@CustomerSalt", generatedSalt);
@@ -87,11 +87,11 @@ namespace ExpressPrintingSystem
             }
 
 
-           
+
 
         }
 
-       
+
 
         protected void btnCustomer_Click(object sender, EventArgs e)
         {

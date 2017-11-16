@@ -61,7 +61,13 @@
                                     <asp:TextBox ID="txtQuantity" AutoPostBack="true" onFocus="this.select()" runat="server"></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField> 
-                            <asp:CommandField ShowDeleteButton="True" HeaderText="Remove" />                          
+                            <asp:CommandField ShowDeleteButton="True" HeaderText="Remove" />
+                            <asp:TemplateField HeaderText="Error Message">
+                                <ItemTemplate>
+                                    <asp:CompareValidator ID="cvQuantity" runat="server" Display="Dynamic" ForeColor="Red" ControlToValidate="txtQuantity" Operator="GreaterThanEqual" ValueToCompare="1" ErrorMessage="Value cannot smaller than 0."></asp:CompareValidator>
+                                    <asp:RequiredFieldValidator ID="rfvQuantity" runat="server" ControlToValidate="txtQuantity" ForeColor="Red" Display="Dynamic" ErrorMessage="Quantity field cannot be empty."></asp:RequiredFieldValidator>
+                                </ItemTemplate>
+                            </asp:TemplateField>                          
                         </Columns>
                     </asp:gridview>
                 </td>

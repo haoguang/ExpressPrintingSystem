@@ -90,7 +90,7 @@ namespace ExpressPrintingSystem
                     cmdCompanyInsert.Parameters.AddWithValue("@StaffEmail", txtStaffEmail.Text);
                     cmdCompanyInsert.Parameters.AddWithValue("@StaffPassword", hashPassword);
                     cmdCompanyInsert.Parameters.AddWithValue("@StaffNRIC", txtStaffNRIC.Text);
-                    cmdCompanyInsert.Parameters.AddWithValue("@StaffDOB", Calendar1.SelectedDate.ToShortDateString());
+                    cmdCompanyInsert.Parameters.AddWithValue("@StaffDOB", Convert.ToDateTime(txtCalender.Text));
                     cmdCompanyInsert.Parameters.AddWithValue("@StaffPhoneNo", txtStaffPhoneNumber.Text);
                     cmdCompanyInsert.Parameters.AddWithValue("@StaffSalt", generatedSalt);
                     cmdCompanyInsert.Parameters.AddWithValue("@StaffRole", UserVerification.ROLE_ADMIN);

@@ -23,13 +23,14 @@ namespace ExpressPrintingSystem.Customer
             if (!IsPostBack)
             {
                 DisplayAppropriateAuthorizationMessage();
+                if (Request.Cookies["me"] != null)
+                {
+                    txtname.Text = ClassHashing.basicDecryption((string)Request.Cookies["me"].Value);
+                    CheckBox1.Checked = true;
+                }
             }
 
-            if (Request.Cookies["me"] != null)
-            {
-                txtname.Text = ClassHashing.basicDecryption((string)Request.Cookies["me"].Value);
-                CheckBox1.Checked = true;
-            }
+            
         }
 
         private void DisplayAppropriateAuthorizationMessage()
@@ -65,7 +66,7 @@ namespace ExpressPrintingSystem.Customer
             else
             {
                 //when user access to log in page when user is already authenticated.
-                Response.Redirect("masterPageTest.aspx");//main page
+                //main page
             }
 
 
@@ -150,7 +151,7 @@ namespace ExpressPrintingSystem.Customer
                     FormsAuthentication.SetAuthCookie(username, false);
                     //Login successful lets put him to requested page
                     string returnUrl = Request.QueryString["ReturnUrl"] as string;
-
+                    
                     rememberMe();
 
                     if (returnUrl != null)
@@ -169,20 +170,20 @@ namespace ExpressPrintingSystem.Customer
                 else if (UserVerification.isActivatedUser(username, toggleOption))
                 {
                     Response.Write("<script LANGUAGE='JavaScript' >alert('Your account is not activated, please check your social media for account activation link.')</script>");
+                    Response.Cookies.Add(myCookie);
                 }
                 else
                 {
                     Response.Write("<script LANGUAGE='JavaScript' >alert('Login Failed')</script>");
+                    Response.Cookies.Add(myCookie);
                 }
             }
             catch(Exception ex)
             {
                 Response.Write("<script LANGUAGE='JavaScript' >alert('Your username or password is invalid.')</script>");
-            }
-            finally
-            {
                 Response.Cookies.Add(myCookie);
             }
+            
             
 
             

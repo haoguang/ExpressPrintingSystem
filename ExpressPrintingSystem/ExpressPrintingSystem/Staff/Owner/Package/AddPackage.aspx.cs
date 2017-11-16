@@ -42,6 +42,8 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
             }
 
+            disableEmptyTable();//if table has no item disable it
+
         }
 
         private bool validateItemPackage(string itemID, DataTable dt)
@@ -163,6 +165,18 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
             }
         }
 
+        private void disableEmptyTable()
+        {
+            if (gvPackageItem.Rows[0].Cells[1].Text.Equals("N/A"))
+            {
+                TextBox txtQuantity = (TextBox)gvPackageItem.Rows[0].Cells[QUANTITY_INDEX].FindControl("txtQuantity");
+
+                txtQuantity.Enabled = false;
+                txtQuantity.CausesValidation = false;
+            }
+            
+        }
+
         private void SetPreviousData()
         {
             int rowIndex = 0;
@@ -175,7 +189,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                     {
                         TextBox txtQuantity = (TextBox)gvPackageItem.Rows[rowIndex].Cells[QUANTITY_INDEX].FindControl("txtQuantity");
 
-                        txtQuantity.Text = dt.Rows[i]["Column1"].ToString();
+                        txtQuantity.Text = dt.Rows[i]["Column1"].ToString();                    
 
                         rowIndex++;
                     }
@@ -205,11 +219,13 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
                     dt.Rows[rowIndex]["itemName"] = "N/A";
                     dt.Rows[rowIndex]["Column1"] = string.Empty;
                     lblEstimatedPrice.Text = "0";
+                    
                 }
                 ViewState["CurrentTable"] = dt;
                 gvPackageItem.DataSource = dt;
                 gvPackageItem.DataBind();
                 SetPreviousData();
+                disableEmptyTable();
             }
         }
 
@@ -310,7 +326,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
                         if (tempItem != null)
                         {
-                            estimatedPrice += tempItem.ItemPrice * Convert.ToInt32((string)dt.Rows[i]["Column1"]);
+                            estimatedPrice += tempItem.ItemPrice * Convert.ToInt32(((string)dt.Rows[i]["Column1"]).Equals("")? "0": (string)dt.Rows[i]["Column1"]);
                         }
 
                     }
@@ -323,8 +339,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            string returnUrl = Request.QueryString["ReturnUrl"] as string;
-            Response.Redirect(returnUrl);
+            Response.Redirect("ViewPackage.aspx");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

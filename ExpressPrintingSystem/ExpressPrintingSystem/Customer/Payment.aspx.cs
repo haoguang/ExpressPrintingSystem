@@ -234,6 +234,7 @@ namespace ExpressPrintingSystem.Customer
 
 
                 conTaxi.Close();
+                PrintingRequestHub.refreshTable();
                 Response.Redirect("~/masterPageTest.aspx");
             }
 
@@ -300,9 +301,6 @@ namespace ExpressPrintingSystem.Customer
             }
 
             conPrintDB.Close();
-            PrintingRequestHub.refreshTable();
-
-
 
         }
 

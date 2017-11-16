@@ -388,12 +388,12 @@ body {
          <br />
         <asp:Label ID="Label8" runat="server" Text="Package" Font-Underline="True"></asp:Label>
         <br />
-        <asp:DropDownList ID="ddlPackage" runat="server" DataSourceID="SqlDataSource1" DataTextField="PackageName" DataValueField="PackageName">
+        <asp:DropDownList ID="ddlPackage" runat="server" DataSourceID="SqlDataSource1" DataTextField="PackageID" DataValueField="PackageID">
             <asp:ListItem></asp:ListItem>
             <asp:ListItem></asp:ListItem>
             <asp:ListItem></asp:ListItem>
         </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:printDBServer %>" SelectCommand="SELECT PackageName FROM Package WHERE (PackageType = @PackageType)">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:printDBServer %>" SelectCommand="SELECT PackageID FROM Package WHERE (PackageType = @PackageType)">
             <SelectParameters>
                 <asp:Parameter DefaultValue="Printing" Name="PackageType" Type="String" />
             </SelectParameters>

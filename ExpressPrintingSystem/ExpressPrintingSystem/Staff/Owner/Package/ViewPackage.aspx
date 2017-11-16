@@ -26,7 +26,7 @@
     <h1>Packages View <asp:HyperLink ID="hyAdd" ToolTip="Add Package" ImageUrl="~/Images/add.png" NavigateUrl="~/Staff/Owner/Package/AddPackage.aspx" runat="server"></asp:HyperLink></h1>
     
     <p><asp:Label ID="lblMessage" ForeColor="Red" runat="server" Text=""></asp:Label></p>
-    <p><asp:Label ID="lblSearch" runat="server" Text="Search :"></asp:Label><asp:TextBox ID="txtSearch" TextMode="Search" AutoPostBack="true" ToolTip="Press Enter after finish typing keywords" runat="server" Width="144px"></asp:TextBox></p>
+    <p><asp:Label ID="lblSearch" runat="server" Text="Search :"></asp:Label><asp:TextBox ID="txtSearch" TextMode="Search" AutoPostBack="true" ToolTip="Press Enter after finish typing keywords" runat="server" Width="144px" OnTextChanged="txtSearch_TextChanged"></asp:TextBox></p>
 
     <asp:ListView ID="lvProductList"  ItemPlaceholderID="PlaceHolderConfirm" runat="server" >
         <LayoutTemplate>

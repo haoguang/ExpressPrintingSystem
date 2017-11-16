@@ -13,6 +13,7 @@
             <asp:BoundField DataField="ItemPrice" HeaderText="Price (RM)" SortExpression="ItemPrice" />
             <asp:BoundField DataField="ItemStockQuantity" HeaderText="Stock Quantity" SortExpression="ItemStockQuantity" />
             <asp:BoundField DataField="ItemSupplier" HeaderText="Supplier" SortExpression="ItemSupplier" />
+            <asp:ButtonField CommandName="Edit" HeaderText="Operation" ShowHeader="True" Text="Edit" />
         </Columns>
         <EditRowStyle BackColor="#99BBFF" Font-Bold="True" />
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

@@ -226,16 +226,10 @@
                 </tr>
                 <tr>
                     <td class="auto-style18">Date Of Birth<br />
-                        <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#999999" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px" CellPadding="4" DayNameFormat="Shortest">
-                            <DayHeaderStyle Font-Bold="True" Font-Size="7pt" BackColor="#CCCCCC" />
-                            <NextPrevStyle VerticalAlign="Bottom" />
-                            <OtherMonthDayStyle ForeColor="#808080" />
-                            <SelectedDayStyle BackColor="#666666" ForeColor="White" Font-Bold="True" />
-                            <SelectorStyle BackColor="#CCCCCC" />
-                            <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                            <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                            <WeekendDayStyle BackColor="#FFFFCC" />
-                        </asp:Calendar>
+                        <asp:TextBox ID="txtDOB" TextMode="Date" runat="server"></asp:TextBox>
+                    </td>
+                    <td>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtDOB" ErrorMessage="Customer DOB is required!" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                     <td class="auto-style12" colspan="2">
                         &nbsp;</td>
