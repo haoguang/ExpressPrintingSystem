@@ -241,6 +241,7 @@ namespace ExpressPrintingSystem.Customer
 
 
                 conTaxi.Close();
+                Response.Write("<script>alert('Successful payment');</script>");
                 PrintingRequestHub.refreshTable();
                 Response.Redirect("~/masterPageTest.aspx");
             }
