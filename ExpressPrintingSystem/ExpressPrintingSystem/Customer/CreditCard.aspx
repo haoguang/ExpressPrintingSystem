@@ -84,7 +84,6 @@
         <asp:Label ID="Label2" runat="server" Text="Please choose you payment method." Font-Overline="False" Font-Size="X-Large" Font-Underline="True"></asp:Label>
        <div class="btn-group" role="group" aria-label="Basic example">
         
-           <asp:ImageButton ID="btncashlink" runat="server" text="Cash" Height="300px" ImageUrl="~/Images/logo/cash.PNG" Width="300px" BorderStyle="Groove" OnClick="btncashlink_Click" />
            <asp:ImageButton ID="btnCreditCardlink" runat="server" text="Credit Card" CssClass="auto-style1" Height="300px" ImageUrl="~/Images/logo/creditcard.PNG" Width="300px" BorderStyle="Groove" OnClick="btnCreditCardlink_Click" />
                  
        </div>

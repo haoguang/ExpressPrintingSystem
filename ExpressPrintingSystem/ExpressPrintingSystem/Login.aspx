@@ -112,12 +112,12 @@ input[type=text], select {
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnSubmit" runat="server" Text="Button" Height="28px" OnClick="btnSubmit_Click" TabIndex="3" />
-               
+            
 
         </div>
         <br/>
         <div class="bottom" style="width:350px; margin:0 auto; text-align:center;">
-            <asp:Label ID="Label" runat="server" Text="New User?"></asp:Label>
+           
 
             &nbsp;<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/SignUp.aspx" TabIndex="5">Sign Up</asp:HyperLink>
 

@@ -22,88 +22,95 @@ namespace ExpressPrintingSystem.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Model.Entities.Request request = (Model.Entities.Request)Session["request"];
-            Package newpackage = (Package)Session["package"];
-            decimal receivepage = Convert.ToDecimal((int)Session["totalpage"]);
-            int normalcountFile = (int)Session["normalcount"];
-            decimal amountOFpage = 0;
-            decimal finalAmount = 0;
-            int countfile = 0;
-            decimal totalPackagePrice = 0;
-
-            
-            //calculate the total page in multiple file 
-            if (request.RequestLists[0].DocumentList[0].DocumentBothSide.Equals("Single Side"))
+            if (!IsPostBack)
             {
-                //calculate the totalamountofpage
-                amountOFpage = newpackage.PrintingPrice * receivepage * request.RequestLists[0].DocumentList[0].DocumentQuantity;
+                Model.Entities.Request request = (Model.Entities.Request)Session["request"];
+                Package newpackage = (Package)Session["package"];
+                decimal receivepage = Convert.ToDecimal((int)Session["totalpage"]);
+                int normalcountFile = (int)Session["normalcount"];
+                decimal amountOFpage = 0;
+                decimal finalAmount = 0;
+                int countfile = 0;
+                decimal totalPackagePrice = 0;
 
-                //calculate the countfile with package price  
-                countfile = (int)Session["countthepackageitem"];
-                totalPackagePrice = newpackage.PackagePrice * countfile;
 
-                //calculate final amount
-                finalAmount = amountOFpage + totalPackagePrice;
+                //calculate the total page in multiple file 
+                if (request.RequestLists[0].DocumentList[0].DocumentBothSide.Equals("Single Side"))
+                {
 
-                //getitem
-                string allFileName = (string)Session["allfilename"];
 
-                string detail;
-                detail = "Order Detail" + "<br />";
-                detail += "------------------" + "<br />";
-                detail += "Number of File =" + normalcountFile + "<br />";
-                detail += "Number of Page =" + receivepage + "<br />";
-                detail += "Number of set =" + request.RequestLists[0].DocumentList[0].DocumentQuantity + "<br />";
-                detail += "Document Color =" + request.RequestLists[0].DocumentList[0].DocumentColor + "<br/>";
-                detail += "Document Side =" + request.RequestLists[0].DocumentList[0].DocumentBothSide + "<br/>"; 
-                detail += "Item Name = " + allFileName + "<br />";
-                detail += "Item price = " + amountOFpage + "<br />";
-                detail += "Package = " + newpackage.PackageName + "<br />";
-                detail += "Package Price =" + totalPackagePrice + "<br />";
-                detail += "Total Amount=" + finalAmount + "<br />";
-                detail += "<br/>";
-                lblreceipt.Text = detail;
-                txtpaymentTotal.Text = Convert.ToString(finalAmount);
+                    //calculate the totalamountofpage
+                    amountOFpage = newpackage.PrintingPrice * receivepage * request.RequestLists[0].DocumentList[0].DocumentQuantity;
+
+                    //calculate the countfile with package price  
+                    countfile = (int)Session["countthepackageitem"];
+                    totalPackagePrice = newpackage.PackagePrice * countfile;
+
+                    //calculate final amount
+                    finalAmount = amountOFpage + totalPackagePrice;
+
+                    //getitem
+                    string allFileName = (string)Session["allfilename"];
+
+                    string detail;
+                    detail = "Order Detail" + "<br />";
+                    detail += "------------------" + "<br />";
+                    detail += "Number of File =" + normalcountFile + "<br />";
+                    detail += "Number of Page =" + receivepage + "<br />";
+                    detail += "Number of set =" + request.RequestLists[0].DocumentList[0].DocumentQuantity + "<br />";
+                    detail += "Document Color =" + request.RequestLists[0].DocumentList[0].DocumentColor + "<br/>";
+                    detail += "Document Side =" + request.RequestLists[0].DocumentList[0].DocumentBothSide + "<br/>";
+                    detail += "Item Name = " + allFileName + "<br />";
+                    detail += "Item price = " + amountOFpage + "<br />";
+                    detail += "Package = " + newpackage.PackageName + "<br />";
+                    detail += "Package Price =" + totalPackagePrice + "<br />";
+                    detail += "Total Amount=" + finalAmount + "<br />";
+                    detail += "<br/>";
+                    lblreceipt.Text = detail;
+                    txtpaymentTotal.Text = Convert.ToString(finalAmount);
+
+
+
+                }
+                else if (request.RequestLists[0].DocumentList[0].DocumentBothSide.Equals("Double Side"))
+                {
+
+                    decimal doublesidePageNumber;
+                    doublesidePageNumber = receivepage / 2;
+
+                    //calculate the totalamountofpage
+                    amountOFpage = newpackage.PrintingPrice * doublesidePageNumber * request.RequestLists[0].DocumentList[0].DocumentQuantity;
+
+                    //calculate the countfile with package price  
+                    countfile = (int)Session["countthepackageitem"];
+                    totalPackagePrice = newpackage.PackagePrice * countfile;
+
+                    //calculate final amount
+                    finalAmount = amountOFpage + totalPackagePrice;
+
+                    //getitem
+                    string allFileName = (string)Session["allfilename"];
+
+                    string detail;
+                    detail = "Order Detail" + "<br />";
+                    detail += "------------------" + "<br />";
+                    detail += "Number of File =" + normalcountFile + "<br />";
+                    detail += "Number of Page =" + receivepage + "<br />";
+                    detail += "Number of set =" + request.RequestLists[0].DocumentList[0].DocumentQuantity + "<br />";
+                    detail += "Document Color =" + request.RequestLists[0].DocumentList[0].DocumentColor + "<br/>";
+                    detail += "Item Name = " + allFileName + "<br />";
+                    detail += "Item price = " + amountOFpage + "<br />";
+                    detail += "Package = " + newpackage.PackageName + "<br />";
+                    detail += "Package Price =" + totalPackagePrice + "<br />";
+                    detail += "Total Amount=" + finalAmount + "<br />";
+                    detail += "<br/>";
+                    lblreceipt.Text = detail;
+                    txtpaymentTotal.Text = Convert.ToString(finalAmount);
+
+
+                }
+
             }
-            else if (request.RequestLists[0].DocumentList[0].DocumentBothSide.Equals("Double Side"))
-            {
-
-                decimal doublesidePageNumber;
-                doublesidePageNumber = receivepage / 2;
-
-                //calculate the totalamountofpage
-                amountOFpage = newpackage.PrintingPrice * doublesidePageNumber * request.RequestLists[0].DocumentList[0].DocumentQuantity;
-
-                //calculate the countfile with package price  
-                countfile = (int)Session["countthepackageitem"];
-                totalPackagePrice = newpackage.PackagePrice * countfile;
-
-                //calculate final amount
-                finalAmount = amountOFpage + totalPackagePrice;
-
-                //getitem
-                string allFileName = (string)Session["allfilename"];
-
-                string detail;
-                detail = "Order Detail" + "<br />";
-                detail += "------------------" + "<br />";
-                detail += "Number of File =" + normalcountFile + "<br />";
-                detail += "Number of Page =" + receivepage + "<br />";
-                detail += "Number of set =" + request.RequestLists[0].DocumentList[0].DocumentQuantity + "<br />";
-                detail += "Document Color =" + request.RequestLists[0].DocumentList[0].DocumentColor + "<br/>";
-                detail += "Item Name = " + allFileName + "<br />";
-                detail += "Item price = " + amountOFpage + "<br />";
-                detail += "Package = " + newpackage.PackageName + "<br />";
-                detail += "Package Price =" + totalPackagePrice + "<br />";
-                detail += "Total Amount=" + finalAmount + "<br />";
-                detail += "<br/>";
-                lblreceipt.Text = detail;
-                txtpaymentTotal.Text = Convert.ToString(finalAmount);
-
-
-            }
-
-
            
         }
 
@@ -234,6 +241,7 @@ namespace ExpressPrintingSystem.Customer
 
 
                 conTaxi.Close();
+                Response.Write("<script>alert('Successful payment');</script>");
                 PrintingRequestHub.refreshTable();
                 Response.Redirect("~/masterPageTest.aspx");
             }
@@ -426,7 +434,7 @@ namespace ExpressPrintingSystem.Customer
 </tr>
 <tr>
 <td>
-Please keep you receipt to express printing shop pay you printing fees.<br/>
+Please keep you receipt to express printing shop to bring you document.<br/>
 </td>
 </tr>
                 </tr>  

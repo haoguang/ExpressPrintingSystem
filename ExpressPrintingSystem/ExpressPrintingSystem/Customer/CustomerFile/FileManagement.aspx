@@ -47,6 +47,9 @@
     
                                 </asp:ListView>
                                 </div>
+        <div style="text-align:center; padding-top:20px; padding-bottom:30px;">
+            <asp:Button ID="btnBack" runat="server" Text="Back to home page!" Font-Size="Large" OnClick="btnBack_Click" />
+        </div>
         
 
     </form>

@@ -25,32 +25,39 @@ namespace ExpressPrintingSystem.Customer
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (Request.Cookies["UserCookie"] != null)
             {
+              
 
                 var Cookie = Request.Cookies["UserCookie"];
 
                 if (Cookie.Values["UserInfo"] != null)
                 {
+                    txtcurrent.Text = DateTime.Now.ToString("yyyy-MM-ddTH:mm");
+                    CompareDuedate.ValueToCompare =  Convert.ToString(txtcurrent.Text);
                     string userString = ClassHashing.basicDecryption(Cookie.Values["UserInfo"].ToString());
                     User user = ExpressPrintingSystem.Model.Entities.User.toUserObject(userString);
                     txtcustomerID.Text = user.ID;
+                    string d = txtDueDate.Text;
+                    
                     ViewState["UserID"] = ClassHashing.basicEncryption(user.ID);
 
-
+                   
                     string detail = "Information" + "<br/>";
                     detail += "----------------------" + "<br />";
-                    detail += "Color page" + "<br/>";
-                    detail += "-----------" + "<br/>";
-                    detail += "Package 1 -" + "RM1.30 for Binding, Plastic cover and RM0.20 for color page" + "<br/>";
-                    detail += "Package 2 -" + "Without Binding and Plastic cover and RM0.20 for color page" + "<br/>";
                     detail += "Non-Color" + "<br/>";
                     detail += "-----------" + "<br/>";
-                    detail += "Package 3 -" + "RM1.30 for binding, Plastic cover and RM0.10 for non-color page" + "<br/>";
-                    detail += "Package 4 -" + "Without binding, Plastic cover and RM0.10 for non-color page" + "<br/>";
+                    detail += "P1001 -" + "RM2.50 for Binding, Plastic cover and RM0.10 for non-color page" + "<br/>";                   
+                    detail += "Color Page" + "<br/>";
+                    detail += "-----------" + "<br/>";
+                    detail += "P1002 -" + "RM2.50 for binding, Plastic cover and RM0.30 for color page" + "<br/>";
+                  
         
                     Label11.Text = detail;
+                   
 
+                    
                 }
             }
         }
@@ -221,25 +228,14 @@ namespace ExpressPrintingSystem.Customer
             string companyID = Request.QueryString["CompanyID"];
             string CustomerID = ClassHashing.basicDecryption((string)ViewState["UserID"]);
             DateTime currentDate = DateTime.Now;
-            string dateString =  DropDownList4.SelectedItem + "/" + DropDownList5.SelectedItem + "/" + DropDownList6.SelectedItem;
 
-            string timer = DropDownList1.SelectedItem + ":" + DropDownList2.SelectedItem + " " + DropDownList3.SelectedItem;
 
-            DateTime DueDate = Convert.ToDateTime(dateString + " " + timer);
+            DateTime DueDate = Convert.ToDateTime(txtDueDate.Text);
 
-            if (DueDate <= currentDate)
-            {
+           Request request = new Model.Entities.Request(currentDate, DueDate, null, companyID, CustomerID, requestlist);
 
-                Response.Write("<script>alert('please select the date and time is more than current Date');</script>");
-
-                
-            }
-           
-
-            Request request = new Model.Entities.Request(currentDate, DueDate, null, companyID, CustomerID, requestlist);
 
             return request;
-
         }
 
         public void package() {

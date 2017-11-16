@@ -633,7 +633,6 @@
     <Content Include="styles\fonts\index.html" />
     <Content Include="styles\main.css" />
     <Content Include="styles\viewfilecss.css" />
-    <Content Include="testDatePicker.aspx" />
     <Content Include="testDocumentViewer.aspx" />
     <Content Include="VerificationPassword.aspx" />
     <Content Include="Web.config" />
@@ -947,13 +946,6 @@
       <DependentUpon>VerifyEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="testDatePicker.aspx.cs">
-      <DependentUpon>testDatePicker.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="testDatePicker.aspx.designer.cs">
-      <DependentUpon>testDatePicker.aspx</DependentUpon>
-    </Compile>
     <Compile Include="testDocumentViewer.aspx.cs">
       <DependentUpon>testDocumentViewer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -16,6 +16,12 @@
 
 	
         }
+
+        html {
+            background-color :azure;
+        }
+
+
     </style>
 
 

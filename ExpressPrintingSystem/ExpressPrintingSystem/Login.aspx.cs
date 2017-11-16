@@ -163,7 +163,7 @@ namespace ExpressPrintingSystem.Customer
                         if (toggleOption.Equals("Staff"))
                             Response.Redirect("~/Staff/Printing/viewPrintingRequest.aspx");
                         else
-                            Response.Redirect("~/Customer/ChooseCompany.aspx");
+                            Response.Redirect("~/masterPageTest.aspx");
 
                     }
                 }
