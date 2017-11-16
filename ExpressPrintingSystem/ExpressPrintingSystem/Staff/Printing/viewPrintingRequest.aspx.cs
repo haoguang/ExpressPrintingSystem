@@ -243,9 +243,9 @@ namespace ExpressPrintingSystem.Staff.Printing
             switch (status)
             {
                 case Requestlist.STATUS_PENDING:
-                    return Color.Red;
+                    return Color.FromArgb(255, 179, 255);
                 case Requestlist.STATUS_PRINTED:
-                    return Color.Red;
+                    return Color.FromArgb(255, 179, 255);
                 case Requestlist.STATUS_COMPLETED:
                     return Color.Yellow;
                 case Requestlist.STATUS_COLLECTED:
@@ -263,7 +263,7 @@ namespace ExpressPrintingSystem.Staff.Printing
             {
                 using (SqlConnection conPrintDB = new SqlConnection(ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString))
                 {
-                    string strSelect = "Select CustomerEmail, CustomerPhoneNo, CustomerContactMethod, CompanyName From Customer c, Request r, Requestlist rl, Company c WHERE rl.RequestID = r.RequestID AND r.CustomerID = c.CustomerID AND r.CompanyID = c.CompanyID AND rl.RequestlistID = @requestlistID";
+                    string strSelect = "Select CustomerEmail, CustomerPhoneNo, CustomerContactMethod, CompanyName From Customer c, Request r, Requestlist rl, Company cp WHERE rl.RequestID = r.RequestID AND r.CustomerID = c.CustomerID AND r.CompanyID = cp.CompanyID AND rl.RequestlistID = @requestlistID";
                     
                     using (SqlCommand cmdSelect = new SqlCommand(strSelect, conPrintDB))
                     {

@@ -305,7 +305,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Package
             if (gvPackageItem.Rows[0].Cells[1].Text.Equals("N/A"))
             {
                 TextBox txtQuantity = (TextBox)gvPackageItem.Rows[0].Cells[QUANTITY_INDEX].FindControl("txtQuantity");
-
+                txtQuantity.Text = "1";
                 txtQuantity.Enabled = false;
             }
 
