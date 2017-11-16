@@ -43,12 +43,14 @@ namespace ExpressPrintingSystem.Staff.Owner.Report
                             endingDate = cdrDaily.SelectedDate;
                             break;
                         case "Monthly":
-                            startingDate = new DateTime(Convert.ToInt32(ddlYearMonthly.SelectedValue), Convert.ToInt32(ddlMonthMonthly.SelectedValue), 1);
-                            endingDate = new DateTime(Convert.ToInt32(ddlYearMonthly.SelectedValue), Convert.ToInt32(ddlMonthMonthly.SelectedValue), DateTime.DaysInMonth(Convert.ToInt32(ddlYearMonthly.SelectedValue), Convert.ToInt32(ddlMonthMonthly.SelectedValue)),23,59,59);
+                            string[] monthlyString = txtMonthly.Text.Split('-');                           
+                            startingDate = new DateTime(Convert.ToInt32(monthlyString[0]), Convert.ToInt32(monthlyString[1]), 1);
+                            endingDate = new DateTime(Convert.ToInt32(monthlyString[0]), Convert.ToInt32(monthlyString[1]), DateTime.DaysInMonth(Convert.ToInt32(monthlyString[0]), Convert.ToInt32(monthlyString[1])),23,59,59);
                             break;
                         case "Yearly":
-                            startingDate = new DateTime(Convert.ToInt32(ddlYearYearly.SelectedValue), 1, 1);
-                            endingDate = new DateTime(Convert.ToInt32(ddlYearYearly.SelectedValue), 12, 31, 23, 59, 59);
+                            string[] yearlyString = txtMonthly.Text.Split('-');
+                            startingDate = new DateTime(Convert.ToInt32(yearlyString[0]), 1, 1);
+                            endingDate = new DateTime(Convert.ToInt32(yearlyString[0]), 12, 31, 23, 59, 59);
                             break;
                         case "Custom":
                             startingDate = cdrFrom.SelectedDate;
@@ -120,14 +122,13 @@ namespace ExpressPrintingSystem.Staff.Owner.Report
             if (state)
             {
                 dateControlMonthly.Visible = true;
-                ddlMonthMonthly.Enabled = true;
-                ddlYearMonthly.Enabled = true;
+                txtMonthly.Enabled = true;
+
             }
             else
             {
                 dateControlMonthly.Visible = false;
-                ddlMonthMonthly.Enabled = false;
-                ddlYearMonthly.Enabled = false;
+                txtMonthly.Enabled = false;
 
             }
         }
@@ -137,12 +138,12 @@ namespace ExpressPrintingSystem.Staff.Owner.Report
             if (state)
             {
                 dateControlYearly.Visible = true;
-                ddlYearYearly.Enabled = true;
+                txtYearly.Enabled = true;
             }
             else
             {
                 dateControlYearly.Visible = false;
-                ddlYearYearly.Enabled = false;
+                txtYearly.Enabled = false;
 
             }
         }

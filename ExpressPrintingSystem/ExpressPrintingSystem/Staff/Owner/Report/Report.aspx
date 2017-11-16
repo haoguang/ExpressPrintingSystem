@@ -42,31 +42,13 @@
         <tr id="dateControlMonthly" runat="server" style="vertical-align:top;">
             <td>Date:</td>
             <td>
-                <asp:DropDownList ID="ddlMonthMonthly" runat="server">
-                    <asp:ListItem Value="1">January</asp:ListItem>
-                    <asp:ListItem Value="2">February</asp:ListItem>
-                    <asp:ListItem Value="3">March</asp:ListItem>
-                    <asp:ListItem Value="4">April</asp:ListItem>
-                    <asp:ListItem Value="5">May</asp:ListItem>
-                    <asp:ListItem Value="6">June</asp:ListItem>
-                    <asp:ListItem Value="7">July</asp:ListItem>
-                    <asp:ListItem Value="8">August</asp:ListItem>
-                    <asp:ListItem Value="9">September</asp:ListItem>
-                    <asp:ListItem Value="10">October</asp:ListItem>
-                    <asp:ListItem Value="11">November</asp:ListItem>
-                    <asp:ListItem Value="12">December</asp:ListItem>
-                </asp:DropDownList>
-                <asp:DropDownList ID="ddlYearMonthly" runat="server">
-                    <asp:ListItem>2017</asp:ListItem>
-                </asp:DropDownList>
+                <asp:TextBox ID="txtMonthly" TextMode="Month" runat="server"></asp:TextBox>           
             </td>
         </tr>
         <tr id="dateControlYearly" runat="server" style="vertical-align:top;">
             <td>Date:</td>
             <td>
-                 <asp:DropDownList ID="ddlYearYearly" runat="server">
-                    <asp:ListItem>2017</asp:ListItem>
-                </asp:DropDownList>
+                <asp:TextBox ID="txtYearly" TextMode="Month" runat="server"></asp:TextBox>  
             </td>
         </tr>
         <tr id="dateControlCustom" runat="server" style="vertical-align:top;">

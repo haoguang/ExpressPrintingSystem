@@ -284,6 +284,8 @@ namespace ExpressPrintingSystem.Staff.Printing
                         switch (contactMethod)
                         {
                             case "whatsapp":
+                                WhatappClass.sendWhatsappWithURL(contactNo, "Your Document is Printed and Ready", Response);
+                                break;
                             case "wechat":
                             case "E-mail":
                                 string emailContent = EmailClass.populateNotificationEmail(companyName);// content of the email

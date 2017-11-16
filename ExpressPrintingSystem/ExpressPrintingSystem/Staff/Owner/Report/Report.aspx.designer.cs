@@ -103,22 +103,13 @@ namespace ExpressPrintingSystem.Staff.Owner.Report {
         protected global::System.Web.UI.HtmlControls.HtmlTableRow dateControlMonthly;
         
         /// <summary>
-        /// ddlMonthMonthly control.
+        /// txtMonthly control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMonthMonthly;
-        
-        /// <summary>
-        /// ddlYearMonthly control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlYearMonthly;
+        protected global::System.Web.UI.WebControls.TextBox txtMonthly;
         
         /// <summary>
         /// dateControlYearly control.
@@ -130,13 +121,13 @@ namespace ExpressPrintingSystem.Staff.Owner.Report {
         protected global::System.Web.UI.HtmlControls.HtmlTableRow dateControlYearly;
         
         /// <summary>
-        /// ddlYearYearly control.
+        /// txtYearly control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlYearYearly;
+        protected global::System.Web.UI.WebControls.TextBox txtYearly;
         
         /// <summary>
         /// dateControlCustom control.
