@@ -547,7 +547,7 @@ body {
         <br/>      
 		<input type="button" name="previous" class="previous action-button" value="Previous"/>
         <asp:Button ID="Button1" runat="server" Text="Submit" class="submit action-button" OnClick="Button1_Click"/>
-        <asp:Button ID="Button2" runat="server" Text="Cancel" class="submit action-button" OnClick="Button2_Click" />
+        <asp:Button ID="Button2" runat="server" Text="Cancel" class="submit action-button" OnClick="Button2_Click" CausesValidation="False" />
 		
 
 	</fieldset>

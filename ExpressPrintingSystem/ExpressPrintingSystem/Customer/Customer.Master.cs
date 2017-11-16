@@ -65,7 +65,7 @@ namespace ExpressPrintingSystem.Customer
             HtmlGenericControl li = new HtmlGenericControl("li");
             userMenu.Controls.Add(li);
             HtmlGenericControl anchor = new HtmlGenericControl("a");
-            anchor.Attributes.Add("href", "~/masterPageTest.aspx");//profile url Customer/CustomerDetail.aspx
+            anchor.Attributes.Add("href", "Customer/CustomerDetail.aspx");//profile url Customer/CustomerDetail.aspx
             anchor.Attributes.Add("runat", "server");
             anchor.Attributes.Add("onserverclick", "LogOut_Click");
             anchor.InnerText = "Profile";
