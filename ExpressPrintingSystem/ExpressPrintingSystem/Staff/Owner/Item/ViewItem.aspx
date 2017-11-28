@@ -2,13 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphStaffContent" runat="server">
-    <h1>View Item <asp:HyperLink ID="hyAdd" ToolTip="Add Item" ImageUrl="~/Images/add.png" NavigateUrl="~/Staff/Owner/Item/AddItem.aspx" runat="server"></asp:HyperLink></h1>
+    <h1>View Product <asp:HyperLink ID="hyAdd" ToolTip="Add Product" ImageUrl="~/Images/add.png" NavigateUrl="~/Staff/Owner/Item/AddItem.aspx" runat="server"></asp:HyperLink></h1>
     <p><asp:Label ID="lblMessage" runat="server" ForeColor="Red"  Text=""></asp:Label></p>
     <p><asp:Label ID="lblSearch" runat="server" Text="Search :"></asp:Label><asp:TextBox ID="txtSearch" TextMode="Search" AutoPostBack="true" ToolTip="Press Enter after finish typing keywords" runat="server" Width="144px"></asp:TextBox></p>
     <asp:GridView ID="gvItemList" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ItemID" DataSourceID="sdsItem" BorderColor="Black" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" ForeColor="#333333" OnRowCommand="gvItemList_RowCommand">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
-            <asp:BoundField DataField="ItemID" HeaderText="Item ID" ReadOnly="True" SortExpression="ItemID" />
+            <asp:BoundField DataField="ItemID" HeaderText="Product ID" ReadOnly="True" SortExpression="ItemID" />
             <asp:BoundField DataField="ItemName" HeaderText="Name" SortExpression="ItemName" />
             <asp:BoundField DataField="ItemPrice" HeaderText="Price (RM)" SortExpression="ItemPrice" />
             <asp:BoundField DataField="ItemStockQuantity" HeaderText="Stock Quantity" SortExpression="ItemStockQuantity" />

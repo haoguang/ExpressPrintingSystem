@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphStaffContent" runat="server">
-    <h1>Edit Item</h1>
+    <h1>Edit Product</h1>
     <asp:Label ID="lblError" runat="server" ForeColor="Red" Text=""></asp:Label>
     <table>
             <tr>
@@ -34,5 +34,5 @@
                 <td><asp:RequiredFieldValidator ID="rfvSupplier" runat="server" ControlToValidate="txtSupplier" ForeColor="Red" Display="Dynamic" ErrorMessage="Supplier field cannot be empty."></asp:RequiredFieldValidator></td>
             </tr>
         </table>
-            <asp:Button ID="btnSubmit" runat="server" Text="Edit Item" OnClick="btnSubmit_Click" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Edit Product" OnClick="btnSubmit_Click" />
 </asp:Content>

@@ -211,11 +211,11 @@ namespace ExpressPrintingSystem.Staff.Printing
             switch (status)
             {
                 case Requestlist.STATUS_PENDING:
-                    return "Printed";
+                    return "Pending";
                 case Requestlist.STATUS_PRINTED:
-                    return "Complete";
+                    return "Printed";
                 case Requestlist.STATUS_COMPLETED:
-                    return "Pick Up";
+                    return "Ready";
                 default:
                     return "-";
 
@@ -303,6 +303,8 @@ namespace ExpressPrintingSystem.Staff.Printing
                                 }
                                 break;
                             case "SMS":
+                                break;
+                            default:
                                 break;
                         }
                         

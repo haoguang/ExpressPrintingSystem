@@ -264,9 +264,7 @@
                         <br />
                         <asp:RadioButtonList ID="rblMethod" runat="server" BorderStyle="None">
                             <asp:ListItem>whatsapp</asp:ListItem>
-                            <asp:ListItem>wechat</asp:ListItem>
                             <asp:ListItem>E-mail</asp:ListItem>
-                            <asp:ListItem>SMS</asp:ListItem>
                         </asp:RadioButtonList>
                     </td>
                     <td class="auto-style9" colspan="2">&nbsp;</td>

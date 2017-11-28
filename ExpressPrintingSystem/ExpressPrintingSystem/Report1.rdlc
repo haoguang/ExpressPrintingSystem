@@ -21,7 +21,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox49</rd:DefaultName>
-        <Top>12.25in</Top>
+        <Top>0.875in</Top>
         <Left>5.0543in</Left>
         <Height>0.27083in</Height>
         <Width>1.19792in</Width>
@@ -54,7 +54,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox50</rd:DefaultName>
-        <Top>12.25in</Top>
+        <Top>0.875in</Top>
         <Left>3.30083in</Left>
         <Height>0.27083in</Height>
         <Width>1.73958in</Width>
@@ -333,7 +333,7 @@
           </Style>
         </ChartNoDataMessage>
         <DataSetName>OrderReport</DataSetName>
-        <Top>12.66667in</Top>
+        <Top>1.29167in</Top>
         <Left>0.28in</Left>
         <Height>2in</Height>
         <Width>5.97222in</Width>
@@ -647,7 +647,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>15.05903in</Height>
+    <Height>3.43403in</Height>
     <Style />
   </Body>
   <Width>6.37635in</Width>

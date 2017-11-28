@@ -48,7 +48,7 @@ namespace ExpressPrintingSystem.Staff.Owner.Report
                             endingDate = new DateTime(Convert.ToInt32(monthlyString[0]), Convert.ToInt32(monthlyString[1]), DateTime.DaysInMonth(Convert.ToInt32(monthlyString[0]), Convert.ToInt32(monthlyString[1])),23,59,59);
                             break;
                         case "Yearly":
-                            string[] yearlyString = txtMonthly.Text.Split('-');
+                            string[] yearlyString = txtYearly.Text.Split('-');
                             startingDate = new DateTime(Convert.ToInt32(yearlyString[0]), 1, 1);
                             endingDate = new DateTime(Convert.ToInt32(yearlyString[0]), 12, 31, 23, 59, 59);
                             break;
