@@ -313,10 +313,10 @@
             </tr>
             <tr>
                 <td class="auto-style1">
-                    <asp:Button ID="btnCompanyCancel" runat="server" Text="Cancel" TabIndex="10" OnClick="btnCompanyCancel_Click" />
+                    <asp:Button ID="btnCompanySubmit" runat="server" Text="Submit" OnClick="btnCompanySubmit_Click1" TabIndex="11" />
                 </td>
                 <td class="auto-style26" colspan="2">
-                    <asp:Button ID="btnCompanySubmit" runat="server" Text="Submit" OnClick="btnCompanySubmit_Click1" TabIndex="11" />
+                    <asp:Button ID="btnCompanyCancel" runat="server" Text="Cancel" TabIndex="10" OnClick="btnCompanyCancel_Click" />
                 </td>
                 <td>
                     &nbsp;</td>

@@ -102,7 +102,27 @@
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
       <div>
   <fieldset class="orderdetail">
+      <table style="width:100%;">
+          <tr>
+              <td>
       <asp:Label ID="lblreceipt" runat="server" Text="Label"></asp:Label>
+              </td>
+              <td>
+                  <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+              </td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+          </tr>
+      </table>
   </fieldset>
       </div>
 

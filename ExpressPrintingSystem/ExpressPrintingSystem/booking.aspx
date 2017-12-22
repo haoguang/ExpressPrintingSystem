@@ -353,16 +353,10 @@ body {
         <hr/>
 		<h3 class="fs-subtitle"></h3>
         <br />
-        <asp:Label ID="Label2" runat="server" Text="Document Color" Font-Underline="True"></asp:Label><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Document color is required!" ControlToValidate="rbtDocumentColor" Text="*" ForeColor="Red">*</asp:RequiredFieldValidator>
-        <asp:RadioButtonList ID="rbtDocumentColor" runat="server" RepeatDirection="Horizontal">
-             <asp:ListItem>Color page</asp:ListItem>
-             <asp:ListItem>Non- Color</asp:ListItem>
-        </asp:RadioButtonList>
-        <br />
         <asp:Label ID="Label3" runat="server" Text="Document Side" Font-Underline="True"></asp:Label><asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Document Side is required" ControlToValidate="rbtDocumentSide" Text="*" ForeColor="Red">*</asp:RequiredFieldValidator>
         <asp:RadioButtonList ID="rbtDocumentSide" runat="server" RepeatDirection="Horizontal">
-            <asp:ListItem>Single Side</asp:ListItem>
-            <asp:ListItem>Double Side</asp:ListItem>
+            <asp:ListItem>Single Sided</asp:ListItem>
+            <asp:ListItem>Double Sided</asp:ListItem>
         </asp:RadioButtonList>
         <br/>
        
@@ -419,7 +413,7 @@ body {
         <br/>
         <asp:Label ID="Label10" runat="server" Text="Due Date" Font-Underline="True"></asp:Label><asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="Due Date is required!" Text="*" ControlToValidate="txtDueDate"></asp:RequiredFieldValidator>
         <br/>
-        <asp:TextBox ID="txtDueDate" runat="server" TextMode="DateTimeLocal" ControlToValidate="txtDueDate"></asp:TextBox><asp:CompareValidator ID="CompareDuedate" type="String" runat="server" ErrorMessage="Due Date must greater than today date!" ControlToValidate="txtDueDate" Operator="GreaterThan" Text="*" OnDataBinding="Page_Load"></asp:CompareValidator>
+        <asp:TextBox ID="txtDueDate" runat="server" TextMode="DateTimeLocal" ControlToValidate="txtDueDate"></asp:TextBox><asp:CompareValidator ID="CompareDuedate" type="String" runat="server" ErrorMessage="You shouldn't choose the time that already passed!" ControlToValidate="txtDueDate" Operator="GreaterThan" Text="*" OnDataBinding="Page_Load"></asp:CompareValidator>
         <br/>
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
         <br/>

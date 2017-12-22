@@ -86,11 +86,13 @@
             </tr>
             <tr>
                 <td>
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+       
+        <asp:Button ID="btnSubmit" runat="server" OnClick="Button2_Click" Text="Submit" />
+    
                 </td>
                 <td>
        
-        <asp:Button ID="btnSubmit" runat="server" OnClick="Button2_Click" Text="Submit" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
     
                 </td>
                

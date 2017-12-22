@@ -421,7 +421,7 @@
         <Top>0.11333in</Top>
         <Left>0.12375in</Left>
         <Height>0.5in</Height>
-        <Width>6.08528in</Width>
+        <Width>6.08527in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -437,14 +437,14 @@
                   <GroupExpression>=Fields!RequestStatus.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
-              <Label>=Today()
-="Tomorrow is " &amp; DateAdd("d",1,Today())
-="Tomorrow is " &amp; DateAdd(DateInterval.Day,1,Today())</Label>
               <SortExpressions>
                 <SortExpression>
                   <Value>=Fields!RequestStatus.Value</Value>
                 </SortExpression>
               </SortExpressions>
+              <Label>=Today()
+="Tomorrow is " &amp; DateAdd("d",1,Today())
+="Tomorrow is " &amp; DateAdd(DateInterval.Day,1,Today())</Label>
             </ChartMember>
           </ChartMembers>
         </ChartCategoryHierarchy>
@@ -759,7 +759,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Monthly Sale Report for month of August</Value>
+                  <Value>Monthly Sale Report</Value>
                   <Style>
                     <FontStyle>Normal</FontStyle>
                     <FontFamily>Times New Roman</FontFamily>
@@ -776,7 +776,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox3</rd:DefaultName>
-          <Top>1.22569in</Top>
+          <Top>1.23958in</Top>
           <Left>1.46326in</Left>
           <Height>0.4375in</Height>
           <Width>3.4375in</Width>
