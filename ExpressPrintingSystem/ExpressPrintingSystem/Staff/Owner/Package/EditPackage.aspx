@@ -36,7 +36,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphStaffContent" runat="server">
-    <h1>Add Package</h1>
+    <h1>Update Package</h1>
     <asp:Label ID="lblError" runat="server" ForeColor="Red" Text=""></asp:Label>
     
         <table>

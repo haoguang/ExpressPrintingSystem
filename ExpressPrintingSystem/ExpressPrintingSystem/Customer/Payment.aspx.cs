@@ -393,12 +393,12 @@ namespace ExpressPrintingSystem.Customer
 
             string customeremail = (string)(Session["email"]);
 
-            var fromAddress = "darrenlai95@gmail.com";
+            var fromAddress = "expressprintingsystem@gmail.com";
             var toAddress = customeremail;
-            const string fromPassword = "940917105277";
+            const string fromPassword = "expressprinting";
 
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("darrenlai95@gmail.com", "Express Printing System");
+            mail.From = new MailAddress("expressprintingsystem@gmail.com", "Express Printing System");
             mail.To.Add(customeremail);
             mail.Subject = "Receipt";
             mail.AlternateViews.Add(Mail_Body(filename, paymentid));

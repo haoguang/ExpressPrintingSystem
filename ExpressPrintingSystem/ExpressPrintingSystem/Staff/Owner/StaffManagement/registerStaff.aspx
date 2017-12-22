@@ -72,5 +72,5 @@
         
     </table>
     <asp:Button ID="btnSubmit" runat="server" Text="Register" OnClick="btnSubmit_Click" />
-    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+    <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CausesValidation="False" />
 </asp:Content>

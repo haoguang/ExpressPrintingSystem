@@ -103,5 +103,11 @@ namespace ExpressPrintingSystem.Staff.Owner.Item
 
             conPrintDB.Close();
         }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("ViewItem.aspx");
+        }
     }
 }

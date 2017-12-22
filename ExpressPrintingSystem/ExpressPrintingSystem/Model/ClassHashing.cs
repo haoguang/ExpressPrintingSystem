@@ -11,12 +11,6 @@ namespace ExpressPrintingSystem
     public class ClassHashing
     {
 
-
-
-        
-
-
-
         public static byte[] generateSalt()
         {
             byte[] saltBytes;

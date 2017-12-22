@@ -185,12 +185,14 @@ namespace ExpressPrintingSystem.Model
         {
             Response.Cookies["UserCookie"].Expires = DateTime.Now.AddDays(-1);
             FormsAuthentication.SignOut();
-            FormsAuthentication.RedirectToLoginPage();
+            
 
             if (Response.Cookies["CompanyID"] != null)
             {
                 Response.Cookies["CompanyID"].Expires = DateTime.Now.AddDays(-1);
             }
+
+            Response.Redirect("~/Login.aspx");
         }
 
         public static string getVerificationCode(string text, byte[] salt)

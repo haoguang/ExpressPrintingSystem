@@ -27,16 +27,7 @@
         <tr id="dateControlDaily" runat="server" style="vertical-align:top;">
             <td>Date:</td>
             <td>
-                <asp:Calendar ID="cdrDaily" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
-                    <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-                    <NextPrevStyle VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#808080" />
-                    <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-                    <SelectorStyle BackColor="#CCCCCC" />
-                    <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                    <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                    <WeekendDayStyle BackColor="#FFFFCC" />
-                </asp:Calendar>   
+                <asp:TextBox ID="txtDaily" TextMode="Date" runat="server"></asp:TextBox>   
             </td>
         </tr>
         <tr id="dateControlMonthly" runat="server" style="vertical-align:top;">
@@ -54,28 +45,10 @@
         <tr id="dateControlCustom" runat="server" style="vertical-align:top;">
             <td>Date:</td>
             <td>
-                <asp:Calendar ID="cdrFrom" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
-                    <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-                    <NextPrevStyle VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#808080" />
-                    <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-                    <SelectorStyle BackColor="#CCCCCC" />
-                    <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                    <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                    <WeekendDayStyle BackColor="#FFFFCC" />
-                </asp:Calendar>   
+                From <asp:TextBox ID="txtDateFrom" TextMode="Date" runat="server"></asp:TextBox>   
             </td>
             <td>
-                <asp:Calendar ID="cdrTo" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
-                    <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-                    <NextPrevStyle VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#808080" />
-                    <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-                    <SelectorStyle BackColor="#CCCCCC" />
-                    <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                    <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                    <WeekendDayStyle BackColor="#FFFFCC" />
-                </asp:Calendar>
+                To <asp:TextBox ID="txtDateTo" TextMode="Date" runat="server"></asp:TextBox>               
             </td>
         </tr>
         

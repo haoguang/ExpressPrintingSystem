@@ -39,8 +39,9 @@ namespace ExpressPrintingSystem.Staff.Owner.Report
                     switch (rblPeriod.SelectedValue)
                     {
                         case "Daily":
-                            startingDate = cdrDaily.SelectedDate;
-                            endingDate = cdrDaily.SelectedDate;
+                            string[] dailyString = txtDaily.Text.Split('-');
+                            startingDate = new DateTime(Convert.ToInt32(dailyString[0]), Convert.ToInt32(dailyString[1]), Convert.ToInt32(dailyString[2]));
+                            endingDate = new DateTime(Convert.ToInt32(dailyString[0]), Convert.ToInt32(dailyString[1]), Convert.ToInt32(dailyString[2]));
                             break;
                         case "Monthly":
                             string[] monthlyString = txtMonthly.Text.Split('-');                           
@@ -53,8 +54,10 @@ namespace ExpressPrintingSystem.Staff.Owner.Report
                             endingDate = new DateTime(Convert.ToInt32(yearlyString[0]), 12, 31, 23, 59, 59);
                             break;
                         case "Custom":
-                            startingDate = cdrFrom.SelectedDate;
-                            endingDate = cdrTo.SelectedDate;
+                            string[] dateFromString = txtDateFrom.Text.Split('-');
+                            string[] dateToString = txtDateTo.Text.Split('-');
+                            startingDate = new DateTime(Convert.ToInt32(dateFromString[0]), Convert.ToInt32(dateFromString[1]), Convert.ToInt32(dateFromString[2]));
+                            endingDate = new DateTime(Convert.ToInt32(dateToString[0]), Convert.ToInt32(dateToString[1]), Convert.ToInt32(dateToString[2]));
                             break;
                     }
 
@@ -108,12 +111,12 @@ namespace ExpressPrintingSystem.Staff.Owner.Report
             if (state)
             {
                 dateControlDaily.Visible = true;
-                cdrDaily.Enabled = true;
+                txtDaily.Enabled = true;
             }
             else
             {
                 dateControlDaily.Visible = false;
-                cdrDaily.Enabled = false;
+                txtDaily.Enabled = false;
             }
         }
 
@@ -153,14 +156,14 @@ namespace ExpressPrintingSystem.Staff.Owner.Report
             if (state)
             {
                 dateControlCustom.Visible = true;
-                cdrTo.Enabled = true;
-                cdrFrom.Enabled = true;
+                txtDateFrom.Enabled = true;
+                txtDateTo.Enabled = true;
             }
             else
             {
                 dateControlCustom.Visible = false;
-                cdrTo.Enabled = false;
-                cdrFrom.Enabled = false;
+                txtDateFrom.Enabled = false;
+                txtDateTo.Enabled = false;
             }
         }
 

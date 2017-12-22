@@ -110,9 +110,9 @@ namespace ExpressPrintingSystem
             
             ViewState["generateCode"] = asgenerateCode;
 
-            var fromAddress = "darrenlai95@gmail.com";
+            var fromAddress = "expressprintingsystem@gmail.com";
             var toAddress = TextBox1.Text;
-            const string fromPassword = "940917105277";
+            const string fromPassword = "expressprinting";
 
             
             string strbody;
@@ -127,7 +127,7 @@ namespace ExpressPrintingSystem
             strbody += "Express Printing System Admin";
 
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("darrenlai95@gmail.com", "Express Printing System");
+            mail.From = new MailAddress("expressprintingsystem@gmail.com", "Express Printing System");
             mail.To.Add(TextBox1.Text);
             mail.Subject = "Reset Password";
             mail.Body = strbody;

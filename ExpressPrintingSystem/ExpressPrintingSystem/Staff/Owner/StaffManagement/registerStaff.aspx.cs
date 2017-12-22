@@ -97,8 +97,7 @@ namespace ExpressPrintingSystem.Staff.Owner.StaffManagement
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            string returnUrl = Request.QueryString["ReturnUrl"] as string;
-            Response.Redirect(returnUrl);
+            Response.Redirect("manageStaff.aspx");
         }
 
         protected void chkPassSet_CheckedChanged(object sender, EventArgs e)

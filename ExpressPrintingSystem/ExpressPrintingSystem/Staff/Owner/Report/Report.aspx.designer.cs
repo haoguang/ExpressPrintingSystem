@@ -85,13 +85,13 @@ namespace ExpressPrintingSystem.Staff.Owner.Report {
         protected global::System.Web.UI.HtmlControls.HtmlTableRow dateControlDaily;
         
         /// <summary>
-        /// cdrDaily control.
+        /// txtDaily control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar cdrDaily;
+        protected global::System.Web.UI.WebControls.TextBox txtDaily;
         
         /// <summary>
         /// dateControlMonthly control.
@@ -139,22 +139,22 @@ namespace ExpressPrintingSystem.Staff.Owner.Report {
         protected global::System.Web.UI.HtmlControls.HtmlTableRow dateControlCustom;
         
         /// <summary>
-        /// cdrFrom control.
+        /// txtDateFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar cdrFrom;
+        protected global::System.Web.UI.WebControls.TextBox txtDateFrom;
         
         /// <summary>
-        /// cdrTo control.
+        /// txtDateTo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar cdrTo;
+        protected global::System.Web.UI.WebControls.TextBox txtDateTo;
         
         /// <summary>
         /// btnGenerate control.
