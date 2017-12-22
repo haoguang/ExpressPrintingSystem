@@ -194,7 +194,7 @@ namespace ExpressPrintingSystem.Customer
                         Model.Entities.Document newdocument = new Model.Entities.Document(fileName, contentType, FileIdInCloud, userID, size, numberOfPages);
 
                         int sequences = 0; ////remember to do it;  
-                        string documentColor = rbtDocumentColor.SelectedValue;
+                        string documentColor = "null";
                         string documentbothside = rbtDocumentSide.SelectedValue;
                         int documentpapertype = Convert.ToInt32(ddlPaperType.SelectedValue);
                         int documentquantity = Convert.ToInt32(txtDocumentQuantity.Text);

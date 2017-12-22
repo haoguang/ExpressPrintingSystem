@@ -1,8 +1,15 @@
-﻿using System;
+﻿using ExpressPrintingSystem.Staff.Printing;
+using QRCoder;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Mime;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -17,8 +24,9 @@ namespace ExpressPrintingSystem.Customer
                 String Paypal = "Paypal";
                 decimal amountpaypal = (decimal)(Session["amount"]);
                 decimal totalamount = Convert.ToDecimal(amountpaypal);
+            Model.Entities.Request request = (Model.Entities.Request)Session["request"];
 
-                SqlConnection conTaxi;
+            SqlConnection conTaxi;
                 string connStr = ConfigurationManager.ConnectionStrings["printDBServer"].ConnectionString;
                 conTaxi = new SqlConnection(connStr);
                 conTaxi.Open();
@@ -39,19 +47,23 @@ namespace ExpressPrintingSystem.Customer
 
                 if (getPaymentID != null)
                 {
-                    Response.Write("<script>alert('PayPal Successful');</script>");
 
-                    //forRetriveRequest(request);
-
-                }
-                else
+                             
+                Response.Write("<script>alert('PayPal Successful');</script>");
+            }
+            else
                 {
                     Response.Write("<script>alert('Upload Failed');</script>");
                 }
-            }
+            PrintingRequestHub.refreshTable();
+        }
 
+        
+       
         protected void btnBack_Click(object sender, EventArgs e)
         {
+
+
             Response.Redirect("~/masterPageTest.aspx");
         }
     }

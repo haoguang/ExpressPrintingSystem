@@ -48,9 +48,10 @@ namespace ExpressPrintingSystem.Customer
                             string customerphoneno = dtr["CustomerPhoneNo"].ToString();
                             string customercontmethod = dtr["CustomerContactMethod"].ToString();
 
+                            
                             txtName.Text = CustomerName;
                             txtEmail.Text = customeremail;
-                            CldDate.SelectedDate = customerdob;
+                            customerDOB.Text = Convert.ToString(customerdob);
                             txtPhoNo.Text = customerphoneno;
                             rbtContMet.SelectedValue = customercontmethod;
 
@@ -88,7 +89,7 @@ namespace ExpressPrintingSystem.Customer
             cmdAdd = new SqlCommand(strEdit, conTaxi);
             cmdAdd.Parameters.AddWithValue("@customerName", txtName.Text);
             cmdAdd.Parameters.AddWithValue("@customerEmail", txtEmail.Text);
-            cmdAdd.Parameters.AddWithValue("@customerDOB", CldDate.SelectedDate);
+            cmdAdd.Parameters.AddWithValue("@customerDOB", Convert.ToDateTime(customerDOB.Text));
             cmdAdd.Parameters.AddWithValue("@customerPhoneNo", txtPhoNo.Text);
             cmdAdd.Parameters.AddWithValue("@customerContactMethod", rbtContMet.SelectedValue);
             cmdAdd.Parameters.AddWithValue("@customerID", userID);

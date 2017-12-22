@@ -34,81 +34,44 @@ namespace ExpressPrintingSystem.Customer
                 decimal totalPackagePrice = 0;
 
 
-                //calculate the total page in multiple file 
-                if (request.RequestLists[0].DocumentList[0].DocumentBothSide.Equals("Single Side"))
-                {
+
+                //calculate the totalamountofpage
+                amountOFpage = newpackage.PrintingPrice * receivepage * request.RequestLists[0].DocumentList[0].DocumentQuantity;
+
+                //calculate the countfile with package price  
+                countfile = (int)Session["countthepackageitem"];
+                totalPackagePrice = newpackage.PackagePrice * countfile;
+
+                //calculate final amount
+                finalAmount = amountOFpage + totalPackagePrice;
+
+                //getitem
+                string allFileName = (string)Session["allfilename"];
+
+                string detail;
+                detail = "Order Detail" + "<br />";
+                detail += "------------------" + "<br />";
+                detail += "Number of File = " + normalcountFile + "<br />";
+                detail += "Number of Page = " + receivepage + "<br />";
+                detail += "Number of set = " + request.RequestLists[0].DocumentList[0].DocumentQuantity + "<br />";
+                //detail += "Document Color =" + request.RequestLists[0].DocumentList[0].DocumentColor + "<br/>";
+                detail += "Document Side = " + request.RequestLists[0].DocumentList[0].DocumentBothSide + "<br/>";
+                detail += "Document Name = " + allFileName + "<br />";
+                detail += "Document Total price = " + amountOFpage + "<br />";
+
+                string detail1;
+
+                detail1 = "Package = " + newpackage.PackageName + "<br />";
+                detail1 += "Package Price = " + totalPackagePrice + "<br />";
+                detail1 += "Total Amount = " + finalAmount + "<br />";
+                detail1 += "<br/>";
+                Label1.Text = detail1;
+                lblreceipt.Text = detail;
+                txtpaymentTotal.Text = Convert.ToString(finalAmount);
 
 
-                    //calculate the totalamountofpage
-                    amountOFpage = newpackage.PrintingPrice * receivepage * request.RequestLists[0].DocumentList[0].DocumentQuantity;
-
-                    //calculate the countfile with package price  
-                    countfile = (int)Session["countthepackageitem"];
-                    totalPackagePrice = newpackage.PackagePrice * countfile;
-
-                    //calculate final amount
-                    finalAmount = amountOFpage + totalPackagePrice;
-
-                    //getitem
-                    string allFileName = (string)Session["allfilename"];
-
-                    string detail;
-                    detail = "Order Detail" + "<br />";
-                    detail += "------------------" + "<br />";
-                    detail += "Number of File =" + normalcountFile + "<br />";
-                    detail += "Number of Page =" + receivepage + "<br />";
-                    detail += "Number of set =" + request.RequestLists[0].DocumentList[0].DocumentQuantity + "<br />";
-                    detail += "Document Color =" + request.RequestLists[0].DocumentList[0].DocumentColor + "<br/>";
-                    detail += "Document Side =" + request.RequestLists[0].DocumentList[0].DocumentBothSide + "<br/>";
-                    detail += "Item Name = " + allFileName + "<br />";
-                    detail += "Item price = " + amountOFpage + "<br />";
-                    detail += "Package = " + newpackage.PackageName + "<br />";
-                    detail += "Package Price =" + totalPackagePrice + "<br />";
-                    detail += "Total Amount=" + finalAmount + "<br />";
-                    detail += "<br/>";
-                    lblreceipt.Text = detail;
-                    txtpaymentTotal.Text = Convert.ToString(finalAmount);
 
 
-
-                }
-                else if (request.RequestLists[0].DocumentList[0].DocumentBothSide.Equals("Double Side"))
-                {
-
-                    decimal doublesidePageNumber;
-                    doublesidePageNumber = receivepage / 2;
-
-                    //calculate the totalamountofpage
-                    amountOFpage = newpackage.PrintingPrice * doublesidePageNumber * request.RequestLists[0].DocumentList[0].DocumentQuantity;
-
-                    //calculate the countfile with package price  
-                    countfile = (int)Session["countthepackageitem"];
-                    totalPackagePrice = newpackage.PackagePrice * countfile;
-
-                    //calculate final amount
-                    finalAmount = amountOFpage + totalPackagePrice;
-
-                    //getitem
-                    string allFileName = (string)Session["allfilename"];
-
-                    string detail;
-                    detail = "Order Detail" + "<br />";
-                    detail += "------------------" + "<br />";
-                    detail += "Number of File =" + normalcountFile + "<br />";
-                    detail += "Number of Page =" + receivepage + "<br />";
-                    detail += "Number of set =" + request.RequestLists[0].DocumentList[0].DocumentQuantity + "<br />";
-                    detail += "Document Color =" + request.RequestLists[0].DocumentList[0].DocumentColor + "<br/>";
-                    detail += "Item Name = " + allFileName + "<br />";
-                    detail += "Item price = " + amountOFpage + "<br />";
-                    detail += "Package = " + newpackage.PackageName + "<br />";
-                    detail += "Package Price =" + totalPackagePrice + "<br />";
-                    detail += "Total Amount=" + finalAmount + "<br />";
-                    detail += "<br/>";
-                    lblreceipt.Text = detail;
-                    txtpaymentTotal.Text = Convert.ToString(finalAmount);
-
-
-                }
 
             }
            
@@ -227,8 +190,8 @@ namespace ExpressPrintingSystem.Customer
                     request.Payment.PaymentID = (string)getPaymentID;
                   
                     insertNewRequest(request);
-                    generateQRcode(request);  
-
+                    generateQRcode(request);
+                    
                     Response.Write("<script>alert('Successful payment');</script>");
 
                 }

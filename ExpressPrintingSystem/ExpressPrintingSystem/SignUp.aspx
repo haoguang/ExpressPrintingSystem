@@ -221,7 +221,7 @@
                         <asp:RegularExpressionValidator
             ID="RegularExpressionValidator2" runat="server" 
             ErrorMessage="Invalid email format. Suggestion: someone@example.com"
-            ControlToValidate="txtEmail" ValidationExpression="^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$"></asp:RegularExpressionValidator>
+            ControlToValidate="txtEmail" ValidationExpression="^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$" ForeColor="Red">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -256,7 +256,7 @@
                         <asp:RegularExpressionValidator
             ID="RegularExpressionValidator1" runat="server" 
             ErrorMessage="Must be at leat 10-digit Contact Number" 
-            ControlToValidate="txtPhoneNumber" ValidationExpression="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"></asp:RegularExpressionValidator>
+            ControlToValidate="txtPhoneNumber" ValidationExpression="^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$" ForeColor="Red">*</asp:RegularExpressionValidator>
                     </td>
                 </tr>
                 <tr>
@@ -271,7 +271,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style9" colspan="5">
-                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
+                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
                     </td>
                 </tr>
                 <tr>
@@ -281,7 +281,7 @@
                         <br />
                     </td>
                     <td class="auto-style9">
-                        <asp:Button ID="btnCancel" runat="server" Height="30px" Text="Cancel" Width="100px" OnClick="btnCancel_Click" />
+                        <asp:Button ID="btnCancel" runat="server" Height="30px" Text="Cancel" Width="100px" OnClick="btnCancel_Click" CausesValidation="False" />
                         <br />
                     </td>
                 </tr>

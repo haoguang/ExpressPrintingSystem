@@ -694,7 +694,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Yearly Sales Report of 2017</Value>
+                  <Value>Yearly Sales Report</Value>
                   <Style>
                     <FontStyle>Normal</FontStyle>
                     <FontFamily>Times New Roman</FontFamily>
