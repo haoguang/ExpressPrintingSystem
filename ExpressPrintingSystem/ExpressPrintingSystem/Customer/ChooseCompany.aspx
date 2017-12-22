@@ -37,7 +37,7 @@
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PrintDBConnectionString %>" SelectCommand="SELECT [CompanyID], [CompanyName] FROM [Company]"></asp:SqlDataSource>
         
-        <asp:Button ID="btnSubmit" runat="server" Text="Button" OnClick="btnSubmit_Click" Font-Size="X-Large" />
+        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" Font-Size="X-Large" />
     </div>
     </form>
 </body>

@@ -9,6 +9,7 @@
         <siteMapNode url="~/Staff/Owner/Package/ViewPackage.aspx" title="Package"  description="View Package" />
         <siteMapNode url="~/Staff/Owner/Item/ViewItem.aspx" title="Products"  description="View Product" />
         <siteMapNode url="~/Staff/Owner/StaffManagement/manageStaff.aspx" title="Staff"  description="View Staff" />
+        <siteMapNode url="~/Staff/Owner/Notify/SendMessage.aspx" title="Broadcast"  description="Send Email" />
         <siteMapNode url="~/Staff/Owner/Report/Report.aspx" title="Reports"  description="Generate Reports" />
       </siteMapNode>
     </siteMapNode>
